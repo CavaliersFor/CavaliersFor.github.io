@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>redis入门与安装 | Hexo</title>
+    <title>redis入门与安装 | 在路上coder博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
-    <meta name="author" content="John Doe">
+    <meta name="author" content="在路上的coder">
     
 
     
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis入门与安装">
 <meta property="og:url" content="http://yoursite.com/2017/05/20/redis介绍和安装/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="在路上coder博客">
 <meta property="og:description" content="NOSQL简介NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：  键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB 列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键任然存在，但是它们的特定是指向了多个列。如HBase，Riak 文档型数据库：该类型的数据库是版本">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/1.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis编译结果图.jpg">
@@ -30,7 +30,7 @@
 <meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/1.jpg">
 
     
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="在路上coder博客" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/favicon.ico">
@@ -48,14 +48,14 @@
 <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.png" alt="Hexo" title="Hexo"/></a>
+				<a href="/"><img src="/img/logo.png" alt="在路上coder博客" title="在路上coder博客"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
+				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -71,7 +71,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -91,17 +91,17 @@
   </h1>
   <p class="article-author">By
        
-		<a href="/about" title="John Doe" target="_blank" itemprop="author">John Doe</a>
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-20T03:24:56.000Z" itemprop="datePublished"> 发表于 2017-05-20</time>
+    <time datetime="2017-05-20T03:24:56.000Z" itemprop="datePublished"> Published 2017-05-20</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目录</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NOSQL简介"><span class="toc-number">1.</span> <span class="toc-text">NOSQL简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非关系型数据库特点"><span class="toc-number">2.</span> <span class="toc-text">非关系型数据库特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis简介"><span class="toc-number">3.</span> <span class="toc-text">Redis简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">3.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-number">3.2.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-number">3.3.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis安装"><span class="toc-number">4.</span> <span class="toc-text">Redis安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gcc"><span class="toc-number">4.1.</span> <span class="toc-text">安装gcc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译redis"><span class="toc-number">4.2.</span> <span class="toc-text">编译redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装redis"><span class="toc-number">4.3.</span> <span class="toc-text">安装redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动redis"><span class="toc-number">4.4.</span> <span class="toc-text">启动redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改配置文件"><span class="toc-number">4.5.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接redis"><span class="toc-number">4.6.</span> <span class="toc-text">连接redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止redis"><span class="toc-number">4.7.</span> <span class="toc-text">停止redis</span></a></li></ol></li></ol>
 		
@@ -206,7 +206,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/05/20/redis介绍和安装/" data-title="redis入门与安装 | Hexo" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/05/20/redis介绍和安装/" data-title="redis入门与安装 | 在路上coder博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -233,17 +233,17 @@
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目录</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#NOSQL简介"><span class="toc-number">1.</span> <span class="toc-text">NOSQL简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非关系型数据库特点"><span class="toc-number">2.</span> <span class="toc-text">非关系型数据库特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis简介"><span class="toc-number">3.</span> <span class="toc-text">Redis简介</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">3.1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优点"><span class="toc-number">3.2.</span> <span class="toc-text">优点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缺点"><span class="toc-number">3.3.</span> <span class="toc-text">缺点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis安装"><span class="toc-number">4.</span> <span class="toc-text">Redis安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装gcc"><span class="toc-number">4.1.</span> <span class="toc-text">安装gcc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译redis"><span class="toc-number">4.2.</span> <span class="toc-text">编译redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装redis"><span class="toc-number">4.3.</span> <span class="toc-text">安装redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动redis"><span class="toc-number">4.4.</span> <span class="toc-text">启动redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改配置文件"><span class="toc-number">4.5.</span> <span class="toc-text">修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#连接redis"><span class="toc-number">4.6.</span> <span class="toc-text">连接redis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#停止redis"><span class="toc-number">4.7.</span> <span class="toc-text">停止redis</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -253,7 +253,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -265,7 +265,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -276,7 +276,7 @@
         
           <li>
             
-            	<a href="http://blog.csdn.net/facekbook" target="_blank" title="CSDN&#39;s Blog">CSDN&#39;s Blog</a>
+            	<a href="http://blog.csdn.net/facekbook" target="_blank" title="My CSDN&#39;s Blog">My CSDN&#39;s Blog</a>
             
           </li>
         
@@ -284,16 +284,6 @@
 </div>
 
   
-
-
-  <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 订阅</a>
-</div>
-
-  <div class="weiboshow">
-  <p class="asidetitle">新浪微博</p>
-    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=&dpc=1"></iframe>
-</div>
 
 
 </aside>
@@ -330,7 +320,7 @@
 		<p class="copyright">
 		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
 		
-		<a href="/about" target="_blank" title="John Doe">John Doe</a>
+		<a href="/about" target="_blank" title="在路上的coder">在路上的coder</a>
 		
 		
 		</p>
@@ -506,7 +496,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
