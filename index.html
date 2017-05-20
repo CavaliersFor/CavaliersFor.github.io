@@ -78,6 +78,92 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/05/20/redis基础数据类型详解/" title="redis基础数据类型详解" itemprop="url">redis基础数据类型详解</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
+		
+  <p class="article-time">
+    <time datetime="2017-05-20T12:27:27.000Z" itemprop="datePublished"> Published 2017-05-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="redis类型"><a href="#redis类型" class="headerlink" title="redis类型"></a>redis类型</h2><p>redis一共分为五种基本数据类型：<code>String、Hash、List、Set、ZSet</code></p>
+<h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><p>String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。</p>
+<h3 id="set、get和del方法："><a href="#set、get和del方法：" class="headerlink" title="set、get和del方法："></a>set、get和del方法：</h3><ul>
+<li>设置值：<code>set name redis</code></li>
+<li>取值： <code>get name</code></li>
+<li>删除值： <code>del name</code></li>
+</ul>
+<h3 id="使用setnx-not-exist"><a href="#使用setnx-not-exist" class="headerlink" title="使用setnx (not exist)"></a>使用setnx (not exist)</h3><ul>
+<li>表示如果不存在key进行设置，返回1。存在就不需要设置了，返回0<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">127.0</span>.0.1:<span class="number">6379</span>&gt; <span class="function">setnx name <span class="title">aa</span></span></div><div class="line"><span class="params">(integer)</span> 0</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="使用setex-expired"><a href="#使用setex-expired" class="headerlink" title="使用setex (expired)"></a>使用setex (expired)</h3><ul>
+<li><code>set color 10 red</code> 设置color的有效期为10秒，10秒返回 <code>nil</code> (在redis中<code>nil</code>表示<code>null</code>)</li>
+</ul>
+<h3 id="使用setrange-替换字符串"><a href="#使用setrange-替换字符串" class="headerlink" title="使用setrange 替换字符串"></a>使用setrange 替换字符串</h3><ul>
+<li><code>set mail 123456@qq.com</code> 替换字符串 <code>setrange mail 5 abc</code> (5表示从第几位开始替换，不包含开始位置，后面跟上替换的字符串)，如下图：<br><img src="http://opzxa0ul7.bkt.clouddn.com/setrange结果.jpg" alt="setrange结果"></li>
+</ul>
+<h3 id="一次性设置或者获取多个值mset、mget-方法"><a href="#一次性设置或者获取多个值mset、mget-方法" class="headerlink" title="一次性设置或者获取多个值mset、mget 方法"></a>一次性设置或者获取多个值<code>mset、mget</code> 方法</h3><ul>
+<li><code>mset k1 123 k2 abc k3 ofg</code></li>
+<li><code>mget k1 k2 k3</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/mset和mget.jpg" alt="mset和mget"></li>
+</ul>
+<h3 id="一次性获取设置getset方法"><a href="#一次性获取设置getset方法" class="headerlink" title="一次性获取设置getset方法"></a>一次性获取设置<code>getset</code>方法</h3><ul>
+<li><code>getset k4 abcd</code> 先返回k4的值然后设置k4的值为 <code>abcd</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/setget.jpg" alt="setget"></li>
+</ul>
+<h3 id="incr和decr方法"><a href="#incr和decr方法" class="headerlink" title="incr和decr方法"></a>incr和decr方法</h3><ul>
+<li>对某个值进行递增和递减。<code>incr age</code> <code>decr age</code></li>
+</ul>
+<h3 id="incrby和decrby方法"><a href="#incrby和decrby方法" class="headerlink" title="incrby和decrby方法"></a>incrby和decrby方法</h3><ul>
+<li>对某个值指定长度的递增和递减。</li>
+<li><code>incrby age 5</code> 增加5</li>
+<li><code>decrby age 6</code> 减少6</li>
+</ul>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/redis-nosql/">redis nosql</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/05/20/redis介绍和安装/" title="redis入门与安装" itemprop="url">redis入门与安装</a>
   </h1>
   <p class="article-author">By
@@ -429,6 +515,10 @@
 		
 			
 				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
 			
 		
 		</ul>
