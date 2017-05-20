@@ -61,6 +61,126 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-redis介绍和安装" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/20/redis介绍和安装/" class="article-date">
+  <time datetime="2017-05-20T03:24:56.000Z" itemprop="datePublished">2017-05-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/20/redis介绍和安装/">redis01</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##NOSQL简介<br>NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：</p>
+<ul>
+<li>键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB</li>
+<li>列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键任然存在，但是它们的特定是指向了多个列。如HBase，Riak</li>
+<li>文档型数据库：该类型的数据库是版本化文档，半结构化的文档以特定的格式存储，比如JSON。文档型数据库可以看作是键值对数据库的升级版，允许之间嵌套键值。而且文档型数据库比键值数据库查询效率更高。如MongoDB、CouchDB</li>
+<li>图形数据库：图形结构的数据库同其他行列以及刚性结构的SQL数据库不同，它是灵活的图形模型，并且能够扩展到多个服务器上</li>
+</ul>
+<h2 id="非关系型数据库特点"><a href="#非关系型数据库特点" class="headerlink" title="非关系型数据库特点"></a>非关系型数据库特点</h2><ul>
+<li>数据模型比较简单</li>
+<li>需要灵活性更强的IT系统</li>
+<li>对数据库性能要求较高</li>
+<li>不需要高度的数据一致性</li>
+<li>对于给定key，比较容易映射复杂值的环境</li>
+</ul>
+<h2 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>是以key-value形成存储，和传统的关系型数据库不一样，不一定遵循传统数据库的一些基本要求(非关系型的、分布式的、开源的、水平可扩展的)</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>对数据高并发读写</li>
+<li>对海量数据的高效存储和访问</li>
+<li>对数据的可扩展性和高可用</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>redis(ACID处理非常简单)</li>
+<li>无法做到太复杂的关系型数据模型</li>
+</ul>
+<h2 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h2><ul>
+<li>安装环境:centos6.5 64bit</li>
+</ul>
+<h3 id="安装gcc"><a href="#安装gcc" class="headerlink" title="安装gcc"></a>安装gcc</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc</div></pre></td></tr></table></figure>
+<h3 id="编译redis"><a href="#编译redis" class="headerlink" title="编译redis"></a>编译redis</h3><ul>
+<li><p>解压redis tar包到用户的目录，具体如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf redis-<span class="number">3.0</span>.0-rc2.tar.gz -C apps/</div></pre></td></tr></table></figure>
+</li>
+<li><p>安装目录如下：<br><img src="http://opzxa0ul7.bkt.clouddn.com/1.jpg" alt="安装目录"></p>
+</li>
+<li><p>进入安装目录执行 <code>make</code> 命令进行编译，如果在编译结果的最后出现如下信息表示成功<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis编译结果图.jpg" alt="redis编译结果图"></p>
+</li>
+</ul>
+<h3 id="安装redis"><a href="#安装redis" class="headerlink" title="安装redis"></a>安装redis</h3><ul>
+<li>进入编译后的redis目录，这里是<code>/home/hadoop/apps/redis-3.0.0</code> 进入<code>src</code> 目录下，执行 <code>sudo make install</code> 命令进行安装。结果如下：<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis安装结果.jpg" alt="redis安装结果"></li>
+</ul>
+<h3 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h3><ul>
+<li><p>在redis安装目录创建 <code>bin</code> 和 <code>etc</code> 目录</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir bin</div><div class="line">mkdir etc</div></pre></td></tr></table></figure>
+</li>
+<li><p>将redis安装目录下的 <code>redis.conf</code> 文件复制到刚才创建的 <code>etc</code> 目录下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp redis.conf etc/</div></pre></td></tr></table></figure>
+</li>
+<li><p>将redis安装目录下的 ‘src’ 目录下文件复制到刚才创建的<code>bin</code>目录下，总共6个文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp mkreleasehdr.sh redis-benchmark redis-check-aof redis-check-dump redis-cli redis-server ../bin/</div></pre></td></tr></table></figure>
+</li>
+<li><p>编写一个启动redis shell，指定启命令和配置文件，如下：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-3.0.0/etc/redis.conf</div></pre></td></tr></table></figure>
+</li>
+<li><p>为shell文件添加执行权限</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x start-redis.sh</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行该shell文件，出现下图表示执行成功</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./start-redis.sh</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/redis启动成功.jpg" alt="redis启动成功"></p>
+<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
+<li>进入 <code>etc</code> 目录下，修改 <code>redis.conf</code> 文件，具体如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## 修改redis启动为后台启动</div><div class="line">daemonize yes</div><div class="line">## 修改dump文件目录</div><div class="line">dir /home/hadoop/apps/redis-3.0.0/etc</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="连接redis"><a href="#连接redis" class="headerlink" title="连接redis"></a>连接redis</h3><ul>
+<li><p>编写连接redis服务端的shell</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">/home/hadoop/apps/redis-3.0.0/bin/redis-cli</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加执行权限</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x conn-redis.sh</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行该shell，出现连接控制台，如下<br><img src="http://opzxa0ul7.bkt.clouddn.com/连接redis.jpg" alt="连接redis"></p>
+</li>
+</ul>
+<h3 id="停止redis"><a href="#停止redis" class="headerlink" title="停止redis"></a>停止redis</h3><ul>
+<li><p>编写停止redis服务shell</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">/home/hadoop/apps/redis-3.0.0/bin/redis-cli shutdown</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加执行权限</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x stop-redis.sh</div></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/05/20/redis介绍和安装/" data-id="cj2x5jj2g0000xclyhov2y7vy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis-nosql-redis安装/">redis nosql redis安装</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-test-blog" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/17/test-blog/" class="article-date">
@@ -88,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/17/test-blog/" data-id="cj2t39eb70002golyy0v772hm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/17/test-blog/" data-id="cj2x5fjno0004yoly1z8udw60" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/testBlog/">testBlog</a></li></ul>
@@ -220,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/17/mianshiti/" data-id="cj2t39eb40001golyx4e0ln5v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/17/mianshiti/" data-id="cj2x5fjn80000yolyrhds10o9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -244,7 +364,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/17/hello-world/">Hello World</a>
+      <a class="article-title" href="/2017/05/17/hello-world/">Hexo使用方法</a>
     </h1>
   
 
@@ -253,19 +373,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="创建新文件"><a href="#创建新文件" class="headerlink" title="创建新文件"></a>创建新文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<h3 id="本地执行服务，可以通过浏览器方法"><a href="#本地执行服务，可以通过浏览器方法" class="headerlink" title="本地执行服务，可以通过浏览器方法"></a>本地执行服务，可以通过浏览器方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<h3 id="发布到远程库中，例如github"><a href="#发布到远程库中，例如github" class="headerlink" title="发布到远程库中，例如github"></a>发布到远程库中，例如github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/05/17/hello-world/" data-id="cj2t39eay0000goly9w2tmg4n" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2017/05/17/hello-world/" data-id="cj2x5fjni0002yolyrpw4weqt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -287,7 +407,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/testBlog/">testBlog</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis-nosql-redis安装/">redis nosql redis安装</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/testBlog/">testBlog</a></li></ul>
     </div>
   </div>
 
@@ -297,7 +417,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/testBlog/" style="font-size: 10px;">testBlog</a>
+      <a href="/tags/redis-nosql-redis安装/" style="font-size: 10px;">redis nosql redis安装</a> <a href="/tags/testBlog/" style="font-size: 10px;">testBlog</a>
     </div>
   </div>
 
@@ -319,6 +439,10 @@
       <ul>
         
           <li>
+            <a href="/2017/05/20/redis介绍和安装/">redis01</a>
+          </li>
+        
+          <li>
             <a href="/2017/05/17/test-blog/">test-blog</a>
           </li>
         
@@ -327,7 +451,7 @@
           </li>
         
           <li>
-            <a href="/2017/05/17/hello-world/">Hello World</a>
+            <a href="/2017/05/17/hello-world/">Hexo使用方法</a>
           </li>
         
       </ul>
