@@ -123,6 +123,47 @@
 <li><code>incrby age 5</code> 增加5</li>
 <li><code>decrby age 6</code> 减少6</li>
 </ul>
+<h3 id="append方法追加字符串"><a href="#append方法追加字符串" class="headerlink" title="append方法追加字符串"></a>append方法追加字符串</h3><ul>
+<li><code>append key value</code></li>
+<li><code>append name nosql</code> 为key为name的值追加nosql</li>
+</ul>
+<h3 id="strlen方法获取key的长度"><a href="#strlen方法获取key的长度" class="headerlink" title="strlen方法获取key的长度"></a>strlen方法获取key的长度</h3><ul>
+<li><code>strleng key</code> 返回该key的value的长度</li>
+</ul>
+<h2 id="Hash类型"><a href="#Hash类型" class="headerlink" title="Hash类型"></a>Hash类型</h2><p><code>Hash</code>类型是<code>String</code>类型的field和value的映射表，或者说一个<code>String</code>集合。它特别适合存储对象，相比而言，将一个对象类型存储在<code>Hash</code>类型里要比存储在String类型里占用更少的内存空间，并方便存取整个对象。</p>
+<h3 id="设置和获取Hash方法"><a href="#设置和获取Hash方法" class="headerlink" title="设置和获取Hash方法"></a>设置和获取Hash方法</h3><ul>
+<li>通过 <code>hset</code> 设置<code>Hash</code>类型的值。<code>hset user id 1</code> 表示设置<code>Hash</code>的值为 <code>user</code>，里面有<code>key</code> 为 <code>id</code>，<code>value</code>为1。</li>
+<li>通过 <code>hget</code> 获取<code>Hash</code>类型的值。<code>hget user id</code> 表示获取<code>Hash</code>的值为 <code>user</code>中<code>key</code> 为<code>id</code>的值。</li>
+<li>也可以批量设置和获取值。通过<code>hmset user id 2 name zs age 20 sex man</code> 和 <code>hmget user id name age sex</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/hash类型的hset和hget.jpg" alt="hash类型的hset和hget"><br><img src="http://opzxa0ul7.bkt.clouddn.com/hash中的hmset和hmget.jpg" alt="hash中的hmset和hmget"></li>
+</ul>
+<h3 id="Hash类型的其他常用方法"><a href="#Hash类型的其他常用方法" class="headerlink" title="Hash类型的其他常用方法"></a>Hash类型的其他常用方法</h3><ul>
+<li>hsetnx：这个和<code>setnx</code>类似，表示如果不存在就设置，存在就不设置。</li>
+<li>hincrby：集合递增，类似于<code>incrby</code>。</li>
+<li>hexists：是否存在key，如果存在返回值，不存在返回0</li>
+<li>hlen：返回hash集合里面的所有键数值。</li>
+<li>hdel：删除指定hash中的字段。</li>
+<li>hkeys：返回hash中的所有key。</li>
+<li>hvales：返回hash中的所有value。</li>
+<li>hgetall：返回hash里的所有key和value。<br><img src="http://opzxa0ul7.bkt.clouddn.com/hash其他命令.jpg" alt="hash其他命令"></li>
+</ul>
+<h2 id="List类型"><a href="#List类型" class="headerlink" title="List类型"></a>List类型</h2><p><code>List</code>类型是一个链表结构的集合，其主要功能有push、pop、获取元素等。更加具体来说，List类型是一个双链表的结构，我们可以通过相关操作在集合的头部和尾部进行操作，List的可以作为栈，也可以作为队列。</p>
+<h3 id="lpush和lrange方法"><a href="#lpush和lrange方法" class="headerlink" title="lpush和lrange方法"></a>lpush和lrange方法</h3><ul>
+<li><code>lpush</code>从头部加入元素(栈)先进后出，返回集合中元素个数。<code>lpush list hello 向名为</code>list<code>集合中添加</code>hello` 。</li>
+<li><code>lrange</code>获取栈的元素，返回集合中的元素。<code>lrange list 0 -1</code> 获取<code>list</code> 集合全部元素。<br><img src="http://opzxa0ul7.bkt.clouddn.com/list集合的lpush和lrange方法.jpg" alt="list集合的lpush和lrange方法"></li>
+</ul>
+<h3 id="rpush方法"><a href="#rpush方法" class="headerlink" title="rpush方法"></a>rpush方法</h3><ul>
+<li><code>rpush</code> 方法从尾部加入元素，先进先出。<code>rpush list2 hello</code> 向集合<code>list2</code>中添加<code>hello</code></li>
+<li><code>lrang</code>获取集合中的元素。<br><img src="http://opzxa0ul7.bkt.clouddn.com/List类型中的rpush方法.jpg" alt="List类型中的rpush方法"></li>
+</ul>
+<h3 id="linsert方法"><a href="#linsert方法" class="headerlink" title="linsert方法"></a>linsert方法</h3><ul>
+<li>插入元素。<code>linsert num before three two</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/list集合linsert.jpg" alt="list集合linsert"></li>
+</ul>
+<h3 id="lset方法"><a href="#lset方法" class="headerlink" title="lset方法"></a>lset方法</h3><ul>
+<li>将指定下标的元素替换掉。从0开始<br><img src="http://opzxa0ul7.bkt.clouddn.com/list类型的lset方法.jpg" alt="list类型的lset方法"></li>
+</ul>
+<h3 id="lrem方法"><a href="#lrem方法" class="headerlink" title="lrem方法"></a>lrem方法</h3><ul>
+<li>删除元素，返回删除元素个数<br><img src="http://opzxa0ul7.bkt.clouddn.com/list类型的lrem方法.jpg" alt=""></li>
+</ul>
 
         
         
@@ -514,11 +555,11 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
 			
 		
 		</ul>
