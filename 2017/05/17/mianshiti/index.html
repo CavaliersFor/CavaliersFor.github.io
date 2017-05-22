@@ -17,7 +17,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/17/mianshiti/index.html">
 <meta property="og:site_name" content="在路上coder博客">
 <meta property="og:description" content="zk分布式锁：详情参考：http://www.jiacheo.org/blog/620 1.在单机模式下，没有引入zookeeper时，我们可以通过创建一个临时文件加锁，然后在事务处理完毕后，将临时文件删除就代表解锁。这种加锁和解锁模式可以移植到zookeeper上，通过创建一个路径，来证明该锁已经存在，然后删除路径来释放该锁。而同时zookeeper又能支持对节点的监控，这样一来，我们在多机的情">
-<meta property="og:updated_time" content="2017-05-17T00:13:50.726Z">
+<meta property="og:updated_time" content="2017-05-22T12:51:22.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试题">
 <meta name="twitter:description" content="zk分布式锁：详情参考：http://www.jiacheo.org/blog/620 1.在单机模式下，没有引入zookeeper时，我们可以通过创建一个临时文件加锁，然后在事务处理完毕后，将临时文件删除就代表解锁。这种加锁和解锁模式可以移植到zookeeper上，通过创建一个路径，来证明该锁已经存在，然后删除路径来释放该锁。而同时zookeeper又能支持对节点的监控，这样一来，我们在多机的情">
@@ -106,8 +106,8 @@
 <ul>
 <li>在zookeeper存储结构中，假设有一个lock目录。</li>
 <li>在该目录下创建自增长的临时节点，这个节点上的数字用于表示获取锁的先后顺序。</li>
-<li>假设有三台服务器请求zookeeper创建了，00001、00002、00003 三个节点。然后判断lock目录下的最小节点和自己创建的是否一致，如果一致可以获取锁，如果不一致执行外套操作。</li>
-<li>当获取锁的节点执行完后，删除节点，并通知其他节点。在进行比较。</li>
+<li>假设有三台服务器请求zookeeper创建了，00001、00002、00003 三个节点。然后判断lock目录下的最小节点和自己创建的是否一致，如果一致可以获取锁，如果不一致执行等待操作。</li>
+<li>当获取锁的节点执行完后，删除节点，并通知其他节点，在进行比较。</li>
 </ul>
 <p>3、分布式锁出现死锁，发生死锁的情况主要出现在网络的情况下：</p>
 <ul>
@@ -133,7 +133,7 @@
 <li>分层模型</li>
 <li>并发模型</li>
 <li>缓存技术</li>
-<li>存储技术(NoSQl)</li>
+<li>存储技术(NoSql)</li>
 </ul>
 </li>
 </ul>

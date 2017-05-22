@@ -11,22 +11,22 @@
     
 
     
-    <meta name="description" content="NOSQL简介NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：  键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB 列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键任然存在，但是它们的特定是指向了多个列。如HBase，Riak 文档型数据库：该类型的数据库是版本">
+    <meta name="description" content="NOSQL简介NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：  键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB 列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键仍然存在，但是它们的特定是指向了多个列。如HBase，Riak 文档型数据库：该类型的数据库是版本">
 <meta name="keywords" content="redis nosql redis安装">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis入门与安装">
 <meta property="og:url" content="http://yoursite.com/2017/05/20/redis介绍和安装/index.html">
 <meta property="og:site_name" content="在路上coder博客">
-<meta property="og:description" content="NOSQL简介NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：  键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB 列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键任然存在，但是它们的特定是指向了多个列。如HBase，Riak 文档型数据库：该类型的数据库是版本">
+<meta property="og:description" content="NOSQL简介NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：  键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB 列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键仍然存在，但是它们的特定是指向了多个列。如HBase，Riak 文档型数据库：该类型的数据库是版本">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/1.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis编译结果图.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis安装结果.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis启动成功.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/连接redis.jpg">
-<meta property="og:updated_time" content="2017-05-21T00:59:56.338Z">
+<meta property="og:updated_time" content="2017-05-22T12:54:53.898Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis入门与安装">
-<meta name="twitter:description" content="NOSQL简介NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：  键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB 列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键任然存在，但是它们的特定是指向了多个列。如HBase，Riak 文档型数据库：该类型的数据库是版本">
+<meta name="twitter:description" content="NOSQL简介NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：  键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB 列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键仍然存在，但是它们的特定是指向了多个列。如HBase，Riak 文档型数据库：该类型的数据库是版本">
 <meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/1.jpg">
 
     
@@ -110,7 +110,7 @@
 		<h2 id="NOSQL简介"><a href="#NOSQL简介" class="headerlink" title="NOSQL简介"></a>NOSQL简介</h2><p>NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：</p>
 <ul>
 <li>键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB</li>
-<li>列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键任然存在，但是它们的特定是指向了多个列。如HBase，Riak</li>
+<li>列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键仍然存在，但是它们的特定是指向了多个列。如HBase，Riak</li>
 <li>文档型数据库：该类型的数据库是版本化文档，半结构化的文档以特定的格式存储，比如JSON。文档型数据库可以看作是键值对数据库的升级版，允许之间嵌套键值。而且文档型数据库比键值数据库查询效率更高。如MongoDB、CouchDB</li>
 <li>图形数据库：图形结构的数据库同其他行列以及刚性结构的SQL数据库不同，它是灵活的图形模型，并且能够扩展到多个服务器上</li>
 </ul>
@@ -157,7 +157,7 @@
 <li><p>将redis安装目录下的 <code>src</code> 目录下文件复制到刚才创建的<code>bin</code>目录下，总共6个文件</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp mkreleasehdr.sh redis-benchmark redis-check-aof redis-check-dump redis-cli redis-server ../bin/</div></pre></td></tr></table></figure>
 </li>
-<li><p>编写一个启动redis shell，指定启命令和配置文件，如下：</p>
+<li><p>编写一个启动<code>redis shell</code>，指定启命令和配置文件，如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-3.0.0/etc/redis.conf</div></pre></td></tr></table></figure>
 </li>
 <li><p>为shell文件添加执行权限</p>

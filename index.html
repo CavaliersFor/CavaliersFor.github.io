@@ -148,7 +148,7 @@
 </ul>
 <h2 id="List类型"><a href="#List类型" class="headerlink" title="List类型"></a>List类型</h2><p><code>List</code>类型是一个链表结构的集合，其主要功能有push、pop、获取元素等。更加具体来说，List类型是一个双链表的结构，我们可以通过相关操作在集合的头部和尾部进行操作，List的可以作为栈，也可以作为队列。</p>
 <h3 id="lpush和lrange方法"><a href="#lpush和lrange方法" class="headerlink" title="lpush和lrange方法"></a>lpush和lrange方法</h3><ul>
-<li><code>lpush</code>从头部加入元素(栈)先进后出，返回集合中元素个数。<code>lpush list hello 向名为</code>list<code>集合中添加</code>hello` 。</li>
+<li><code>lpush</code>从头部加入元素(栈)先进后出，返回集合中元素个数。<code>lpush list hello</code> 向名为<code>list</code>集合中添加<code>hello</code> 。</li>
 <li><code>lrange</code>获取栈的元素，返回集合中的元素。<code>lrange list 0 -1</code> 获取<code>list</code> 集合全部元素。<br><img src="http://opzxa0ul7.bkt.clouddn.com/list集合的lpush和lrange方法.jpg" alt="list集合的lpush和lrange方法"></li>
 </ul>
 <h3 id="rpush方法"><a href="#rpush方法" class="headerlink" title="rpush方法"></a>rpush方法</h3><ul>
@@ -230,7 +230,7 @@
         <h2 id="NOSQL简介"><a href="#NOSQL简介" class="headerlink" title="NOSQL简介"></a>NOSQL简介</h2><p>NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：</p>
 <ul>
 <li>键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB</li>
-<li>列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键任然存在，但是它们的特定是指向了多个列。如HBase，Riak</li>
+<li>列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键仍然存在，但是它们的特定是指向了多个列。如HBase，Riak</li>
 <li>文档型数据库：该类型的数据库是版本化文档，半结构化的文档以特定的格式存储，比如JSON。文档型数据库可以看作是键值对数据库的升级版，允许之间嵌套键值。而且文档型数据库比键值数据库查询效率更高。如MongoDB、CouchDB</li>
 <li>图形数据库：图形结构的数据库同其他行列以及刚性结构的SQL数据库不同，它是灵活的图形模型，并且能够扩展到多个服务器上</li>
 </ul>
@@ -277,7 +277,7 @@
 <li><p>将redis安装目录下的 <code>src</code> 目录下文件复制到刚才创建的<code>bin</code>目录下，总共6个文件</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp mkreleasehdr.sh redis-benchmark redis-check-aof redis-check-dump redis-cli redis-server ../bin/</div></pre></td></tr></table></figure>
 </li>
-<li><p>编写一个启动redis shell，指定启命令和配置文件，如下：</p>
+<li><p>编写一个启动<code>redis shell</code>，指定启命令和配置文件，如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-3.0.0/etc/redis.conf</div></pre></td></tr></table></figure>
 </li>
 <li><p>为shell文件添加执行权限</p>
@@ -369,8 +369,8 @@
 <ul>
 <li>在zookeeper存储结构中，假设有一个lock目录。</li>
 <li>在该目录下创建自增长的临时节点，这个节点上的数字用于表示获取锁的先后顺序。</li>
-<li>假设有三台服务器请求zookeeper创建了，00001、00002、00003 三个节点。然后判断lock目录下的最小节点和自己创建的是否一致，如果一致可以获取锁，如果不一致执行外套操作。</li>
-<li>当获取锁的节点执行完后，删除节点，并通知其他节点。在进行比较。</li>
+<li>假设有三台服务器请求zookeeper创建了，00001、00002、00003 三个节点。然后判断lock目录下的最小节点和自己创建的是否一致，如果一致可以获取锁，如果不一致执行等待操作。</li>
+<li>当获取锁的节点执行完后，删除节点，并通知其他节点，在进行比较。</li>
 </ul>
 <p>3、分布式锁出现死锁，发生死锁的情况主要出现在网络的情况下：</p>
 <ul>
@@ -396,7 +396,7 @@
 <li>分层模型</li>
 <li>并发模型</li>
 <li>缓存技术</li>
-<li>存储技术(NoSQl)</li>
+<li>存储技术(NoSql)</li>
 </ul>
 </li>
 </ul>
