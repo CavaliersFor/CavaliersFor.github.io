@@ -11,13 +11,13 @@
     
 
     
-    <meta name="description" content="redis类型redis一共分为五种基本数据类型：String、Hash、List、Set、ZSet String类型String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。 set、get和del方法： 设置值：set name redis 取值： get name 删除值： del name  使用se">
+    <meta name="description" content="redis类型 redis一共分为五种基本数据类型：String、Hash、List、Set、ZSet。 查看redis命令帮助 help 命令名String类型String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。  set、get和del方法： 设置值：set name redis 取值： get n">
 <meta name="keywords" content="redis nosql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis基础数据类型详解">
 <meta property="og:url" content="http://yoursite.com/2017/05/20/redis基础数据类型详解/index.html">
 <meta property="og:site_name" content="在路上coder博客">
-<meta property="og:description" content="redis类型redis一共分为五种基本数据类型：String、Hash、List、Set、ZSet String类型String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。 set、get和del方法： 设置值：set name redis 取值： get name 删除值： del name  使用se">
+<meta property="og:description" content="redis类型 redis一共分为五种基本数据类型：String、Hash、List、Set、ZSet。 查看redis命令帮助 help 命令名String类型String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。  set、get和del方法： 设置值：set name redis 取值： get n">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/setrange结果.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/mset和mget.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/setget.jpg">
@@ -32,10 +32,18 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/list类型的ltrim方法.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/list集合的lpop方法.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/List类型中的rpop方法.jpg">
-<meta property="og:updated_time" content="2017-05-22T12:56:28.152Z">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/set集合的sadd方法.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/set集合的smembers方法.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/set集合的srem方法.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/set集合的spop方法.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/set集合的sdiff方法1.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/set集合的sdiffstore方法.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/set集合的sinter方法.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/set集合的sinterstore方法.jpg">
+<meta property="og:updated_time" content="2017-05-22T23:29:16.238Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis基础数据类型详解">
-<meta name="twitter:description" content="redis类型redis一共分为五种基本数据类型：String、Hash、List、Set、ZSet String类型String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。 set、get和del方法： 设置值：set name redis 取值： get name 删除值： del name  使用se">
+<meta name="twitter:description" content="redis类型 redis一共分为五种基本数据类型：String、Hash、List、Set、ZSet。 查看redis命令帮助 help 命令名String类型String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。  set、get和del方法： 设置值：set name redis 取值： get n">
 <meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/setrange结果.jpg">
 
     
@@ -64,7 +72,7 @@
 				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -80,7 +88,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -103,21 +111,23 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-20T12:27:27.000Z" itemprop="datePublished"> Published 2017-05-20</time>
+    <time datetime="2017-05-20T12:27:27.000Z" itemprop="datePublished"> 发表于 2017-05-20</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis类型"><span class="toc-number">1.</span> <span class="toc-text">redis类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String类型"><span class="toc-number">2.</span> <span class="toc-text">String类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#set、get和del方法："><span class="toc-number">2.1.</span> <span class="toc-text">set、get和del方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setnx-not-exist"><span class="toc-number">2.2.</span> <span class="toc-text">使用setnx (not exist)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setex-expired"><span class="toc-number">2.3.</span> <span class="toc-text">使用setex (expired)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setrange-替换字符串"><span class="toc-number">2.4.</span> <span class="toc-text">使用setrange 替换字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次性设置或者获取多个值mset、mget-方法"><span class="toc-number">2.5.</span> <span class="toc-text">一次性设置或者获取多个值mset、mget 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次性获取设置getset方法"><span class="toc-number">2.6.</span> <span class="toc-text">一次性获取设置getset方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#incr和decr方法"><span class="toc-number">2.7.</span> <span class="toc-text">incr和decr方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#incrby和decrby方法"><span class="toc-number">2.8.</span> <span class="toc-text">incrby和decrby方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#append方法追加字符串"><span class="toc-number">2.9.</span> <span class="toc-text">append方法追加字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strlen方法获取key的长度"><span class="toc-number">2.10.</span> <span class="toc-text">strlen方法获取key的长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash类型"><span class="toc-number">3.</span> <span class="toc-text">Hash类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置和获取Hash方法"><span class="toc-number">3.1.</span> <span class="toc-text">设置和获取Hash方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash类型的其他常用方法"><span class="toc-number">3.2.</span> <span class="toc-text">Hash类型的其他常用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List类型"><span class="toc-number">4.</span> <span class="toc-text">List类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lpush和lrange方法"><span class="toc-number">4.1.</span> <span class="toc-text">lpush和lrange方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rpush方法"><span class="toc-number">4.2.</span> <span class="toc-text">rpush方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linsert方法"><span class="toc-number">4.3.</span> <span class="toc-text">linsert方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lset方法"><span class="toc-number">4.4.</span> <span class="toc-text">lset方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lrem方法"><span class="toc-number">4.5.</span> <span class="toc-text">lrem方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ltrim方法"><span class="toc-number">4.6.</span> <span class="toc-text">ltrim方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lpop方法"><span class="toc-number">4.7.</span> <span class="toc-text">lpop方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rpop方法"><span class="toc-number">4.8.</span> <span class="toc-text">rpop方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set类型和ZSet类型"><span class="toc-number">5.</span> <span class="toc-text">Set类型和ZSet类型</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis类型"><span class="toc-number">1.</span> <span class="toc-text">redis类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String类型"><span class="toc-number">2.</span> <span class="toc-text">String类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#set、get和del方法："><span class="toc-number">2.1.</span> <span class="toc-text">set、get和del方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setnx-not-exist"><span class="toc-number">2.2.</span> <span class="toc-text">使用setnx (not exist)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setex-expired"><span class="toc-number">2.3.</span> <span class="toc-text">使用setex (expired)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setrange-替换字符串"><span class="toc-number">2.4.</span> <span class="toc-text">使用setrange 替换字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次性设置或者获取多个值mset、mget-方法"><span class="toc-number">2.5.</span> <span class="toc-text">一次性设置或者获取多个值mset、mget 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次性获取设置getset方法"><span class="toc-number">2.6.</span> <span class="toc-text">一次性获取设置getset方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#incr和decr方法"><span class="toc-number">2.7.</span> <span class="toc-text">incr和decr方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#incrby和decrby方法"><span class="toc-number">2.8.</span> <span class="toc-text">incrby和decrby方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#append方法追加字符串"><span class="toc-number">2.9.</span> <span class="toc-text">append方法追加字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strlen方法获取key的长度"><span class="toc-number">2.10.</span> <span class="toc-text">strlen方法获取key的长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash类型"><span class="toc-number">3.</span> <span class="toc-text">Hash类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置和获取Hash方法"><span class="toc-number">3.1.</span> <span class="toc-text">设置和获取Hash方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash类型的其他常用方法"><span class="toc-number">3.2.</span> <span class="toc-text">Hash类型的其他常用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List类型"><span class="toc-number">4.</span> <span class="toc-text">List类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lpush和lrange方法"><span class="toc-number">4.1.</span> <span class="toc-text">lpush和lrange方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rpush方法"><span class="toc-number">4.2.</span> <span class="toc-text">rpush方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linsert方法"><span class="toc-number">4.3.</span> <span class="toc-text">linsert方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lset方法"><span class="toc-number">4.4.</span> <span class="toc-text">lset方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lrem方法"><span class="toc-number">4.5.</span> <span class="toc-text">lrem方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ltrim方法"><span class="toc-number">4.6.</span> <span class="toc-text">ltrim方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lpop方法"><span class="toc-number">4.7.</span> <span class="toc-text">lpop方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rpop方法"><span class="toc-number">4.8.</span> <span class="toc-text">rpop方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set类型和ZSet类型"><span class="toc-number">5.</span> <span class="toc-text">Set类型和ZSet类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sadd方法"><span class="toc-number">5.1.</span> <span class="toc-text">sadd方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#smembers方法"><span class="toc-number">5.2.</span> <span class="toc-text">smembers方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#srem方法"><span class="toc-number">5.3.</span> <span class="toc-text">srem方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spop方法"><span class="toc-number">5.4.</span> <span class="toc-text">spop方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sdiff方法"><span class="toc-number">5.5.</span> <span class="toc-text">sdiff方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sdiffstore方法"><span class="toc-number">5.6.</span> <span class="toc-text">sdiffstore方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sinter方法"><span class="toc-number">5.7.</span> <span class="toc-text">sinter方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sinterstore方法"><span class="toc-number">5.8.</span> <span class="toc-text">sinterstore方法</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="redis类型"><a href="#redis类型" class="headerlink" title="redis类型"></a>redis类型</h2><p>redis一共分为五种基本数据类型：<code>String、Hash、List、Set、ZSet</code></p>
-<h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2><p>String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。</p>
+		<h2 id="redis类型"><a href="#redis类型" class="headerlink" title="redis类型"></a>redis类型</h2><ul>
+<li>redis一共分为五种基本数据类型：<code>String、Hash、List、Set、ZSet</code>。</li>
+<li>查看redis命令帮助 <code>help 命令名</code><h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2>String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。</li>
+</ul>
 <h3 id="set、get和del方法："><a href="#set、get和del方法：" class="headerlink" title="set、get和del方法："></a>set、get和del方法：</h3><ul>
 <li>设置值：<code>set name redis</code></li>
 <li>取值： <code>get name</code></li>
@@ -198,7 +208,33 @@
 <h3 id="rpop方法"><a href="#rpop方法" class="headerlink" title="rpop方法"></a>rpop方法</h3><ul>
 <li>从list的尾部删除元素，并返回删除元素<br><img src="http://opzxa0ul7.bkt.clouddn.com/List类型中的rpop方法.jpg" alt="List类型中的rpop方法"></li>
 </ul>
-<h2 id="Set类型和ZSet类型"><a href="#Set类型和ZSet类型" class="headerlink" title="Set类型和ZSet类型"></a>Set类型和ZSet类型</h2>  
+<h2 id="Set类型和ZSet类型"><a href="#Set类型和ZSet类型" class="headerlink" title="Set类型和ZSet类型"></a>Set类型和ZSet类型</h2><p>Set集合是String类型的无序集合，Set是通过HashTable实现的，对集合我们可以取交集、并集、差集。</p>
+<h3 id="sadd方法"><a href="#sadd方法" class="headerlink" title="sadd方法"></a>sadd方法</h3><ul>
+<li>向名称为key的set中添加元素。<code>sadd set1 abc</code> 也可以批量添加 <code>sadd set1 abc bdf</code></li>
+<li>set集合不允许添加重复元素。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sadd方法.jpg" alt="set集合的sadd方法"></li>
+</ul>
+<h3 id="smembers方法"><a href="#smembers方法" class="headerlink" title="smembers方法"></a>smembers方法</h3><ul>
+<li>查看set集合元素。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的smembers方法.jpg" alt="set集合的smembers方法"></li>
+</ul>
+<h3 id="srem方法"><a href="#srem方法" class="headerlink" title="srem方法"></a>srem方法</h3><ul>
+<li>删除set集合元素<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的srem方法.jpg" alt="set集合的srem方法"></li>
+</ul>
+<h3 id="spop方法"><a href="#spop方法" class="headerlink" title="spop方法"></a>spop方法</h3><ul>
+<li>随机返回删除的member<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的spop方法.jpg" alt="set集合的spop方法"></li>
+</ul>
+<h3 id="sdiff方法"><a href="#sdiff方法" class="headerlink" title="sdiff方法"></a>sdiff方法</h3><ul>
+<li>返回两个集合的不同元素，哪个集合在前面就以哪个集合为标准。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sdiff方法1.jpg" alt="set集合的sdiff方法"></li>
+</ul>
+<h3 id="sdiffstore方法"><a href="#sdiffstore方法" class="headerlink" title="sdiffstore方法"></a>sdiffstore方法</h3><ul>
+<li>将返回的不同元素存储到另一个集合里。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sdiffstore方法.jpg" alt="set集合的sdiffstore方法"></li>
+</ul>
+<h3 id="sinter方法"><a href="#sinter方法" class="headerlink" title="sinter方法"></a>sinter方法</h3><ul>
+<li>两个集合取交集。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sinter方法.jpg" alt="set集合的sinter方法"></li>
+</ul>
+<h3 id="sinterstore方法"><a href="#sinterstore方法" class="headerlink" title="sinterstore方法"></a>sinterstore方法</h3><ul>
+<li>返回交集结果，存储到另一个集合中<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sinterstore方法.jpg" alt="set集合的sinterstore方法"></li>
+</ul>
+  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
@@ -242,17 +278,17 @@
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis类型"><span class="toc-number">1.</span> <span class="toc-text">redis类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String类型"><span class="toc-number">2.</span> <span class="toc-text">String类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#set、get和del方法："><span class="toc-number">2.1.</span> <span class="toc-text">set、get和del方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setnx-not-exist"><span class="toc-number">2.2.</span> <span class="toc-text">使用setnx (not exist)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setex-expired"><span class="toc-number">2.3.</span> <span class="toc-text">使用setex (expired)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setrange-替换字符串"><span class="toc-number">2.4.</span> <span class="toc-text">使用setrange 替换字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次性设置或者获取多个值mset、mget-方法"><span class="toc-number">2.5.</span> <span class="toc-text">一次性设置或者获取多个值mset、mget 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次性获取设置getset方法"><span class="toc-number">2.6.</span> <span class="toc-text">一次性获取设置getset方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#incr和decr方法"><span class="toc-number">2.7.</span> <span class="toc-text">incr和decr方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#incrby和decrby方法"><span class="toc-number">2.8.</span> <span class="toc-text">incrby和decrby方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#append方法追加字符串"><span class="toc-number">2.9.</span> <span class="toc-text">append方法追加字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strlen方法获取key的长度"><span class="toc-number">2.10.</span> <span class="toc-text">strlen方法获取key的长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash类型"><span class="toc-number">3.</span> <span class="toc-text">Hash类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置和获取Hash方法"><span class="toc-number">3.1.</span> <span class="toc-text">设置和获取Hash方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash类型的其他常用方法"><span class="toc-number">3.2.</span> <span class="toc-text">Hash类型的其他常用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List类型"><span class="toc-number">4.</span> <span class="toc-text">List类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lpush和lrange方法"><span class="toc-number">4.1.</span> <span class="toc-text">lpush和lrange方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rpush方法"><span class="toc-number">4.2.</span> <span class="toc-text">rpush方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linsert方法"><span class="toc-number">4.3.</span> <span class="toc-text">linsert方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lset方法"><span class="toc-number">4.4.</span> <span class="toc-text">lset方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lrem方法"><span class="toc-number">4.5.</span> <span class="toc-text">lrem方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ltrim方法"><span class="toc-number">4.6.</span> <span class="toc-text">ltrim方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lpop方法"><span class="toc-number">4.7.</span> <span class="toc-text">lpop方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rpop方法"><span class="toc-number">4.8.</span> <span class="toc-text">rpop方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set类型和ZSet类型"><span class="toc-number">5.</span> <span class="toc-text">Set类型和ZSet类型</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#redis类型"><span class="toc-number">1.</span> <span class="toc-text">redis类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String类型"><span class="toc-number">2.</span> <span class="toc-text">String类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#set、get和del方法："><span class="toc-number">2.1.</span> <span class="toc-text">set、get和del方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setnx-not-exist"><span class="toc-number">2.2.</span> <span class="toc-text">使用setnx (not exist)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setex-expired"><span class="toc-number">2.3.</span> <span class="toc-text">使用setex (expired)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用setrange-替换字符串"><span class="toc-number">2.4.</span> <span class="toc-text">使用setrange 替换字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次性设置或者获取多个值mset、mget-方法"><span class="toc-number">2.5.</span> <span class="toc-text">一次性设置或者获取多个值mset、mget 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一次性获取设置getset方法"><span class="toc-number">2.6.</span> <span class="toc-text">一次性获取设置getset方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#incr和decr方法"><span class="toc-number">2.7.</span> <span class="toc-text">incr和decr方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#incrby和decrby方法"><span class="toc-number">2.8.</span> <span class="toc-text">incrby和decrby方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#append方法追加字符串"><span class="toc-number">2.9.</span> <span class="toc-text">append方法追加字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strlen方法获取key的长度"><span class="toc-number">2.10.</span> <span class="toc-text">strlen方法获取key的长度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash类型"><span class="toc-number">3.</span> <span class="toc-text">Hash类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置和获取Hash方法"><span class="toc-number">3.1.</span> <span class="toc-text">设置和获取Hash方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hash类型的其他常用方法"><span class="toc-number">3.2.</span> <span class="toc-text">Hash类型的其他常用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List类型"><span class="toc-number">4.</span> <span class="toc-text">List类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lpush和lrange方法"><span class="toc-number">4.1.</span> <span class="toc-text">lpush和lrange方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rpush方法"><span class="toc-number">4.2.</span> <span class="toc-text">rpush方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linsert方法"><span class="toc-number">4.3.</span> <span class="toc-text">linsert方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lset方法"><span class="toc-number">4.4.</span> <span class="toc-text">lset方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lrem方法"><span class="toc-number">4.5.</span> <span class="toc-text">lrem方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ltrim方法"><span class="toc-number">4.6.</span> <span class="toc-text">ltrim方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lpop方法"><span class="toc-number">4.7.</span> <span class="toc-text">lpop方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rpop方法"><span class="toc-number">4.8.</span> <span class="toc-text">rpop方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set类型和ZSet类型"><span class="toc-number">5.</span> <span class="toc-text">Set类型和ZSet类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#sadd方法"><span class="toc-number">5.1.</span> <span class="toc-text">sadd方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#smembers方法"><span class="toc-number">5.2.</span> <span class="toc-text">smembers方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#srem方法"><span class="toc-number">5.3.</span> <span class="toc-text">srem方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spop方法"><span class="toc-number">5.4.</span> <span class="toc-text">spop方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sdiff方法"><span class="toc-number">5.5.</span> <span class="toc-text">sdiff方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sdiffstore方法"><span class="toc-number">5.6.</span> <span class="toc-text">sdiffstore方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sinter方法"><span class="toc-number">5.7.</span> <span class="toc-text">sinter方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sinterstore方法"><span class="toc-number">5.8.</span> <span class="toc-text">sinterstore方法</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -262,7 +298,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
@@ -278,7 +314,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -509,7 +545,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
