@@ -175,7 +175,7 @@
 <h3 id="rpop方法"><a href="#rpop方法" class="headerlink" title="rpop方法"></a>rpop方法</h3><ul>
 <li>从list的尾部删除元素，并返回删除元素<br><img src="http://opzxa0ul7.bkt.clouddn.com/List类型中的rpop方法.jpg" alt="List类型中的rpop方法"></li>
 </ul>
-<h2 id="Set类型和ZSet类型"><a href="#Set类型和ZSet类型" class="headerlink" title="Set类型和ZSet类型"></a>Set类型和ZSet类型</h2><p>Set集合是String类型的无序集合，Set是通过HashTable实现的，对集合我们可以取交集、并集、差集。</p>
+<h2 id="Set类型"><a href="#Set类型" class="headerlink" title="Set类型"></a>Set类型</h2><p>Set集合是String类型的无序集合，Set是通过HashTable实现的，对集合我们可以取交集、并集、差集。</p>
 <h3 id="sadd方法"><a href="#sadd方法" class="headerlink" title="sadd方法"></a>sadd方法</h3><ul>
 <li>向名称为key的set中添加元素。<code>sadd set1 abc</code> 也可以批量添加 <code>sadd set1 abc bdf</code></li>
 <li>set集合不允许添加重复元素。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sadd方法.jpg" alt="set集合的sadd方法"></li>
@@ -209,6 +209,34 @@
 </ul>
 <h3 id="smove方法"><a href="#smove方法" class="headerlink" title="smove方法"></a>smove方法</h3><ul>
 <li>从一个set集合移动到另一个set集合，相当于剪切复制。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的smove方法.jpg" alt="set集合的smove方法."></li>
+</ul>
+<h3 id="scard方法"><a href="#scard方法" class="headerlink" title="scard方法"></a>scard方法</h3><ul>
+<li>返回集合的元素个数，<code>scard 集合名</code></li>
+</ul>
+<h3 id="sismember方法"><a href="#sismember方法" class="headerlink" title="sismember方法"></a>sismember方法</h3><ul>
+<li>判断某元素是否为集合中的元素，返回1代表是集合中的元素，0代表不是<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sismember方法.jpg" alt="set集合的sismember方法"></li>
+</ul>
+<h3 id="srandmember方法"><a href="#srandmember方法" class="headerlink" title="srandmember方法"></a>srandmember方法</h3><ul>
+<li>随机返回一个元素<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的srandmember方法.jpg" alt="set集合的srandmember方法"></li>
+</ul>
+<h2 id="zset集合类型"><a href="#zset集合类型" class="headerlink" title="zset集合类型"></a>zset集合类型</h2><p>set集合的升级版，集合是有序的。</p>
+<h3 id="zadd方法"><a href="#zadd方法" class="headerlink" title="zadd方法"></a>zadd方法</h3><ul>
+<li>向有序集合中添加一个元素，该元素如果存在，则更像顺序。在重复插入的时候，会根据顺序属性更新。<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zadd方法.jpg" alt="zset集合的zadd方法.jpg"></li>
+</ul>
+<h3 id="zrange方法"><a href="#zrange方法" class="headerlink" title="zrange方法"></a>zrange方法</h3><ul>
+<li>查看zset集合数据。<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zrange方法.jpg" alt="zset集合的zadd方法.jpg"></li>
+</ul>
+<h3 id="zrem方法"><a href="#zrem方法" class="headerlink" title="zrem方法"></a>zrem方法</h3><ul>
+<li>删除名称为key的zset中的元素member<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zrem方法.jpg" alt="zset集合的zadd方法.jpg"></li>
+</ul>
+<h3 id="zincrby方法"><a href="#zincrby方法" class="headerlink" title="zincrby方法"></a>zincrby方法</h3><ul>
+<li>以指定值去自增或自减，用法和incrby类似</li>
+</ul>
+<h3 id="zrangebyscore方法"><a href="#zrangebyscore方法" class="headerlink" title="zrangebyscore方法"></a>zrangebyscore方法</h3><ul>
+<li>找到指定区间范围的数据进行返回。<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zrangebyscore方法.jpg" alt="zset集合的zadd方法.jpg"></li>
+</ul>
+<h3 id="zremrangebyrank方法"><a href="#zremrangebyrank方法" class="headerlink" title="zremrangebyrank方法"></a>zremrangebyrank方法</h3><ul>
+<li>删除索引范围的member<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zremrangebyrank方法.jpg" alt="zset集合的zadd方法.jpg"></li>
 </ul>
 
         
