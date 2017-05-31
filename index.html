@@ -44,7 +44,7 @@
 				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -60,7 +60,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -85,7 +85,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-25T22:46:56.000Z" itemprop="datePublished"> 发表于 2017-05-26</time>
+    <time datetime="2017-05-25T22:46:56.000Z" itemprop="datePublished"> Published 2017-05-26</time>
     
   </p>
 </header>
@@ -101,9 +101,9 @@
 <h3 id="expire命令"><a href="#expire命令" class="headerlink" title="expire命令"></a>expire命令</h3><ul>
 <li>设置某个key的过期时间，单位秒。在这里通过 <code>ttl</code> 命令查看剩余时间<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性expire和ttl命令.jpg" alt="redis高级特性expire和ttl命令"></li>
 </ul>
-<h3 id="presist命令"><a href="#presist命令" class="headerlink" title="presist命令"></a>presist命令</h3><ul>
+<h3 id="persist命令"><a href="#persist命令" class="headerlink" title="persist命令"></a>persist命令</h3><ul>
 <li>取消过期时间</li>
-<li>一般情况下，<code>expire</code> 命令、 <code>ttl</code> 命令和 <code>presist</code> 命令结合使用<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性persist命令.jpg" alt="redis高级特性persist命令"></li>
+<li>一般情况下，<code>expire</code> 命令、 <code>ttl</code> 命令和 <code>persist</code> 命令结合使用<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性persist命令.jpg" alt="redis高级特性persist命令"></li>
 </ul>
 <h3 id="select命令"><a href="#select命令" class="headerlink" title="select命令"></a>select命令</h3><ul>
 <li>选择数据库，数据库为0到15，一共16个数据库。默认进入的是0数据库<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性select命令.jpg" alt="redis高级特性select命令"></li>
@@ -159,7 +159,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-20T12:27:27.000Z" itemprop="datePublished"> 发表于 2017-05-20</time>
+    <time datetime="2017-05-20T12:27:27.000Z" itemprop="datePublished"> Published 2017-05-20</time>
     
   </p>
 </header>
@@ -295,7 +295,7 @@
 </ul>
 <h2 id="zset集合类型"><a href="#zset集合类型" class="headerlink" title="zset集合类型"></a>zset集合类型</h2><p>set集合的升级版，集合是有序的。</p>
 <h3 id="zadd方法"><a href="#zadd方法" class="headerlink" title="zadd方法"></a>zadd方法</h3><ul>
-<li>向有序集合中添加一个元素，该元素如果存在，则更像顺序。在重复插入的时候，会根据顺序属性更新。<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zadd方法.jpg" alt="zset集合的zadd方法.jpg"></li>
+<li>向有序集合中添加一个元素，该元素如果存在，则更新顺序。在重复插入的时候，会根据顺序属性更新。<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zadd方法.jpg" alt="zset集合的zadd方法.jpg"></li>
 </ul>
 <h3 id="zrange方法"><a href="#zrange方法" class="headerlink" title="zrange方法"></a>zrange方法</h3><ul>
 <li>查看zset集合数据。<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zrange方法.jpg" alt="zset集合的zadd方法.jpg"></li>
@@ -379,7 +379,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-20T03:24:56.000Z" itemprop="datePublished"> 发表于 2017-05-20</time>
+    <time datetime="2017-05-20T03:24:56.000Z" itemprop="datePublished"> Published 2017-05-20</time>
     
   </p>
 </header>
@@ -387,7 +387,7 @@
         
         <h2 id="NOSQL简介"><a href="#NOSQL简介" class="headerlink" title="NOSQL简介"></a>NOSQL简介</h2><p>NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：</p>
 <ul>
-<li>键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有过一个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB</li>
+<li>键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB</li>
 <li>列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键仍然存在，但是它们的特定是指向了多个列。如HBase，Riak</li>
 <li>文档型数据库：该类型的数据库是版本化文档，半结构化的文档以特定的格式存储，比如JSON。文档型数据库可以看作是键值对数据库的升级版，允许之间嵌套键值。而且文档型数据库比键值数据库查询效率更高。如MongoDB、CouchDB</li>
 <li>图形数据库：图形结构的数据库同其他行列以及刚性结构的SQL数据库不同，它是灵活的图形模型，并且能够扩展到多个服务器上</li>
@@ -515,7 +515,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-17T00:14:05.719Z" itemprop="datePublished"> 发表于 2017-05-17</time>
+    <time datetime="2017-05-17T00:14:05.719Z" itemprop="datePublished"> Published 2017-05-17</time>
     
   </p>
 </header>
@@ -658,7 +658,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-17T00:02:05.742Z" itemprop="datePublished"> 发表于 2017-05-17</time>
+    <time datetime="2017-05-17T00:02:05.742Z" itemprop="datePublished"> Published 2017-05-17</time>
     
   </p>
 </header>
@@ -705,10 +705,10 @@
 
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -718,7 +718,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">标签</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -738,7 +738,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情链接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -894,7 +894,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
