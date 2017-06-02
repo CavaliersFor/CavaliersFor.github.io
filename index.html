@@ -78,6 +78,98 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/06/02/redis持久化/" title="redis持久化" itemprop="url">redis持久化</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-02T00:03:07.000Z" itemprop="datePublished"> Published 2017-06-02</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h3 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h3><h4 id="RDB持久化方案"><a href="#RDB持久化方案" class="headerlink" title="RDB持久化方案"></a>RDB持久化方案</h4><p>在Redis运行时，RDB程序将当前内存中的数据库快照保存到磁盘中，当Redis需要重启时，RDB程序会通过重载RDB文件来还原数据库。<br> RDB主要包括两个功能：</p>
+<ul>
+<li>保存(rdSave)<br>rdSave负责将内存中的数据库数据以RDB格式保存到磁盘中，如果RDB文件已经存在将会替换已有的RDB文件。保存RDB文件期间会阻塞主进程，这段时间期间将不能处理新的客户端请求，直到保存完成为止。<br>为避免主进程阻塞，Redis提供了rdbSaveBackground函数。<br>在新建的子进程中调用rdSave，保存完成后会向主进程发送信号，同时进程可以继续处理新的客户端请求。</li>
+<li>读取(rdbLoad)<br>当Redis启动时，会根据配置的持久化模式，决定是否读取RDB文件，并将其中的对象保存到内存中。载入RDB过程中，<br>每载入1000个键就处理一次已经等待处理的客户端请求，但是目前仅处理订阅功能的命令，其他一律返回错误信息，因为发布订阅功能是不写入数据库的，也就不保存Redis数据库的</li>
+</ul>
+<h5 id="RDB的缺点"><a href="#RDB的缺点" class="headerlink" title="RDB的缺点"></a>RDB的缺点</h5><p>要理解RDB的缺点，需要了解RDB有保存点的概念。在默认的redis.conf中可以看到如下的默认配置：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">save 900 1        #如果15分钟内，有1个键被修改</div><div class="line">save 300 10       #如果6分钟内，有10个键被修改</div><div class="line">save 60 10000     #如果60秒内有10000个键被修改</div></pre></td></tr></table></figure></p>
+<p>上面表示只要满足任意一个条件时，将会进行快照保存。为了保证IO读写性能不会成为Redis的瓶颈，一般都会创建一个比较大的值作为保存点，会出现如下缺点：</p>
+<ul>
+<li>此时如果保存点设置过大，就会导致宕机丢失的数据过多。保存点设置过小，又会造成IO瓶颈</li>
+<li>当对数据进行保存时，可能会由于数据集过大导致操作耗时，这会导致Redis可能在短时间内无法处理客户端请求。</li>
+</ul>
+<h4 id="AOF持久化方案"><a href="#AOF持久化方案" class="headerlink" title="AOF持久化方案"></a>AOF持久化方案</h4><p>以协议文本的方式，将所有对数据库进行写入命令记录到AOF文件，达到记录数据库状态的目的。</p>
+<p>AOF功能：</p>
+<ul>
+<li>保存<br>1.将客户端请求的命令转换成网络协议格式<br>2.将协议内容字符串追加到变量server.aof_buf中<br>3.当AOF系统达到设定的条件时，会调用aof_fsync(文件描述符)将数据写入磁盘</li>
+</ul>
+<ul>
+<li>读取<br>1.创建模拟的客户端<br>2.读取AOF保存的文本，还原数据为原命令和原参数。然后使用模拟的客户端发出这个命令请求<br>3.继续执行第二步，直到读取完AOF文件</li>
+</ul>
+<p>AOF系统设定条件：</p>
+<ul>
+<li>在前面提到的AOF系统到达设定条件时，将会调用aof_fsync(文件描述符)将数据写入磁盘，这是AOF性能的关键点。目前Redis支持三种保存条件机制：<br>1.AOF_FSYNC_NO:不保存<br>此模式下，每执行一条客户端命令，都会将协议字符串追加到server.aof_buf中，但是不会执行写入磁盘。写入磁盘只发生在：redis被正常关闭、AOF功能关闭、系统写缓存已满或后台定时保存操作被执行，次三种情况都会阻塞主进程，导致客户端请求失败。<br>2.AOF_FSYNC_EVERYSECS:每一秒保存一次<br>由后台子进程调用写入保存，不会阻塞主进程。如果发生宕机，那么最大丢失数据会在2s以内的数据。这也是默认的设置选项<br>3.AOF_FSYNC_ALWAYS:每执行一个命令都保存一次<br>这种模式下，可以保证每一条客户端指令都被保存，保证数据不会丢失。但缺点是性能大大下降，因为每一次操作都是都占性的，需要阻塞主进程</li>
+</ul>
+<h5 id="AOF缺点"><a href="#AOF缺点" class="headerlink" title="AOF缺点"></a>AOF缺点</h5><ul>
+<li>AOF文件通常会大于等于相同数据集的RDB文件</li>
+<li>AOF模式下性能与RDB模式性能高低，主要取决于AOF选用的fsync模式</li>
+</ul>
+<h5 id="AOF重写"><a href="#AOF重写" class="headerlink" title="AOF重写"></a>AOF重写</h5><p>AOF需要将所有的命令都保存到磁盘，那么这个文件会随着时间变得越来越大，读取也会变得很慢。<br>Redis提供了AOF重写机制，帮助减少文件的大小，具体实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH list <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPOP list</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPOP list</div></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH list <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>最初保持到AOF文件的将会是四条指令。但是进过AOF重写后，会变成一条指令：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH <span class="number">1</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
+<h5 id="AOF重写流程"><a href="#AOF重写流程" class="headerlink" title="AOF重写流程"></a>AOF重写流程</h5><ul>
+<li>AOF重写完成会向主线程发一个完成的信号</li>
+<li>将AOF重写缓存中的数据全部写入到文件中</li>
+<li>用新的AOF文件，覆盖原有的AOF文件</li>
+</ul>
+<p><strong>Redis Server端持久化部分操作图解</strong><br><img src="http://img.blog.csdn.net/20130518180443561" alt="Redis Server端持久化部分操作图解"></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/redis-缓存-redis原理/">redis 缓存 redis原理</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/05/26/Redis高级命令/" title="Redis高级命令" itemprop="url">Redis高级命令</a>
   </h1>
   <p class="article-author">By
@@ -731,6 +823,10 @@
 		
 			
 				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
 			
 		
 		</ul>
