@@ -409,7 +409,7 @@
 </ul>
 <p>AOF系统设定条件：</p>
 <ul>
-<li>在前面提到的AOF系统到达设定条件时，将会调用aof_fsync(文件描述符)将数据写入磁盘，这是AOF性能的关键点。目前Redis支持三种保存条件机制：<br>1.AOF_FSYNC_NO:不保存<br>此模式下，每执行一条客户端命令，都会将协议字符串追加到server.aof_buf中，但是不会执行写入磁盘。写入磁盘只发生在：redis被正常关闭、AOF功能关闭、系统写缓存已满或后台定时保存操作被执行，次三种情况都会阻塞主进程，导致客户端请求失败。<br>2.AOF_FSYNC_EVERYSECS:每一秒保存一次<br>由后台子进程调用写入保存，不会阻塞主进程。如果发生宕机，那么最大丢失数据会在2s以内的数据。这也是默认的设置选项<br>3.AOF_FSYNC_ALWAYS:每执行一个命令都保存一次<br>这种模式下，可以保证每一条客户端指令都被保存，保证数据不会丢失。但缺点是性能大大下降，因为每一次操作都是都占性的，需要阻塞主进程</li>
+<li>在前面提到的AOF系统到达设定条件时，将会调用aof_fsync(文件描述符)将数据写入磁盘，这是AOF性能的关键点。目前Redis支持三种保存条件机制：<br>1.AOF_FSYNC_NO:不保存<br>此模式下，每执行一条客户端命令，都会将协议字符串追加到server.aof_buf中，但是不会执行写入磁盘。写入磁盘只发生在：redis被正常关闭、AOF功能关闭、系统写缓存已满或后台定时保存操作被执行，此三种情况都会阻塞主进程，导致客户端请求失败。<br>2.AOF_FSYNC_EVERYSECS:每一秒保存一次<br>由后台子进程调用写入保存，不会阻塞主进程。如果发生宕机，那么最大丢失数据会在2s以内的数据。这也是默认的设置选项<br>3.AOF_FSYNC_ALWAYS:每执行一个命令都保存一次<br>这种模式下，可以保证每一条客户端指令都被保存，保证数据不会丢失。但缺点是性能大大下降，因为每一次操作都是都占性的，需要阻塞主进程</li>
 </ul>
 <h5 id="AOF缺点"><a href="#AOF缺点" class="headerlink" title="AOF缺点"></a>AOF缺点</h5><ul>
 <li>AOF文件通常会大于等于相同数据集的RDB文件</li>
@@ -420,11 +420,69 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPOP list</div></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH list <span class="number">1</span></div></pre></td></tr></table></figure>
 <p>最初保持到AOF文件的将会是四条指令。但是进过AOF重写后，会变成一条指令：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH <span class="number">1</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
-<h5 id="AOF重写流程"><a href="#AOF重写流程" class="headerlink" title="AOF重写流程"></a>AOF重写流程</h5><ul>
-<li>AOF重写完成会向主线程发一个完成的信号</li>
-<li>将AOF重写缓存中的数据全部写入到文件中</li>
-<li>用新的AOF文件，覆盖原有的AOF文件</li>
+<h5 id="AOF重写流程，主线程，子线程的工作："><a href="#AOF重写流程，主线程，子线程的工作：" class="headerlink" title="AOF重写流程，主线程，子线程的工作："></a>AOF重写流程，主线程，子线程的工作：</h5><ul>
+<li>主线程创建子线程，执行AOF文件重写</li>
+<li>将子线程在执行写操作过程中的执行命令追加到AOF缓冲区和AOF重写缓冲区</li>
+<li>当子线程完成AOF重写工作后，它会向主线程发送一个信号，主线程接收到该信号，会调用一个信号处理函数，并执行下面工作</li>
+<li>将AOF重写缓冲区中的所有内容写入到新AOF文件中，这时新AOF文件所保存的数据库状态将和服务器当前的数据库状态一致</li>
+<li>将新的AOF文件进行改名，原子地覆盖现有的AOF文件，完成新旧两个AOF文件的替换</li>
+<li>这个信号处理函数执行完毕后，父进程可以继续接受请求命令</li>
 </ul>
+<h4 id="AOF重写过程，图表式："><a href="#AOF重写过程，图表式：" class="headerlink" title="AOF重写过程，图表式："></a>AOF重写过程，图表式：</h4><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>服务器进程(主进程)</th>
+<th>子进程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1</td>
+<td>执行命令 set k1 v1</td>
+<td></td>
+</tr>
+<tr>
+<td>T2</td>
+<td>执行命令set k1 v2</td>
+<td></td>
+</tr>
+<tr>
+<td>T3</td>
+<td>执行命令set k1 v3</td>
+<td></td>
+</tr>
+<tr>
+<td>T4</td>
+<td>创建子进程，执行AOF文件重写</td>
+<td>开始AOF文件重写</td>
+</tr>
+<tr>
+<td>T5</td>
+<td>执行命令set k2 10086</td>
+<td>执行重写操作</td>
+</tr>
+<tr>
+<td>T6</td>
+<td>执行命令set k3 12345</td>
+<td>执行重写操作</td>
+</tr>
+<tr>
+<td>T7</td>
+<td>执行命令set k4 23423</td>
+<td>完成AOF文件重写，向父进程发送信号</td>
+</tr>
+<tr>
+<td>T8</td>
+<td>接收到子进程发来的信号，将命令set k2 10086、set k3 12345、set k4 22222追加到新AOF文件的末尾</td>
+<td></td>
+</tr>
+<tr>
+<td>T9</td>
+<td>用新的AOF文件覆盖旧AOF文件</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Redis Server端持久化部分操作图解</strong><br><img src="http://img.blog.csdn.net/20130518180443561" alt="Redis Server端持久化部分操作图解"></p>
 
         
@@ -1143,19 +1201,19 @@
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
 			
 		
 			
