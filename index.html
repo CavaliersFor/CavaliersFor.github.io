@@ -1029,7 +1029,8 @@
 </ul>
 </li>
 </ul>
-<h2 id="redis持久化实现原理"><a href="#redis持久化实现原理" class="headerlink" title="redis持久化实现原理"></a>redis持久化实现原理</h2><h2 id="生产者消费者"><a href="#生产者消费者" class="headerlink" title="生产者消费者"></a>生产者消费者</h2><h2 id="JVM的内存模型"><a href="#JVM的内存模型" class="headerlink" title="JVM的内存模型"></a>JVM的内存模型</h2><ul>
+<h2 id="redis持久化实现原理"><a href="#redis持久化实现原理" class="headerlink" title="redis持久化实现原理"></a>redis持久化实现原理</h2><p><a href="https://cavaliersfor.github.io/2017/06/02/redis持久化/" target="_blank" rel="external">redis持久化</a></p>
+<h2 id="生产者消费者"><a href="#生产者消费者" class="headerlink" title="生产者消费者"></a>生产者消费者</h2><h2 id="JVM的内存模型"><a href="#JVM的内存模型" class="headerlink" title="JVM的内存模型"></a>JVM的内存模型</h2><ul>
 <li>内存空间（Runtime Data Area）中可以按照是否线程共享分成两块，线程共享的是方法区（Method Area）和堆（Heap），线程独享的是Java栈（Java Stack），本地方法栈（Native Method Stack）和PC寄存器（Program Counter Register）。</li>
 <li>在 JDK 1.7 及以往的 JDK 版本中，Java 类信息、常量池、静态变量都存储在 Perm（永久代）里。类的元数据和静态变量在类加载的时候分配到 Perm，当类被卸载的时候垃圾收集器从 Perm 处理掉类的元数据和静态变量。当然常量池的东西也会在 Perm 垃圾收集的时候进行处理。</li>
 </ul>
@@ -1069,6 +1070,18 @@
 <li>执行引擎<ul>
 <li>负责执行虚拟机的字节码</li>
 </ul>
+</li>
+</ul>
+<h2 id="常用GC算法"><a href="#常用GC算法" class="headerlink" title="常用GC算法"></a>常用GC算法</h2><ul>
+<li><p>引用计数法</p>
+</li>
+<li><p>复制法<br>原理：从根集合开始，通过追踪从From中找到存活对象，拷贝到To中；From和To交换身份，下次内存分配从To开始<br>优缺点：没有标记和清除的过程，效率高；没有内存碎片，可以快速实现内存分配；但是需要双倍空间<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC的复制法.jpg" alt="GC的复制法.jpg"></p>
+</li>
+<li><p>标记清除法<br>原理：分为两个阶段，标记和清除；标记，从根集合开始扫描，对存活的对象进行标记。清除，扫描整个内存空间，回收未被标记的对象。<br>优缺点：不需要额外空间，但是，两次扫描，耗时严重；会产生碎片<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法标记阶段.jpg" alt="GC标记清除法标记阶段"><br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法清除阶段.jpg" alt="GC标记清除法清除阶段"></p>
+</li>
+<li><p>标记压缩法<br>原理：分为两个阶段，标记和压缩；标记，从根集合开始扫描，对存活对象进行标记。压缩，再次扫描，并往一端滑动存活对象。<br>优缺点：没有内存碎片，但是需要移动对象的成本<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法标记阶段.jpg" alt="GC标记压缩法标记阶段"><br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法压缩阶段.jpg" alt="GC标记压缩法压缩阶段"></p>
+</li>
+<li><p>标记清除压缩法<br>原理：将标记清除和标记压缩相结合，过程和标记清除一样，但是进行多次GC后才压缩。<br>优缺点：减少了对象的移动成本</p>
 </li>
 </ul>
 <h2 id="http1-0，http1-1，http2-0区别"><a href="#http1-0，http1-1，http2-0区别" class="headerlink" title="http1.0，http1.1，http2.0区别"></a>http1.0，http1.1，http2.0区别</h2><h2 id="Get-Post对缓存的影响"><a href="#Get-Post对缓存的影响" class="headerlink" title="Get/Post对缓存的影响"></a>Get/Post对缓存的影响</h2><ul>
@@ -1201,11 +1214,11 @@
 			
 		
 			
-				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
 			
 		
 			
