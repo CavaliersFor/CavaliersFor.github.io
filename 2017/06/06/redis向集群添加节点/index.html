@@ -1,0 +1,508 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>redis向集群添加节点 | 在路上coder博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="在路上的coder">
+    
+
+    
+    <meta name="description" content="Redis集群操作在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。 启动集群123456/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-cluster/7001/redis.conf/home/hadoop/apps/redis-3.0.0/b">
+<meta name="keywords" content="redis redis集群添加节点 redis集群水平扩展">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis向集群添加节点">
+<meta property="og:url" content="http://yoursite.com/2017/06/06/redis向集群添加节点/index.html">
+<meta property="og:site_name" content="在路上coder博客">
+<meta property="og:description" content="Redis集群操作在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。 启动集群123456/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-cluster/7001/redis.conf/home/hadoop/apps/redis-3.0.0/b">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群操作查看集群状态.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群新建目录和拷贝配置文件.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群启动7007和7008节点和验证.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群验证7007和7008节点没有加入到集群.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群新增节点.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群新增节点后查看节点信息.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片1.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片2.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片3.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群验证7007节点槽.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群添加7008节点.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群设置7008节点为7007的从节点.jpg">
+<meta property="og:updated_time" content="2017-06-06T23:16:50.959Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="redis向集群添加节点">
+<meta name="twitter:description" content="Redis集群操作在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。 启动集群123456/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-cluster/7001/redis.conf/home/hadoop/apps/redis-3.0.0/b">
+<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群操作查看集群状态.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="在路上coder博客" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="在路上coder博客" title="在路上coder博客"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/06/06/redis向集群添加节点/" title="redis向集群添加节点" itemprop="url">redis向集群添加节点</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-06T00:13:22.000Z" itemprop="datePublished"> Published 2017-06-06</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis集群操作"><span class="toc-number">1.</span> <span class="toc-text">Redis集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动集群"><span class="toc-number">1.1.</span> <span class="toc-text">启动集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看是否全部启动成功"><span class="toc-number">1.2.</span> <span class="toc-text">查看是否全部启动成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看集群状态"><span class="toc-number">1.3.</span> <span class="toc-text">查看集群状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建集群操作"><span class="toc-number">2.</span> <span class="toc-text">新建集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建目录并修改配置文件"><span class="toc-number">2.1.</span> <span class="toc-text">创建目录并修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动7007和7008这两台服务器"><span class="toc-number">2.2.</span> <span class="toc-text">启动7007和7008这两台服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过redis-trib添加节点"><span class="toc-number">2.3.</span> <span class="toc-text">通过redis-trib添加节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为7007节点分别slot槽"><span class="toc-number">2.4.</span> <span class="toc-text">为7007节点分别slot槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加从节点7008到集群中"><span class="toc-number">2.5.</span> <span class="toc-text">添加从节点7008到集群中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="Redis集群操作"><a href="#Redis集群操作" class="headerlink" title="Redis集群操作"></a>Redis集群操作</h2><p>在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。</p>
+<h3 id="启动集群"><a href="#启动集群" class="headerlink" title="启动集群"></a>启动集群</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7001</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7002</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7003</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7004</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7005</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7006</span>/redis.conf</div></pre></td></tr></table></figure>
+<h3 id="查看是否全部启动成功"><a href="#查看是否全部启动成功" class="headerlink" title="查看是否全部启动成功"></a>查看是否全部启动成功</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hadoop     8180      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7001 [cluster]                   </div><div class="line">hadoop     8184      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7002 [cluster]                   </div><div class="line">hadoop     8190      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7003 [cluster]                   </div><div class="line">hadoop     8194      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7004 [cluster]                   </div><div class="line">hadoop     8198      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7005 [cluster]                   </div><div class="line">hadoop     8202      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7006 [cluster]</div></pre></td></tr></table></figure>
+<h3 id="查看集群状态"><a href="#查看集群状态" class="headerlink" title="查看集群状态"></a>查看集群状态</h3><p><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群操作查看集群状态.jpg" alt="redis集群操作查看集群状态"></p>
+<h2 id="新建集群操作"><a href="#新建集群操作" class="headerlink" title="新建集群操作"></a>新建集群操作</h2><p>我们新建两个服务器，还是按照之前新建的方式，通过伪分布式来创建，使用文件夹代表节点。两个服务器一主一从。Master端口7007，Slave端口：7008</p>
+<h3 id="创建目录并修改配置文件"><a href="#创建目录并修改配置文件" class="headerlink" title="创建目录并修改配置文件"></a>创建目录并修改配置文件</h3><ul>
+<li>创建7007和7008两个目录，并将redis.conf文件拷贝到刚创建的7007和7008目录。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群新建目录和拷贝配置文件.jpg" alt="redis集群新建目录和拷贝配置文件"></li>
+<li>修改7007和7008目录下的配置文件，修改<code>port 7007</code> <code>dir dir /home/hadoop/apps/redis-cluster/7007/</code> <code>cluster-config-file nodes-7007.conf</code> 这三处，7008目录下的也是同理。</li>
+</ul>
+<h3 id="启动7007和7008这两台服务器"><a href="#启动7007和7008这两台服务器" class="headerlink" title="启动7007和7008这两台服务器"></a>启动7007和7008这两台服务器</h3><ul>
+<li>正常启动7007和7008节点，并验证是否启动成功。<img src="http://opzxa0ul7.bkt.clouddn.com/redis集群启动7007和7008节点和验证.jpg" alt="http://opzxa0ul7.bkt.clouddn.com/redis集群启动7007和7008节点和验证.jpg"></li>
+<li>虽然启动成功，但是7007和7008节点并没有加入到集群中。<img src="http://opzxa0ul7.bkt.clouddn.com/redis集群验证7007和7008节点没有加入到集群.jpg" alt="redis集群验证7007和7008节点没有加入到集群."></li>
+</ul>
+<h3 id="通过redis-trib添加节点"><a href="#通过redis-trib添加节点" class="headerlink" title="通过redis-trib添加节点"></a>通过redis-trib添加节点</h3><p>进入<code>/home/hadoop/apps/redis-3.0.0/src</code> 目录执行 <code>./redis-trib.rb</code> 脚本</p>
+<ul>
+<li>create，创建一个集群host1:port1…hostN:portN (集群中的主从节点比例)</li>
+<li>call，可以执行redis命令</li>
+<li>add-node，将一个节点添加到集群里，第一个参数为新节点的ip:port，第二个参数为集群中任意一个已存节点的ip:port</li>
+<li>del-node，移除一个节点</li>
+<li>reshard，重新分片</li>
+<li>check，检查集群状态</li>
+<li>新增一个主节点7007(master)<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群新增节点.jpg" alt="redis集群新增节点"></li>
+<li>这个是连接到集群，查看集群节点信息<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群新增节点后查看节点信息.jpg" alt="redis集群新增节点后查看节点信息"><br>通过集群节点信息查看，新增的7007节点没有槽，下面为7007节点添加槽</li>
+</ul>
+<h3 id="为7007节点分别slot槽"><a href="#为7007节点分别slot槽" class="headerlink" title="为7007节点分别slot槽"></a>为7007节点分别slot槽</h3><p>使用<code>redis-trib</code> 命令，找到集群中的任意一个主节点，对其进行重新分片工作。</p>
+<ul>
+<li>执行 <code>./redis-trib.rb reshard 192.168.137.5:7001</code> 命令进行重新分片，下面图片显示为节点分配多少个槽，这里分配的是1000<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片1.jpg" alt="redis集群进行重新分片1"></li>
+<li>输入分配槽后，再次需要确认为那个节点分配槽，这是是7007节点<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片2.jpg" alt="redis集群进行重新分片2."></li>
+<li>输入7007节点id后，还需选择上面提供的1000个槽，怎么分配过去。<code>Type all</code> 表示除了新增节点外，其他平均分配这1000个节点，也就是7001、7002、7003这三个节点分别提供333个节点。如果是<code>Type done</code> 表示指定某个节点id，全部从这个节点获取1000个节点；这里选择<code>all</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片3.jpg" alt="redis集群进行重新分片3"></li>
+<li>然后还需要你确认执行计划，输入<code>yes</code> 即可</li>
+<li>验证7007节点是否有槽，连接集群任意节点，输入<code>cluster nodes</code> 命令查看<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群验证7007节点槽.jpg" alt="redis集群验证7007节点槽"></li>
+</ul>
+<h3 id="添加从节点7008到集群中"><a href="#添加从节点7008到集群中" class="headerlink" title="添加从节点7008到集群中"></a>添加从节点7008到集群中</h3><ul>
+<li>使用<code>./redis-trib.rb</code> 脚本的的 <code>add-node</code> 命令，将7008添加到集群中;<code>./redis-trib.rb add-node 192.168.137.5:7008 192.168.137.5:7002</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群添加7008节点.jpg" alt="redis集群添加7008节点"></li>
+<li>然后使用<code>replicate</code>命令指定当前节点(从节点)的主节点id是那个，首先要登录7008节点的客户端，然后使用集群命令操作，把当前的7008节点指定到主节点7007下。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群设置7008节点为7007的从节点.jpg" alt="redis集群设置7008节点为7007的从节点"></li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>至此redis水平扩展的步骤执行完毕，在进行水平扩展时对redis的其他服务器没有任何影响</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/redis-redis集群添加节点-redis集群水平扩展/">redis redis集群添加节点 redis集群水平扩展</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://yoursite.com/2017/06/06/redis向集群添加节点/" data-title="redis向集群添加节点 | 在路上coder博客" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/06/04/redis集群搭建/"  title="Redis集群搭建">
+ <strong>下一篇：</strong><br/> 
+ <span>Redis集群搭建
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis集群操作"><span class="toc-number">1.</span> <span class="toc-text">Redis集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动集群"><span class="toc-number">1.1.</span> <span class="toc-text">启动集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看是否全部启动成功"><span class="toc-number">1.2.</span> <span class="toc-text">查看是否全部启动成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看集群状态"><span class="toc-number">1.3.</span> <span class="toc-text">查看集群状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建集群操作"><span class="toc-number">2.</span> <span class="toc-text">新建集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建目录并修改配置文件"><span class="toc-number">2.1.</span> <span class="toc-text">创建目录并修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动7007和7008这两台服务器"><span class="toc-number">2.2.</span> <span class="toc-text">启动7007和7008这两台服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过redis-trib添加节点"><span class="toc-number">2.3.</span> <span class="toc-text">通过redis-trib添加节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为7007节点分别slot槽"><span class="toc-number">2.4.</span> <span class="toc-text">为7007节点分别slot槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加从节点7008到集群中"><span class="toc-number">2.5.</span> <span class="toc-text">添加从节点7008到集群中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发编程网">并发编程网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/facekbook" target="_blank" title="My CSDN&#39;s Blog">My CSDN&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,我是在路上的coder. <br/>
+			这是我个人的博客.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="在路上的coder">在路上的coder</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1262026511'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1262026511' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

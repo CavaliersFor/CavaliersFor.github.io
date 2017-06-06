@@ -78,6 +78,97 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/06/06/redis向集群添加节点/" title="redis向集群添加节点" itemprop="url">redis向集群添加节点</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-06T00:13:22.000Z" itemprop="datePublished"> Published 2017-06-06</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="Redis集群操作"><a href="#Redis集群操作" class="headerlink" title="Redis集群操作"></a>Redis集群操作</h2><p>在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。</p>
+<h3 id="启动集群"><a href="#启动集群" class="headerlink" title="启动集群"></a>启动集群</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7001</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7002</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7003</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7004</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7005</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7006</span>/redis.conf</div></pre></td></tr></table></figure>
+<h3 id="查看是否全部启动成功"><a href="#查看是否全部启动成功" class="headerlink" title="查看是否全部启动成功"></a>查看是否全部启动成功</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hadoop     8180      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7001 [cluster]                   </div><div class="line">hadoop     8184      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7002 [cluster]                   </div><div class="line">hadoop     8190      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7003 [cluster]                   </div><div class="line">hadoop     8194      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7004 [cluster]                   </div><div class="line">hadoop     8198      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7005 [cluster]                   </div><div class="line">hadoop     8202      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7006 [cluster]</div></pre></td></tr></table></figure>
+<h3 id="查看集群状态"><a href="#查看集群状态" class="headerlink" title="查看集群状态"></a>查看集群状态</h3><p><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群操作查看集群状态.jpg" alt="redis集群操作查看集群状态"></p>
+<h2 id="新建集群操作"><a href="#新建集群操作" class="headerlink" title="新建集群操作"></a>新建集群操作</h2><p>我们新建两个服务器，还是按照之前新建的方式，通过伪分布式来创建，使用文件夹代表节点。两个服务器一主一从。Master端口7007，Slave端口：7008</p>
+<h3 id="创建目录并修改配置文件"><a href="#创建目录并修改配置文件" class="headerlink" title="创建目录并修改配置文件"></a>创建目录并修改配置文件</h3><ul>
+<li>创建7007和7008两个目录，并将redis.conf文件拷贝到刚创建的7007和7008目录。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群新建目录和拷贝配置文件.jpg" alt="redis集群新建目录和拷贝配置文件"></li>
+<li>修改7007和7008目录下的配置文件，修改<code>port 7007</code> <code>dir dir /home/hadoop/apps/redis-cluster/7007/</code> <code>cluster-config-file nodes-7007.conf</code> 这三处，7008目录下的也是同理。</li>
+</ul>
+<h3 id="启动7007和7008这两台服务器"><a href="#启动7007和7008这两台服务器" class="headerlink" title="启动7007和7008这两台服务器"></a>启动7007和7008这两台服务器</h3><ul>
+<li>正常启动7007和7008节点，并验证是否启动成功。<img src="http://opzxa0ul7.bkt.clouddn.com/redis集群启动7007和7008节点和验证.jpg" alt="http://opzxa0ul7.bkt.clouddn.com/redis集群启动7007和7008节点和验证.jpg"></li>
+<li>虽然启动成功，但是7007和7008节点并没有加入到集群中。<img src="http://opzxa0ul7.bkt.clouddn.com/redis集群验证7007和7008节点没有加入到集群.jpg" alt="redis集群验证7007和7008节点没有加入到集群."></li>
+</ul>
+<h3 id="通过redis-trib添加节点"><a href="#通过redis-trib添加节点" class="headerlink" title="通过redis-trib添加节点"></a>通过redis-trib添加节点</h3><p>进入<code>/home/hadoop/apps/redis-3.0.0/src</code> 目录执行 <code>./redis-trib.rb</code> 脚本</p>
+<ul>
+<li>create，创建一个集群host1:port1…hostN:portN (集群中的主从节点比例)</li>
+<li>call，可以执行redis命令</li>
+<li>add-node，将一个节点添加到集群里，第一个参数为新节点的ip:port，第二个参数为集群中任意一个已存节点的ip:port</li>
+<li>del-node，移除一个节点</li>
+<li>reshard，重新分片</li>
+<li>check，检查集群状态</li>
+<li>新增一个主节点7007(master)<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群新增节点.jpg" alt="redis集群新增节点"></li>
+<li>这个是连接到集群，查看集群节点信息<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群新增节点后查看节点信息.jpg" alt="redis集群新增节点后查看节点信息"><br>通过集群节点信息查看，新增的7007节点没有槽，下面为7007节点添加槽</li>
+</ul>
+<h3 id="为7007节点分别slot槽"><a href="#为7007节点分别slot槽" class="headerlink" title="为7007节点分别slot槽"></a>为7007节点分别slot槽</h3><p>使用<code>redis-trib</code> 命令，找到集群中的任意一个主节点，对其进行重新分片工作。</p>
+<ul>
+<li>执行 <code>./redis-trib.rb reshard 192.168.137.5:7001</code> 命令进行重新分片，下面图片显示为节点分配多少个槽，这里分配的是1000<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片1.jpg" alt="redis集群进行重新分片1"></li>
+<li>输入分配槽后，再次需要确认为那个节点分配槽，这是是7007节点<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片2.jpg" alt="redis集群进行重新分片2."></li>
+<li>输入7007节点id后，还需选择上面提供的1000个槽，怎么分配过去。<code>Type all</code> 表示除了新增节点外，其他平均分配这1000个节点，也就是7001、7002、7003这三个节点分别提供333个节点。如果是<code>Type done</code> 表示指定某个节点id，全部从这个节点获取1000个节点；这里选择<code>all</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片3.jpg" alt="redis集群进行重新分片3"></li>
+<li>然后还需要你确认执行计划，输入<code>yes</code> 即可</li>
+<li>验证7007节点是否有槽，连接集群任意节点，输入<code>cluster nodes</code> 命令查看<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群验证7007节点槽.jpg" alt="redis集群验证7007节点槽"></li>
+</ul>
+<h3 id="添加从节点7008到集群中"><a href="#添加从节点7008到集群中" class="headerlink" title="添加从节点7008到集群中"></a>添加从节点7008到集群中</h3><ul>
+<li>使用<code>./redis-trib.rb</code> 脚本的的 <code>add-node</code> 命令，将7008添加到集群中;<code>./redis-trib.rb add-node 192.168.137.5:7008 192.168.137.5:7002</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群添加7008节点.jpg" alt="redis集群添加7008节点"></li>
+<li>然后使用<code>replicate</code>命令指定当前节点(从节点)的主节点id是那个，首先要登录7008节点的客户端，然后使用集群命令操作，把当前的7008节点指定到主节点7007下。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群设置7008节点为7007的从节点.jpg" alt="redis集群设置7008节点为7007的从节点"></li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>至此redis水平扩展的步骤执行完毕，在进行水平扩展时对redis的其他服务器没有任何影响</p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/redis-redis集群添加节点-redis集群水平扩展/">redis redis集群添加节点 redis集群水平扩展</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/06/04/redis集群搭建/" title="Redis集群搭建" itemprop="url">Redis集群搭建</a>
   </h1>
   <p class="article-author">By
@@ -1129,64 +1220,10 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/05/17/hello-world/" title="Hexo使用方法" itemprop="url">Hexo使用方法</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
-		
-  <p class="article-time">
-    <time datetime="2017-05-17T00:02:05.742Z" itemprop="datePublished"> Published 2017-05-17</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="创建新文件"><a href="#创建新文件" class="headerlink" title="创建新文件"></a>创建新文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="本地执行服务，可以通过浏览器方法"><a href="#本地执行服务，可以通过浏览器方法" class="headerlink" title="本地执行服务，可以通过浏览器方法"></a>本地执行服务，可以通过浏览器方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="发布到远程库中，例如github"><a href="#发布到远程库中，例如github" class="headerlink" title="发布到远程库中，例如github"></a>发布到远程库中，例如github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
+  <nav id="page-nav" class="clearfix">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
+  </nav>
 
 </div>
       <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
@@ -1226,11 +1263,15 @@
 			
 		
 			
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
 			
 		
 		</ul>
