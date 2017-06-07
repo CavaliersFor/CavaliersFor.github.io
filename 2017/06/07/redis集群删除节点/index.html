@@ -4,27 +4,35 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>redis主从复制 | 在路上coder博客</title>
+    <title>redis集群删除节点 | 在路上coder博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="在路上的coder">
     
 
     
-    <meta name="description" content="主从复制 master可以拥有多个slave 多个slave可以连接同一个master，也可以连接到其他的slave 主从复制不会阻塞master，在同步数据时，master可以继续处理client请求 提供系统的伸缩性  主从复制过程 slave与master建立连接，发送sync同步命令 master会开启一个后台进程，将数据库文件快照保存到文件中，同时master主进程会开始收集新的写入命令">
-<meta name="keywords" content="redis 缓存 redis主从复制">
+    <meta name="description" content="Redis集群删除节点从Redis集群中移除节点的步骤是，先移除从节点，再移除主节点；在移除主节点的时候需要将移除主节点的槽move到其他的主节点上，不然数据就会丢失。 移除从节点我们这里移动7008这个从节点  还是使用 redis-trib.rb 脚本；使用 del-node 命令，指定删除节点的ip和端口，以及节点的id 这样7008从节点就已经被移除  移除主节点这里移除的是7007主节点">
+<meta name="keywords" content="redis redis集群 redis集群移除节点">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis主从复制">
-<meta property="og:url" content="http://yoursite.com/2017/06/02/redis主从复制/index.html">
+<meta property="og:title" content="redis集群删除节点">
+<meta property="og:url" content="http://yoursite.com/2017/06/07/redis集群删除节点/index.html">
 <meta property="og:site_name" content="在路上coder博客">
-<meta property="og:description" content="主从复制 master可以拥有多个slave 多个slave可以连接同一个master，也可以连接到其他的slave 主从复制不会阻塞master，在同步数据时，master可以继续处理client请求 提供系统的伸缩性  主从复制过程 slave与master建立连接，发送sync同步命令 master会开启一个后台进程，将数据库文件快照保存到文件中，同时master主进程会开始收集新的写入命令">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis主从复制.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis主从复制从服务器不能写入.jpg">
-<meta property="og:updated_time" content="2017-06-03T06:02:56.794Z">
+<meta property="og:description" content="Redis集群删除节点从Redis集群中移除节点的步骤是，先移除从节点，再移除主节点；在移除主节点的时候需要将移除主节点的槽move到其他的主节点上，不然数据就会丢失。 移除从节点我们这里移动7008这个从节点  还是使用 redis-trib.rb 脚本；使用 del-node 命令，指定删除节点的ip和端口，以及节点的id 这样7008从节点就已经被移除  移除主节点这里移除的是7007主节点">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除从节点1.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除从节点2.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点1.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点2.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点3.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除验证数据是否丢失.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除查看集群信息.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点4.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除后查看集群信息.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除后7007节点进程被shutdown.jpg">
+<meta property="og:updated_time" content="2017-06-07T23:20:40.059Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis主从复制">
-<meta name="twitter:description" content="主从复制 master可以拥有多个slave 多个slave可以连接同一个master，也可以连接到其他的slave 主从复制不会阻塞master，在同步数据时，master可以继续处理client请求 提供系统的伸缩性  主从复制过程 slave与master建立连接，发送sync同步命令 master会开启一个后台进程，将数据库文件快照保存到文件中，同时master主进程会开始收集新的写入命令">
-<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/redis主从复制.jpg">
+<meta name="twitter:title" content="redis集群删除节点">
+<meta name="twitter:description" content="Redis集群删除节点从Redis集群中移除节点的步骤是，先移除从节点，再移除主节点；在移除主节点的时候需要将移除主节点的槽move到其他的主节点上，不然数据就会丢失。 移除从节点我们这里移动7008这个从节点  还是使用 redis-trib.rb 脚本；使用 del-node 命令，指定删除节点的ip和端口，以及节点的id 这样7008从节点就已经被移除  移除主节点这里移除的是7007主节点">
+<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群移除从节点1.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上coder博客" type="application/atom+xml">
@@ -84,14 +92,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/02/redis主从复制/" title="redis主从复制" itemprop="url">redis主从复制</a>
+      <a href="/2017/06/07/redis集群删除节点/" title="redis集群删除节点" itemprop="url">redis集群删除节点</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-02T14:00:11.000Z" itemprop="datePublished"> 發表於 2017-06-02</time>
+    <time datetime="2017-06-07T14:10:14.000Z" itemprop="datePublished"> 發表於 2017-06-07</time>
     
   </p>
 </header>
@@ -100,32 +108,34 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主从复制"><span class="toc-number">1.</span> <span class="toc-text">主从复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主从复制过程"><span class="toc-number">2.</span> <span class="toc-text">主从复制过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主从复制配置"><span class="toc-number">3.</span> <span class="toc-text">主从复制配置</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis集群删除节点"><span class="toc-number">1.</span> <span class="toc-text">Redis集群删除节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#移除从节点"><span class="toc-number">1.1.</span> <span class="toc-text">移除从节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除主节点"><span class="toc-number">1.2.</span> <span class="toc-text">移除主节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除节点后对数据的验证"><span class="toc-number">1.3.</span> <span class="toc-text">移除节点后对数据的验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除主节点"><span class="toc-number">1.4.</span> <span class="toc-text">删除主节点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">2.</span> <span class="toc-text">总结</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h3><ul>
-<li>master可以拥有多个slave</li>
-<li>多个slave可以连接同一个master，也可以连接到其他的slave</li>
-<li>主从复制不会阻塞master，在同步数据时，master可以继续处理client请求</li>
-<li>提供系统的伸缩性</li>
+		<h2 id="Redis集群删除节点"><a href="#Redis集群删除节点" class="headerlink" title="Redis集群删除节点"></a>Redis集群删除节点</h2><p>从Redis集群中移除节点的步骤是，先移除从节点，再移除主节点；在移除主节点的时候需要将移除主节点的槽move到其他的主节点上，不然数据就会丢失。</p>
+<h3 id="移除从节点"><a href="#移除从节点" class="headerlink" title="移除从节点"></a>移除从节点</h3><p>我们这里移动7008这个从节点</p>
+<ul>
+<li>还是使用 <code>redis-trib.rb</code> 脚本；使用 <code>del-node</code> 命令，指定删除节点的ip和端口，以及节点的id<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除从节点1.jpg" alt="redis集群移除从节点1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除从节点2.jpg" alt="redis集群移除从节点2"></li>
+<li>这样7008从节点就已经被移除</li>
 </ul>
-<h3 id="主从复制过程"><a href="#主从复制过程" class="headerlink" title="主从复制过程"></a>主从复制过程</h3><ul>
-<li>slave与master建立连接，发送sync同步命令</li>
-<li>master会开启一个后台进程，将数据库文件快照保存到文件中，同时master主进程会开始收集新的写入命令并缓存</li>
-<li>后台完成保存后，将文件发送给slave</li>
-<li>slave将文件保存到硬盘上</li>
+<h3 id="移除主节点"><a href="#移除主节点" class="headerlink" title="移除主节点"></a>移除主节点</h3><p>这里移除的是7007主节点，通过上面的截图我们也看到在7007节点上存储了一个key，我们要保证移除后这个key还存在集群中；移除主节点稍微有点麻烦。</p>
+<ul>
+<li>还是使用 <code>redis-trib.rb</code> 脚本的 <code>reshard</code> 命令，将节点重新分片；执行后让你输入需要移动多少个槽，这里我们输入1000<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点1.jpg" alt="redis集群移除主节点1"></li>
+<li>输入完后，需要指定接受槽的节点id，我们这里将这个1000个槽分给7002</li>
+<li>下面需要选择分配模式，有<code>all</code> 和 <code>done</code> 两种，和添加节点一样，我们这里使用<code>done</code>，因为使用<code>all</code> 在这里也没有效果，不可以将这1000个节点平均分给其他节点，只能分给一个节点。这里还需要指定移动槽的源节点id。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点2.jpg" alt="redis集群移除主节点2"></li>
+<li>后面就是要你判断这个执行计划是不是你想要的，输入<code>yes</code> 即可移除主节点的槽完成<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点3.jpg" alt="redis集群移除主节点3"></li>
 </ul>
-<h3 id="主从复制配置"><a href="#主从复制配置" class="headerlink" title="主从复制配置"></a>主从复制配置</h3><ul>
-<li>现在有两台服务器，一台是hadoop5(192.168.137.5)作为主和hadoop4(192.168.137.4)作为从</li>
-<li>复制一份redis安装目录到从服务器，命令如下：<code>scp -r redis-3.0.0/ hadoop4:/home/hadoop/apps/</code> 在hadoop5上执行</li>
-<li>进入redis安装目录，执行启动和连接shell，检测是否可以正常执行。</li>
-<li>修改配置文件，这里只需修改从服务器的配置文件，进入<code>/home/hadoop/apps/redis-3.0.0/etc</code> 目录中。</li>
-<li>找到 <code>slaveof &lt;masterip&gt; &lt;masterport&gt;</code>，差不多在205行左右。修改为：<code>slaveof 192.168.137.5 6379</code> 主节点的ip和端口</li>
-<li>先启动主节点，再启动从节点。在hadoop5的安装目录执行<code>./start-redis.sh</code> 和 <code>./conn-redis.sh</code> 命令，通过<code>info</code> 命令查看数据库信息。同理hadoop4从服务器也一样。</li>
-<li>检测数据同步是否正常，在hadoop5保存一个key，在hadoop4中获取。<img src="http://opzxa0ul7.bkt.clouddn.com/redis主从复制.jpg" alt="redis主从复制"></li>
-<li>在从服务器不能执行写入操作。<img src="http://opzxa0ul7.bkt.clouddn.com/redis主从复制从服务器不能写入.jpg" alt="redis主从复制从服务器不能写入"></li>
+<h3 id="移除节点后对数据的验证"><a href="#移除节点后对数据的验证" class="headerlink" title="移除节点后对数据的验证"></a>移除节点后对数据的验证</h3><p>将节点移除后，移除节点的数据不能丢失，这里是将7007节点的数据移动到7002上。</p>
+<ul>
+<li>先查看7007节点上数据不是已经移除，并且获取原来7007上的key，是否会跳转到7002获取。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除验证数据是否丢失.jpg" alt="redis集群移除验证数据是否丢失"></li>
+<li>查看集群节点信息，7007节点还存在集群中<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除查看集群信息.jpg" alt="redis集群移除查看集群信息"></li>
 </ul>
+<h3 id="删除主节点"><a href="#删除主节点" class="headerlink" title="删除主节点"></a>删除主节点</h3><p>这是最后一步，将该主节点从集群中删除</p>
+<ul>
+<li>还是使用 <code>redis-trib.rb</code> 脚本的 <code>del-node</code> 命令<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点4.jpg" alt="redis集群移除主节点4"></li>
+<li>再次查看集群信息，集群将7007节点移除，并停止了7007进程<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除后查看集群信息.jpg" alt="redis集群移除后查看集群信息"><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除后7007节点进程被shutdown.jpg" alt="redis集群移除后7007节点进程被shutdown"></li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在集群中删除节点的时候，需要注意主节点槽的转移。在3.0版本的redis中，槽的转移还不支持平均分配，只能分配到一个节点上。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -134,7 +144,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/redis-缓存-redis主从复制/">redis 缓存 redis主从复制</a>
+  <span></span> <a href="/tags/redis-redis集群-redis集群移除节点/">redis redis集群 redis集群移除节点</a>
   </div>
 
 </div>
@@ -143,7 +153,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/02/redis主从复制/" data-title="redis主从复制 | 在路上coder博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/07/redis集群删除节点/" data-title="redis集群删除节点 | 在路上coder博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -156,19 +166,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/03/redis配置哨兵模式/" title="redis配置哨兵模式">
-  <strong>上一篇：</strong><br/>
-  <span>
-  redis配置哨兵模式</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/02/js正则表达式/"  title="15个常用的javascript正则表达式">
+<a href="/2017/06/06/redis向集群添加节点/"  title="redis向集群添加节点">
  <strong>下一篇：</strong><br/> 
- <span>15个常用的javascript正则表达式
+ <span>redis向集群添加节点
 </span>
 </a>
 </div>
@@ -183,7 +185,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#主从复制"><span class="toc-number">1.</span> <span class="toc-text">主从复制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主从复制过程"><span class="toc-number">2.</span> <span class="toc-text">主从复制过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#主从复制配置"><span class="toc-number">3.</span> <span class="toc-text">主从复制配置</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis集群删除节点"><span class="toc-number">1.</span> <span class="toc-text">Redis集群删除节点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#移除从节点"><span class="toc-number">1.1.</span> <span class="toc-text">移除从节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除主节点"><span class="toc-number">1.2.</span> <span class="toc-text">移除主节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移除节点后对数据的验证"><span class="toc-number">1.3.</span> <span class="toc-text">移除节点后对数据的验证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除主节点"><span class="toc-number">1.4.</span> <span class="toc-text">删除主节点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">2.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 

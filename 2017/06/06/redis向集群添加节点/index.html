@@ -62,7 +62,7 @@
 				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -78,7 +78,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -101,14 +101,14 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-06T00:13:22.000Z" itemprop="datePublished"> Published 2017-06-06</time>
+    <time datetime="2017-06-06T00:13:22.000Z" itemprop="datePublished"> 發表於 2017-06-06</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis集群操作"><span class="toc-number">1.</span> <span class="toc-text">Redis集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动集群"><span class="toc-number">1.1.</span> <span class="toc-text">启动集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看是否全部启动成功"><span class="toc-number">1.2.</span> <span class="toc-text">查看是否全部启动成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看集群状态"><span class="toc-number">1.3.</span> <span class="toc-text">查看集群状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建集群操作"><span class="toc-number">2.</span> <span class="toc-text">新建集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建目录并修改配置文件"><span class="toc-number">2.1.</span> <span class="toc-text">创建目录并修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动7007和7008这两台服务器"><span class="toc-number">2.2.</span> <span class="toc-text">启动7007和7008这两台服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过redis-trib添加节点"><span class="toc-number">2.3.</span> <span class="toc-text">通过redis-trib添加节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为7007节点分别slot槽"><span class="toc-number">2.4.</span> <span class="toc-text">为7007节点分别slot槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加从节点7008到集群中"><span class="toc-number">2.5.</span> <span class="toc-text">添加从节点7008到集群中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
 		
@@ -181,6 +181,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2017/06/07/redis集群删除节点/" title="redis集群删除节点">
+  <strong>上一篇：</strong><br/>
+  <span>
+  redis集群删除节点</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2017/06/04/redis集群搭建/"  title="Redis集群搭建">
@@ -195,17 +203,17 @@
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis集群操作"><span class="toc-number">1.</span> <span class="toc-text">Redis集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动集群"><span class="toc-number">1.1.</span> <span class="toc-text">启动集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看是否全部启动成功"><span class="toc-number">1.2.</span> <span class="toc-text">查看是否全部启动成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看集群状态"><span class="toc-number">1.3.</span> <span class="toc-text">查看集群状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建集群操作"><span class="toc-number">2.</span> <span class="toc-text">新建集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建目录并修改配置文件"><span class="toc-number">2.1.</span> <span class="toc-text">创建目录并修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动7007和7008这两台服务器"><span class="toc-number">2.2.</span> <span class="toc-text">启动7007和7008这两台服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过redis-trib添加节点"><span class="toc-number">2.3.</span> <span class="toc-text">通过redis-trib添加节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为7007节点分别slot槽"><span class="toc-number">2.4.</span> <span class="toc-text">为7007节点分别slot槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加从节点7008到集群中"><span class="toc-number">2.5.</span> <span class="toc-text">添加从节点7008到集群中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
@@ -215,7 +223,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -223,19 +231,7 @@
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 			
@@ -247,7 +243,23 @@
 			
 		
 			
-				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -255,7 +267,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -488,7 +500,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

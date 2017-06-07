@@ -57,7 +57,7 @@
 				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -73,7 +73,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -96,14 +96,14 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-25T22:46:56.000Z" itemprop="datePublished"> Published 2017-05-26</time>
+    <time datetime="2017-05-25T22:46:56.000Z" itemprop="datePublished"> 發表於 2017-05-26</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis高级命令"><span class="toc-number">1.</span> <span class="toc-text">Redis高级命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#keys-命令"><span class="toc-number">1.1.</span> <span class="toc-text">keys 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exists命令"><span class="toc-number">1.2.</span> <span class="toc-text">exists命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#expire命令"><span class="toc-number">1.3.</span> <span class="toc-text">expire命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#persist命令"><span class="toc-number">1.4.</span> <span class="toc-text">persist命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#select命令"><span class="toc-number">1.5.</span> <span class="toc-text">select命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#move命令"><span class="toc-number">1.6.</span> <span class="toc-text">move命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#randomkey命令"><span class="toc-number">1.7.</span> <span class="toc-text">randomkey命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rename命令"><span class="toc-number">1.8.</span> <span class="toc-text">rename命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#echo命令"><span class="toc-number">1.9.</span> <span class="toc-text">echo命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dbsize命令"><span class="toc-number">1.10.</span> <span class="toc-text">dbsize命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#info命令"><span class="toc-number">1.11.</span> <span class="toc-text">info命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#config-get命令"><span class="toc-number">1.12.</span> <span class="toc-text">config get命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flushdb命令"><span class="toc-number">1.13.</span> <span class="toc-text">flushdb命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flushall命令"><span class="toc-number">1.14.</span> <span class="toc-text">flushall命令</span></a></li></ol></li></ol>
 		
@@ -205,17 +205,17 @@
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis高级命令"><span class="toc-number">1.</span> <span class="toc-text">Redis高级命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#keys-命令"><span class="toc-number">1.1.</span> <span class="toc-text">keys 命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#exists命令"><span class="toc-number">1.2.</span> <span class="toc-text">exists命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#expire命令"><span class="toc-number">1.3.</span> <span class="toc-text">expire命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#persist命令"><span class="toc-number">1.4.</span> <span class="toc-text">persist命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#select命令"><span class="toc-number">1.5.</span> <span class="toc-text">select命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#move命令"><span class="toc-number">1.6.</span> <span class="toc-text">move命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#randomkey命令"><span class="toc-number">1.7.</span> <span class="toc-text">randomkey命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rename命令"><span class="toc-number">1.8.</span> <span class="toc-text">rename命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#echo命令"><span class="toc-number">1.9.</span> <span class="toc-text">echo命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#dbsize命令"><span class="toc-number">1.10.</span> <span class="toc-text">dbsize命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#info命令"><span class="toc-number">1.11.</span> <span class="toc-text">info命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#config-get命令"><span class="toc-number">1.12.</span> <span class="toc-text">config get命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flushdb命令"><span class="toc-number">1.13.</span> <span class="toc-text">flushdb命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flushall命令"><span class="toc-number">1.14.</span> <span class="toc-text">flushall命令</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
@@ -225,7 +225,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -233,19 +233,7 @@
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 			
@@ -257,7 +245,23 @@
 			
 		
 			
-				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -265,7 +269,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -498,7 +502,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

@@ -44,7 +44,7 @@
 				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -60,7 +60,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -78,6 +78,162 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/05/17/mianshiti/" title="Java面试题" itemprop="url">Java面试题</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
+		
+  <p class="article-time">
+    <time datetime="2017-05-17T00:14:05.719Z" itemprop="datePublished"> 發表於 2017-05-17</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="zk分布式锁："><a href="#zk分布式锁：" class="headerlink" title="zk分布式锁："></a>zk分布式锁：</h2><p>详情参考：<a href="http://www.jiacheo.org/blog/620" target="_blank" rel="external">http://www.jiacheo.org/blog/620</a></p>
+<p>1.在单机模式下，没有引入zookeeper时，我们可以通过创建一个临时文件加锁，然后在事务处理完毕后，将临时文件删除就代表解锁。这种加锁和解锁模式可以移植到zookeeper上，通过创建一个路径，来证明该锁已经存在，然后删除路径来释放该锁。而同时zookeeper又能支持对节点的监控，这样一来，我们在多机的情况下就能同时且实时知道锁是存在还是已经解锁了。</p>
+<p>2.具体流程：</p>
+<ul>
+<li>在zookeeper存储结构中，假设有一个lock目录。</li>
+<li>在该目录下创建自增长的临时节点，这个节点上的数字用于表示获取锁的先后顺序。</li>
+<li>假设有三台服务器请求zookeeper创建了，00001、00002、00003 三个节点。然后判断lock目录下的最小节点和自己创建的是否一致，如果一致可以获取锁，如果不一致执行等待操作。</li>
+<li>当获取锁的节点执行完后，删除节点，并通知其他节点，在进行比较。</li>
+</ul>
+<p>3、分布式锁出现死锁，发生死锁的情况主要出现在网络的情况下：</p>
+<ul>
+<li>出现方式<ul>
+<li>假设zk服务收到了请求，子节点创建成功。但是返回给客户端的时候网络发生异常。这时候我们重试，创建的话，就会进入死锁。这里的死锁和平常的死锁不一样，不是回路循环等待，而是相当于这个锁死掉了。因为这个流程其实已经创建了一个节点，但是这个节点没有与客户端关联，称为幽灵节点。</li>
+</ul>
+</li>
+<li>解决方法<ul>
+<li>创建节点的时候，将客户端作为节点的一部分，也就是每个节点都有唯一标识的信息。</li>
+<li>重试的时候，对每个节点进行判断，对于当前进程创建的节点不重复创建。</li>
+</ul>
+</li>
+</ul>
+<h2 id="谈谈分布式"><a href="#谈谈分布式" class="headerlink" title="谈谈分布式"></a>谈谈分布式</h2><ul>
+<li>互联网应用满足要求：高吞吐、高并发、低延迟、负载均衡<ul>
+<li>高吞吐，意味着你的系统，可以同时承载大量的用户使用。</li>
+<li>高并发，做尽量多的处理，同时处理多个任务。</li>
+<li>低延迟，大量用户访问时，也能很快返回计算结果。</li>
+<li>负载均衡，同时发生的请求，有效的让多个不同服务器承载。</li>
+</ul>
+</li>
+<li>分布式系统提高承载量的基本手段<ul>
+<li>分层模型</li>
+<li>并发模型</li>
+<li>缓存技术</li>
+<li>存储技术(NoSql)</li>
+</ul>
+</li>
+</ul>
+<h2 id="redis持久化实现原理"><a href="#redis持久化实现原理" class="headerlink" title="redis持久化实现原理"></a>redis持久化实现原理</h2><p><a href="https://cavaliersfor.github.io/2017/06/02/redis持久化/" target="_blank" rel="external">redis持久化</a></p>
+<h2 id="生产者消费者"><a href="#生产者消费者" class="headerlink" title="生产者消费者"></a>生产者消费者</h2><h2 id="JVM的内存模型"><a href="#JVM的内存模型" class="headerlink" title="JVM的内存模型"></a>JVM的内存模型</h2><ul>
+<li>内存空间（Runtime Data Area）中可以按照是否线程共享分成两块，线程共享的是方法区（Method Area）和堆（Heap），线程独享的是Java栈（Java Stack），本地方法栈（Native Method Stack）和PC寄存器（Program Counter Register）。</li>
+<li>在 JDK 1.7 及以往的 JDK 版本中，Java 类信息、常量池、静态变量都存储在 Perm（永久代）里。类的元数据和静态变量在类加载的时候分配到 Perm，当类被卸载的时候垃圾收集器从 Perm 处理掉类的元数据和静态变量。当然常量池的东西也会在 Perm 垃圾收集的时候进行处理。</li>
+</ul>
+<h2 id="Java虚拟机组成"><a href="#Java虚拟机组成" class="headerlink" title="Java虚拟机组成"></a>Java虚拟机组成</h2><ul>
+<li>类加载子系统<ul>
+<li>负责从文件系统或者网络中加载Class信息，加载的信息放在一块称为方法区的内存空间</li>
+</ul>
+</li>
+<li><strong>方法区</strong><ul>
+<li>存放类信息、常量信息、常量池信息、包括字符串字面量和数字常量等。</li>
+</ul>
+</li>
+<li><strong>java堆</strong><ul>
+<li>在java虚拟机启动的时候建立java堆，它是java程序最主要的内存工作区域，几乎所有对象实例都存放到java堆中，堆空间是所有线程共享的</li>
+</ul>
+</li>
+<li>直接内存<ul>
+<li>java的NIO库允许java程序使用直接内存，从而提高性能，通常直接内存速度优于java堆。读写频繁的场合可能考虑使用。</li>
+</ul>
+</li>
+<li>栈<ul>
+<li>一个线程的java栈在线程创建的时候被创建，java栈中保存着局部变量、方法参数、同时java方法的调用、返回值等。</li>
+</ul>
+</li>
+<li>本地方法栈<ul>
+<li>用于本地方法调用，java虚拟机允许java直接调用本地方法。</li>
+</ul>
+</li>
+<li><strong>垃圾收集系统</strong><ul>
+<li>java有一套自己进行垃圾清理的机制。</li>
+</ul>
+</li>
+<li>PC寄存器<ul>
+<li>寄存器存放当前执行环境执政、程序计数器、操作栈指针等。</li>
+</ul>
+</li>
+<li>执行引擎<ul>
+<li>负责执行虚拟机的字节码</li>
+</ul>
+</li>
+</ul>
+<h2 id="常用GC算法"><a href="#常用GC算法" class="headerlink" title="常用GC算法"></a>常用GC算法</h2><ul>
+<li><p>引用计数法</p>
+</li>
+<li><p>复制法<br>原理：从根集合开始，通过追踪从From中找到存活对象，拷贝到To中；From和To交换身份，下次内存分配从To开始<br>优缺点：没有标记和清除的过程，效率高；没有内存碎片，可以快速实现内存分配；但是需要双倍空间<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC的复制法.jpg" alt="GC的复制法.jpg"></p>
+</li>
+<li><p>标记清除法<br>原理：分为两个阶段，标记和清除；标记，从根集合开始扫描，对存活的对象进行标记。清除，扫描整个内存空间，回收未被标记的对象。<br>优缺点：不需要额外空间，但是，两次扫描，耗时严重；会产生碎片<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法标记阶段.jpg" alt="GC标记清除法标记阶段"><br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法清除阶段.jpg" alt="GC标记清除法清除阶段"></p>
+</li>
+<li><p>标记压缩法<br>原理：分为两个阶段，标记和压缩；标记，从根集合开始扫描，对存活对象进行标记。压缩，再次扫描，并往一端滑动存活对象。<br>优缺点：没有内存碎片，但是需要移动对象的成本<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法标记阶段.jpg" alt="GC标记压缩法标记阶段"><br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法压缩阶段.jpg" alt="GC标记压缩法压缩阶段"></p>
+</li>
+<li><p>标记清除压缩法<br>原理：将标记清除和标记压缩相结合，过程和标记清除一样，但是进行多次GC后才压缩。<br>优缺点：减少了对象的移动成本</p>
+</li>
+</ul>
+<h2 id="http1-0，http1-1，http2-0区别"><a href="#http1-0，http1-1，http2-0区别" class="headerlink" title="http1.0，http1.1，http2.0区别"></a>http1.0，http1.1，http2.0区别</h2><h2 id="Get-Post对缓存的影响"><a href="#Get-Post对缓存的影响" class="headerlink" title="Get/Post对缓存的影响"></a>Get/Post对缓存的影响</h2><ul>
+<li>不支持Post Method。Get可以被浏览器缓存。</li>
+</ul>
+<h2 id="通过三种方式编写单例模式"><a href="#通过三种方式编写单例模式" class="headerlink" title="通过三种方式编写单例模式"></a>通过三种方式编写单例模式</h2><ul>
+<li><p>静态内部类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span></span>&#123;</div><div class="line">  	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singletion();</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Singletion</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singletion <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">  	<span class="keyword">return</span> SingletionHolder.INSTANCE;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>枚举</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">enum</span> Singleton&#123;</div><div class="line">	INSTANCE;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>饿汉式</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">   <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">   	<span class="keyword">return</span> instance;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="编程技术书籍"><a href="#编程技术书籍" class="headerlink" title="编程技术书籍"></a>编程技术书籍</h2><p><a href="https://github.com/jobbole/awesome-programming-books" target="_blank" rel="external">https://github.com/jobbole/awesome-programming-books</a></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/05/17/hello-world/" title="Hexo使用方法" itemprop="url">Hexo使用方法</a>
   </h1>
   <p class="article-author">By
@@ -85,7 +241,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-17T00:02:05.742Z" itemprop="datePublished"> Published 2017-05-17</time>
+    <time datetime="2017-05-17T00:02:05.742Z" itemprop="datePublished"> 發表於 2017-05-17</time>
     
   </p>
 </header>
@@ -136,10 +292,10 @@
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
@@ -149,7 +305,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -157,19 +313,7 @@
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 			
@@ -181,7 +325,23 @@
 			
 		
 			
-				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -189,7 +349,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -345,7 +505,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
