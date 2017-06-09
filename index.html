@@ -44,7 +44,7 @@
 				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -60,7 +60,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -85,7 +85,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-07T14:10:14.000Z" itemprop="datePublished"> 發表於 2017-06-07</time>
+    <time datetime="2017-06-07T14:10:14.000Z" itemprop="datePublished"> Published 2017-06-07</time>
     
   </p>
 </header>
@@ -163,7 +163,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-06T00:13:22.000Z" itemprop="datePublished"> 發表於 2017-06-06</time>
+    <time datetime="2017-06-06T00:13:22.000Z" itemprop="datePublished"> Published 2017-06-06</time>
     
   </p>
 </header>
@@ -254,7 +254,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-04T00:25:12.000Z" itemprop="datePublished"> 發表於 2017-06-04</time>
+    <time datetime="2017-06-04T00:25:12.000Z" itemprop="datePublished"> Published 2017-06-04</time>
     
   </p>
 </header>
@@ -340,7 +340,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-03T06:02:18.000Z" itemprop="datePublished"> 發表於 2017-06-03</time>
+    <time datetime="2017-06-03T06:02:18.000Z" itemprop="datePublished"> Published 2017-06-03</time>
     
   </p>
 </header>
@@ -407,7 +407,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-02T14:00:11.000Z" itemprop="datePublished"> 發表於 2017-06-02</time>
+    <time datetime="2017-06-02T14:00:11.000Z" itemprop="datePublished"> Published 2017-06-02</time>
     
   </p>
 </header>
@@ -483,7 +483,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-02T00:14:25.000Z" itemprop="datePublished"> 發表於 2017-06-02</time>
+    <time datetime="2017-06-02T00:14:25.000Z" itemprop="datePublished"> Published 2017-06-02</time>
     
   </p>
 </header>
@@ -551,7 +551,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-02T00:03:07.000Z" itemprop="datePublished"> 發表於 2017-06-02</time>
+    <time datetime="2017-06-02T00:03:07.000Z" itemprop="datePublished"> Published 2017-06-02</time>
     
   </p>
 </header>
@@ -578,7 +578,7 @@
 </ul>
 <p>AOF系统设定条件：</p>
 <ul>
-<li>在前面提到的AOF系统到达设定条件时，将会调用aof_fsync(文件描述符)将数据写入磁盘，这是AOF性能的关键点。目前Redis支持三种保存条件机制：<br>1.AOF_FSYNC_NO:不保存<br>此模式下，每执行一条客户端命令，都会将协议字符串追加到server.aof_buf中，但是不会执行写入磁盘。写入磁盘只发生在：redis被正常关闭、AOF功能关闭、系统写缓存已满或后台定时保存操作被执行，此三种情况都会阻塞主进程，导致客户端请求失败。<br>2.AOF_FSYNC_EVERYSECS:每一秒保存一次<br>由后台子进程调用写入保存，不会阻塞主进程。如果发生宕机，那么最大丢失数据会在2s以内的数据。这也是默认的设置选项<br>3.AOF_FSYNC_ALWAYS:每执行一个命令都保存一次<br>这种模式下，可以保证每一条客户端指令都被保存，保证数据不会丢失。但缺点是性能大大下降，因为每一次操作都是都占性的，需要阻塞主进程</li>
+<li>在前面提到的AOF系统到达设定条件时，将会调用aof_fsync(文件描述符)将数据写入磁盘，这是AOF性能的关键点。目前Redis支持三种保存条件机制：<br>1.AOF_FSYNC_NO:不保存<br>此模式下，每执行一条客户端命令，都会将协议字符串追加到server.aof_buf中，但是不会执行写入磁盘。写入磁盘只发生在：redis被正常关闭、AOF功能关闭、系统写缓存已满或后台定时保存操作被执行，此三种情况都会阻塞主进程，导致客户端请求失败。<br>2.AOF_FSYNC_EVERYSECS:每一秒保存一次<br>由后台子进程调用写入保存，不会阻塞主进程。如果发生宕机，那么最大丢失数据会在2s以内的数据。这也是默认的设置选项<br>3.AOF_FSYNC_ALWAYS:每执行一个命令都保存一次<br>这种模式下，可以保证每一条客户端指令都被保存，保证数据不会丢失。但缺点是性能大大下降，因为每一次操作都是都独占性的，需要阻塞主进程</li>
 </ul>
 <h5 id="AOF缺点"><a href="#AOF缺点" class="headerlink" title="AOF缺点"></a>AOF缺点</h5><ul>
 <li>AOF文件通常会大于等于相同数据集的RDB文件</li>
@@ -701,7 +701,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-25T22:46:56.000Z" itemprop="datePublished"> 發表於 2017-05-26</time>
+    <time datetime="2017-05-25T22:46:56.000Z" itemprop="datePublished"> Published 2017-05-26</time>
     
   </p>
 </header>
@@ -799,7 +799,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-20T12:27:27.000Z" itemprop="datePublished"> 發表於 2017-05-20</time>
+    <time datetime="2017-05-20T12:27:27.000Z" itemprop="datePublished"> Published 2017-05-20</time>
     
   </p>
 </header>
@@ -1019,7 +1019,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-20T03:24:56.000Z" itemprop="datePublished"> 發表於 2017-05-20</time>
+    <time datetime="2017-05-20T03:24:56.000Z" itemprop="datePublished"> Published 2017-05-20</time>
     
   </p>
 </header>
@@ -1148,10 +1148,10 @@
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -1161,7 +1161,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
@@ -1189,10 +1189,6 @@
 			
 		
 			
-				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
 			
 		
@@ -1200,12 +1196,16 @@
 				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
 			
 		
+			
+				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
+			
+		
 		</ul>
 </div>
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -1361,7 +1361,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
