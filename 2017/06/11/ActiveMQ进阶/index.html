@@ -4,28 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>redis配置哨兵模式 | 在路上coder博客</title>
+    <title>ActiveMQ进阶 | 在路上coder博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="在路上的coder">
     
 
     
-    <meta name="description" content="概念哨兵的含义就是监控Redis系统的运行状况，其主要功能有两点：  监控主数据库和从数据库是否正常运行 主数据库出现故障，可以自动将从数据库转换为主数据库，实现自动切换  实现步骤在任意一台服务器配置sentinel.conf，我们在hadoop4中配置  拷贝文件到 etc 目录下，cp /home/hadoop/apps/redis-3.0.0/sentinel.conf /home/had">
-<meta name="keywords" content="redis 缓存 redis哨兵模式">
+    <meta name="description" content="ActiveMQ安全机制 activemq的web管理界面：http://127.0.0.1:8161/admin ;activeMQ管理控制台使用jetty部署，所以需要修改密码则需要修改相应的配置文件 activemq配置安全机制，只有符合认证的用户才能进行发送和接受消息">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis配置哨兵模式">
-<meta property="og:url" content="http://yoursite.com/2017/06/03/redis配置哨兵模式/index.html">
+<meta property="og:title" content="ActiveMQ进阶">
+<meta property="og:url" content="http://yoursite.com/2017/06/11/ActiveMQ进阶/index.html">
 <meta property="og:site_name" content="在路上coder博客">
-<meta property="og:description" content="概念哨兵的含义就是监控Redis系统的运行状况，其主要功能有两点：  监控主数据库和从数据库是否正常运行 主数据库出现故障，可以自动将从数据库转换为主数据库，实现自动切换  实现步骤在任意一台服务器配置sentinel.conf，我们在hadoop4中配置  拷贝文件到 etc 目录下，cp /home/hadoop/apps/redis-3.0.0/sentinel.conf /home/had">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/查看哨兵相关信息.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis哨兵切换.jpg">
-<meta property="og:updated_time" content="2017-06-03T07:28:32.102Z">
+<meta property="og:description" content="ActiveMQ安全机制 activemq的web管理界面：http://127.0.0.1:8161/admin ;activeMQ管理控制台使用jetty部署，所以需要修改密码则需要修改相应的配置文件 activemq配置安全机制，只有符合认证的用户才能进行发送和接受消息">
+<meta property="og:updated_time" content="2017-06-11T13:28:54.301Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis配置哨兵模式">
-<meta name="twitter:description" content="概念哨兵的含义就是监控Redis系统的运行状况，其主要功能有两点：  监控主数据库和从数据库是否正常运行 主数据库出现故障，可以自动将从数据库转换为主数据库，实现自动切换  实现步骤在任意一台服务器配置sentinel.conf，我们在hadoop4中配置  拷贝文件到 etc 目录下，cp /home/hadoop/apps/redis-3.0.0/sentinel.conf /home/had">
-<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/redis%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F.jpg">
+<meta name="twitter:title" content="ActiveMQ进阶">
+<meta name="twitter:description" content="ActiveMQ安全机制 activemq的web管理界面：http://127.0.0.1:8161/admin ;activeMQ管理控制台使用jetty部署，所以需要修改密码则需要修改相应的配置文件 activemq配置安全机制，只有符合认证的用户才能进行发送和接受消息">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上coder博客" type="application/atom+xml">
@@ -85,14 +80,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/03/redis配置哨兵模式/" title="redis配置哨兵模式" itemprop="url">redis配置哨兵模式</a>
+      <a href="/2017/06/11/ActiveMQ进阶/" title="ActiveMQ进阶" itemprop="url">ActiveMQ进阶</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-03T06:02:18.000Z" itemprop="datePublished"> Published 2017-06-03</time>
+    <time datetime="2017-06-11T13:23:38.000Z" itemprop="datePublished"> Published 2017-06-11</time>
     
   </p>
 </header>
@@ -101,22 +96,13 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现步骤"><span class="toc-number">2.</span> <span class="toc-text">实现步骤</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ActiveMQ安全机制"><span class="toc-number">1.</span> <span class="toc-text">ActiveMQ安全机制</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>哨兵的含义就是监控Redis系统的运行状况，其主要功能有两点：</p>
-<ul>
-<li>监控主数据库和从数据库是否正常运行</li>
-<li>主数据库出现故障，可以自动将从数据库转换为主数据库，实现自动切换</li>
-</ul>
-<h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><p>在任意一台服务器配置sentinel.conf，我们在hadoop4中配置</p>
-<ul>
-<li>拷贝文件到 etc 目录下，<code>cp /home/hadoop/apps/redis-3.0.0/sentinel.conf /home/hadoop/apps/redis-3.0.0/etc/</code></li>
-<li>修改sentinel.conf文件：<br><code>dir /home/hadoop/apps/redis-3.0.0/etc/</code> 修改哨兵的工作目录<br><code>sentinel monitor mymaster 192.168.137.5 6379 1</code> #master名称(任意取后面配置需要使用到)、master节点ip、端口、投票选举次数<br><code>sentinel down-after-milliseconds mymaster 5000</code> 配置多长时间检测一次，默认30秒，这里配置5秒<br><code>sentinel failover-timeout mymaster 900000</code><br><code>sentinel parallel-syncs mymaster 2</code></li>
-<li>启动哨兵：<code>/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-3.0.0/etc/sentinel.conf --sentinel &amp;</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F.jpg" alt="redis启动成功"></li>
-<li>查看哨兵相关信息：<code>/home/hadoop/apps/redis-3.0.0/bin/redis-cli -h 192.168.137.4 -p 26379 info Sentinel</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/查看哨兵相关信息.jpg" alt="查看哨兵相关信息"></li>
-<li>验证哨兵功能，关闭主节点：<code>/home/hadoop/apps/redis-3.0.0/bin/redis-cli -h 192.168.137.5 -p 6379 shutdown</code> 当主节点停掉之后，在哨兵服务器上将会自动选举出新的主节点，这里选举出hadoop4为主节点。重新启动hadoop5，则会重新加入到集群中，作为salver点。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis哨兵切换.jpg" alt="redis哨兵切换"></li>
+		<h3 id="ActiveMQ安全机制"><a href="#ActiveMQ安全机制" class="headerlink" title="ActiveMQ安全机制"></a>ActiveMQ安全机制</h3><ul>
+<li>activemq的web管理界面：<code>http://127.0.0.1:8161/admin</code> ;activeMQ管理控制台使用jetty部署，所以需要修改密码则需要修改相应的配置文件</li>
+<li>activemq配置安全机制，只有符合认证的用户才能进行发送和接受消息</li>
 </ul>
   
 	</div>
@@ -124,18 +110,13 @@
 <div class="article-catetags">
 
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/redis-缓存-redis哨兵模式/">redis 缓存 redis哨兵模式</a>
-  </div>
-
 </div>
 
 
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/03/redis配置哨兵模式/" data-title="redis配置哨兵模式 | 在路上coder博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/11/ActiveMQ进阶/" data-title="ActiveMQ进阶 | 在路上coder博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -148,19 +129,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/04/redis集群搭建/" title="Redis集群搭建">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Redis集群搭建</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/02/redis主从复制/"  title="redis主从复制">
+<a href="/2017/06/07/redis集群删除节点/"  title="redis集群删除节点">
  <strong>下一篇：</strong><br/> 
- <span>redis主从复制
+ <span>redis集群删除节点
 </span>
 </a>
 </div>
@@ -175,7 +148,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现步骤"><span class="toc-number">2.</span> <span class="toc-text">实现步骤</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ActiveMQ安全机制"><span class="toc-number">1.</span> <span class="toc-text">ActiveMQ安全机制</span></a></li></ol>
  
   </div>
 
