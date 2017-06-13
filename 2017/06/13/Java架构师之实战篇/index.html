@@ -4,23 +4,40 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>ActiveMQ进阶 | 在路上coder博客</title>
+    <title>Java架构师之实战篇 | 在路上coder博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="在路上的coder">
     
 
     
-    <meta name="description" content="ActiveMQ安全机制 activemq的web管理界面：http://127.0.0.1:8161/admin ;activeMQ管理控制台使用jetty部署，所以需要修改密码则需要修改相应的配置文件 activemq配置安全机制，只有符合认证的用户才能进行发送和接受消息">
+    <meta name="description" content="Java架构师之实战篇视频学习完该视频后，可以达到3年左右的Java开发工程师的技能点。该视频不仅提供了视频还提供了视频中讲解的文档和代码，更加适合复习和回顾，整套视频分为下面几个部分，也可以连接本人解惑，联系方式见文末 初级篇详解初级篇包含Java基础到高级知识点学习，并提供了基本的一些应用。这些只是都为后面的框架部分打好了结实的基础。 进阶篇进阶篇包含更多企业级应用的东西，里面很多技术可能需要">
+<meta name="keywords" content="Java架构师之路">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ActiveMQ进阶">
-<meta property="og:url" content="http://yoursite.com/2017/06/11/ActiveMQ进阶/index.html">
+<meta property="og:title" content="Java架构师之实战篇">
+<meta property="og:url" content="http://yoursite.com/2017/06/13/Java架构师之实战篇/index.html">
 <meta property="og:site_name" content="在路上coder博客">
-<meta property="og:description" content="ActiveMQ安全机制 activemq的web管理界面：http://127.0.0.1:8161/admin ;activeMQ管理控制台使用jetty部署，所以需要修改密码则需要修改相应的配置文件 activemq配置安全机制，只有符合认证的用户才能进行发送和接受消息">
-<meta property="og:updated_time" content="2017-06-11T13:28:54.301Z">
+<meta property="og:description" content="Java架构师之实战篇视频学习完该视频后，可以达到3年左右的Java开发工程师的技能点。该视频不仅提供了视频还提供了视频中讲解的文档和代码，更加适合复习和回顾，整套视频分为下面几个部分，也可以连接本人解惑，联系方式见文末 初级篇详解初级篇包含Java基础到高级知识点学习，并提供了基本的一些应用。这些只是都为后面的框架部分打好了结实的基础。 进阶篇进阶篇包含更多企业级应用的东西，里面很多技术可能需要">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇1.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇2.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-进阶篇1.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-进阶篇2.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java%E6%9E%B6%E6%9E%84%E5%B8%88%E4%B9%8B%E5%AE%9E%E6%88%98%E7%AF%87-%E8%BF%9B%E9%98%B6%E7%AF%873.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇1.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇2.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇3.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇1.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇2.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇3.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇4.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/615556659208501337.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/支付宝.JPG">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java相关技术交流群群二维码.png">
+<meta property="og:updated_time" content="2017-06-13T14:37:40.158Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ActiveMQ进阶">
-<meta name="twitter:description" content="ActiveMQ安全机制 activemq的web管理界面：http://127.0.0.1:8161/admin ;activeMQ管理控制台使用jetty部署，所以需要修改密码则需要修改相应的配置文件 activemq配置安全机制，只有符合认证的用户才能进行发送和接受消息">
+<meta name="twitter:title" content="Java架构师之实战篇">
+<meta name="twitter:description" content="Java架构师之实战篇视频学习完该视频后，可以达到3年左右的Java开发工程师的技能点。该视频不仅提供了视频还提供了视频中讲解的文档和代码，更加适合复习和回顾，整套视频分为下面几个部分，也可以连接本人解惑，联系方式见文末 初级篇详解初级篇包含Java基础到高级知识点学习，并提供了基本的一些应用。这些只是都为后面的框架部分打好了结实的基础。 进阶篇进阶篇包含更多企业级应用的东西，里面很多技术可能需要">
+<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇1.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上coder博客" type="application/atom+xml">
@@ -80,14 +97,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/11/ActiveMQ进阶/" title="ActiveMQ进阶" itemprop="url">ActiveMQ进阶</a>
+      <a href="/2017/06/13/Java架构师之实战篇/" title="Java架构师之实战篇" itemprop="url">Java架构师之实战篇</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-11T13:23:38.000Z" itemprop="datePublished"> Published 2017-06-11</time>
+    <time datetime="2017-06-13T13:54:34.000Z" itemprop="datePublished"> Published 2017-06-13</time>
     
   </p>
 </header>
@@ -96,13 +113,20 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ActiveMQ安全机制"><span class="toc-number">1.</span> <span class="toc-text">ActiveMQ安全机制</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java架构师之实战篇视频"><span class="toc-number">1.</span> <span class="toc-text">Java架构师之实战篇视频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初级篇详解"><span class="toc-number">1.1.</span> <span class="toc-text">初级篇详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进阶篇"><span class="toc-number">1.2.</span> <span class="toc-text">进阶篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级篇"><span class="toc-number">1.3.</span> <span class="toc-text">高级篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#架构篇"><span class="toc-number">1.4.</span> <span class="toc-text">架构篇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取方式"><span class="toc-number">2.</span> <span class="toc-text">获取方式</span></a></li></ol>
 		
 		</div>
 		
-		<h3 id="ActiveMQ安全机制"><a href="#ActiveMQ安全机制" class="headerlink" title="ActiveMQ安全机制"></a>ActiveMQ安全机制</h3><ul>
-<li>activemq的web管理界面：<code>http://127.0.0.1:8161/admin</code> ;activeMQ管理控制台使用jetty部署，所以需要修改密码则需要修改相应的配置文件</li>
-<li>activemq配置安全机制，只有符合认证的用户才能进行发送和接受消息</li>
+		<h2 id="Java架构师之实战篇视频"><a href="#Java架构师之实战篇视频" class="headerlink" title="Java架构师之实战篇视频"></a>Java架构师之实战篇视频</h2><p>学习完该视频后，可以达到3年左右的Java开发工程师的技能点。该视频不仅提供了视频还提供了视频中讲解的文档和代码，更加适合复习和回顾，整套视频分为下面几个部分，也可以连接本人解惑，联系方式见文末<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇1.jpg" alt="Java架构师之实战篇-初级篇1"></p>
+<h3 id="初级篇详解"><a href="#初级篇详解" class="headerlink" title="初级篇详解"></a>初级篇详解</h3><p>初级篇包含Java基础到高级知识点学习，并提供了基本的一些应用。这些只是都为后面的框架部分打好了结实的基础。<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇2.jpg" alt="Java架构师之实战篇-初级篇2"></p>
+<h3 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h3><p>进阶篇包含更多企业级应用的东西，里面很多技术可能需要在不同的企业才能接触到。建议先学习Java web相关技术后，再学习其他框架SpringMVc、Spring、Mybatis，Git和SVN工具可以学习一个，其他的没有时间可以只需了解一下。最后需要对其中的一个项目非常的了解!<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-进阶篇1.jpg" alt="Java架构师之实战篇-进阶篇1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-进阶篇2.jpg" alt="Java架构师之实战篇-进阶篇2"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java%E6%9E%B6%E6%9E%84%E5%B8%88%E4%B9%8B%E5%AE%9E%E6%88%98%E7%AF%87-%E8%BF%9B%E9%98%B6%E7%AF%873.jpg" alt="Java架构师之实战篇-进阶篇3"></p>
+<h3 id="高级篇"><a href="#高级篇" class="headerlink" title="高级篇"></a>高级篇</h3><p>在这里主要介绍的是一样原来性的东西，这个才是真正考验对一个技术的理解程度的关键。还涉及一些比较前沿的技术，这个学习的话，主要看个人情况。<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇1.jpg" alt="Java架构师之实战篇-高级篇1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇2.jpg" alt="Java架构师之实战篇-高级篇2"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇3.jpg" alt="Java架构师之实战篇-高级篇3"></p>
+<h3 id="架构篇"><a href="#架构篇" class="headerlink" title="架构篇"></a>架构篇</h3><p>该篇的话，主要涉及以个应用的一个架构设计，什么时候用什么技术，碰到问题使用什么解决方案；还有各种示例网站的架构讲解，该视频需要慢慢消化<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇1.jpg" alt="Java架构师之实战篇-架构篇1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇2.jpg" alt="Java架构师之实战篇-架构篇2"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇3.jpg" alt="Java架构师之实战篇-架构篇3"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇4.jpg" alt="Java架构师之实战篇-架构篇4"></p>
+<h2 id="获取方式"><a href="#获取方式" class="headerlink" title="获取方式"></a>获取方式</h2><p>如果想获取该视频，可以扫描下面二维码付款，只需<code>￥3</code>即可，如果不明白可以加入该群<code>524105269</code> 咨询群主即可，加入群可以免费获取学习视频；如果学习碰到问题可以在群里交流或者和群主沟通，谢谢！！！！</p>
+<ul>
+<li>微信支付<img src="http://opzxa0ul7.bkt.clouddn.com/615556659208501337.jpg" alt="微信支付"></li>
+<li>支付宝支付 <img src="http://opzxa0ul7.bkt.clouddn.com/支付宝.JPG" alt="支付宝支付"></li>
+<li>群二维码，<img src="http://opzxa0ul7.bkt.clouddn.com/Java相关技术交流群群二维码.png" alt="Java相关技术交流群群二维码"></li>
 </ul>
   
 	</div>
@@ -110,13 +134,18 @@
 <div class="article-catetags">
 
 
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Java架构师之路/">Java架构师之路</a>
+  </div>
+
 </div>
 
 
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/11/ActiveMQ进阶/" data-title="ActiveMQ进阶 | 在路上coder博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/06/13/Java架构师之实战篇/" data-title="Java架构师之实战篇 | 在路上coder博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -129,19 +158,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/13/Java架构师之实战篇/" title="Java架构师之实战篇">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Java架构师之实战篇</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/11/ActiveMQ入门/"  title="ActiveMQ入门">
+<a href="/2017/06/11/ActiveMQ进阶/"  title="ActiveMQ进阶">
  <strong>下一篇：</strong><br/> 
- <span>ActiveMQ入门
+ <span>ActiveMQ进阶
 </span>
 </a>
 </div>
@@ -156,7 +177,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#ActiveMQ安全机制"><span class="toc-number">1.</span> <span class="toc-text">ActiveMQ安全机制</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java架构师之实战篇视频"><span class="toc-number">1.</span> <span class="toc-text">Java架构师之实战篇视频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初级篇详解"><span class="toc-number">1.1.</span> <span class="toc-text">初级篇详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进阶篇"><span class="toc-number">1.2.</span> <span class="toc-text">进阶篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级篇"><span class="toc-number">1.3.</span> <span class="toc-text">高级篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#架构篇"><span class="toc-number">1.4.</span> <span class="toc-text">架构篇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取方式"><span class="toc-number">2.</span> <span class="toc-text">获取方式</span></a></li></ol>
  
   </div>
 
