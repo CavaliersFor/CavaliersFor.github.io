@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法清除阶段.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法标记阶段.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法压缩阶段.jpg">
-<meta property="og:updated_time" content="2017-06-16T00:09:24.791Z">
+<meta property="og:updated_time" content="2017-06-17T01:02:21.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试题">
 <meta name="twitter:description" content="zk分布式锁：详情参考：http://www.jiacheo.org/blog/620 1.在单机模式下，没有引入zookeeper时，我们可以通过创建一个临时文件加锁，然后在事务处理完毕后，将临时文件删除就代表解锁。这种加锁和解锁模式可以移植到zookeeper上，通过创建一个路径，来证明该锁已经存在，然后删除路径来释放该锁。而同时zookeeper又能支持对节点的监控，这样一来，我们在多机的情">
@@ -202,11 +202,79 @@
 <li>不支持Post Method。Get可以被浏览器缓存。</li>
 </ul>
 <h2 id="HTTP请求头和响应头"><a href="#HTTP请求头和响应头" class="headerlink" title="HTTP请求头和响应头"></a>HTTP请求头和响应头</h2><ul>
-<li><p>HTTP请求头<br>| 请求头 | 说明 |<br>|——–|——–|<br>|   Accept-Charset     | 用于指定客户端接受的字符集       |<br>|    Accept-Encoding    |    用户指定可接受的内容编码    |<br>|    Accept-Language    |    用于指定一种自然语言，如果Accept-Language:zh-cn    |<br>|    Host    |    用于指定被请求资源的Internet主机和端口号    |<br>|    User-Agent |    客户端将它的操作系统、浏览器和其他属性告诉服务器    |<br>|    Connection    |    当前连接是否保持    |</p>
-</li>
-<li><p>HTTP相应头<br>| 请求头 | 说明 |<br>|——–|——–|<br>|    Server    |    使用的服务器名称    |<br>|    Content-Type    |    用来指定响应的实体正文的类型    |<br>|    Content-Encoding    |    与请求报头Accept-Encoding对应，告诉浏览器服务器端采用的是什么压缩编码    |<br>|    Content-Language    |    描述资源所用的自然语言，与Accept-Language对应    |<br>|    Content-Length    |    指明实体正文的长度，用以字节方式存储的十进制数字来表示    |<br>|    Keep-Alive    |    保持连接的时间    |</p>
-</li>
+<li>HTTP请求头</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>请求头</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accept-Charset</td>
+<td>用于指定客户端接受的字符集</td>
+</tr>
+<tr>
+<td>Accept-Encoding</td>
+<td>用户指定可接受的内容编码</td>
+</tr>
+<tr>
+<td>Accept-Language</td>
+<td>用于指定一种自然语言，如果Accept-Language:zh-cn</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>用于指定被请求资源的Internet主机和端口号</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>客户端将它的操作系统、浏览器和其他属性告诉服务器</td>
+</tr>
+<tr>
+<td>Connection</td>
+<td>当前连接是否保持</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>HTTP相应头</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>请求头</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server</td>
+<td>使用的服务器名称</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>用来指定响应的实体正文的类型</td>
+</tr>
+<tr>
+<td>Content-Encoding</td>
+<td>与请求报头Accept-Encoding对应，告诉浏览器服务器端采用的是什么压缩编码</td>
+</tr>
+<tr>
+<td>Content-Language</td>
+<td>描述资源所用的自然语言，与Accept-Language对应</td>
+</tr>
+<tr>
+<td>Content-Length</td>
+<td>指明实体正文的长度，用以字节方式存储的十进制数字来表示</td>
+</tr>
+<tr>
+<td>Keep-Alive</td>
+<td>保持连接的时间</td>
+</tr>
+</tbody>
+</table>
 <h2 id="通过三种方式编写单例模式"><a href="#通过三种方式编写单例模式" class="headerlink" title="通过三种方式编写单例模式"></a>通过三种方式编写单例模式</h2><ul>
 <li><p>静态内部类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span></span>&#123;</div><div class="line">  	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Singleton INSTANCE = <span class="keyword">new</span> Singletion();</div><div class="line">  &#125;</div><div class="line">  <span class="function"><span class="keyword">private</span> <span class="title">Singletion</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Singletion <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">  	<span class="keyword">return</span> SingletionHolder.INSTANCE;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -327,15 +395,15 @@
 			
 		
 			
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
 			
 		
 			
