@@ -735,6 +735,19 @@
 <li>可达性分析<br>算法的基本思想是通过一系列被称为”GC Root” 的对象作为起点，从这些起点向下搜索，搜索所有的路径，这些路径称为引用链，当一个对象到GC Root没有任何引用链时，则证明此对象是不可用的，可以回收。</li>
 <li>引用类型判断<br>JDK有四种引用，分别是强引用、软引用、弱引用、虚引用</li>
 </ul>
+<h2 id="中文编码问题"><a href="#中文编码问题" class="headerlink" title="中文编码问题"></a>中文编码问题</h2><ul>
+<li>中文变成了看不懂的字符<br>字符串在解码时所用的字符集与编码字符集不一致导致。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">String encode = URLEncoder.encode(<span class="string">"淘！我喜欢"</span>,<span class="string">"GBk"</span>);</div><div class="line">System.out.println(encode);</div><div class="line">String errorDecode = URLDecoder.decode(encode, <span class="string">"ISO-8859-1"</span>);</div><div class="line">System.out.println(errorDecode);</div><div class="line">String decode = URLDecoder.decode(encode, <span class="string">"GBk"</span>);</div><div class="line">System.out.println(decode);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">encode：%CC%D4%A3%A1%CE%D2%CF%B2%BB%B6</div><div class="line">errorDecode：ÌÔ£¡ÎÒÏ²»¶</div><div class="line">decode：淘！我喜欢</div></pre></td></tr></table></figure></p>
+<ul>
+<li>一个汉字变成一个问号<br>将中文和中文符号经过不支持中文的<code>ISO-8859-1</code>编码后，所有字符编程 ‘?’，这是因为使用<code>ISO-8859-1</code> 进行解码时，遇到不再码值范围内的字符会统一用3f表示，这也是常说的“黑洞”，所以<code>ISO-8859-1</code> 不认识的字符都会变成’?’。<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">String encode = URLEncoder.encode(<span class="string">"淘！我喜欢"</span>, <span class="string">"ISO-8859-1"</span>);</div><div class="line">System.out.println(<span class="string">"encode："</span>+encode);</div><div class="line">String decode = URLDecoder.decode(encode, <span class="string">"ISO-8859-1"</span>);</div><div class="line">System.out.println(<span class="string">"decode："</span>+decode);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>输出为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">encode：%<span class="number">3F</span>%<span class="number">3F</span>%<span class="number">3F</span>%<span class="number">3F</span>%<span class="number">3F</span></div><div class="line">decode：?????</div></pre></td></tr></table></figure></p>
+<ul>
+<li>一个汉字变成两个问号<br>这种情况比较复杂，中文经过多次编码，但是其中一次编码或者解码不对仍然会出现中文字符变成’?’的情况</li>
+</ul>
 
         
         
@@ -854,7 +867,7 @@
 			
 		
 			
-				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
@@ -866,15 +879,11 @@
 			
 		
 			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
 			
 		
 			
@@ -883,6 +892,10 @@
 		
 			
 				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
 			
 		
 			
