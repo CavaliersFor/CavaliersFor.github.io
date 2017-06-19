@@ -78,6 +78,62 @@
         <header class="article-info clearfix">
   <h1 itemprop="name">
     
+      <a href="/2017/06/20/idea快捷键/" title="idea快捷键" itemprop="url">idea快捷键</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
+		
+  <p class="article-time">
+    <time datetime="2017-06-19T23:36:11.000Z" itemprop="datePublished"> Published 2017-06-20</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="自动补全方法返回值"><a href="#自动补全方法返回值" class="headerlink" title="自动补全方法返回值"></a>自动补全方法返回值</h2><p><code>ctrl+alt+v</code></p>
+<h2 id="配置自动导包"><a href="#配置自动导包" class="headerlink" title="配置自动导包"></a>配置自动导包</h2><p><code>setting-&gt;Editor-&gt;Auto Import 选择add unambiguous imports on the fly</code></p>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/idea-idea快捷键/">idea idea快捷键</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
       <a href="/2017/06/13/Java架构师之实战篇/" title="Java架构师之实战篇" itemprop="url">Java架构师之实战篇</a>
   </h1>
   <p class="article-author">By
@@ -747,156 +803,6 @@
 
 
 
-   
-    
-    <article class="post-expand post" itemprop="articleBody"> 
-        <header class="article-info clearfix">
-  <h1 itemprop="name">
-    
-      <a href="/2017/06/02/redis持久化/" title="redis持久化" itemprop="url">redis持久化</a>
-  </h1>
-  <p class="article-author">By
-       
-		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
-		
-  <p class="article-time">
-    <time datetime="2017-06-02T00:03:07.000Z" itemprop="datePublished"> Published 2017-06-02</time>
-    
-  </p>
-</header>
-    <div class="article-content">
-        
-        <h3 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h3><h4 id="RDB持久化方案"><a href="#RDB持久化方案" class="headerlink" title="RDB持久化方案"></a>RDB持久化方案</h4><p>在Redis运行时，RDB程序将当前内存中的数据库快照保存到磁盘中，当Redis需要重启时，RDB程序会通过重载RDB文件来还原数据库。<br> RDB主要包括两个功能：</p>
-<ul>
-<li>保存(rdSave)<br>rdSave负责将内存中的数据库数据以RDB格式保存到磁盘中，如果RDB文件已经存在将会替换已有的RDB文件。保存RDB文件期间会阻塞主进程，这段时间期间将不能处理新的客户端请求，直到保存完成为止。<br>为避免主进程阻塞，Redis提供了rdbSaveBackground函数。<br>在新建的子进程中调用rdSave，保存完成后会向主进程发送信号，同时进程可以继续处理新的客户端请求。</li>
-<li>读取(rdbLoad)<br>当Redis启动时，会根据配置的持久化模式，决定是否读取RDB文件，并将其中的对象保存到内存中。载入RDB过程中，<br>每载入1000个键就处理一次已经等待处理的客户端请求，但是目前仅处理订阅功能的命令，其他一律返回错误信息，因为发布订阅功能是不写入数据库的，也就不保存Redis数据库的</li>
-</ul>
-<h5 id="RDB的缺点"><a href="#RDB的缺点" class="headerlink" title="RDB的缺点"></a>RDB的缺点</h5><p>要理解RDB的缺点，需要了解RDB有保存点的概念。在默认的redis.conf中可以看到如下的默认配置：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">save 900 1        #如果15分钟内，有1个键被修改</div><div class="line">save 300 10       #如果6分钟内，有10个键被修改</div><div class="line">save 60 10000     #如果60秒内有10000个键被修改</div></pre></td></tr></table></figure></p>
-<p>上面表示只要满足任意一个条件时，将会进行快照保存。为了保证IO读写性能不会成为Redis的瓶颈，一般都会创建一个比较大的值作为保存点，会出现如下缺点：</p>
-<ul>
-<li>此时如果保存点设置过大，就会导致宕机丢失的数据过多。保存点设置过小，又会造成IO瓶颈</li>
-<li>当对数据进行保存时，可能会由于数据集过大导致操作耗时，这会导致Redis可能在短时间内无法处理客户端请求。</li>
-</ul>
-<h4 id="AOF持久化方案"><a href="#AOF持久化方案" class="headerlink" title="AOF持久化方案"></a>AOF持久化方案</h4><p>以协议文本的方式，将所有对数据库进行写入命令记录到AOF文件，达到记录数据库状态的目的。</p>
-<p>AOF功能：</p>
-<ul>
-<li>保存<br>1.将客户端请求的命令转换成网络协议格式<br>2.将协议内容字符串追加到变量server.aof_buf中<br>3.当AOF系统达到设定的条件时，会调用aof_fsync(文件描述符)将数据写入磁盘</li>
-</ul>
-<ul>
-<li>读取<br>1.创建模拟的客户端<br>2.读取AOF保存的文本，还原数据为原命令和原参数。然后使用模拟的客户端发出这个命令请求<br>3.继续执行第二步，直到读取完AOF文件</li>
-</ul>
-<p>AOF系统设定条件：</p>
-<ul>
-<li>在前面提到的AOF系统到达设定条件时，将会调用aof_fsync(文件描述符)将数据写入磁盘，这是AOF性能的关键点。目前Redis支持三种保存条件机制：<br>1.AOF_FSYNC_NO:不保存<br>此模式下，每执行一条客户端命令，都会将协议字符串追加到server.aof_buf中，但是不会执行写入磁盘。写入磁盘只发生在：redis被正常关闭、AOF功能关闭、系统写缓存已满或后台定时保存操作被执行，此三种情况都会阻塞主进程，导致客户端请求失败。<br>2.AOF_FSYNC_EVERYSECS:每一秒保存一次<br>由后台子进程调用写入保存，不会阻塞主进程。如果发生宕机，那么最大丢失数据会在2s以内的数据。这也是默认的设置选项<br>3.AOF_FSYNC_ALWAYS:每执行一个命令都保存一次<br>这种模式下，可以保证每一条客户端指令都被保存，保证数据不会丢失。但缺点是性能大大下降，因为每一次操作都是都独占性的，需要阻塞主进程</li>
-</ul>
-<h5 id="AOF缺点"><a href="#AOF缺点" class="headerlink" title="AOF缺点"></a>AOF缺点</h5><ul>
-<li>AOF文件通常会大于等于相同数据集的RDB文件</li>
-<li>AOF模式下性能与RDB模式性能高低，主要取决于AOF选用的fsync模式</li>
-</ul>
-<h5 id="AOF重写"><a href="#AOF重写" class="headerlink" title="AOF重写"></a>AOF重写</h5><p>AOF需要将所有的命令都保存到磁盘，那么这个文件会随着时间变得越来越大，读取也会变得很慢。<br>Redis提供了AOF重写机制，帮助减少文件的大小，具体实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH list <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPOP list</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPOP list</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH list <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>最初保持到AOF文件的将会是四条指令。但是进过AOF重写后，会变成一条指令：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH <span class="number">1</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
-<h5 id="AOF重写流程，主线程，子线程的工作："><a href="#AOF重写流程，主线程，子线程的工作：" class="headerlink" title="AOF重写流程，主线程，子线程的工作："></a>AOF重写流程，主线程，子线程的工作：</h5><ul>
-<li>主线程创建子线程，执行AOF文件重写</li>
-<li>将子线程在执行写操作过程中的执行命令追加到AOF缓冲区和AOF重写缓冲区</li>
-<li>当子线程完成AOF重写工作后，它会向主线程发送一个信号，主线程接收到该信号，会调用一个信号处理函数，并执行下面工作</li>
-<li>将AOF重写缓冲区中的所有内容写入到新AOF文件中，这时新AOF文件所保存的数据库状态将和服务器当前的数据库状态一致</li>
-<li>将新的AOF文件进行改名，原子地覆盖现有的AOF文件，完成新旧两个AOF文件的替换</li>
-<li>这个信号处理函数执行完毕后，父进程可以继续接受请求命令</li>
-</ul>
-<h4 id="AOF重写过程，图表式："><a href="#AOF重写过程，图表式：" class="headerlink" title="AOF重写过程，图表式："></a>AOF重写过程，图表式：</h4><table>
-<thead>
-<tr>
-<th>时间</th>
-<th>服务器进程(主进程)</th>
-<th>子进程</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>T1</td>
-<td>执行命令 set k1 v1</td>
-<td></td>
-</tr>
-<tr>
-<td>T2</td>
-<td>执行命令set k1 v2</td>
-<td></td>
-</tr>
-<tr>
-<td>T3</td>
-<td>执行命令set k1 v3</td>
-<td></td>
-</tr>
-<tr>
-<td>T4</td>
-<td>创建子进程，执行AOF文件重写</td>
-<td>开始AOF文件重写</td>
-</tr>
-<tr>
-<td>T5</td>
-<td>执行命令set k2 10086</td>
-<td>执行重写操作</td>
-</tr>
-<tr>
-<td>T6</td>
-<td>执行命令set k3 12345</td>
-<td>执行重写操作</td>
-</tr>
-<tr>
-<td>T7</td>
-<td>执行命令set k4 23423</td>
-<td>完成AOF文件重写，向父进程发送信号</td>
-</tr>
-<tr>
-<td>T8</td>
-<td>接收到子进程发来的信号，将命令set k2 10086、set k3 12345、set k4 22222追加到新AOF文件的末尾</td>
-<td></td>
-</tr>
-<tr>
-<td>T9</td>
-<td>用新的AOF文件覆盖旧AOF文件</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Redis Server端持久化部分操作图解</strong><br><img src="http://img.blog.csdn.net/20130518180443561" alt="Redis Server端持久化部分操作图解"></p>
-
-        
-        
-        <p class="article-more-link">
-          
-       </p>
-    </div>
-    <footer class="article-footer clearfix">
-<div class="article-catetags">
-
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/redis-缓存-redis原理/">redis 缓存 redis原理</a>
-  </div>
-
-</div>
-
-
-
-
-<div class="comments-count">
-	
-</div>
-
-</footer>
-
-
-    </article>
-
-
-
-
-
-
 
   <nav id="page-nav" class="clearfix">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next<span></span></a>
@@ -928,15 +834,19 @@
 			
 		
 			
+				<li><a href="/tags/idea-idea快捷键/" title="idea idea快捷键">idea idea快捷键<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
 			
 		
 			
@@ -956,11 +866,11 @@
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
 			
 		
 		</ul>
