@@ -587,42 +587,14 @@
 <li>内存空间（Runtime Data Area）中可以按照是否线程共享分成两块，线程共享的是方法区（Method Area）和堆（Heap），线程独享的是Java栈（Java Stack），本地方法栈（Native Method Stack）和PC寄存器（Program Counter Register）。</li>
 <li>在 JDK 1.7 及以往的 JDK 版本中，Java 类信息、常量池、静态变量都存储在 Perm（永久代）里。类的元数据和静态变量在类加载的时候分配到 Perm，当类被卸载的时候垃圾收集器从 Perm 处理掉类的元数据和静态变量。当然常量池的东西也会在 Perm 垃圾收集的时候进行处理。</li>
 </ul>
-<h2 id="Java虚拟机组成"><a href="#Java虚拟机组成" class="headerlink" title="Java虚拟机组成"></a>Java虚拟机组成</h2><ul>
-<li>类加载子系统<ul>
-<li>负责从文件系统或者网络中加载Class信息，加载的信息放在一块称为方法区的内存空间</li>
-</ul>
+<h2 id="JVM体系结构"><a href="#JVM体系结构" class="headerlink" title="JVM体系结构"></a>JVM体系结构</h2><ul>
+<li><p>类加载器<br>在JVM启动时或者在类运行时将需要的class加载到JVM中。</p>
 </li>
-<li><strong>方法区</strong><ul>
-<li>存放类信息、常量信息、常量池信息、包括字符串字面量和数字常量等。</li>
-</ul>
+<li><p>执行引擎<br>执行引擎的任务是负责执行class文件中包含的字节码指令，相当于实际机器上的CPU</p>
 </li>
-<li><strong>java堆</strong><ul>
-<li>在java虚拟机启动的时候建立java堆，它是java程序最主要的内存工作区域，几乎所有对象实例都存放到java堆中，堆空间是所有线程共享的</li>
-</ul>
+<li><p>内存区<br>将内存划分成若干个区域以模拟实际机器上的存储，记录和调度功能模块</p>
 </li>
-<li>直接内存<ul>
-<li>java的NIO库允许java程序使用直接内存，从而提高性能，通常直接内存速度优于java堆。读写频繁的场合可能考虑使用。</li>
-</ul>
-</li>
-<li>栈<ul>
-<li>一个线程的java栈在线程创建的时候被创建，java栈中保存着局部变量、方法参数、同时java方法的调用、返回值等。</li>
-</ul>
-</li>
-<li>本地方法栈<ul>
-<li>用于本地方法调用，java虚拟机允许java直接调用本地方法。</li>
-</ul>
-</li>
-<li><strong>垃圾收集系统</strong><ul>
-<li>java有一套自己进行垃圾清理的机制。</li>
-</ul>
-</li>
-<li>PC寄存器<ul>
-<li>寄存器存放当前执行环境执政、程序计数器、操作栈指针等。</li>
-</ul>
-</li>
-<li>执行引擎<ul>
-<li>负责执行虚拟机的字节码</li>
-</ul>
+<li><p>本地方法调用<br>调用C或C++实现的本地方法的代码返回结果</p>
 </li>
 </ul>
 <h2 id="常用GC算法"><a href="#常用GC算法" class="headerlink" title="常用GC算法"></a>常用GC算法</h2><ul>
@@ -867,11 +839,7 @@
 			
 		
 			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
 			
 		
 			
@@ -879,11 +847,19 @@
 			
 		
 			
-				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
 			
 		
 			
@@ -892,10 +868,6 @@
 		
 			
 				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
 			
 		
 			
