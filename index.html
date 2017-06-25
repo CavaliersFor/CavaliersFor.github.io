@@ -769,6 +769,7 @@
 <h3 id="微信号正则"><a href="#微信号正则" class="headerlink" title="微信号正则"></a>微信号正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//微信号正则，6至20位，以字母开头，字母，数字，减号，下划线</span></div><div class="line"><span class="keyword">var</span> wxPattern = <span class="regexp">/^[a-zA-Z]([-_a-zA-Z0-9]&#123;5,19&#125;)+$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(wxPattern.test(<span class="string">"RuilongMao"</span>));</div></pre></td></tr></table></figure>
 <h3 id="车牌号正则"><a href="#车牌号正则" class="headerlink" title="车牌号正则"></a>车牌号正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//车牌号正则</span></div><div class="line"><span class="keyword">var</span> cPattern = <span class="regexp">/^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[A-Z0-9]&#123;4&#125;[A-Z0-9挂学警港澳]&#123;1&#125;$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(cPattern.test(<span class="string">"京K39006"</span>));</div></pre></td></tr></table></figure>
 <h3 id="包含中文正则"><a href="#包含中文正则" class="headerlink" title="包含中文正则"></a>包含中文正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//包含中文正则</span></div><div class="line"><span class="keyword">var</span> cnPattern = <span class="regexp">/[\u4E00-\u9FA5]/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(cnPattern.test(<span class="string">"42度"</span>));</div></pre></td></tr></table></figure>
+<h3 id="电话号码正则"><a href="#电话号码正则" class="headerlink" title="电话号码正则"></a>电话号码正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//电话号码</span></div><div class="line"><span class="keyword">var</span> telPattern = <span class="regexp">/^0\d&#123;2,3&#125;-?\d&#123;7,8&#125;$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(telPattern.test(<span class="string">"020-37635496"</span>));</div></pre></td></tr></table></figure>
         
         
         <p class="article-more-link">
@@ -830,7 +831,7 @@
 			
 		
 			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+				<li><a href="/tags/JMS-ActiveMQ安装/" title="JMS ActiveMQ安装">JMS ActiveMQ安装<sup>1</sup></a></li>
 			
 		
 			
@@ -838,11 +839,11 @@
 			
 		
 			
-				<li><a href="/tags/idea-idea快捷键/" title="idea idea快捷键">idea idea快捷键<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/idea-idea快捷键/" title="idea idea快捷键">idea idea快捷键<sup>1</sup></a></li>
 			
 		
 			
@@ -850,7 +851,7 @@
 			
 		
 			
-				<li><a href="/tags/JMS-ActiveMQ安装/" title="JMS ActiveMQ安装">JMS ActiveMQ安装<sup>1</sup></a></li>
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
@@ -862,11 +863,11 @@
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
 			
 		
 			
