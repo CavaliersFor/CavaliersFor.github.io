@@ -4,24 +4,24 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>idea快捷键 | 在路上coder博客</title>
+    <title>深入Web请求过程 | 在路上coder博客</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="在路上的coder">
     
 
     
-    <meta name="description" content="自动补全方法返回值ctrl+alt+v 配置自动导包setting-&amp;gt;Editor-&amp;gt;Auto Import 选择add unambiguous imports on the fly">
-<meta name="keywords" content="idea idea快捷键">
+    <meta name="description" content="URL请求过程当用户在browser里面输入url时，将会发生很多操作，首先查找本地的host文件有没有对应的url配置，如果有则请求该ip，否则请求DNS服务器解析该域名获取对应的ip地址，然后根据该IP地址找到服务器，向这个服务器发送一个get请求，由这个服务器返回数据给用户。在服务器端还有很复杂的业务逻辑：服务器可能有多台，到底指定那台服务器来处理请求，这需要一个负载均衡设备来平均分配所有用">
+<meta name="keywords" content="http请求过程，DNS解析过程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="idea快捷键">
-<meta property="og:url" content="http://yoursite.com/2017/06/20/idea快捷键/index.html">
+<meta property="og:title" content="深入Web请求过程">
+<meta property="og:url" content="http://yoursite.com/2017/07/09/深入Web请求过程/index.html">
 <meta property="og:site_name" content="在路上coder博客">
-<meta property="og:description" content="自动补全方法返回值ctrl+alt+v 配置自动导包setting-&amp;gt;Editor-&amp;gt;Auto Import 选择add unambiguous imports on the fly">
-<meta property="og:updated_time" content="2017-06-19T23:37:42.611Z">
+<meta property="og:description" content="URL请求过程当用户在browser里面输入url时，将会发生很多操作，首先查找本地的host文件有没有对应的url配置，如果有则请求该ip，否则请求DNS服务器解析该域名获取对应的ip地址，然后根据该IP地址找到服务器，向这个服务器发送一个get请求，由这个服务器返回数据给用户。在服务器端还有很复杂的业务逻辑：服务器可能有多台，到底指定那台服务器来处理请求，这需要一个负载均衡设备来平均分配所有用">
+<meta property="og:updated_time" content="2017-07-13T13:37:06.495Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="idea快捷键">
-<meta name="twitter:description" content="自动补全方法返回值ctrl+alt+v 配置自动导包setting-&amp;gt;Editor-&amp;gt;Auto Import 选择add unambiguous imports on the fly">
+<meta name="twitter:title" content="深入Web请求过程">
+<meta name="twitter:description" content="URL请求过程当用户在browser里面输入url时，将会发生很多操作，首先查找本地的host文件有没有对应的url配置，如果有则请求该ip，否则请求DNS服务器解析该域名获取对应的ip地址，然后根据该IP地址找到服务器，向这个服务器发送一个get请求，由这个服务器返回数据给用户。在服务器端还有很复杂的业务逻辑：服务器可能有多台，到底指定那台服务器来处理请求，这需要一个负载均衡设备来平均分配所有用">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上coder博客" type="application/atom+xml">
@@ -81,14 +81,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/20/idea快捷键/" title="idea快捷键" itemprop="url">idea快捷键</a>
+      <a href="/2017/07/09/深入Web请求过程/" title="深入Web请求过程" itemprop="url">深入Web请求过程</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-19T23:36:11.000Z" itemprop="datePublished"> Published 2017-06-20</time>
+    <time datetime="2017-07-09T13:47:39.000Z" itemprop="datePublished"> Published 2017-07-09</time>
     
   </p>
 </header>
@@ -97,12 +97,12 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动补全方法返回值"><span class="toc-number">1.</span> <span class="toc-text">自动补全方法返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置自动导包"><span class="toc-number">2.</span> <span class="toc-text">配置自动导包</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#URL请求过程"><span class="toc-number">1.</span> <span class="toc-text">URL请求过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS域名解析过程"><span class="toc-number">2.</span> <span class="toc-text">DNS域名解析过程</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="自动补全方法返回值"><a href="#自动补全方法返回值" class="headerlink" title="自动补全方法返回值"></a>自动补全方法返回值</h2><p><code>ctrl+alt+v</code></p>
-<h2 id="配置自动导包"><a href="#配置自动导包" class="headerlink" title="配置自动导包"></a>配置自动导包</h2><p><code>setting-&gt;Editor-&gt;Auto Import 选择add unambiguous imports on the fly</code></p>
+		<h2 id="URL请求过程"><a href="#URL请求过程" class="headerlink" title="URL请求过程"></a>URL请求过程</h2><p>当用户在browser里面输入url时，将会发生很多操作，首先查找本地的host文件有没有对应的url配置，如果有则请求该ip，否则请求DNS服务器解析该域名获取对应的ip地址，然后根据该IP地址找到服务器，向这个服务器发送一个get请求，由这个服务器返回数据给用户。在服务器端还有很复杂的业务逻辑：服务器可能有多台，到底指定那台服务器来处理请求，这需要一个负载均衡设备来平均分配所有用户的请求；还有请求的数据是存储在分布式缓存还是静态文件中，或者在数据库里；当数据返回浏览器时，浏览器解析数据发现还有一些静态资源(如CSS、JS或者图片)时又会发起另外的http请求，而这些请求很可能会在CDN上，那么CDN服务器又会处理这个用户的请求。</p>
+<h2 id="DNS域名解析过程"><a href="#DNS域名解析过程" class="headerlink" title="DNS域名解析过程"></a>DNS域名解析过程</h2><p>第一步，浏览器会检查缓存中有没有这个域名对应的解析过的IP地址，如果有，这个解析过程就结束。<br>第二步，如果用户的浏览器缓存中没有，浏览器会查找操作系统中是否有这个域名对应的DNS解析结果。在Windows中可以通过<code>C:\Windows\System32\drivers\etc\hosts</code>文件来设置，Linux在<code>/etc/hosts</code>文件中配置。<br>前面这两个步骤都是在本机完成，如果本机无法完成域名的解析，就会真正请求域名服务器来解析这个域名。<br>第三步，通过查找网络配置的DNS服务器，解析域名对应的IP，这里的DNS服务器称为LDNS。<br>第四步，如果LDNS没有命中，就直接到Root Server域名服务器请求解析。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -111,7 +111,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/idea-idea快捷键/">idea idea快捷键</a>
+  <span></span> <a href="/tags/http请求过程，DNS解析过程/">http请求过程，DNS解析过程</a>
   </div>
 
 </div>
@@ -120,7 +120,7 @@
 
 	<div class="article-share" id="share">
 	
-	  <div data-url="http://yoursite.com/2017/06/20/idea快捷键/" data-title="idea快捷键 | 在路上coder博客" data-tsina="null" class="share clearfix">
+	  <div data-url="http://yoursite.com/2017/07/09/深入Web请求过程/" data-title="深入Web请求过程 | 在路上coder博客" data-tsina="null" class="share clearfix">
 	  </div>
 	
 	</div>
@@ -133,19 +133,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/07/09/深入Web请求过程/" title="深入Web请求过程">
-  <strong>上一篇：</strong><br/>
-  <span>
-  深入Web请求过程</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/13/Java架构师之实战篇/"  title="Java架构师之实战篇">
+<a href="/2017/06/20/idea快捷键/"  title="idea快捷键">
  <strong>下一篇：</strong><br/> 
- <span>Java架构师之实战篇
+ <span>idea快捷键
 </span>
 </a>
 </div>
@@ -160,7 +152,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#自动补全方法返回值"><span class="toc-number">1.</span> <span class="toc-text">自动补全方法返回值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置自动导包"><span class="toc-number">2.</span> <span class="toc-text">配置自动导包</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#URL请求过程"><span class="toc-number">1.</span> <span class="toc-text">URL请求过程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DNS域名解析过程"><span class="toc-number">2.</span> <span class="toc-text">DNS域名解析过程</span></a></li></ol>
  
   </div>
 
