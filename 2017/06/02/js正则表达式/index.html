@@ -11,17 +11,17 @@
     
 
     
-    <meta name="description" content="15个常用的javascript正则表达式用户名正则1234//用户名正则，4到16位（字母，数字，下划线，减号）var uPattern = /^[a-zA-Z0-9_-]&amp;#123;4,16&amp;#125;$/;//输出 trueconsole.log(uPattern.test(&quot;iFat3&quot;)); 密码强度正则1234//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1">
+    <meta name="description" content="15个常用的javascript正则表达式">
 <meta name="keywords" content="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="15个常用的javascript正则表达式">
 <meta property="og:url" content="http://yoursite.com/2017/06/02/js正则表达式/index.html">
 <meta property="og:site_name" content="在路上coder博客">
-<meta property="og:description" content="15个常用的javascript正则表达式用户名正则1234//用户名正则，4到16位（字母，数字，下划线，减号）var uPattern = /^[a-zA-Z0-9_-]&amp;#123;4,16&amp;#125;$/;//输出 trueconsole.log(uPattern.test(&quot;iFat3&quot;)); 密码强度正则1234//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1">
-<meta property="og:updated_time" content="2017-06-25T06:30:18.548Z">
+<meta property="og:description" content="15个常用的javascript正则表达式">
+<meta property="og:updated_time" content="2017-07-13T14:18:49.252Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="15个常用的javascript正则表达式">
-<meta name="twitter:description" content="15个常用的javascript正则表达式用户名正则1234//用户名正则，4到16位（字母，数字，下划线，减号）var uPattern = /^[a-zA-Z0-9_-]&amp;#123;4,16&amp;#125;$/;//输出 trueconsole.log(uPattern.test(&quot;iFat3&quot;)); 密码强度正则1234//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1">
+<meta name="twitter:description" content="15个常用的javascript正则表达式">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上coder博客" type="application/atom+xml">
@@ -49,7 +49,7 @@
 				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -65,7 +65,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -88,20 +88,21 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-02T00:14:25.000Z" itemprop="datePublished"> Published 2017-06-02</time>
+    <time datetime="2017-06-02T00:14:25.000Z" itemprop="datePublished"> 发表于 2017-06-02</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#15个常用的javascript正则表达式"><span class="toc-number">1.</span> <span class="toc-text">15个常用的javascript正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用户名正则"><span class="toc-number">1.1.</span> <span class="toc-text">用户名正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#密码强度正则"><span class="toc-number">1.2.</span> <span class="toc-text">密码强度正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#整数正则"><span class="toc-number">1.3.</span> <span class="toc-text">整数正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字正则"><span class="toc-number">1.4.</span> <span class="toc-text">数字正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Email正则"><span class="toc-number">1.5.</span> <span class="toc-text">Email正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手机号码正则"><span class="toc-number">1.6.</span> <span class="toc-text">手机号码正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#身份证号正则"><span class="toc-number">1.7.</span> <span class="toc-text">身份证号正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URL正则"><span class="toc-number">1.8.</span> <span class="toc-text">URL正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv4地址正则"><span class="toc-number">1.9.</span> <span class="toc-text">IPv4地址正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十六进制颜色正则"><span class="toc-number">1.10.</span> <span class="toc-text">十六进制颜色正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期正则"><span class="toc-number">1.11.</span> <span class="toc-text">日期正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QQ号码正则"><span class="toc-number">1.12.</span> <span class="toc-text">QQ号码正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#微信号正则"><span class="toc-number">1.13.</span> <span class="toc-text">微信号正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#车牌号正则"><span class="toc-number">1.14.</span> <span class="toc-text">车牌号正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包含中文正则"><span class="toc-number">1.15.</span> <span class="toc-text">包含中文正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#电话号码正则"><span class="toc-number">1.16.</span> <span class="toc-text">电话号码正则</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="15个常用的javascript正则表达式"><a href="#15个常用的javascript正则表达式" class="headerlink" title="15个常用的javascript正则表达式"></a>15个常用的javascript正则表达式</h2><h3 id="用户名正则"><a href="#用户名正则" class="headerlink" title="用户名正则"></a>用户名正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//用户名正则，4到16位（字母，数字，下划线，减号）</span></div><div class="line"><span class="keyword">var</span> uPattern = <span class="regexp">/^[a-zA-Z0-9_-]&#123;4,16&#125;$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(uPattern.test(<span class="string">"iFat3"</span>));</div></pre></td></tr></table></figure>
+		<h2 id="15个常用的javascript正则表达式"><a href="#15个常用的javascript正则表达式" class="headerlink" title="15个常用的javascript正则表达式"></a>15个常用的javascript正则表达式</h2><a id="more"></a>
+<h3 id="用户名正则"><a href="#用户名正则" class="headerlink" title="用户名正则"></a>用户名正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//用户名正则，4到16位（字母，数字，下划线，减号）</span></div><div class="line"><span class="keyword">var</span> uPattern = <span class="regexp">/^[a-zA-Z0-9_-]&#123;4,16&#125;$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(uPattern.test(<span class="string">"iFat3"</span>));</div></pre></td></tr></table></figure>
 <h3 id="密码强度正则"><a href="#密码强度正则" class="headerlink" title="密码强度正则"></a>密码强度正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符</span></div><div class="line"><span class="keyword">var</span> pPattern = <span class="regexp">/^.*(?=.&#123;6,&#125;)(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&amp;*? ]).*$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"=="</span>+pPattern.test(<span class="string">"iFat3#"</span>));</div></pre></td></tr></table></figure>
 <h3 id="整数正则"><a href="#整数正则" class="headerlink" title="整数正则"></a>整数正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//正整数正则</span></div><div class="line"><span class="keyword">var</span> posPattern = <span class="regexp">/^\d+$/</span>;</div><div class="line"><span class="comment">//负整数正则</span></div><div class="line"><span class="keyword">var</span> negPattern = <span class="regexp">/^-\d+$/</span>;</div><div class="line"><span class="comment">//整数正则</span></div><div class="line"><span class="keyword">var</span> intPattern = <span class="regexp">/^-?\d+$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(posPattern.test(<span class="string">"42"</span>));</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(negPattern.test(<span class="string">"-42"</span>));</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(intPattern.test(<span class="string">"-42"</span>));</div></pre></td></tr></table></figure>
 <h3 id="数字正则"><a href="#数字正则" class="headerlink" title="数字正则"></a>数字正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//正数正则</span></div><div class="line"><span class="keyword">var</span> posPattern = <span class="regexp">/^\d*\.?\d+$/</span>;</div><div class="line"><span class="comment">//负数正则</span></div><div class="line"><span class="keyword">var</span> negPattern = <span class="regexp">/^-\d*\.?\d+$/</span>;</div><div class="line"><span class="comment">//数字正则</span></div><div class="line"><span class="keyword">var</span> numPattern = <span class="regexp">/^-?\d*\.?\d+$/</span>;</div><div class="line"><span class="built_in">console</span>.log(posPattern.test(<span class="string">"42.2"</span>));</div><div class="line"><span class="built_in">console</span>.log(negPattern.test(<span class="string">"-42.2"</span>));</div><div class="line"><span class="built_in">console</span>.log(numPattern.test(<span class="string">"-42.2"</span>));</div></pre></td></tr></table></figure>
@@ -168,17 +169,17 @@
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#15个常用的javascript正则表达式"><span class="toc-number">1.</span> <span class="toc-text">15个常用的javascript正则表达式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用户名正则"><span class="toc-number">1.1.</span> <span class="toc-text">用户名正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#密码强度正则"><span class="toc-number">1.2.</span> <span class="toc-text">密码强度正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#整数正则"><span class="toc-number">1.3.</span> <span class="toc-text">整数正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数字正则"><span class="toc-number">1.4.</span> <span class="toc-text">数字正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Email正则"><span class="toc-number">1.5.</span> <span class="toc-text">Email正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手机号码正则"><span class="toc-number">1.6.</span> <span class="toc-text">手机号码正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#身份证号正则"><span class="toc-number">1.7.</span> <span class="toc-text">身份证号正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URL正则"><span class="toc-number">1.8.</span> <span class="toc-text">URL正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IPv4地址正则"><span class="toc-number">1.9.</span> <span class="toc-text">IPv4地址正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#十六进制颜色正则"><span class="toc-number">1.10.</span> <span class="toc-text">十六进制颜色正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#日期正则"><span class="toc-number">1.11.</span> <span class="toc-text">日期正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#QQ号码正则"><span class="toc-number">1.12.</span> <span class="toc-text">QQ号码正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#微信号正则"><span class="toc-number">1.13.</span> <span class="toc-text">微信号正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#车牌号正则"><span class="toc-number">1.14.</span> <span class="toc-text">车牌号正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#包含中文正则"><span class="toc-number">1.15.</span> <span class="toc-text">包含中文正则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#电话号码正则"><span class="toc-number">1.16.</span> <span class="toc-text">电话号码正则</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -188,11 +189,11 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
 			
 		
 			
@@ -200,11 +201,7 @@
 			
 		
 			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
 			
 		
 			
@@ -212,11 +209,15 @@
 			
 		
 			
-				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
@@ -232,11 +233,11 @@
 			
 		
 			
-				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
 			
 		
 			
@@ -248,7 +249,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -487,7 +488,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

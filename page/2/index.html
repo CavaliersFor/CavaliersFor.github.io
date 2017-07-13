@@ -44,7 +44,7 @@
 				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -60,7 +60,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -85,31 +85,18 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-02T00:14:25.000Z" itemprop="datePublished"> Published 2017-06-02</time>
+    <time datetime="2017-06-02T00:14:25.000Z" itemprop="datePublished"> 发表于 2017-06-02</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="15个常用的javascript正则表达式"><a href="#15个常用的javascript正则表达式" class="headerlink" title="15个常用的javascript正则表达式"></a>15个常用的javascript正则表达式</h2><h3 id="用户名正则"><a href="#用户名正则" class="headerlink" title="用户名正则"></a>用户名正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//用户名正则，4到16位（字母，数字，下划线，减号）</span></div><div class="line"><span class="keyword">var</span> uPattern = <span class="regexp">/^[a-zA-Z0-9_-]&#123;4,16&#125;$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(uPattern.test(<span class="string">"iFat3"</span>));</div></pre></td></tr></table></figure>
-<h3 id="密码强度正则"><a href="#密码强度正则" class="headerlink" title="密码强度正则"></a>密码强度正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//密码强度正则，最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符</span></div><div class="line"><span class="keyword">var</span> pPattern = <span class="regexp">/^.*(?=.&#123;6,&#125;)(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&amp;*? ]).*$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(<span class="string">"=="</span>+pPattern.test(<span class="string">"iFat3#"</span>));</div></pre></td></tr></table></figure>
-<h3 id="整数正则"><a href="#整数正则" class="headerlink" title="整数正则"></a>整数正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//正整数正则</span></div><div class="line"><span class="keyword">var</span> posPattern = <span class="regexp">/^\d+$/</span>;</div><div class="line"><span class="comment">//负整数正则</span></div><div class="line"><span class="keyword">var</span> negPattern = <span class="regexp">/^-\d+$/</span>;</div><div class="line"><span class="comment">//整数正则</span></div><div class="line"><span class="keyword">var</span> intPattern = <span class="regexp">/^-?\d+$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(posPattern.test(<span class="string">"42"</span>));</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(negPattern.test(<span class="string">"-42"</span>));</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(intPattern.test(<span class="string">"-42"</span>));</div></pre></td></tr></table></figure>
-<h3 id="数字正则"><a href="#数字正则" class="headerlink" title="数字正则"></a>数字正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//正数正则</span></div><div class="line"><span class="keyword">var</span> posPattern = <span class="regexp">/^\d*\.?\d+$/</span>;</div><div class="line"><span class="comment">//负数正则</span></div><div class="line"><span class="keyword">var</span> negPattern = <span class="regexp">/^-\d*\.?\d+$/</span>;</div><div class="line"><span class="comment">//数字正则</span></div><div class="line"><span class="keyword">var</span> numPattern = <span class="regexp">/^-?\d*\.?\d+$/</span>;</div><div class="line"><span class="built_in">console</span>.log(posPattern.test(<span class="string">"42.2"</span>));</div><div class="line"><span class="built_in">console</span>.log(negPattern.test(<span class="string">"-42.2"</span>));</div><div class="line"><span class="built_in">console</span>.log(numPattern.test(<span class="string">"-42.2"</span>));</div></pre></td></tr></table></figure>
-<h3 id="Email正则"><a href="#Email正则" class="headerlink" title="Email正则"></a>Email正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//Email正则</span></div><div class="line"><span class="keyword">var</span> ePattern = <span class="regexp">/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]&#123;2,4&#125;)$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(ePattern.test(<span class="string">"65974040@qq.com"</span>));</div></pre></td></tr></table></figure>
-<h3 id="手机号码正则"><a href="#手机号码正则" class="headerlink" title="手机号码正则"></a>手机号码正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//手机号正则</span></div><div class="line"><span class="keyword">var</span> mPattern = <span class="regexp">/^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d&#123;8&#125;$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(mPattern.test(<span class="string">"18600000000"</span>));</div></pre></td></tr></table></figure>
-<h3 id="身份证号正则"><a href="#身份证号正则" class="headerlink" title="身份证号正则"></a>身份证号正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//身份证号（18位）正则</span></div><div class="line"><span class="keyword">var</span> cP = <span class="regexp">/^[1-9]\d&#123;5&#125;(18|19|([23]\d))\d&#123;2&#125;((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d&#123;3&#125;[0-9Xx]$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(cP.test(<span class="string">"11010519880605371X"</span>));</div></pre></td></tr></table></figure>
-<h3 id="URL正则"><a href="#URL正则" class="headerlink" title="URL正则"></a>URL正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//URL正则</span></div><div class="line"><span class="keyword">var</span> urlP= <span class="regexp">/^((https?|ftp|file):\/\/)?([\da-z\.-]+)\.([a-z\.]&#123;2,6&#125;)([\/\w \.-]*)*\/?$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(urlP.test(<span class="string">"http://42du.cn"</span>));</div></pre></td></tr></table></figure>
-<h3 id="IPv4地址正则"><a href="#IPv4地址正则" class="headerlink" title="IPv4地址正则"></a>IPv4地址正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//ipv4地址正则</span></div><div class="line"><span class="keyword">var</span> ipP = <span class="regexp">/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.)&#123;3&#125;(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(ipP.test(<span class="string">"115.28.47.26"</span>));</div></pre></td></tr></table></figure>
-<h3 id="十六进制颜色正则"><a href="#十六进制颜色正则" class="headerlink" title="十六进制颜色正则"></a>十六进制颜色正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//RGB Hex颜色正则</span></div><div class="line"><span class="keyword">var</span> cPattern = <span class="regexp">/^#?([a-fA-F0-9]&#123;6&#125;|[a-fA-F0-9]&#123;3&#125;)$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(cPattern.test(<span class="string">"#b8b8b8"</span>));</div></pre></td></tr></table></figure>
-<h3 id="日期正则"><a href="#日期正则" class="headerlink" title="日期正则"></a>日期正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//日期正则，简单判定,未做月份及日期的判定</span></div><div class="line"><span class="keyword">var</span> dP1 = <span class="regexp">/^\d&#123;4&#125;(\-)\d&#123;1,2&#125;\1\d&#123;1,2&#125;$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(dP1.test(<span class="string">"2017-05-11"</span>));</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(dP1.test(<span class="string">"2017-15-11"</span>));</div><div class="line"><span class="comment">//日期正则，复杂判定</span></div><div class="line"><span class="keyword">var</span> dP2 = <span class="regexp">/^(?:(?!0000)[0-9]&#123;4&#125;-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]&#123;2&#125;(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(dP2.test(<span class="string">"2017-02-11"</span>));</div><div class="line"><span class="comment">//输出 false</span></div><div class="line"><span class="built_in">console</span>.log(dP2.test(<span class="string">"2017-15-11"</span>));</div><div class="line"><span class="comment">//输出 false</span></div><div class="line"><span class="built_in">console</span>.log(dP2.test(<span class="string">"2017-02-29"</span>));</div></pre></td></tr></table></figure>
-<h3 id="QQ号码正则"><a href="#QQ号码正则" class="headerlink" title="QQ号码正则"></a>QQ号码正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//QQ号正则，5至11位</span></div><div class="line"><span class="keyword">var</span> qqPattern = <span class="regexp">/^[1-9][0-9]&#123;4,10&#125;$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(qqPattern.test(<span class="string">"65974040"</span>));</div></pre></td></tr></table></figure>
-<h3 id="微信号正则"><a href="#微信号正则" class="headerlink" title="微信号正则"></a>微信号正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//微信号正则，6至20位，以字母开头，字母，数字，减号，下划线</span></div><div class="line"><span class="keyword">var</span> wxPattern = <span class="regexp">/^[a-zA-Z]([-_a-zA-Z0-9]&#123;5,19&#125;)+$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(wxPattern.test(<span class="string">"RuilongMao"</span>));</div></pre></td></tr></table></figure>
-<h3 id="车牌号正则"><a href="#车牌号正则" class="headerlink" title="车牌号正则"></a>车牌号正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//车牌号正则</span></div><div class="line"><span class="keyword">var</span> cPattern = <span class="regexp">/^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]&#123;1&#125;[A-Z]&#123;1&#125;[A-Z0-9]&#123;4&#125;[A-Z0-9挂学警港澳]&#123;1&#125;$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(cPattern.test(<span class="string">"京K39006"</span>));</div></pre></td></tr></table></figure>
-<h3 id="包含中文正则"><a href="#包含中文正则" class="headerlink" title="包含中文正则"></a>包含中文正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//包含中文正则</span></div><div class="line"><span class="keyword">var</span> cnPattern = <span class="regexp">/[\u4E00-\u9FA5]/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(cnPattern.test(<span class="string">"42度"</span>));</div></pre></td></tr></table></figure>
-<h3 id="电话号码正则"><a href="#电话号码正则" class="headerlink" title="电话号码正则"></a>电话号码正则</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//电话号码</span></div><div class="line"><span class="keyword">var</span> telPattern = <span class="regexp">/^0\d&#123;2,3&#125;-?\d&#123;7,8&#125;$/</span>;</div><div class="line"><span class="comment">//输出 true</span></div><div class="line"><span class="built_in">console</span>.log(telPattern.test(<span class="string">"020-37635496"</span>));</div></pre></td></tr></table></figure>
+        <h2 id="15个常用的javascript正则表达式"><a href="#15个常用的javascript正则表达式" class="headerlink" title="15个常用的javascript正则表达式"></a>15个常用的javascript正则表达式</h2>
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/06/02/js正则表达式/#more">Read More</a>
           
        </p>
     </div>
@@ -154,112 +141,18 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-02T00:03:07.000Z" itemprop="datePublished"> Published 2017-06-02</time>
+    <time datetime="2017-06-02T00:03:07.000Z" itemprop="datePublished"> 发表于 2017-06-02</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h3 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h3><h4 id="RDB持久化方案"><a href="#RDB持久化方案" class="headerlink" title="RDB持久化方案"></a>RDB持久化方案</h4><p>在Redis运行时，RDB程序将当前内存中的数据库快照保存到磁盘中，当Redis需要重启时，RDB程序会通过重载RDB文件来还原数据库。<br> RDB主要包括两个功能：</p>
-<ul>
-<li>保存(rdSave)<br>rdSave负责将内存中的数据库数据以RDB格式保存到磁盘中，如果RDB文件已经存在将会替换已有的RDB文件。保存RDB文件期间会阻塞主进程，这段时间期间将不能处理新的客户端请求，直到保存完成为止。<br>为避免主进程阻塞，Redis提供了rdbSaveBackground函数。<br>在新建的子进程中调用rdSave，保存完成后会向主进程发送信号，同时进程可以继续处理新的客户端请求。</li>
-<li>读取(rdbLoad)<br>当Redis启动时，会根据配置的持久化模式，决定是否读取RDB文件，并将其中的对象保存到内存中。载入RDB过程中，<br>每载入1000个键就处理一次已经等待处理的客户端请求，但是目前仅处理订阅功能的命令，其他一律返回错误信息，因为发布订阅功能是不写入数据库的，也就不保存Redis数据库的</li>
-</ul>
-<h5 id="RDB的缺点"><a href="#RDB的缺点" class="headerlink" title="RDB的缺点"></a>RDB的缺点</h5><p>要理解RDB的缺点，需要了解RDB有保存点的概念。在默认的redis.conf中可以看到如下的默认配置：<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">save 900 1        #如果15分钟内，有1个键被修改</div><div class="line">save 300 10       #如果6分钟内，有10个键被修改</div><div class="line">save 60 10000     #如果60秒内有10000个键被修改</div></pre></td></tr></table></figure></p>
-<p>上面表示只要满足任意一个条件时，将会进行快照保存。为了保证IO读写性能不会成为Redis的瓶颈，一般都会创建一个比较大的值作为保存点，会出现如下缺点：</p>
-<ul>
-<li>此时如果保存点设置过大，就会导致宕机丢失的数据过多。保存点设置过小，又会造成IO瓶颈</li>
-<li>当对数据进行保存时，可能会由于数据集过大导致操作耗时，这会导致Redis可能在短时间内无法处理客户端请求。</li>
-</ul>
-<h4 id="AOF持久化方案"><a href="#AOF持久化方案" class="headerlink" title="AOF持久化方案"></a>AOF持久化方案</h4><p>以协议文本的方式，将所有对数据库进行写入命令记录到AOF文件，达到记录数据库状态的目的。</p>
-<p>AOF功能：</p>
-<ul>
-<li>保存<br>1.将客户端请求的命令转换成网络协议格式<br>2.将协议内容字符串追加到变量server.aof_buf中<br>3.当AOF系统达到设定的条件时，会调用aof_fsync(文件描述符)将数据写入磁盘</li>
-</ul>
-<ul>
-<li>读取<br>1.创建模拟的客户端<br>2.读取AOF保存的文本，还原数据为原命令和原参数。然后使用模拟的客户端发出这个命令请求<br>3.继续执行第二步，直到读取完AOF文件</li>
-</ul>
-<p>AOF系统设定条件：</p>
-<ul>
-<li>在前面提到的AOF系统到达设定条件时，将会调用aof_fsync(文件描述符)将数据写入磁盘，这是AOF性能的关键点。目前Redis支持三种保存条件机制：<br>1.AOF_FSYNC_NO:不保存<br>此模式下，每执行一条客户端命令，都会将协议字符串追加到server.aof_buf中，但是不会执行写入磁盘。写入磁盘只发生在：redis被正常关闭、AOF功能关闭、系统写缓存已满或后台定时保存操作被执行，此三种情况都会阻塞主进程，导致客户端请求失败。<br>2.AOF_FSYNC_EVERYSECS:每一秒保存一次<br>由后台子进程调用写入保存，不会阻塞主进程。如果发生宕机，那么最大丢失数据会在2s以内的数据。这也是默认的设置选项<br>3.AOF_FSYNC_ALWAYS:每执行一个命令都保存一次<br>这种模式下，可以保证每一条客户端指令都被保存，保证数据不会丢失。但缺点是性能大大下降，因为每一次操作都是都独占性的，需要阻塞主进程</li>
-</ul>
-<h5 id="AOF缺点"><a href="#AOF缺点" class="headerlink" title="AOF缺点"></a>AOF缺点</h5><ul>
-<li>AOF文件通常会大于等于相同数据集的RDB文件</li>
-<li>AOF模式下性能与RDB模式性能高低，主要取决于AOF选用的fsync模式</li>
-</ul>
-<h5 id="AOF重写"><a href="#AOF重写" class="headerlink" title="AOF重写"></a>AOF重写</h5><p>AOF需要将所有的命令都保存到磁盘，那么这个文件会随着时间变得越来越大，读取也会变得很慢。<br>Redis提供了AOF重写机制，帮助减少文件的大小，具体实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH list <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPOP list</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPOP list</div></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH list <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>最初保持到AOF文件的将会是四条指令。但是进过AOF重写后，会变成一条指令：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH <span class="number">1</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
-<h5 id="AOF重写流程，主线程，子线程的工作："><a href="#AOF重写流程，主线程，子线程的工作：" class="headerlink" title="AOF重写流程，主线程，子线程的工作："></a>AOF重写流程，主线程，子线程的工作：</h5><ul>
-<li>主线程创建子线程，执行AOF文件重写</li>
-<li>将子线程在执行写操作过程中的执行命令追加到AOF缓冲区和AOF重写缓冲区</li>
-<li>当子线程完成AOF重写工作后，它会向主线程发送一个信号，主线程接收到该信号，会调用一个信号处理函数，并执行下面工作</li>
-<li>将AOF重写缓冲区中的所有内容写入到新AOF文件中，这时新AOF文件所保存的数据库状态将和服务器当前的数据库状态一致</li>
-<li>将新的AOF文件进行改名，原子地覆盖现有的AOF文件，完成新旧两个AOF文件的替换</li>
-<li>这个信号处理函数执行完毕后，父进程可以继续接受请求命令</li>
-</ul>
-<h4 id="AOF重写过程，图表式："><a href="#AOF重写过程，图表式：" class="headerlink" title="AOF重写过程，图表式："></a>AOF重写过程，图表式：</h4><table>
-<thead>
-<tr>
-<th>时间</th>
-<th>服务器进程(主进程)</th>
-<th>子进程</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>T1</td>
-<td>执行命令 set k1 v1</td>
-<td></td>
-</tr>
-<tr>
-<td>T2</td>
-<td>执行命令set k1 v2</td>
-<td></td>
-</tr>
-<tr>
-<td>T3</td>
-<td>执行命令set k1 v3</td>
-<td></td>
-</tr>
-<tr>
-<td>T4</td>
-<td>创建子进程，执行AOF文件重写</td>
-<td>开始AOF文件重写</td>
-</tr>
-<tr>
-<td>T5</td>
-<td>执行命令set k2 10086</td>
-<td>执行重写操作</td>
-</tr>
-<tr>
-<td>T6</td>
-<td>执行命令set k3 12345</td>
-<td>执行重写操作</td>
-</tr>
-<tr>
-<td>T7</td>
-<td>执行命令set k4 23423</td>
-<td>完成AOF文件重写，向父进程发送信号</td>
-</tr>
-<tr>
-<td>T8</td>
-<td>接收到子进程发来的信号，将命令set k2 10086、set k3 12345、set k4 22222追加到新AOF文件的末尾</td>
-<td></td>
-</tr>
-<tr>
-<td>T9</td>
-<td>用新的AOF文件覆盖旧AOF文件</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Redis Server端持久化部分操作图解</strong><br><img src="http://img.blog.csdn.net/20130518180443561" alt="Redis Server端持久化部分操作图解"></p>
-
+        <h3 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h3><h4 id="RDB持久化方案"><a href="#RDB持久化方案" class="headerlink" title="RDB持久化方案"></a>RDB持久化方案</h4><p>在Redis运行时，RDB程序将当前内存中的数据库快照保存到磁盘中，当Redis需要重启时，RDB程序会通过重载RDB文件来还原数据库。<br> RDB主要包括两个功能：
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/06/02/redis持久化/#more">Read More</a>
           
        </p>
     </div>
@@ -304,7 +197,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-25T22:46:56.000Z" itemprop="datePublished"> Published 2017-05-26</time>
+    <time datetime="2017-05-25T22:46:56.000Z" itemprop="datePublished"> 发表于 2017-05-26</time>
     
   </p>
 </header>
@@ -312,52 +205,12 @@
         
         <h2 id="Redis高级命令"><a href="#Redis高级命令" class="headerlink" title="Redis高级命令"></a>Redis高级命令</h2><h3 id="keys-命令"><a href="#keys-命令" class="headerlink" title="keys 命令"></a>keys 命令</h3><ul>
 <li>该命令返回满足的所有的键</li>
-<li>只能使用通配符<code>*</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性keys.jpg" alt="redis高级特性keys"></li>
-</ul>
-<h3 id="exists命令"><a href="#exists命令" class="headerlink" title="exists命令"></a>exists命令</h3><ul>
-<li>是否存在指定的key，完全匹配。存在返回1，不存在返回0<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性exists命令.jpg" alt="redis高级特性exists命令"></li>
-</ul>
-<h3 id="expire命令"><a href="#expire命令" class="headerlink" title="expire命令"></a>expire命令</h3><ul>
-<li>设置某个key的过期时间，单位秒。在这里通过 <code>ttl</code> 命令查看剩余时间<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性expire和ttl命令.jpg" alt="redis高级特性expire和ttl命令"></li>
-</ul>
-<h3 id="persist命令"><a href="#persist命令" class="headerlink" title="persist命令"></a>persist命令</h3><ul>
-<li>取消过期时间</li>
-<li>一般情况下，<code>expire</code> 命令、 <code>ttl</code> 命令和 <code>persist</code> 命令结合使用<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性persist命令.jpg" alt="redis高级特性persist命令"></li>
-</ul>
-<h3 id="select命令"><a href="#select命令" class="headerlink" title="select命令"></a>select命令</h3><ul>
-<li>选择数据库，数据库为0到15，一共16个数据库。默认进入的是0数据库<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性select命令.jpg" alt="redis高级特性select命令"></li>
-</ul>
-<h3 id="move命令"><a href="#move命令" class="headerlink" title="move命令"></a>move命令</h3><ul>
-<li>move [key] [数据库下标] 当前数据库的key转移到其他数据库中<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性move命令.jpg" alt="redis高级特性select命令"></li>
-</ul>
-<h3 id="randomkey命令"><a href="#randomkey命令" class="headerlink" title="randomkey命令"></a>randomkey命令</h3><ul>
-<li>随机返回数据库里的一个key</li>
-</ul>
-<h3 id="rename命令"><a href="#rename命令" class="headerlink" title="rename命令"></a>rename命令</h3><ul>
-<li>重命名key<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性rename命令.jpg" alt="redis高级特性rename命令"></li>
-</ul>
-<h3 id="echo命令"><a href="#echo命令" class="headerlink" title="echo命令"></a>echo命令</h3><ul>
-<li>输出命令</li>
-</ul>
-<h3 id="dbsize命令"><a href="#dbsize命令" class="headerlink" title="dbsize命令"></a>dbsize命令</h3><ul>
-<li>返回该数据库的key的数量</li>
-</ul>
-<h3 id="info命令"><a href="#info命令" class="headerlink" title="info命令"></a>info命令</h3><ul>
-<li>返回该数据库的信息</li>
-</ul>
-<h3 id="config-get命令"><a href="#config-get命令" class="headerlink" title="config get命令"></a>config get命令</h3><ul>
-<li>返回配置信息，<code>config get *</code> 返回所有配置</li>
-</ul>
-<h3 id="flushdb命令"><a href="#flushdb命令" class="headerlink" title="flushdb命令"></a>flushdb命令</h3><ul>
-<li>清空当前的数据库数据</li>
-</ul>
-<h3 id="flushall命令"><a href="#flushall命令" class="headerlink" title="flushall命令"></a>flushall命令</h3><ul>
-<li>清空所有数据库的数据</li>
-</ul>
-
+<li>只能使用通配符<code>*</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis高级特性keys.jpg" alt="redis高级特性keys">
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/05/26/Redis高级命令/#more">Read More</a>
           
        </p>
     </div>
@@ -402,7 +255,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-20T12:27:27.000Z" itemprop="datePublished"> Published 2017-05-20</time>
+    <time datetime="2017-05-20T12:27:27.000Z" itemprop="datePublished"> 发表于 2017-05-20</time>
     
   </p>
 </header>
@@ -410,174 +263,12 @@
         
         <h2 id="redis类型"><a href="#redis类型" class="headerlink" title="redis类型"></a>redis类型</h2><ul>
 <li>redis一共分为五种基本数据类型：<code>String、Hash、List、Set、ZSet</code>。</li>
-<li>查看redis命令帮助 <code>help 命令名</code><h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2>String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。</li>
-</ul>
-<h3 id="set、get和del方法："><a href="#set、get和del方法：" class="headerlink" title="set、get和del方法："></a>set、get和del方法：</h3><ul>
-<li>设置值：<code>set name redis</code></li>
-<li>取值： <code>get name</code></li>
-<li>删除值： <code>del name</code></li>
-</ul>
-<h3 id="使用setnx-not-exist"><a href="#使用setnx-not-exist" class="headerlink" title="使用setnx (not exist)"></a>使用setnx (not exist)</h3><ul>
-<li>表示如果不存在key进行设置，返回1。存在就不需要设置了，返回0<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="number">127.0</span>.0.1:<span class="number">6379</span>&gt; <span class="function">setnx name <span class="title">aa</span></span></div><div class="line"><span class="params">(integer)</span> 0</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="使用setex-expired"><a href="#使用setex-expired" class="headerlink" title="使用setex (expired)"></a>使用setex (expired)</h3><ul>
-<li><code>set color 10 red</code> 设置color的有效期为10秒，10秒返回 <code>nil</code> (在redis中<code>nil</code>表示<code>null</code>)</li>
-</ul>
-<h3 id="使用setrange-替换字符串"><a href="#使用setrange-替换字符串" class="headerlink" title="使用setrange 替换字符串"></a>使用setrange 替换字符串</h3><ul>
-<li><code>set mail 123456@qq.com</code> 替换字符串 <code>setrange mail 5 abc</code> (5表示从第几位开始替换，不包含开始位置，后面跟上替换的字符串)，如下图：<br><img src="http://opzxa0ul7.bkt.clouddn.com/setrange结果.jpg" alt="setrange结果"></li>
-</ul>
-<h3 id="一次性设置或者获取多个值mset、mget-方法"><a href="#一次性设置或者获取多个值mset、mget-方法" class="headerlink" title="一次性设置或者获取多个值mset、mget 方法"></a>一次性设置或者获取多个值<code>mset、mget</code> 方法</h3><ul>
-<li><code>mset k1 123 k2 abc k3 ofg</code></li>
-<li><code>mget k1 k2 k3</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/mset和mget.jpg" alt="mset和mget"></li>
-</ul>
-<h3 id="一次性获取设置getset方法"><a href="#一次性获取设置getset方法" class="headerlink" title="一次性获取设置getset方法"></a>一次性获取设置<code>getset</code>方法</h3><ul>
-<li><code>getset k4 abcd</code> 先返回k4的值然后设置k4的值为 <code>abcd</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/setget.jpg" alt="setget"></li>
-</ul>
-<h3 id="incr和decr方法"><a href="#incr和decr方法" class="headerlink" title="incr和decr方法"></a>incr和decr方法</h3><ul>
-<li>对某个值进行递增和递减。<code>incr age</code> <code>decr age</code></li>
-</ul>
-<h3 id="incrby和decrby方法"><a href="#incrby和decrby方法" class="headerlink" title="incrby和decrby方法"></a>incrby和decrby方法</h3><ul>
-<li>对某个值指定长度的递增和递减。</li>
-<li><code>incrby age 5</code> 增加5</li>
-<li><code>decrby age 6</code> 减少6</li>
-</ul>
-<h3 id="append方法追加字符串"><a href="#append方法追加字符串" class="headerlink" title="append方法追加字符串"></a>append方法追加字符串</h3><ul>
-<li><code>append key value</code></li>
-<li><code>append name nosql</code> 为key为name的值追加nosql</li>
-</ul>
-<h3 id="strlen方法获取key的长度"><a href="#strlen方法获取key的长度" class="headerlink" title="strlen方法获取key的长度"></a>strlen方法获取key的长度</h3><ul>
-<li><code>strleng key</code> 返回该key的value的长度</li>
-</ul>
-<h2 id="Hash类型"><a href="#Hash类型" class="headerlink" title="Hash类型"></a>Hash类型</h2><p><code>Hash</code>类型是<code>String</code>类型的field和value的映射表，或者说一个<code>String</code>集合。它特别适合存储对象，相比而言，将一个对象类型存储在<code>Hash</code>类型里要比存储在String类型里占用更少的内存空间，并方便存取整个对象。</p>
-<h3 id="设置和获取Hash方法"><a href="#设置和获取Hash方法" class="headerlink" title="设置和获取Hash方法"></a>设置和获取Hash方法</h3><ul>
-<li>通过 <code>hset</code> 设置<code>Hash</code>类型的值。<code>hset user id 1</code> 表示设置<code>Hash</code>的值为 <code>user</code>，里面有<code>key</code> 为 <code>id</code>，<code>value</code>为1。</li>
-<li>通过 <code>hget</code> 获取<code>Hash</code>类型的值。<code>hget user id</code> 表示获取<code>Hash</code>的值为 <code>user</code>中<code>key</code> 为<code>id</code>的值。</li>
-<li>也可以批量设置和获取值。通过<code>hmset user id 2 name zs age 20 sex man</code> 和 <code>hmget user id name age sex</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/hash类型的hset和hget.jpg" alt="hash类型的hset和hget"><br><img src="http://opzxa0ul7.bkt.clouddn.com/hash中的hmset和hmget.jpg" alt="hash中的hmset和hmget"></li>
-</ul>
-<h3 id="Hash类型的其他常用方法"><a href="#Hash类型的其他常用方法" class="headerlink" title="Hash类型的其他常用方法"></a>Hash类型的其他常用方法</h3><ul>
-<li>hsetnx：这个和<code>setnx</code>类似，表示如果不存在就设置，存在就不设置。</li>
-<li>hincrby：集合递增，类似于<code>incrby</code>。</li>
-<li>hexists：是否存在key，如果存在返回值，不存在返回0</li>
-<li>hlen：返回hash集合里面的所有键数值。</li>
-<li>hdel：删除指定hash中的字段。</li>
-<li>hkeys：返回hash中的所有key。</li>
-<li>hvales：返回hash中的所有value。</li>
-<li>hgetall：返回hash里的所有key和value。<br><img src="http://opzxa0ul7.bkt.clouddn.com/hash其他命令.jpg" alt="hash其他命令"></li>
-</ul>
-<h2 id="List类型"><a href="#List类型" class="headerlink" title="List类型"></a>List类型</h2><p><code>List</code>类型是一个链表结构的集合，其主要功能有push、pop、获取元素等。更加具体来说，List类型是一个双链表的结构，我们可以通过相关操作在集合的头部和尾部进行操作，List的可以作为栈，也可以作为队列。</p>
-<h3 id="lpush和lrange方法"><a href="#lpush和lrange方法" class="headerlink" title="lpush和lrange方法"></a>lpush和lrange方法</h3><ul>
-<li><code>lpush</code>从头部加入元素(栈)先进后出，返回集合中元素个数。<code>lpush list hello</code> 向名为<code>list</code>集合中添加<code>hello</code> 。</li>
-<li><code>lrange</code>获取栈的元素，返回集合中的元素。<code>lrange list 0 -1</code> 获取<code>list</code> 集合全部元素。<br><img src="http://opzxa0ul7.bkt.clouddn.com/list集合的lpush和lrange方法.jpg" alt="list集合的lpush和lrange方法"></li>
-</ul>
-<h3 id="rpush方法"><a href="#rpush方法" class="headerlink" title="rpush方法"></a>rpush方法</h3><ul>
-<li><code>rpush</code> 方法从尾部加入元素，先进先出。<code>rpush list2 hello</code> 向集合<code>list2</code>中添加<code>hello</code></li>
-<li><code>lrang</code>获取集合中的元素。<br><img src="http://opzxa0ul7.bkt.clouddn.com/List类型中的rpush方法.jpg" alt="List类型中的rpush方法"></li>
-</ul>
-<h3 id="linsert方法"><a href="#linsert方法" class="headerlink" title="linsert方法"></a>linsert方法</h3><ul>
-<li>插入元素。<code>linsert num before three two</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/list集合linsert.jpg" alt="list集合linsert"></li>
-</ul>
-<h3 id="lset方法"><a href="#lset方法" class="headerlink" title="lset方法"></a>lset方法</h3><ul>
-<li>将指定下标的元素替换掉。从0开始<br><img src="http://opzxa0ul7.bkt.clouddn.com/list类型的lset方法.jpg" alt="list类型的lset方法"></li>
-</ul>
-<h3 id="lrem方法"><a href="#lrem方法" class="headerlink" title="lrem方法"></a>lrem方法</h3><ul>
-<li>删除元素，返回删除元素个数<br><img src="http://opzxa0ul7.bkt.clouddn.com/list类型的lrem方法.jpg" alt="list类型的lrem方法"></li>
-</ul>
-<h3 id="ltrim方法"><a href="#ltrim方法" class="headerlink" title="ltrim方法"></a>ltrim方法</h3><ul>
-<li>保留指定范围内的元素，截取集合<br><img src="http://opzxa0ul7.bkt.clouddn.com/list类型的ltrim方法.jpg" alt="list类型的ltrim方法"></li>
-</ul>
-<h3 id="lpop方法"><a href="#lpop方法" class="headerlink" title="lpop方法"></a>lpop方法</h3><ul>
-<li>从list的头部删除元素，并返回删除元素<br><img src="http://opzxa0ul7.bkt.clouddn.com/list集合的lpop方法.jpg" alt="list集合的lpop方法"></li>
-</ul>
-<h3 id="rpop方法"><a href="#rpop方法" class="headerlink" title="rpop方法"></a>rpop方法</h3><ul>
-<li>从list的尾部删除元素，并返回删除元素<br><img src="http://opzxa0ul7.bkt.clouddn.com/List类型中的rpop方法.jpg" alt="List类型中的rpop方法"></li>
-</ul>
-<h2 id="Set类型"><a href="#Set类型" class="headerlink" title="Set类型"></a>Set类型</h2><p>Set集合是String类型的无序集合，Set是通过HashTable实现的，对集合我们可以取交集、并集、差集。</p>
-<h3 id="sadd方法"><a href="#sadd方法" class="headerlink" title="sadd方法"></a>sadd方法</h3><ul>
-<li>向名称为key的set中添加元素。<code>sadd set1 abc</code> 也可以批量添加 <code>sadd set1 abc bdf</code></li>
-<li>set集合不允许添加重复元素。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sadd方法.jpg" alt="set集合的sadd方法"></li>
-</ul>
-<h3 id="smembers方法"><a href="#smembers方法" class="headerlink" title="smembers方法"></a>smembers方法</h3><ul>
-<li>查看set集合元素。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的smembers方法.jpg" alt="set集合的smembers方法"></li>
-</ul>
-<h3 id="srem方法"><a href="#srem方法" class="headerlink" title="srem方法"></a>srem方法</h3><ul>
-<li>删除set集合元素<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的srem方法.jpg" alt="set集合的srem方法"></li>
-</ul>
-<h3 id="spop方法"><a href="#spop方法" class="headerlink" title="spop方法"></a>spop方法</h3><ul>
-<li>随机返回删除的member<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的spop方法.jpg" alt="set集合的spop方法"></li>
-</ul>
-<h3 id="sdiff方法"><a href="#sdiff方法" class="headerlink" title="sdiff方法"></a>sdiff方法</h3><ul>
-<li>返回两个集合的不同元素，哪个集合在前面就以哪个集合为标准。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sdiff方法1.jpg" alt="set集合的sdiff方法"></li>
-</ul>
-<h3 id="sdiffstore方法"><a href="#sdiffstore方法" class="headerlink" title="sdiffstore方法"></a>sdiffstore方法</h3><ul>
-<li>将返回的不同元素存储到另一个集合里。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sdiffstore方法.jpg" alt="set集合的sdiffstore方法"></li>
-</ul>
-<h3 id="sinter方法"><a href="#sinter方法" class="headerlink" title="sinter方法"></a>sinter方法</h3><ul>
-<li>两个集合取交集。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sinter方法.jpg" alt="set集合的sinter方法"></li>
-</ul>
-<h3 id="sinterstore方法"><a href="#sinterstore方法" class="headerlink" title="sinterstore方法"></a>sinterstore方法</h3><ul>
-<li>返回交集结果，存储到另一个集合中<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sinterstore方法.jpg" alt="set集合的sinterstore方法"></li>
-</ul>
-<h3 id="sunion方法"><a href="#sunion方法" class="headerlink" title="sunion方法"></a>sunion方法</h3><ul>
-<li>取并集。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sunion方法.jpg" alt="set集合的sunion方法"></li>
-</ul>
-<h3 id="sunionstore方法"><a href="#sunionstore方法" class="headerlink" title="sunionstore方法"></a>sunionstore方法</h3><ul>
-<li>取并集，并存储到另一个集合中<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sunionstore方法.jpg" alt="set集合的sunionstore方法"></li>
-</ul>
-<h3 id="smove方法"><a href="#smove方法" class="headerlink" title="smove方法"></a>smove方法</h3><ul>
-<li>从一个set集合移动到另一个set集合，相当于剪切复制。<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的smove方法.jpg" alt="set集合的smove方法."></li>
-</ul>
-<h3 id="scard方法"><a href="#scard方法" class="headerlink" title="scard方法"></a>scard方法</h3><ul>
-<li>返回集合的元素个数，<code>scard 集合名</code></li>
-</ul>
-<h3 id="sismember方法"><a href="#sismember方法" class="headerlink" title="sismember方法"></a>sismember方法</h3><ul>
-<li>判断某元素是否为集合中的元素，返回1代表是集合中的元素，0代表不是<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的sismember方法.jpg" alt="set集合的sismember方法"></li>
-</ul>
-<h3 id="srandmember方法"><a href="#srandmember方法" class="headerlink" title="srandmember方法"></a>srandmember方法</h3><ul>
-<li>随机返回一个元素<br><img src="http://opzxa0ul7.bkt.clouddn.com/set集合的srandmember方法.jpg" alt="set集合的srandmember方法"></li>
-</ul>
-<h2 id="zset集合类型"><a href="#zset集合类型" class="headerlink" title="zset集合类型"></a>zset集合类型</h2><p>set集合的升级版，集合是有序的。</p>
-<h3 id="zadd方法"><a href="#zadd方法" class="headerlink" title="zadd方法"></a>zadd方法</h3><ul>
-<li>向有序集合中添加一个元素，该元素如果存在，则更新顺序。在重复插入的时候，会根据顺序属性更新。<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zadd方法.jpg" alt="zset集合的zadd方法.jpg"></li>
-</ul>
-<h3 id="zrange方法"><a href="#zrange方法" class="headerlink" title="zrange方法"></a>zrange方法</h3><ul>
-<li>查看zset集合数据。<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zrange方法.jpg" alt="zset集合的zadd方法.jpg"></li>
-</ul>
-<h3 id="zrem方法"><a href="#zrem方法" class="headerlink" title="zrem方法"></a>zrem方法</h3><ul>
-<li>删除名称为key的zset中的元素member<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zrem方法.jpg" alt="zset集合的zadd方法.jpg"></li>
-</ul>
-<h3 id="zincrby方法"><a href="#zincrby方法" class="headerlink" title="zincrby方法"></a>zincrby方法</h3><ul>
-<li>以指定值去自增或自减，用法和incrby类似</li>
-</ul>
-<h3 id="zrangebyscore方法"><a href="#zrangebyscore方法" class="headerlink" title="zrangebyscore方法"></a>zrangebyscore方法</h3><ul>
-<li>找到指定区间范围的数据进行返回。<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zrangebyscore方法.jpg" alt="zset集合的zadd方法.jpg"></li>
-</ul>
-<h3 id="zremrangebyrank方法"><a href="#zremrangebyrank方法" class="headerlink" title="zremrangebyrank方法"></a>zremrangebyrank方法</h3><ul>
-<li>删除索引范围的member<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zremrangebyrank方法.jpg" alt="zset集合的zadd方法.jpg"></li>
-</ul>
-<h3 id="zremrangebyscore方法"><a href="#zremrangebyscore方法" class="headerlink" title="zremrangebyscore方法"></a>zremrangebyscore方法</h3><ul>
-<li>删除指定序号，通过分数范围删除，包含头、包含尾<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zremrangebyscore方法.jpg" alt="zset集合的zremrangebyscore方法"></li>
-</ul>
-<h3 id="zrank方法"><a href="#zrank方法" class="headerlink" title="zrank方法"></a>zrank方法</h3><ul>
-<li>返回排序序号，从0开始<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zrank方法.jpg" alt="zset集合的zrank方法"></li>
-</ul>
-<h3 id="zrevrank方法"><a href="#zrevrank方法" class="headerlink" title="zrevrank方法"></a>zrevrank方法</h3><ul>
-<li>返回排序索引，从大到小的顺序，从0开始<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zrevrank方法.jpg" alt="zset集合的zrevrank方法"></li>
-</ul>
-<h3 id="zrangebyscore-方法"><a href="#zrangebyscore-方法" class="headerlink" title="zrangebyscore 方法"></a>zrangebyscore 方法</h3><ul>
-<li>找到指定区间的数据并返回<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset%E9%9B%86%E5%90%88%E7%9A%84zrangebyscore%E6%96%B9%E6%B3%95.jpg" alt=""></li>
-<li>通过上图我们可以看出<code>zrange</code> 和 <code>zrangebyscore</code> 方法的区别是，一个通过索引范围查找，一个通过分数范围查找</li>
-</ul>
-<h3 id="zcard方法"><a href="#zcard方法" class="headerlink" title="zcard方法"></a>zcard方法</h3><ul>
-<li>返回集合中所有元素的个数<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zcard方法.jpg" alt="zset集合的zcard方法"></li>
-</ul>
-<h3 id="zcount方法"><a href="#zcount方法" class="headerlink" title="zcount方法"></a>zcount方法</h3><ul>
-<li>返回集合中score在给定区间的数量<br><img src="http://opzxa0ul7.bkt.clouddn.com/zset集合的zcount方法.jpg" alt="zset集合的zcount方法"></li>
-</ul>
-
+<li>查看redis命令帮助 <code>help 命令名</code><h2 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h2>String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，比如一个简单的字符串，数值等。
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/05/20/redis基础数据类型详解/#more">Read More</a>
           
        </p>
     </div>
@@ -622,7 +313,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-20T03:24:56.000Z" itemprop="datePublished"> Published 2017-05-20</time>
+    <time datetime="2017-05-20T03:24:56.000Z" itemprop="datePublished"> 发表于 2017-05-20</time>
     
   </p>
 </header>
@@ -633,87 +324,12 @@
 <li>键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB</li>
 <li>列存储数据库：这部分数据库通常是用来应对分布式存储的海量数据。键仍然存在，但是它们的特定是指向了多个列。如HBase，Riak</li>
 <li>文档型数据库：该类型的数据库是版本化文档，半结构化的文档以特定的格式存储，比如JSON。文档型数据库可以看作是键值对数据库的升级版，允许之间嵌套键值。而且文档型数据库比键值数据库查询效率更高。如MongoDB、CouchDB</li>
-<li>图形数据库：图形结构的数据库同其他行列以及刚性结构的SQL数据库不同，它是灵活的图形模型，并且能够扩展到多个服务器上</li>
-</ul>
-<h2 id="非关系型数据库特点"><a href="#非关系型数据库特点" class="headerlink" title="非关系型数据库特点"></a>非关系型数据库特点</h2><ul>
-<li>数据模型比较简单</li>
-<li>需要灵活性更强的IT系统</li>
-<li>对数据库性能要求较高</li>
-<li>不需要高度的数据一致性</li>
-<li>对于给定key，比较容易映射复杂值的环境</li>
-</ul>
-<h2 id="Redis简介"><a href="#Redis简介" class="headerlink" title="Redis简介"></a>Redis简介</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>是以key-value形成存储，和传统的关系型数据库不一样，不一定遵循传统数据库的一些基本要求(非关系型的、分布式的、开源的、水平可扩展的)</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>对数据高并发读写</li>
-<li>对海量数据的高效存储和访问</li>
-<li>对数据的可扩展性和高可用</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li>redis(ACID处理非常简单)</li>
-<li>无法做到太复杂的关系型数据模型</li>
-</ul>
-<h2 id="Redis安装"><a href="#Redis安装" class="headerlink" title="Redis安装"></a>Redis安装</h2><ul>
-<li>安装环境:centos6.5 64bit</li>
-</ul>
-<h3 id="安装gcc"><a href="#安装gcc" class="headerlink" title="安装gcc"></a>安装gcc</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install gcc</div></pre></td></tr></table></figure>
-<h3 id="编译redis"><a href="#编译redis" class="headerlink" title="编译redis"></a>编译redis</h3><ul>
-<li><p>解压redis tar包到用户的目录，具体如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf redis-<span class="number">3.0</span>.0-rc2.tar.gz -C apps/</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装目录如下：<br><img src="http://opzxa0ul7.bkt.clouddn.com/1.jpg" alt="安装目录"></p>
-</li>
-<li><p>进入安装目录执行 <code>make</code> 命令进行编译，如果在编译结果的最后出现如下信息表示成功<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis编译结果图.jpg" alt="redis编译结果图"></p>
-</li>
-</ul>
-<h3 id="安装redis"><a href="#安装redis" class="headerlink" title="安装redis"></a>安装redis</h3><ul>
-<li>进入编译后的redis目录，这里是<code>/home/hadoop/apps/redis-3.0.0</code> 进入<code>src</code> 目录下，执行 <code>sudo make install</code> 命令进行安装。结果如下：<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis安装结果.jpg" alt="redis安装结果"></li>
-</ul>
-<h3 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h3><ul>
-<li><p>在redis安装目录创建 <code>bin</code> 和 <code>etc</code> 目录</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir bin</div><div class="line">mkdir etc</div></pre></td></tr></table></figure>
-</li>
-<li><p>将redis安装目录下的 <code>redis.conf</code> 文件复制到刚才创建的 <code>etc</code> 目录下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp redis.conf etc/</div></pre></td></tr></table></figure>
-</li>
-<li><p>将redis安装目录下的 <code>src</code> 目录下文件复制到刚才创建的<code>bin</code>目录下，总共6个文件</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cp mkreleasehdr.sh redis-benchmark redis-check-aof redis-check-dump redis-cli redis-server ../bin/</div></pre></td></tr></table></figure>
-</li>
-<li><p>编写一个启动<code>redis shell</code>，指定启命令和配置文件，如下：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-3.0.0/etc/redis.conf</div></pre></td></tr></table></figure>
-</li>
-<li><p>为shell文件添加执行权限</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x start-redis.sh</div></pre></td></tr></table></figure>
-</li>
-<li><p>执行该shell文件，出现下图表示执行成功</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./start-redis.sh</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p><img src="http://opzxa0ul7.bkt.clouddn.com/redis启动成功.jpg" alt="redis启动成功"></p>
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><ul>
-<li>进入 <code>etc</code> 目录下，修改 <code>redis.conf</code> 文件，具体如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">## 修改redis启动为后台启动</div><div class="line">daemonize yes</div><div class="line">## 修改dump文件目录</div><div class="line">dir /home/hadoop/apps/redis-3.0.0/etc</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="连接redis"><a href="#连接redis" class="headerlink" title="连接redis"></a>连接redis</h3><ul>
-<li><p>编写连接redis服务端的shell</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">/home/hadoop/apps/redis-3.0.0/bin/redis-cli</div></pre></td></tr></table></figure>
-</li>
-<li><p>添加执行权限</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x conn-redis.sh</div></pre></td></tr></table></figure>
-</li>
-<li><p>执行该shell，出现连接控制台，如下<br><img src="http://opzxa0ul7.bkt.clouddn.com/连接redis.jpg" alt="连接redis"></p>
-</li>
-</ul>
-<h3 id="停止redis"><a href="#停止redis" class="headerlink" title="停止redis"></a>停止redis</h3><ul>
-<li><p>编写停止redis服务shell</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#!/bin/bash</div><div class="line">/home/hadoop/apps/redis-3.0.0/bin/redis-cli shutdown</div></pre></td></tr></table></figure>
-</li>
-<li><p>添加执行权限</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod +x stop-redis.sh</div></pre></td></tr></table></figure></li>
-</ul>
-
+<li>图形数据库：图形结构的数据库同其他行列以及刚性结构的SQL数据库不同，它是灵活的图形模型，并且能够扩展到多个服务器上
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/05/20/redis介绍和安装/#more">Read More</a>
           
        </p>
     </div>
@@ -758,13 +374,14 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-17T00:14:05.719Z" itemprop="datePublished"> Published 2017-05-17</time>
+    <time datetime="2017-05-17T00:14:05.719Z" itemprop="datePublished"> 发表于 2017-05-17</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="zk分布式锁："><a href="#zk分布式锁：" class="headerlink" title="zk分布式锁："></a>zk分布式锁：</h2><p>详情参考：<a href="http://www.jiacheo.org/blog/620" target="_blank" rel="external">http://www.jiacheo.org/blog/620</a></p>
+        <a id="more"></a>
+<h2 id="zk分布式锁："><a href="#zk分布式锁：" class="headerlink" title="zk分布式锁："></a>zk分布式锁：</h2><p>详情参考：<a href="http://www.jiacheo.org/blog/620" target="_blank" rel="external">http://www.jiacheo.org/blog/620</a></p>
 <p>1.在单机模式下，没有引入zookeeper时，我们可以通过创建一个临时文件加锁，然后在事务处理完毕后，将临时文件删除就代表解锁。这种加锁和解锁模式可以移植到zookeeper上，通过创建一个路径，来证明该锁已经存在，然后删除路径来释放该锁。而同时zookeeper又能支持对节点的监控，这样一来，我们在多机的情况下就能同时且实时知道锁是存在还是已经解锁了。</p>
 <p>2.具体流程：</p>
 <ul>
@@ -982,25 +599,18 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-05-17T00:02:05.742Z" itemprop="datePublished"> Published 2017-05-17</time>
+    <time datetime="2017-05-17T00:02:05.742Z" itemprop="datePublished"> 发表于 2017-05-17</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="创建新文件"><a href="#创建新文件" class="headerlink" title="创建新文件"></a>创建新文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="本地执行服务，可以通过浏览器方法"><a href="#本地执行服务，可以通过浏览器方法" class="headerlink" title="本地执行服务，可以通过浏览器方法"></a>本地执行服务，可以通过浏览器方法</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="发布到远程库中，例如github"><a href="#发布到远程库中，例如github" class="headerlink" title="发布到远程库中，例如github"></a>发布到远程库中，例如github</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br>
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/05/17/hello-world/#more">Read More</a>
           
        </p>
     </div>
@@ -1033,10 +643,10 @@
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -1046,11 +656,11 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
 			
 		
 			
@@ -1058,11 +668,7 @@
 			
 		
 			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
 			
 		
 			
@@ -1070,11 +676,15 @@
 			
 		
 			
-				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
@@ -1090,11 +700,11 @@
 			
 		
 			
-				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
 			
 		
 			
@@ -1106,7 +716,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -1268,7 +878,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

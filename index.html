@@ -44,7 +44,7 @@
 				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -60,7 +60,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -85,18 +85,18 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-07-09T13:47:39.000Z" itemprop="datePublished"> Published 2017-07-09</time>
+    <time datetime="2017-07-09T13:47:39.000Z" itemprop="datePublished"> 发表于 2017-07-09</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="URL请求过程"><a href="#URL请求过程" class="headerlink" title="URL请求过程"></a>URL请求过程</h2><p>当用户在browser里面输入url时，将会发生很多操作，首先查找本地的host文件有没有对应的url配置，如果有则请求该ip，否则请求DNS服务器解析该域名获取对应的ip地址，然后根据该IP地址找到服务器，向这个服务器发送一个get请求，由这个服务器返回数据给用户。在服务器端还有很复杂的业务逻辑：服务器可能有多台，到底指定那台服务器来处理请求，这需要一个负载均衡设备来平均分配所有用户的请求；还有请求的数据是存储在分布式缓存还是静态文件中，或者在数据库里；当数据返回浏览器时，浏览器解析数据发现还有一些静态资源(如CSS、JS或者图片)时又会发起另外的http请求，而这些请求很可能会在CDN上，那么CDN服务器又会处理这个用户的请求。</p>
-<h2 id="DNS域名解析过程"><a href="#DNS域名解析过程" class="headerlink" title="DNS域名解析过程"></a>DNS域名解析过程</h2><p>第一步，浏览器会检查缓存中有没有这个域名对应的解析过的IP地址，如果有，这个解析过程就结束。<br>第二步，如果用户的浏览器缓存中没有，浏览器会查找操作系统中是否有这个域名对应的DNS解析结果。在Windows中可以通过<code>C:\Windows\System32\drivers\etc\hosts</code>文件来设置，Linux在<code>/etc/hosts</code>文件中配置。<br>前面这两个步骤都是在本机完成，如果本机无法完成域名的解析，就会真正请求域名服务器来解析这个域名。<br>第三步，通过查找网络配置的DNS服务器，解析域名对应的IP，这里的DNS服务器称为LDNS。<br>第四步，如果LDNS没有命中，就直接到Root Server域名服务器请求解析。</p>
-
+        <h2 id="URL请求过程"><a href="#URL请求过程" class="headerlink" title="URL请求过程"></a>URL请求过程</h2><p>当用户在browser里面输入url时，将会发生很多操作，首先查找本地的host文件有没有对应的url配置，如果有则请求该ip，否则请求DNS服务器解析该域名获取对应的ip地址，然后根据该IP地址找到服务器，向这个服务器发送一个get请求，由这个服务器返回数据给用户。
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/07/09/深入Web请求过程/#more">Read More</a>
           
        </p>
     </div>
@@ -141,7 +141,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-19T23:36:11.000Z" itemprop="datePublished"> Published 2017-06-20</time>
+    <time datetime="2017-06-19T23:36:11.000Z" itemprop="datePublished"> 发表于 2017-06-20</time>
     
   </p>
 </header>
@@ -197,27 +197,18 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-13T13:54:34.000Z" itemprop="datePublished"> Published 2017-06-13</time>
+    <time datetime="2017-06-13T13:54:34.000Z" itemprop="datePublished"> 发表于 2017-06-13</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="Java架构师之实战篇视频"><a href="#Java架构师之实战篇视频" class="headerlink" title="Java架构师之实战篇视频"></a>Java架构师之实战篇视频</h2><p>学习完该视频后，可以达到3年左右的Java开发工程师的技能点。该视频不仅提供了视频还提供了视频中讲解的文档和代码，更加适合复习和回顾，整套视频分为下面几个部分，也可以连接本人解惑，联系方式见文末<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇1.jpg" alt="Java架构师之实战篇-初级篇1"></p>
-<h3 id="初级篇详解"><a href="#初级篇详解" class="headerlink" title="初级篇详解"></a>初级篇详解</h3><p>初级篇包含Java基础到高级知识点学习，并提供了基本的一些应用。这些只是都为后面的框架部分打好了结实的基础。<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇2.jpg" alt="Java架构师之实战篇-初级篇2"></p>
-<h3 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h3><p>进阶篇包含更多企业级应用的东西，里面很多技术可能需要在不同的企业才能接触到。建议先学习Java web相关技术后，再学习其他框架SpringMVc、Spring、Mybatis，Git和SVN工具可以学习一个，其他的没有时间可以只需了解一下。最后需要对其中的一个项目非常的了解!<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-进阶篇1.jpg" alt="Java架构师之实战篇-进阶篇1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-进阶篇2.jpg" alt="Java架构师之实战篇-进阶篇2"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java%E6%9E%B6%E6%9E%84%E5%B8%88%E4%B9%8B%E5%AE%9E%E6%88%98%E7%AF%87-%E8%BF%9B%E9%98%B6%E7%AF%873.jpg" alt="Java架构师之实战篇-进阶篇3"></p>
-<h3 id="高级篇"><a href="#高级篇" class="headerlink" title="高级篇"></a>高级篇</h3><p>在这里主要介绍的是一样原来性的东西，这个才是真正考验对一个技术的理解程度的关键。还涉及一些比较前沿的技术，这个学习的话，主要看个人情况。<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇1.jpg" alt="Java架构师之实战篇-高级篇1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇2.jpg" alt="Java架构师之实战篇-高级篇2"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇3.jpg" alt="Java架构师之实战篇-高级篇3"></p>
-<h3 id="架构篇"><a href="#架构篇" class="headerlink" title="架构篇"></a>架构篇</h3><p>该篇的话，主要涉及以个应用的一个架构设计，什么时候用什么技术，碰到问题使用什么解决方案；还有各种示例网站的架构讲解，该视频需要慢慢消化<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇1.jpg" alt="Java架构师之实战篇-架构篇1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇2.jpg" alt="Java架构师之实战篇-架构篇2"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇3.jpg" alt="Java架构师之实战篇-架构篇3"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇4.jpg" alt="Java架构师之实战篇-架构篇4"></p>
-<h2 id="获取方式"><a href="#获取方式" class="headerlink" title="获取方式"></a>获取方式</h2><p>如果想获取该视频，可以扫描下面二维码付款，只需<code>￥3</code>即可，如果不明白可以加入该群<code>524105269</code> 咨询群主即可，加入群可以免费获取学习视频；如果学习碰到问题可以在群里交流或者和群主沟通，谢谢！！！！</p>
-<ul>
-<li>微信支付<img src="http://opzxa0ul7.bkt.clouddn.com/微信支付.jpg" alt="微信支付"></li>
-<li>支付宝支付 <img src="http://opzxa0ul7.bkt.clouddn.com/支付宝支付.jpg" alt="支付宝支付"></li>
-<li>群二维码，<img src="http://opzxa0ul7.bkt.clouddn.com/Java相关技术交流群群二维码.png" alt="Java相关技术交流群群二维码"></li>
-</ul>
-
+        <h2 id="Java架构师之实战篇视频"><a href="#Java架构师之实战篇视频" class="headerlink" title="Java架构师之实战篇视频"></a>Java架构师之实战篇视频</h2><p>学习完该视频后，可以达到3年左右的Java开发工程师的技能点。该视频不仅提供了视频还提供了视频中讲解的文档和代码，更加适合复习和回顾，整套视频分为下面几个部分，也可以连接本人解惑，联系方式见文末<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇1.jpg" alt="Java架构师之实战篇-初级篇1"><br>
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/06/13/Java架构师之实战篇/#more">Read More</a>
           
        </p>
     </div>
@@ -262,7 +253,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-11T13:23:38.000Z" itemprop="datePublished"> Published 2017-06-11</time>
+    <time datetime="2017-06-11T13:23:38.000Z" itemprop="datePublished"> 发表于 2017-06-11</time>
     
   </p>
 </header>
@@ -315,53 +306,18 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-11T01:13:31.000Z" itemprop="datePublished"> Published 2017-06-11</time>
+    <time datetime="2017-06-11T01:13:31.000Z" itemprop="datePublished"> 发表于 2017-06-11</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h2><p>Java消息服务(JMS)定义了Java中访问消息中间件的接口。JMS只是接口，并没有给予实现，实现JMS接口的消息中间件称为JMS Provide，已有的MOM系统包括Apache的ActiveMQ、以及阿里巴巴的RocketMQ等</p>
-<h3 id="JMS术语"><a href="#JMS术语" class="headerlink" title="JMS术语"></a>JMS术语</h3><ul>
-<li>Provider (Message Provider)：生产者<br>由会话创建的对象，用于发送和接受到目标的消息。消费者可以同步的或异步的接受队列和主题类型的消息</li>
-<li>Consumer (Message Consumer)：消费者<br>由会话创建的对象，用于发送消息到目标。</li>
-<li>PTP：Point to Point：即点对点的消息模型</li>
-<li>Pub/Sub：Publish/Subscribe：即发布/订阅消息模型</li>
-<li>Queue：队列目标</li>
-<li>Topic：主题目标</li>
-<li>ConnectionFactory：连接工厂，JMS用它创建连接<br>连接工厂用来创建到JMS提供者的连接的被监管对象。JMS客户通过可移植的接口访问连接，这样当下层的实现代码改变时，代码不需要进行修改。</li>
-<li>Connection：JMS客户端到JMS Provider的连接<br>连接代表了应用程序和消息服务器直接的通信链路。</li>
-<li>Destination：消息的目的地<br>目标是一个包装了消息目标标识符的被管对象，消息目标是指消息发布和接收的地点，或者是队列，或者是主题。</li>
-<li>Session：会话，一个发送或者接受消息的线程</li>
-<li>Message接口：消息<br>实在消费者和生产者之间传递的对象。一个消息由三个部分组成：消息头(必须)：包含识别和为消息寻找路由的操作设置；一组消息属性(可选)：包含额外的属性，支持其他提供者和用户的兼容；一个消息体(可选)：允许用户创建五种类型的消息(文本消息、映射消息、字节消息、流消息和对象消息)</li>
-</ul>
-<h3 id="Message接口的消息体"><a href="#Message接口的消息体" class="headerlink" title="Message接口的消息体"></a>Message接口的消息体</h3><ul>
-<li>StreamMessage Java原始值的数据流</li>
-<li>MapMessage 名称和键值对</li>
-<li>TextMessage 一个字符串对象</li>
-<li>ObjectMessage 一个序列化的Java对象</li>
-<li>ByteMessage 字节的数据流</li>
-</ul>
-<h3 id="ActiveMQ介绍"><a href="#ActiveMQ介绍" class="headerlink" title="ActiveMQ介绍"></a>ActiveMQ介绍</h3><p>Active是Apache旗下的一个开源的MOM框架，是一个完全基于JMS1.1和JMS1.4规范的JMS Provider实现。ActiveMQ在业界应用最广泛，可以满足80%的需求。</p>
-<ul>
-<li>ActiveMQ下载<br><a href="http://activemq.apache.org/download.html" target="_blank" rel="external">ActiveMQ下载地址</a>，我们这里使用的是<code>5.11.1</code> 版本。</li>
-<li>ActiveMQ目录结构<br><img src="http://opzxa0ul7.bkt.clouddn.com/activeMQ目录结构.jpg" alt="activeMQ目录结构"><br>在<code>conf</code> 目录下的 <code>activemq.xml</code> 文件是ActiveMQ的核心配置文件，其他的目录和其他的项目类似。</li>
-<li>启动ActiveMQ<br>在<code>bin</code> 目录下有<code>win32</code> 和 <code>win64</code> 两个目录，不同的操作系统执行不同启动脚本。启动时如果出现端口被占用的情况可以关掉<code>Windows Firewall/Internet Connection Sharing</code> 服务。</li>
-<li>进入ActiveMQ的web管理页面<br>在本地可以访问<code>http://localhost:8161/</code> 地址，点击 <code>Manage ActiveMQ broker</code> 连接。输入账号和密码，默认都是<code>admin</code> ，也可以在ActiveMQ的安装目录下的<code>conf</code> 目录下的<code>users.properties</code> 文件进行修改，登录成功后，进入首页,表示成功<br><img src="http://opzxa0ul7.bkt.clouddn.com/activeMQweb页面.jpg" alt="activeMQweb页面"></li>
-</ul>
-<h3 id="ActiveMQ的HelloWorld示例"><a href="#ActiveMQ的HelloWorld示例" class="headerlink" title="ActiveMQ的HelloWorld示例"></a>ActiveMQ的HelloWorld示例</h3><p>这里使用Java代码创建消息生产者和消息消费者<br>消息生产者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> javax.jms.Connection;</div><div class="line"><span class="keyword">import</span> javax.jms.ConnectionFactory;</div><div class="line"><span class="keyword">import</span> javax.jms.DeliveryMode;</div><div class="line"><span class="keyword">import</span> javax.jms.Destination;</div><div class="line"><span class="keyword">import</span> javax.jms.MessageProducer;</div><div class="line"><span class="keyword">import</span> javax.jms.Session;</div><div class="line"><span class="keyword">import</span> javax.jms.TextMessage;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 消息生产者</div><div class="line"> * <span class="doctag">@author</span></div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sender</span> </span>&#123;</div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">		<span class="comment">// 第一步：建立ConnectionFactory工厂对象</span></div><div class="line">		ConnectionFactory connectionFactory = <span class="keyword">new</span> ActiveMQConnectionFactory(ActiveMQConnectionFactory.DEFAULT_USER,</div><div class="line">				ActiveMQConnectionFactory.DEFAULT_PASSWORD, <span class="string">"tcp://0.0.0.0:61616"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 第二步：通过ConnectionFactory创建一个Connection连接,启动connection</span></div><div class="line">		Connection connection = connectionFactory.createConnection();</div><div class="line">		connection.start();</div><div class="line"></div><div class="line">		<span class="comment">// 第三步，通过connection创建session，用于接收消息;并设置是否，签收模式</span></div><div class="line">		Session session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);</div><div class="line"></div><div class="line">		<span class="comment">// 第四步：通过session创建Destination对象，该对象指的是一个客户端用来指定生产消费目标和消费消息来源的对象，</span></div><div class="line">		<span class="comment">// 在PTP模式中，Destination被称为queue，在发布订阅模式中被称为topic;并制定destination的名称</span></div><div class="line">		Destination destination = session.createQueue(<span class="string">"hellloQueue"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 第五步：通过session对象创建消息的发送和接受对象(生成者和接受者)</span></div><div class="line">		MessageProducer product = session.createProducer(destination);</div><div class="line"></div><div class="line">		<span class="comment">// 第六步：设置消息持久化的方式</span></div><div class="line">		product.setDeliveryMode(DeliveryMode.NON_PERSISTENT);<span class="comment">// 设置非持久化</span></div><div class="line"></div><div class="line">		<span class="comment">// 第七步：通过session创建消息,并使用product发送出去</span></div><div class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;=<span class="number">5</span>; i++) &#123;</div><div class="line">			TextMessage message = session.createTextMessage();</div><div class="line">			message.setText(<span class="string">"Hello World "</span>+i);</div><div class="line">			product.send(message);</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(connection!=<span class="keyword">null</span>)&#123;</div><div class="line">			connection.close();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>我们上面的代码使用的是PTP模式，所以发送的目的是queue。执行上面代码，点击queue菜单,向queue添加6条消息，另外6条是原来测试的，这里会展现历史记录<br><img src="http://opzxa0ul7.bkt.clouddn.com/activeMQ-向队列中添加元素.jpg" alt="activeMQ-向队列中添加元素"><br>点击队列名称查看队列消息的详细信息<br><img src="http://opzxa0ul7.bkt.clouddn.com/activeMQ-向队列详细信息.jpg" alt="activeMQ-向队列详细信息"></p>
-<p>消息消费者</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> javax.jms.Connection;</div><div class="line"><span class="keyword">import</span> javax.jms.ConnectionFactory;</div><div class="line"><span class="keyword">import</span> javax.jms.Destination;</div><div class="line"><span class="keyword">import</span> javax.jms.MessageConsumer;</div><div class="line"><span class="keyword">import</span> javax.jms.Session;</div><div class="line"><span class="keyword">import</span> javax.jms.TextMessage;</div><div class="line"></div><div class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 消费者消费者</div><div class="line"> * <span class="doctag">@author</span></div><div class="line"> *</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Receiver</span> </span>&#123;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line"></div><div class="line">		<span class="comment">// 第一步：建立ConnectionFactory工厂对象</span></div><div class="line">		ConnectionFactory connectionFactory = <span class="keyword">new</span> ActiveMQConnectionFactory(ActiveMQConnectionFactory.DEFAULT_USER,</div><div class="line">				ActiveMQConnectionFactory.DEFAULT_PASSWORD, <span class="string">"tcp://0.0.0.0:61616"</span>);</div><div class="line"></div><div class="line">		<span class="comment">// 第二步：通过ConnectionFactory创建一个Connection连接,启动connection</span></div><div class="line">		Connection connection = connectionFactory.createConnection();</div><div class="line">		connection.start();</div><div class="line"></div><div class="line">		<span class="comment">// 第三步，通过connection创建session，用于接收消息;并设置是否，签收模式</span></div><div class="line">		Session session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);</div><div class="line">		</div><div class="line">		<span class="comment">// 第四步：通过session创建Destination对象，该对象指的是一个客户端用来指定生产消费目标和消费消息来源的对象，</span></div><div class="line">		<span class="comment">// 在PTP模式中，Destination被称为queue，在发布订阅模式中被称为topic;并制定destination的名称</span></div><div class="line">		Destination destination = session.createQueue(<span class="string">"hellloQueue"</span>);</div><div class="line">        </div><div class="line">		<span class="comment">// 第五步：通过connection创建consumer</span></div><div class="line">		MessageConsumer consumer = session.createConsumer(destination);</div><div class="line"></div><div class="line">		<span class="keyword">while</span>(Boolean.TRUE)&#123;</div><div class="line">			TextMessage message = (TextMessage)consumer.receive();</div><div class="line">			<span class="keyword">if</span>(message==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">			System.out.println(<span class="string">"收到的内如："</span>+message.getText());</div><div class="line">		&#125;</div><div class="line">		<span class="keyword">if</span>(connection!=<span class="keyword">null</span>)&#123;</div><div class="line">			connection.close();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>执行消费者后，消费者可以接受到信息并打印<br><img src="http://opzxa0ul7.bkt.clouddn.com/activeMQ消费者接受到消息并打印.jpg" alt="activeMQ消费者接受到消息并打印"><br>ActiveMQweb控制台，显示6条消息已经被消费<br><img src="http://opzxa0ul7.bkt.clouddn.com/activeMQ-向队列中消费元素.jpg" alt="activeMQ-向队列中消费元素"></p>
-<h3 id="ActiveMQ-Subscribers模式hello-world"><a href="#ActiveMQ-Subscribers模式hello-world" class="headerlink" title="ActiveMQ Subscribers模式hello world"></a>ActiveMQ Subscribers模式hello world</h3><p>发布者订阅者模式其实和PTP模式代码差不多，只是需要修改部分代码，但是消息可以重复消费</p>
-<p>消息发布者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</div><div class="line"></div><div class="line"><span class="keyword">import</span> javax.jms.*;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by YQ on 2017/6/15.</div><div class="line"> * 消息发布者</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Publishers</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        ConnectionFactory connectionFactory = <span class="keyword">new</span> ActiveMQConnectionFactory(ActiveMQConnectionFactory.DEFAULT_USER,</div><div class="line">                ActiveMQConnectionFactory.DEFAULT_PASSWORD, <span class="string">"tcp://0.0.0.0:61616"</span>);</div><div class="line"></div><div class="line">        Connection connection = connectionFactory.createConnection();</div><div class="line">        connection.start();</div><div class="line">        Session session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);</div><div class="line">        Destination helloTopic = session.createTopic(<span class="string">"helloTopic"</span>);</div><div class="line">        MessageProducer producer = session.createProducer(helloTopic);</div><div class="line">        producer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);</div><div class="line"></div><div class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</div><div class="line">            TextMessage message = session.createTextMessage();</div><div class="line">            message.setText(<span class="string">"Hello World Publish "</span> + i);</div><div class="line">            producer.send(message);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</div><div class="line">            connection.close();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>消息订阅者，可以有多个消息订阅者<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by YQ on 2017/6/15.</div><div class="line"> * 消息订阅者</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Subscriber</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</div><div class="line">        ConnectionFactory connectionFactory = <span class="keyword">new</span> ActiveMQConnectionFactory(ActiveMQConnectionFactory.DEFAULT_USER,</div><div class="line">                ActiveMQConnectionFactory.DEFAULT_PASSWORD, <span class="string">"tcp://0.0.0.0:61616"</span>);</div><div class="line">        Connection connection = connectionFactory.createConnection();</div><div class="line">        connection.start();</div><div class="line">        Session session = connection.createSession(Boolean.FALSE, Session.AUTO_ACKNOWLEDGE);</div><div class="line"></div><div class="line">        <span class="comment">// 在PTP模式中，Destination被称为queue，在发布订阅模式中被称为topic;并制定destination的名称</span></div><div class="line">        Destination helloTopic = session.createTopic(<span class="string">"helloTopic"</span>);</div><div class="line"></div><div class="line">        MessageConsumer consumer = session.createConsumer(helloTopic);</div><div class="line">        <span class="keyword">while</span>(Boolean.TRUE)&#123;</div><div class="line">            TextMessage message = (TextMessage)consumer.receive();</div><div class="line">            <span class="keyword">if</span>(message==<span class="keyword">null</span>) <span class="keyword">break</span>;</div><div class="line">            System.out.println(<span class="string">"收到的内如："</span>+message.getText());</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(connection!=<span class="keyword">null</span>)&#123;</div><div class="line">            connection.close();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>执行顺序，需要先执行订阅者，也就是要先订阅才能接受到数据；执行订阅者类，可以在ActiveMQ控制台看到该主题有一个订阅者，如下<br><img src="http://opzxa0ul7.bkt.clouddn.com/ActiveMQ%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F-%E8%AE%A2%E9%98%85%E8%80%85.jpg" alt="ActiveMQ发布订阅模式-订阅者"></p>
-
+        <h2 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h2><p>Java消息服务(JMS)定义了Java中访问消息中间件的接口。JMS只是接口，并没有给予实现，实现JMS接口的消息中间件称为JMS Provide，已有的MOM系统包括Apache的ActiveMQ、以及阿里巴巴的RocketMQ等<br>
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/06/11/ActiveMQ入门/#more">Read More</a>
           
        </p>
     </div>
@@ -406,40 +362,18 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-07T14:10:14.000Z" itemprop="datePublished"> Published 2017-06-07</time>
+    <time datetime="2017-06-07T14:10:14.000Z" itemprop="datePublished"> 发表于 2017-06-07</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="Redis集群删除节点"><a href="#Redis集群删除节点" class="headerlink" title="Redis集群删除节点"></a>Redis集群删除节点</h2><p>从Redis集群中移除节点的步骤是，先移除从节点，再移除主节点；在移除主节点的时候需要将移除主节点的槽move到其他的主节点上，不然数据就会丢失。</p>
-<h3 id="移除从节点"><a href="#移除从节点" class="headerlink" title="移除从节点"></a>移除从节点</h3><p>我们这里移动7008这个从节点</p>
-<ul>
-<li>还是使用 <code>redis-trib.rb</code> 脚本；使用 <code>del-node</code> 命令，指定删除节点的ip和端口，以及节点的id<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除从节点1.jpg" alt="redis集群移除从节点1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除从节点2.jpg" alt="redis集群移除从节点2"></li>
-<li>这样7008从节点就已经被移除</li>
-</ul>
-<h3 id="移除主节点"><a href="#移除主节点" class="headerlink" title="移除主节点"></a>移除主节点</h3><p>这里移除的是7007主节点，通过上面的截图我们也看到在7007节点上存储了一个key，我们要保证移除后这个key还存在集群中；移除主节点稍微有点麻烦。</p>
-<ul>
-<li>还是使用 <code>redis-trib.rb</code> 脚本的 <code>reshard</code> 命令，将节点重新分片；执行后让你输入需要移动多少个槽，这里我们输入1000<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点1.jpg" alt="redis集群移除主节点1"></li>
-<li>输入完后，需要指定接受槽的节点id，我们这里将这个1000个槽分给7002</li>
-<li>下面需要选择分配模式，有<code>all</code> 和 <code>done</code> 两种，和添加节点一样，我们这里使用<code>done</code>，因为使用<code>all</code> 在这里也没有效果，不可以将这1000个节点平均分给其他节点，只能分给一个节点。这里还需要指定移动槽的源节点id。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点2.jpg" alt="redis集群移除主节点2"></li>
-<li>后面就是要你判断这个执行计划是不是你想要的，输入<code>yes</code> 即可移除主节点的槽完成<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点3.jpg" alt="redis集群移除主节点3"></li>
-</ul>
-<h3 id="移除节点后对数据的验证"><a href="#移除节点后对数据的验证" class="headerlink" title="移除节点后对数据的验证"></a>移除节点后对数据的验证</h3><p>将节点移除后，移除节点的数据不能丢失，这里是将7007节点的数据移动到7002上。</p>
-<ul>
-<li>先查看7007节点上数据不是已经移除，并且获取原来7007上的key，是否会跳转到7002获取。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除验证数据是否丢失.jpg" alt="redis集群移除验证数据是否丢失"></li>
-<li>查看集群节点信息，7007节点还存在集群中<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除查看集群信息.jpg" alt="redis集群移除查看集群信息"></li>
-</ul>
-<h3 id="删除主节点"><a href="#删除主节点" class="headerlink" title="删除主节点"></a>删除主节点</h3><p>这是最后一步，将该主节点从集群中删除</p>
-<ul>
-<li>还是使用 <code>redis-trib.rb</code> 脚本的 <code>del-node</code> 命令<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除主节点4.jpg" alt="redis集群移除主节点4"></li>
-<li>再次查看集群信息，集群将7007节点移除，并停止了7007进程<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除后查看集群信息.jpg" alt="redis集群移除后查看集群信息"><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群移除后7007节点进程被shutdown.jpg" alt="redis集群移除后7007节点进程被shutdown"></li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在集群中删除节点的时候，需要注意主节点槽的转移。在3.0版本的redis中，槽的转移还不支持平均分配，只能分配到一个节点上。</p>
-
+        <h2 id="Redis集群删除节点"><a href="#Redis集群删除节点" class="headerlink" title="Redis集群删除节点"></a>Redis集群删除节点</h2><p>从Redis集群中移除节点的步骤是，先移除从节点，再移除主节点；在移除主节点的时候需要将移除主节点的槽move到其他的主节点上，不然数据就会丢失。<br>
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/06/07/redis集群删除节点/#more">Read More</a>
           
        </p>
     </div>
@@ -484,53 +418,18 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-06T00:13:22.000Z" itemprop="datePublished"> Published 2017-06-06</time>
+    <time datetime="2017-06-06T00:13:22.000Z" itemprop="datePublished"> 发表于 2017-06-06</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="Redis集群操作"><a href="#Redis集群操作" class="headerlink" title="Redis集群操作"></a>Redis集群操作</h2><p>在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。</p>
-<h3 id="启动集群"><a href="#启动集群" class="headerlink" title="启动集群"></a>启动集群</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7001</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7002</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7003</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7004</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7005</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7006</span>/redis.conf</div></pre></td></tr></table></figure>
-<h3 id="查看是否全部启动成功"><a href="#查看是否全部启动成功" class="headerlink" title="查看是否全部启动成功"></a>查看是否全部启动成功</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hadoop     8180      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7001 [cluster]                   </div><div class="line">hadoop     8184      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7002 [cluster]                   </div><div class="line">hadoop     8190      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7003 [cluster]                   </div><div class="line">hadoop     8194      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7004 [cluster]                   </div><div class="line">hadoop     8198      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7005 [cluster]                   </div><div class="line">hadoop     8202      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7006 [cluster]</div></pre></td></tr></table></figure>
-<h3 id="查看集群状态"><a href="#查看集群状态" class="headerlink" title="查看集群状态"></a>查看集群状态</h3><p><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群操作查看集群状态.jpg" alt="redis集群操作查看集群状态"></p>
-<h2 id="新建集群操作"><a href="#新建集群操作" class="headerlink" title="新建集群操作"></a>新建集群操作</h2><p>我们新建两个服务器，还是按照之前新建的方式，通过伪分布式来创建，使用文件夹代表节点。两个服务器一主一从。Master端口7007，Slave端口：7008</p>
-<h3 id="创建目录并修改配置文件"><a href="#创建目录并修改配置文件" class="headerlink" title="创建目录并修改配置文件"></a>创建目录并修改配置文件</h3><ul>
-<li>创建7007和7008两个目录，并将redis.conf文件拷贝到刚创建的7007和7008目录。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群新建目录和拷贝配置文件.jpg" alt="redis集群新建目录和拷贝配置文件"></li>
-<li>修改7007和7008目录下的配置文件，修改<code>port 7007</code> <code>dir dir /home/hadoop/apps/redis-cluster/7007/</code> <code>cluster-config-file nodes-7007.conf</code> 这三处，7008目录下的也是同理。</li>
-</ul>
-<h3 id="启动7007和7008这两台服务器"><a href="#启动7007和7008这两台服务器" class="headerlink" title="启动7007和7008这两台服务器"></a>启动7007和7008这两台服务器</h3><ul>
-<li>正常启动7007和7008节点，并验证是否启动成功。<img src="http://opzxa0ul7.bkt.clouddn.com/redis集群启动7007和7008节点和验证.jpg" alt="http://opzxa0ul7.bkt.clouddn.com/redis集群启动7007和7008节点和验证.jpg"></li>
-<li>虽然启动成功，但是7007和7008节点并没有加入到集群中。<img src="http://opzxa0ul7.bkt.clouddn.com/redis集群验证7007和7008节点没有加入到集群.jpg" alt="redis集群验证7007和7008节点没有加入到集群."></li>
-</ul>
-<h3 id="通过redis-trib添加节点"><a href="#通过redis-trib添加节点" class="headerlink" title="通过redis-trib添加节点"></a>通过redis-trib添加节点</h3><p>进入<code>/home/hadoop/apps/redis-3.0.0/src</code> 目录执行 <code>./redis-trib.rb</code> 脚本</p>
-<ul>
-<li>create，创建一个集群host1:port1…hostN:portN (集群中的主从节点比例)</li>
-<li>call，可以执行redis命令</li>
-<li>add-node，将一个节点添加到集群里，第一个参数为新节点的ip:port，第二个参数为集群中任意一个已存节点的ip:port</li>
-<li>del-node，移除一个节点</li>
-<li>reshard，重新分片</li>
-<li>check，检查集群状态</li>
-<li>新增一个主节点7007(master)<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群新增节点.jpg" alt="redis集群新增节点"></li>
-<li>这个是连接到集群，查看集群节点信息<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群新增节点后查看节点信息.jpg" alt="redis集群新增节点后查看节点信息"><br>通过集群节点信息查看，新增的7007节点没有槽，下面为7007节点添加槽</li>
-</ul>
-<h3 id="为7007节点分别slot槽"><a href="#为7007节点分别slot槽" class="headerlink" title="为7007节点分别slot槽"></a>为7007节点分别slot槽</h3><p>使用<code>redis-trib</code> 命令，找到集群中的任意一个主节点，对其进行重新分片工作。</p>
-<ul>
-<li>执行 <code>./redis-trib.rb reshard 192.168.137.5:7001</code> 命令进行重新分片，下面图片显示为节点分配多少个槽，这里分配的是1000<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片1.jpg" alt="redis集群进行重新分片1"></li>
-<li>输入分配槽后，再次需要确认为那个节点分配槽，这是是7007节点<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片2.jpg" alt="redis集群进行重新分片2."></li>
-<li>输入7007节点id后，还需选择上面提供的1000个槽，怎么分配过去。<code>Type all</code> 表示除了新增节点外，其他平均分配这1000个节点，也就是7001、7002、7003这三个节点分别提供333个节点。如果是<code>Type done</code> 表示指定某个节点id，全部从这个节点获取1000个节点；这里选择<code>all</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群进行重新分片3.jpg" alt="redis集群进行重新分片3"></li>
-<li>然后还需要你确认执行计划，输入<code>yes</code> 即可</li>
-<li>验证7007节点是否有槽，连接集群任意节点，输入<code>cluster nodes</code> 命令查看<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群验证7007节点槽.jpg" alt="redis集群验证7007节点槽"></li>
-</ul>
-<h3 id="添加从节点7008到集群中"><a href="#添加从节点7008到集群中" class="headerlink" title="添加从节点7008到集群中"></a>添加从节点7008到集群中</h3><ul>
-<li>使用<code>./redis-trib.rb</code> 脚本的的 <code>add-node</code> 命令，将7008添加到集群中;<code>./redis-trib.rb add-node 192.168.137.5:7008 192.168.137.5:7002</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群添加7008节点.jpg" alt="redis集群添加7008节点"></li>
-<li>然后使用<code>replicate</code>命令指定当前节点(从节点)的主节点id是那个，首先要登录7008节点的客户端，然后使用集群命令操作，把当前的7008节点指定到主节点7007下。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群设置7008节点为7007的从节点.jpg" alt="redis集群设置7008节点为7007的从节点"></li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>至此redis水平扩展的步骤执行完毕，在进行水平扩展时对redis的其他服务器没有任何影响</p>
-
+        <h2 id="Redis集群操作"><a href="#Redis集群操作" class="headerlink" title="Redis集群操作"></a>Redis集群操作</h2><p>在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。<br>
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/06/06/redis向集群添加节点/#more">Read More</a>
           
        </p>
     </div>
@@ -575,53 +474,18 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-04T00:25:12.000Z" itemprop="datePublished"> Published 2017-06-04</time>
+    <time datetime="2017-06-04T00:25:12.000Z" itemprop="datePublished"> 发表于 2017-06-04</time>
     
   </p>
 </header>
     <div class="article-content">
         
-        <h2 id="Redis集群搭建"><a href="#Redis集群搭建" class="headerlink" title="Redis集群搭建"></a>Redis集群搭建</h2><p>Redis集群搭建至少需要三个master，三个salver。在这里我们使用单机版的集群，配置方式和实际的集群一致。我们通过使用不同的配置文件，将redis启动到不同的端口，实现一个台服务器上启动多个redis实例。</p>
-<h3 id="集群搭建第一步"><a href="#集群搭建第一步" class="headerlink" title="集群搭建第一步"></a>集群搭建第一步</h3><p>创建一个文件夹redis-cluster，然后在其下面创建6个子文件夹：</p>
-<ul>
-<li>在hadoop用户的加目录下的<code>apps</code> 目录下创建 <code>redis-cluster</code> 目录。</li>
-<li>创建6个子文件夹<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis单机版集群目录结构.jpg" alt="redis单机版集群目录结构"></li>
-</ul>
-<h3 id="集群搭建第二步"><a href="#集群搭建第二步" class="headerlink" title="集群搭建第二步"></a>集群搭建第二步</h3><p>将<code>redis.conf</code>配置文件分别复制到上面创建的<code>redis-cluster</code> 目录下的6个目录下，并修改复制后的<code>redis.conf</code> 文件的一些配置。</p>
-<ul>
-<li><p>复制文件<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis单机版集群复制redis配置文件.jpg" alt="redis单机版集群复制redis配置文件"></p>
-</li>
-<li><p>修改<code>redis.conf</code> 配置<br><code>daemonize yes</code> ## 修改为后台启动<br><code>port 700*</code> ## 修改启动端口，为具体目录名，这里就是7001<br><code>bind 192.168.137.5</code> ## 绑定本机ip<br><code>dir /home/hadoop/apps/redis-cluster/700*/</code> ## 指定数据存放目录，不同的文件夹存放到不同的目录，这里存放到<code>dir /home/hadoop/apps/redis-cluster/7001/</code><br><code>cluster-enabled yes</code> ## 启动集群<br><code>cluster-config-file nodes-700*.conf</code> ##集群配置，和目录对应，这里是<code>cluster-config-file nodes-7001.conf</code><br><code>cluster-node-timeout 15000</code> ##集群节点超时时间，单位毫秒<br><code>appendonly yes</code> ##打开AOF模式</p>
-</li>
-<li>配置完成后，将7001目录下的配置文件，拷贝到其他700*目录下<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis单机版集群redis配置文件目录结构.jpg" alt="redis单机版集群redis配置文件目录结构"></li>
-<li>在将其他redis配置文件中的7001，改成自己对应目录的名称。也就是将7002目录下的redis配置问中，上面修改配置的包含7001的地方改为7002。总共三个地方需要修改</li>
-</ul>
-<h3 id="集群搭建第三步，安装Ruby"><a href="#集群搭建第三步，安装Ruby" class="headerlink" title="集群搭建第三步，安装Ruby"></a>集群搭建第三步，安装Ruby</h3><p>由于redis集群需要使用ruby命令，所以需要安装ruby。</p>
-<ul>
-<li>安装ruby命令：<code>$ sudo yum install ruby</code></li>
-<li>安装rubygems: <code>sudo yum install rubygems</code></li>
-<li>安装redis和ruby的接口：<code>sudo gem install redis</code></li>
-</ul>
-<h3 id="集群搭建第四步，分别启动6个redis实例"><a href="#集群搭建第四步，分别启动6个redis实例" class="headerlink" title="集群搭建第四步，分别启动6个redis实例"></a>集群搭建第四步，分别启动6个redis实例</h3><p>将6个redis实例都启动，并检查是否启动成功</p>
-<ul>
-<li><code>/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-cluster/700*/redis.conf</code> 例如启动7001实例，<code>/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-cluster/7001/redis.conf</code></li>
-<li>通过<code>ps -ef | grep redis</code> 命令查看是否启动成功<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis单机版集群6个实例启动成功.jpg" alt="redis单机版集群6个实例启动成功"></li>
-</ul>
-<h3 id="集群搭建第六步，为redis实例配置集群中的角色"><a href="#集群搭建第六步，为redis实例配置集群中的角色" class="headerlink" title="集群搭建第六步，为redis实例配置集群中的角色"></a>集群搭建第六步，为redis实例配置集群中的角色</h3><p>通过ruby脚本，为前面启动的6个redis实例分配不同的角色。</p>
-<ul>
-<li>进入redis的安装目录，执行ruby命令。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis单机版集群执行ruby命令.jpg" alt="redis单机版集群执行ruby命令"></li>
-<li>使用ruby命令为redis实例分配角色<br><code>./redis-trib.rb create --replicas 1 192.168.137.5:7001 192.168.137.5:7002 192.168.137.5:7003 192.168.137.5:7004 68.137.5:7001 192.168.137.5:7002 192.168.137.5:7003 192.168.137.5:7004 192.168.137.5:7005 192.168.137.5:7006</code> ## redis-trib.rb create –replicas 创建集群的命令，后面的<code>1</code> 表示master和slaver的比例，这里设置为1表示一个master和1个slaver；在后面的三个ip和端口的实例表示是master，其他的是slaver。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis单机版集群集群创建成功.jpg" alt="redis单机版集群集群创建成功"></li>
-</ul>
-<h3 id="集群搭建最后一步，验证"><a href="#集群搭建最后一步，验证" class="headerlink" title="集群搭建最后一步，验证"></a>集群搭建最后一步，验证</h3><p>通过上面的步骤已经完成集群的搭建，现在开始验证集群的是否正常工作。</p>
-<ul>
-<li>可以连接上面启动的6个任意实例，<code>/home/hadoop/apps/redis-3.0.0/bin/redis-cli -c -h 192.168.137.5 -p 7001</code>，使用<code>info</code> 命令<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis单机版集群验证是cluster模式.jpg" alt="redis单机版集群验证是cluster模式"></li>
-<li>保存数据和获取数据<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis单机版集群验证保存和获取.jpg" alt="redis单机版集群验证保存和获取"></li>
-<li>通过上面的图片我们感觉很奇怪，其实应该要这样理解，你需要将这6个实例看成一个整体，你所有的操作都是对于这个集群而言的。</li>
-</ul>
-
+        <h2 id="Redis集群搭建"><a href="#Redis集群搭建" class="headerlink" title="Redis集群搭建"></a>Redis集群搭建</h2><p>Redis集群搭建至少需要三个master，三个salver。在这里我们使用单机版的集群，配置方式和实际的集群一致。我们通过使用不同的配置文件，将redis启动到不同的端口，实现一个台服务器上启动多个redis实例。<br>
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/06/04/redis集群搭建/#more">Read More</a>
           
        </p>
     </div>
@@ -661,7 +525,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-03T06:02:18.000Z" itemprop="datePublished"> Published 2017-06-03</time>
+    <time datetime="2017-06-03T06:02:18.000Z" itemprop="datePublished"> 发表于 2017-06-03</time>
     
   </p>
 </header>
@@ -670,20 +534,12 @@
         <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>哨兵的含义就是监控Redis系统的运行状况，其主要功能有两点：</p>
 <ul>
 <li>监控主数据库和从数据库是否正常运行</li>
-<li>主数据库出现故障，可以自动将从数据库转换为主数据库，实现自动切换</li>
-</ul>
-<h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><p>在任意一台服务器配置sentinel.conf，我们在hadoop4中配置</p>
-<ul>
-<li>拷贝文件到 etc 目录下，<code>cp /home/hadoop/apps/redis-3.0.0/sentinel.conf /home/hadoop/apps/redis-3.0.0/etc/</code></li>
-<li>修改sentinel.conf文件：<br><code>dir /home/hadoop/apps/redis-3.0.0/etc/</code> 修改哨兵的工作目录<br><code>sentinel monitor mymaster 192.168.137.5 6379 1</code> #master名称(任意取后面配置需要使用到)、master节点ip、端口、投票选举次数<br><code>sentinel down-after-milliseconds mymaster 5000</code> 配置多长时间检测一次，默认30秒，这里配置5秒<br><code>sentinel failover-timeout mymaster 900000</code><br><code>sentinel parallel-syncs mymaster 2</code></li>
-<li>启动哨兵：<code>/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-3.0.0/etc/sentinel.conf --sentinel &amp;</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F.jpg" alt="redis启动成功"></li>
-<li>查看哨兵相关信息：<code>/home/hadoop/apps/redis-3.0.0/bin/redis-cli -h 192.168.137.4 -p 26379 info Sentinel</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/查看哨兵相关信息.jpg" alt="查看哨兵相关信息"></li>
-<li>验证哨兵功能，关闭主节点：<code>/home/hadoop/apps/redis-3.0.0/bin/redis-cli -h 192.168.137.5 -p 6379 shutdown</code> 当主节点停掉之后，在哨兵服务器上将会自动选举出新的主节点，这里选举出hadoop4为主节点。重新启动hadoop5，则会重新加入到集群中，作为salver点。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis哨兵切换.jpg" alt="redis哨兵切换"></li>
-</ul>
-
+<li>主数据库出现故障，可以自动将从数据库转换为主数据库，实现自动切换
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/06/03/redis配置哨兵模式/#more">Read More</a>
           
        </p>
     </div>
@@ -728,7 +584,7 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-02T14:00:11.000Z" itemprop="datePublished"> Published 2017-06-02</time>
+    <time datetime="2017-06-02T14:00:11.000Z" itemprop="datePublished"> 发表于 2017-06-02</time>
     
   </p>
 </header>
@@ -738,28 +594,12 @@
 <li>master可以拥有多个slave</li>
 <li>多个slave可以连接同一个master，也可以连接到其他的slave</li>
 <li>主从复制不会阻塞master，在同步数据时，master可以继续处理client请求</li>
-<li>提供系统的伸缩性</li>
-</ul>
-<h3 id="主从复制过程"><a href="#主从复制过程" class="headerlink" title="主从复制过程"></a>主从复制过程</h3><ul>
-<li>slave与master建立连接，发送sync同步命令</li>
-<li>master会开启一个后台进程，将数据库文件快照保存到文件中，同时master主进程会开始收集新的写入命令并缓存</li>
-<li>后台完成保存后，将文件发送给slave</li>
-<li>slave将文件保存到硬盘上</li>
-</ul>
-<h3 id="主从复制配置"><a href="#主从复制配置" class="headerlink" title="主从复制配置"></a>主从复制配置</h3><ul>
-<li>现在有两台服务器，一台是hadoop5(192.168.137.5)作为主和hadoop4(192.168.137.4)作为从</li>
-<li>复制一份redis安装目录到从服务器，命令如下：<code>scp -r redis-3.0.0/ hadoop4:/home/hadoop/apps/</code> 在hadoop5上执行</li>
-<li>进入redis安装目录，执行启动和连接shell，检测是否可以正常执行。</li>
-<li>修改配置文件，这里只需修改从服务器的配置文件，进入<code>/home/hadoop/apps/redis-3.0.0/etc</code> 目录中。</li>
-<li>找到 <code>slaveof &lt;masterip&gt; &lt;masterport&gt;</code>，差不多在205行左右。修改为：<code>slaveof 192.168.137.5 6379</code> 主节点的ip和端口</li>
-<li>先启动主节点，再启动从节点。在hadoop5的安装目录执行<code>./start-redis.sh</code> 和 <code>./conn-redis.sh</code> 命令，通过<code>info</code> 命令查看数据库信息。同理hadoop4从服务器也一样。</li>
-<li>检测数据同步是否正常，在hadoop5保存一个key，在hadoop4中获取。<img src="http://opzxa0ul7.bkt.clouddn.com/redis主从复制.jpg" alt="redis主从复制"></li>
-<li>在从服务器不能执行写入操作。<img src="http://opzxa0ul7.bkt.clouddn.com/redis主从复制从服务器不能写入.jpg" alt="redis主从复制从服务器不能写入"></li>
-</ul>
-
+<li>提供系统的伸缩性
         
         
         <p class="article-more-link">
+          
+            <a href="/2017/06/02/redis主从复制/#more">Read More</a>
           
        </p>
     </div>
@@ -797,10 +637,10 @@
   </nav>
 
 </div>
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -810,11 +650,11 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
 			
 		
 			
@@ -822,11 +662,7 @@
 			
 		
 			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
 			
 		
 			
@@ -834,11 +670,15 @@
 			
 		
 			
-				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
@@ -854,11 +694,11 @@
 			
 		
 			
-				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
 			
 		
 			
@@ -870,7 +710,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -1032,7 +872,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

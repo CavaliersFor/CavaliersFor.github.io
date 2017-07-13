@@ -11,13 +11,13 @@
     
 
     
-    <meta name="description" content="Redis集群操作在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。 启动集群123456/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-cluster/7001/redis.conf/home/hadoop/apps/redis-3.0.0/b">
+    <meta name="description" content="Redis集群操作在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。">
 <meta name="keywords" content="redis redis集群添加节点 redis集群水平扩展">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redis向集群添加节点">
 <meta property="og:url" content="http://yoursite.com/2017/06/06/redis向集群添加节点/index.html">
 <meta property="og:site_name" content="在路上coder博客">
-<meta property="og:description" content="Redis集群操作在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。 启动集群123456/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-cluster/7001/redis.conf/home/hadoop/apps/redis-3.0.0/b">
+<meta property="og:description" content="Redis集群操作在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群操作查看集群状态.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群新建目录和拷贝配置文件.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群启动7007和7008节点和验证.jpg">
@@ -30,10 +30,10 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群验证7007节点槽.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群添加7008节点.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群设置7008节点为7007的从节点.jpg">
-<meta property="og:updated_time" content="2017-06-06T23:16:50.959Z">
+<meta property="og:updated_time" content="2017-07-13T14:20:25.270Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis向集群添加节点">
-<meta name="twitter:description" content="Redis集群操作在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。 启动集群123456/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-cluster/7001/redis.conf/home/hadoop/apps/redis-3.0.0/b">
+<meta name="twitter:description" content="Redis集群操作在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。">
 <meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/redis集群操作查看集群状态.jpg">
 
     
@@ -62,7 +62,7 @@
 				<h1 class="site-name"><a href="/" title="在路上coder博客">在路上coder博客</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -78,7 +78,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:yoursite.com">
 					</form>
 					
@@ -101,20 +101,20 @@
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-06T00:13:22.000Z" itemprop="datePublished"> Published 2017-06-06</time>
+    <time datetime="2017-06-06T00:13:22.000Z" itemprop="datePublished"> 发表于 2017-06-06</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目录</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis集群操作"><span class="toc-number">1.</span> <span class="toc-text">Redis集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动集群"><span class="toc-number">1.1.</span> <span class="toc-text">启动集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看是否全部启动成功"><span class="toc-number">1.2.</span> <span class="toc-text">查看是否全部启动成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看集群状态"><span class="toc-number">1.3.</span> <span class="toc-text">查看集群状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建集群操作"><span class="toc-number">2.</span> <span class="toc-text">新建集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建目录并修改配置文件"><span class="toc-number">2.1.</span> <span class="toc-text">创建目录并修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动7007和7008这两台服务器"><span class="toc-number">2.2.</span> <span class="toc-text">启动7007和7008这两台服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过redis-trib添加节点"><span class="toc-number">2.3.</span> <span class="toc-text">通过redis-trib添加节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为7007节点分别slot槽"><span class="toc-number">2.4.</span> <span class="toc-text">为7007节点分别slot槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加从节点7008到集群中"><span class="toc-number">2.5.</span> <span class="toc-text">添加从节点7008到集群中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
 		
 		</div>
 		
-		<h2 id="Redis集群操作"><a href="#Redis集群操作" class="headerlink" title="Redis集群操作"></a>Redis集群操作</h2><p>在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。</p>
+		<h2 id="Redis集群操作"><a href="#Redis集群操作" class="headerlink" title="Redis集群操作"></a>Redis集群操作</h2><p>在前一文中，我们已经创建好了redis集群，并启动和验证通过。下面我们将这个集群进行水平扩展，为集群添加节点。<br><a id="more"></a></p>
 <h3 id="启动集群"><a href="#启动集群" class="headerlink" title="启动集群"></a>启动集群</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7001</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7002</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7003</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7004</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7005</span>/redis.conf</div><div class="line">/home/hadoop/apps/redis-<span class="number">3.0</span>.0/bin/redis-server /home/hadoop/apps/redis-cluster/<span class="number">7006</span>/redis.conf</div></pre></td></tr></table></figure>
 <h3 id="查看是否全部启动成功"><a href="#查看是否全部启动成功" class="headerlink" title="查看是否全部启动成功"></a>查看是否全部启动成功</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">hadoop     8180      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7001 [cluster]                   </div><div class="line">hadoop     8184      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7002 [cluster]                   </div><div class="line">hadoop     8190      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7003 [cluster]                   </div><div class="line">hadoop     8194      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7004 [cluster]                   </div><div class="line">hadoop     8198      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7005 [cluster]                   </div><div class="line">hadoop     8202      1  0 01:11 ?        00:00:29 /home/hadoop/apps/redis-3.0.0/bin/redis-server 192.168.137.5:7006 [cluster]</div></pre></td></tr></table></figure>
 <h3 id="查看集群状态"><a href="#查看集群状态" class="headerlink" title="查看集群状态"></a>查看集群状态</h3><p><img src="http://opzxa0ul7.bkt.clouddn.com/redis集群操作查看集群状态.jpg" alt="redis集群操作查看集群状态"></p>
@@ -203,17 +203,17 @@
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目录</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Redis集群操作"><span class="toc-number">1.</span> <span class="toc-text">Redis集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#启动集群"><span class="toc-number">1.1.</span> <span class="toc-text">启动集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看是否全部启动成功"><span class="toc-number">1.2.</span> <span class="toc-text">查看是否全部启动成功</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看集群状态"><span class="toc-number">1.3.</span> <span class="toc-text">查看集群状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#新建集群操作"><span class="toc-number">2.</span> <span class="toc-text">新建集群操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建目录并修改配置文件"><span class="toc-number">2.1.</span> <span class="toc-text">创建目录并修改配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动7007和7008这两台服务器"><span class="toc-number">2.2.</span> <span class="toc-text">启动7007和7008这两台服务器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过redis-trib添加节点"><span class="toc-number">2.3.</span> <span class="toc-text">通过redis-trib添加节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为7007节点分别slot槽"><span class="toc-number">2.4.</span> <span class="toc-text">为7007节点分别slot槽</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加从节点7008到集群中"><span class="toc-number">2.5.</span> <span class="toc-text">添加从节点7008到集群中</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
 <aside class="clearfix">
 
   
@@ -223,11 +223,11 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
 			
 		
 			
@@ -235,11 +235,7 @@
 			
 		
 			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
 			
 		
 			
@@ -247,11 +243,15 @@
 			
 		
 			
-				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
@@ -267,11 +267,11 @@
 			
 		
 			
-				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
 			
 		
 			
@@ -283,7 +283,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情链接</p>
     <ul>
         
           <li>
@@ -522,7 +522,7 @@ $(document).ready(function(){
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
