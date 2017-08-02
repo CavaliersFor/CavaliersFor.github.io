@@ -1,0 +1,514 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>抓取今日头条文章 | 在路上的coder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="在路上的coder">
+    
+
+    
+    <meta name="description" content="本文介绍爬取今日头条文章方式，并使用jsoup工具实现内容爬取，该工具可以像使用jquery一样查找html元素">
+<meta name="keywords" content="java爬取今日头条文章 java爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抓取今日头条文章">
+<meta property="og:url" content="http://yoursite.com/2017/08/02/抓取今日头条文章/index.html">
+<meta property="og:site_name" content="在路上的coder">
+<meta property="og:description" content="本文介绍爬取今日头条文章方式，并使用jsoup工具实现内容爬取，该工具可以像使用jquery一样查找html元素">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/爬取内容.jpg">
+<meta property="og:updated_time" content="2017-08-02T13:03:32.547Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="抓取今日头条文章">
+<meta name="twitter:description" content="本文介绍爬取今日头条文章方式，并使用jsoup工具实现内容爬取，该工具可以像使用jquery一样查找html元素">
+<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/爬取内容.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="在路上的coder" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="在路上的coder" title="在路上的coder"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="在路上的coder">在路上的coder</a></h1>
+				<h2 class="blog-motto">Coder,Machine Learning</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://www.baidu.com" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/08/02/抓取今日头条文章/" title="抓取今日头条文章" itemprop="url">抓取今日头条文章</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
+		
+  <p class="article-time">
+    <time datetime="2017-08-02T12:50:20.000Z" itemprop="datePublished"> 发表于 2017-08-02</time>
+    <span id="busuanzi_container_page_pv">
+    总阅读<span id="busuanzi_value_page_pv"></span>次
+	</span>
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#抓取内容如下"><span class="toc-number">1.</span> <span class="toc-text">抓取内容如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文章作者信息"><span class="toc-number">2.</span> <span class="toc-text">文章作者信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文章列表"><span class="toc-number">3.</span> <span class="toc-text">文章列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍一下url请求的参数："><span class="toc-number">3.1.</span> <span class="toc-text">介绍一下url请求的参数：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#响应数据详解"><span class="toc-number">3.2.</span> <span class="toc-text">响应数据详解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重复抓取"><span class="toc-number">3.3.</span> <span class="toc-text">重复抓取</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文章详情"><span class="toc-number">4.</span> <span class="toc-text">文章详情</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意点"><span class="toc-number">5.</span> <span class="toc-text">注意点</span></a></li></ol>
+		
+		</div>
+		
+		<p>本文介绍爬取今日头条文章方式，并使用jsoup工具实现内容爬取，该工具可以像使用jquery一样查找html元素</p>
+<a id="more"></a>
+<h3 id="抓取内容如下"><a href="#抓取内容如下" class="headerlink" title="抓取内容如下"></a>抓取内容如下</h3><p>就是爬取某个写手的信息、文章列表、和文字详情信息，具体如下图：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/爬取内容.jpg" alt=""></p>
+<h3 id="文章作者信息"><a href="#文章作者信息" class="headerlink" title="文章作者信息"></a>文章作者信息</h3><p>也就是文章作者管理</p>
+<p>客户端提供文章作者首页地址，<code>http://www.toutiao.com/c/user/6310889977/</code> 通过如下方式可以获取到作者信息:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="comment">//写手主页</span></div><div class="line">	String url = <span class="string">"http://www.toutiao.com/c/user/6310889977/"</span>;</div><div class="line">	<span class="comment">// 文章详情页的前缀(由于今日头条的文章都是在group这个目录下,所以定义了前缀,而且通过请求获取到的html页面)</span></div><div class="line">	<span class="comment">// 链接到该网站</span></div><div class="line">	Connection connection = Jsoup.connect(url);</div><div class="line">	Document content = <span class="keyword">null</span>;</div><div class="line">	<span class="keyword">try</span> &#123;</div><div class="line">		Map&lt;String, String&gt; cookies = <span class="keyword">new</span> HashMap&lt;String, String&gt;();</div><div class="line">		cookies.put(<span class="string">"UM_distinctid"</span>,</div><div class="line">				<span class="string">"15d604b19ca3a2-0e6085b9900ead-1c197450-1fa400-15d604b19cb7b8"</span>);</div><div class="line">		cookies.put(<span class="string">"uuid"</span>, <span class="string">"w:a881896fbbd446bf9fc7c0c97434e78f"</span>);</div><div class="line">		cookies.put(<span class="string">"OUTFOX_SEARCH_USER_ID_NCOO"</span>, <span class="string">"1631109872.7671177"</span>);</div><div class="line">		cookies.put(<span class="string">"csrftoken"</span>, <span class="string">"59bd6e9979d9a0e447159c09c69ec182"</span>);</div><div class="line">		cookies.put(<span class="string">"_ga"</span>, <span class="string">"GA1.2.1128248025.1501125011"</span>);</div><div class="line">		cookies.put(<span class="string">"_gid"</span>, <span class="string">"GA1.2.1377010915.1501125011"</span>);</div><div class="line">		cookies.put(<span class="string">"__utmt"</span>, <span class="string">"1"</span>);</div><div class="line">		cookies.put(<span class="string">"__utma"</span>,</div><div class="line">				<span class="string">"24953151.1128248025.1501125011.1501125474.1501125474.1"</span>);</div><div class="line">		cookies.put(<span class="string">"__utmb"</span>, <span class="string">"24953151.8.10.1501125474"</span>);</div><div class="line">		cookies.put(<span class="string">"__utmc"</span>, <span class="string">"24953151"</span>);</div><div class="line">		cookies.put(<span class="string">"__utmz"</span>,</div><div class="line">				<span class="string">"24953151.15011254741.1.utmcsr=(direct)|utmccn=(direct)|utmcmd=(none)"</span>);</div><div class="line">		cookies.put(<span class="string">"tt_webid"</span>, <span class="string">"6444852342776890893"</span>);</div><div class="line">		cookies.put(<span class="string">"CNZZDATA1259612802"</span>,</div><div class="line">				<span class="string">"478646998-1500557369-%7C1501121800"</span>);</div><div class="line"></div><div class="line">		connection</div><div class="line">				.header(<span class="string">"User-Agent"</span>,</div><div class="line">						<span class="string">"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3100.0 Safari/537.36"</span>);</div><div class="line"></div><div class="line">		connection.cookies(cookies);</div><div class="line">		<span class="comment">// 获取内容</span></div><div class="line">		content = connection.get();</div><div class="line">	&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">	&#125;</div><div class="line">	<span class="comment">// 转换成字符串</span></div><div class="line">	String htmlStr = content.html();</div><div class="line">	<span class="comment">// 因为今日头条的文章展示比较奇葩,都是通过js定义成变量,所以无法使用获取dom元素的方式获取值</span></div><div class="line">	String jsonStr = StringUtils.substringBetween(htmlStr,</div><div class="line">			<span class="string">"var userInfo = "</span>, <span class="string">";"</span>);</div><div class="line">	System.out.println(jsonStr);</div><div class="line">	Map parse = (Map) JSONObject.parse(jsonStr);</div><div class="line">	Object id =  parse.get(<span class="string">"id"</span>);</div><div class="line"></div><div class="line">	<span class="comment">//通过用户id拼接查询该作者的文章列表url</span></div><div class="line">	String articleUrl = <span class="string">"http://www.toutiao.com/c/user/article/?page_type=1&amp;user_id="</span></div><div class="line">			+ id</div><div class="line">			+ <span class="string">"&amp;max_behot_time=0&amp;count=30&amp;as=A18539E7A918279&amp;cp=5979A8F29759AE1"</span>;</div><div class="line">	System.out.println(<span class="string">"详情url:"</span>+articleUrl);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出如下</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">     id: 6310889977,</div><div class="line">     name: '爱豆表情',</div><div class="line">     avatarUrl: 'http://p3.pstatp.com/thumb/411000fa6b181d3a25c',</div><div class="line">     isPgc: true,</div><div class="line">     isBanned: false,</div><div class="line">     isOwner: false,</div><div class="line">     mediaId: 6311316427,</div><div class="line">     type: '1'</div><div class="line">  &#125;</div><div class="line">详情url:http://www.toutiao.com/c/user/article/?page_type=1&amp;user_id=6310889977&amp;max_behot_time=0&amp;count=30&amp;as=A18539E7A918279&amp;cp=5979A8F29759AE1</div></pre></td></tr></table></figure>
+<h3 id="文章列表"><a href="#文章列表" class="headerlink" title="文章列表"></a>文章列表</h3><p>抓取选择作者的文章列表，在这里需要使用到上面拼接的url，<code>http://www.toutiao.com/c/user/article?page_type=1&amp;user_id=6310889977&amp;max_behot_time=0&amp;count=30&amp;as=A18539E7A918279&amp;cp=5979A8F29759AE1</code> 这个url返回json，通过我们的json请求方式即可。</p>
+<h4 id="介绍一下url请求的参数："><a href="#介绍一下url请求的参数：" class="headerlink" title="介绍一下url请求的参数："></a>介绍一下url请求的参数：</h4><ul>
+<li>page_type 0表示视频，1表示文章</li>
+<li>user_id 表示作者id</li>
+<li>max_behot_time 这个字段是用来翻页使用的，默认数据是0，其实值就是时间戳/1000</li>
+<li>count 每页显示记录数</li>
+<li>as 这个具体不太清楚</li>
+<li>cp 这个具体不太清楚</li>
+</ul>
+<h4 id="响应数据详解"><a href="#响应数据详解" class="headerlink" title="响应数据详解"></a>响应数据详解</h4><p>这里建议使用爬取的当前的时间戳作为<code>max_behot_time</code> 字段的参数，为什么要这样，因为如果使用默认的值，则是按照阅读数排序的，当重复爬取的时候不容易判断重复。下面的数据是通过<code>http://www.toutiao.com/c/user/article/?page_type=1&amp;user_id=6310889977&amp;max_behot_time=1501146065&amp;count=2&amp;as=A18539E7A918279&amp;cp=5979A8F29759AE1</code>获取的</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"login_status"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"has_more"</span>: <span class="literal">true</span>,</div><div class="line">    <span class="attr">"next"</span>: &#123;</div><div class="line">        <span class="attr">"max_behot_time"</span>: <span class="number">1501046661</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"page_type"</span>: <span class="number">1</span>,</div><div class="line">    <span class="attr">"message"</span>: <span class="string">"success"</span>,</div><div class="line">    <span class="attr">"data"</span>: [</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"image_url"</span>: <span class="string">"http://p1.pstatp.com/list/190x124/31c60002fe07a841314d"</span>,</div><div class="line">            <span class="attr">"single_mode"</span>: <span class="literal">true</span>,</div><div class="line">            <span class="attr">"abstract"</span>: <span class="string">"要知道90后年龄最大的都有27岁了，正是适婚的时候，不过说起结婚，礼金这个问题就避免不了，不管是朋友结婚也好同学结婚也好，这份子钱还是都得随了，而明星结婚也是如此，收礼金收到手软，当梁朝伟和刘嘉玲结婚，王菲给15万还算少的，但来看看赵本山，那才是真的豪气！"</span>,</div><div class="line">            <span class="attr">"middle_mode"</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">"more_mode"</span>: <span class="literal">true</span>,</div><div class="line">            <span class="attr">"tag"</span>: <span class="string">"news_entertainment"</span>,</div><div class="line">            <span class="attr">"tag_url"</span>: <span class="string">"news_entertainment"</span>,</div><div class="line">            <span class="attr">"title"</span>: <span class="string">"明星结婚给多少礼金？王菲给15万算少的，赵本山才是真豪气！"</span>,</div><div class="line">            <span class="attr">"has_video"</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">"chinese_tag"</span>: <span class="string">"娱乐"</span>,</div><div class="line">            <span class="attr">"source"</span>: <span class="string">"爱豆表情"</span>,</div><div class="line">            <span class="attr">"group_source"</span>: <span class="number">2</span>,</div><div class="line">            <span class="attr">"comments_count"</span>: <span class="number">78</span>,</div><div class="line">            <span class="attr">"media_url"</span>: <span class="string">"/m6311316427/"</span>,</div><div class="line">            <span class="attr">"go_detail_count"</span>: <span class="number">198964</span>,</div><div class="line">            <span class="attr">"image_list"</span>: [</div><div class="line">                &#123;</div><div class="line">                    <span class="attr">"url"</span>: <span class="string">"http://p1.pstatp.com/list/31c60002fe07a841314d"</span>,</div><div class="line">                    <span class="attr">"width"</span>: <span class="number">1080</span>,</div><div class="line">                    <span class="attr">"url_list"</span>: [</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://p1.pstatp.com/list/31c60002fe07a841314d"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb3.pstatp.com/list/31c60002fe07a841314d"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb9.pstatp.com/list/31c60002fe07a841314d"</span></div><div class="line">                        &#125;</div><div class="line">                    ],</div><div class="line">                    <span class="attr">"uri"</span>: <span class="string">"list/31c60002fe07a841314d"</span>,</div><div class="line">                    <span class="attr">"height"</span>: <span class="number">799</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="attr">"url"</span>: <span class="string">"http://p1.pstatp.com/list/31b9000303c0e7e03e26"</span>,</div><div class="line">                    <span class="attr">"width"</span>: <span class="number">1080</span>,</div><div class="line">                    <span class="attr">"url_list"</span>: [</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://p1.pstatp.com/list/31b9000303c0e7e03e26"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb3.pstatp.com/list/31b9000303c0e7e03e26"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb9.pstatp.com/list/31b9000303c0e7e03e26"</span></div><div class="line">                        &#125;</div><div class="line">                    ],</div><div class="line">                    <span class="attr">"uri"</span>: <span class="string">"list/31b9000303c0e7e03e26"</span>,</div><div class="line">                    <span class="attr">"height"</span>: <span class="number">727</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="attr">"url"</span>: <span class="string">"http://p1.pstatp.com/list/2ee300032db03ae5b319"</span>,</div><div class="line">                    <span class="attr">"width"</span>: <span class="number">1080</span>,</div><div class="line">                    <span class="attr">"url_list"</span>: [</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://p1.pstatp.com/list/2ee300032db03ae5b319"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb3.pstatp.com/list/2ee300032db03ae5b319"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb9.pstatp.com/list/2ee300032db03ae5b319"</span></div><div class="line">                        &#125;</div><div class="line">                    ],</div><div class="line">                    <span class="attr">"uri"</span>: <span class="string">"list/2ee300032db03ae5b319"</span>,</div><div class="line">                    <span class="attr">"height"</span>: <span class="number">795</span></div><div class="line">                &#125;</div><div class="line">            ],</div><div class="line">            <span class="attr">"gallary_image_count"</span>: <span class="number">0</span>,</div><div class="line">            <span class="attr">"detail_play_effective_count"</span>: <span class="number">11</span>,</div><div class="line">            <span class="attr">"source_url"</span>: <span class="string">"/item/6446946448201220622/"</span>,</div><div class="line">            <span class="attr">"item_id"</span>: <span class="string">"6446946448201220622"</span>,</div><div class="line">            <span class="attr">"article_genre"</span>: <span class="string">"article"</span>,</div><div class="line">            <span class="attr">"display_url"</span>: <span class="string">"http://toutiao.com/preview_article/?pgc_id=6446946448201220622"</span>,</div><div class="line">            <span class="attr">"behot_time"</span>: <span class="number">1501046691</span>,</div><div class="line">            <span class="attr">"has_gallery"</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">"group_id"</span>: <span class="string">"6446942793298510094"</span></div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            <span class="attr">"image_url"</span>: <span class="string">"http://p1.pstatp.com/list/190x124/31c70000e30f63f73da5"</span>,</div><div class="line">            <span class="attr">"single_mode"</span>: <span class="literal">true</span>,</div><div class="line">            <span class="attr">"abstract"</span>: <span class="string">"时下《春风十里不如你》的开播在观众心目中可是千呼万唤始出来。早在开拍之时，这部剧就引发了众多关注和观众们的无限期待。张一山和周冬雨两位年轻戏骨的组合让观众纷纷好奇他们之间会擦出什么样的火花。而在荧幕上是小清新女神的周冬雨，微博晒照立马暴露了自己的本性。"</span>,</div><div class="line">            <span class="attr">"middle_mode"</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">"more_mode"</span>: <span class="literal">true</span>,</div><div class="line">            <span class="attr">"tag"</span>: <span class="string">"news_entertainment"</span>,</div><div class="line">            <span class="attr">"tag_url"</span>: <span class="string">"news_entertainment"</span>,</div><div class="line">            <span class="attr">"title"</span>: <span class="string">"周冬雨自拍晒豪宅，游戏房抢镜，但客厅却暴露本性！"</span>,</div><div class="line">            <span class="attr">"has_video"</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">"chinese_tag"</span>: <span class="string">"娱乐"</span>,</div><div class="line">            <span class="attr">"source"</span>: <span class="string">"爱豆表情"</span>,</div><div class="line">            <span class="attr">"group_source"</span>: <span class="number">2</span>,</div><div class="line">            <span class="attr">"comments_count"</span>: <span class="number">281</span>,</div><div class="line">            <span class="attr">"media_url"</span>: <span class="string">"/m6311316427/"</span>,</div><div class="line">            <span class="attr">"go_detail_count"</span>: <span class="number">427439</span>,</div><div class="line">            <span class="attr">"image_list"</span>: [</div><div class="line">                &#123;</div><div class="line">                    <span class="attr">"url"</span>: <span class="string">"http://p1.pstatp.com/list/31c70000e30f63f73da5"</span>,</div><div class="line">                    <span class="attr">"width"</span>: <span class="number">550</span>,</div><div class="line">                    <span class="attr">"url_list"</span>: [</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://p1.pstatp.com/list/31c70000e30f63f73da5"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb3.pstatp.com/list/31c70000e30f63f73da5"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb9.pstatp.com/list/31c70000e30f63f73da5"</span></div><div class="line">                        &#125;</div><div class="line">                    ],</div><div class="line">                    <span class="attr">"uri"</span>: <span class="string">"list/31c70000e30f63f73da5"</span>,</div><div class="line">                    <span class="attr">"height"</span>: <span class="number">654</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="attr">"url"</span>: <span class="string">"http://p3.pstatp.com/list/2ee300032d6e1bbe7d4e"</span>,</div><div class="line">                    <span class="attr">"width"</span>: <span class="number">600</span>,</div><div class="line">                    <span class="attr">"url_list"</span>: [</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://p3.pstatp.com/list/2ee300032d6e1bbe7d4e"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb9.pstatp.com/list/2ee300032d6e1bbe7d4e"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb1.pstatp.com/list/2ee300032d6e1bbe7d4e"</span></div><div class="line">                        &#125;</div><div class="line">                    ],</div><div class="line">                    <span class="attr">"uri"</span>: <span class="string">"list/2ee300032d6e1bbe7d4e"</span>,</div><div class="line">                    <span class="attr">"height"</span>: <span class="number">506</span></div><div class="line">                &#125;,</div><div class="line">                &#123;</div><div class="line">                    <span class="attr">"url"</span>: <span class="string">"http://p1.pstatp.com/list/31c70000e30ea71c1110"</span>,</div><div class="line">                    <span class="attr">"width"</span>: <span class="number">400</span>,</div><div class="line">                    <span class="attr">"url_list"</span>: [</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://p1.pstatp.com/list/31c70000e30ea71c1110"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb3.pstatp.com/list/31c70000e30ea71c1110"</span></div><div class="line">                        &#125;,</div><div class="line">                        &#123;</div><div class="line">                            <span class="attr">"url"</span>: <span class="string">"http://pb9.pstatp.com/list/31c70000e30ea71c1110"</span></div><div class="line">                        &#125;</div><div class="line">                    ],</div><div class="line">                    <span class="attr">"uri"</span>: <span class="string">"list/31c70000e30ea71c1110"</span>,</div><div class="line">                    <span class="attr">"height"</span>: <span class="number">448</span></div><div class="line">                &#125;</div><div class="line">            ],</div><div class="line">            <span class="attr">"gallary_image_count"</span>: <span class="number">0</span>,</div><div class="line">            <span class="attr">"detail_play_effective_count"</span>: <span class="number">5</span>,</div><div class="line">            <span class="attr">"source_url"</span>: <span class="string">"/item/6446946316734956046/"</span>,</div><div class="line">            <span class="attr">"item_id"</span>: <span class="string">"6446946316734956046"</span>,</div><div class="line">            <span class="attr">"article_genre"</span>: <span class="string">"article"</span>,</div><div class="line">            <span class="attr">"display_url"</span>: <span class="string">"http://toutiao.com/group/6446942632664498445/"</span>,</div><div class="line">            <span class="attr">"behot_time"</span>: <span class="number">1501046661</span>,</div><div class="line">            <span class="attr">"has_gallery"</span>: <span class="literal">false</span>,</div><div class="line">            <span class="attr">"group_id"</span>: <span class="string">"6446942632664498445"</span></div><div class="line">        &#125;</div><div class="line">    ],</div><div class="line">    <span class="attr">"is_self"</span>: <span class="literal">false</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>主要字段介绍：</p>
+<ul>
+<li>max_behot_time 下一页开始的值</li>
+<li>image_url 文章列表展示图片的url</li>
+<li>title 文章的标题</li>
+<li>source 来源，作者名称</li>
+<li>go_detail_count 阅读量</li>
+<li>source_url 详情url</li>
+<li>item_id 文章id</li>
+<li>behot_time 文章发表时间</li>
+</ul>
+<h4 id="重复抓取"><a href="#重复抓取" class="headerlink" title="重复抓取"></a>重复抓取</h4><p>考虑到文章将是大量的数据，而且结合前面通过时间戳进行查询可以。我们可以通过制定规则，避免爬取时都将文章挨个比较。实现方式如下</p>
+<p>我们制定的规则是每天爬取一次相关作者的文章</p>
+<p>如果是第一次爬取该作者的文章，则请求列表的url的参数max_behot_time为当前时间戳/1000，自定义设定 count  字段，建议不能超过50条。按照上面介绍的翻页方式依次爬取。</p>
+<p>如果爬取的作者已经爬取过文章，则请求列表的url的参数 max_behot_time 为当前时间戳/1000，自定义设定 count  字段，建议不超过10条。将爬取处理的第一条(表示是最新的)数据的behot_time 字段转换成日期格式，转换的时候需要*1000，如果第一条的发布时间都不在今天的话，就无须在往后爬取了。</p>
+<h3 id="文章详情"><a href="#文章详情" class="headerlink" title="文章详情"></a>文章详情</h3><p>抓取文章的详情，通过url <code>http://www.toutiao.com/i6277404061113254402/</code> 这个url就是通过 <a href="http://www.toutiao.com和列表响应的source_url" target="_blank" rel="external">http://www.toutiao.com和列表响应的source_url</a> 拼接而成。获取方式如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line">	 * 爬去文章详情信息</div><div class="line">	 */</div><div class="line">	<span class="meta">@Test</span></div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;</div><div class="line">		String url2 = <span class="string">"http://www.toutiao.com/i6277404061113254402/"</span>;</div><div class="line">		Connection connection = <span class="keyword">null</span>;</div><div class="line">		connection = Jsoup.connect(url2);</div><div class="line">		<span class="keyword">try</span> &#123;</div><div class="line">			Document document = connection.get();</div><div class="line">			<span class="comment">// 获取文章标题</span></div><div class="line">			Elements title = document.select(<span class="string">"[class=article-title]"</span>);</div><div class="line">			System.out.println(title.html());</div><div class="line">			<span class="comment">// 获取文章来源和文章发布时间</span></div><div class="line">			Elements articleInfo = document.select(<span class="string">"[class=articleInfo]"</span>);</div><div class="line">			Elements src = articleInfo.select(<span class="string">"[class=src]"</span>);</div><div class="line">			System.out.println(src.html());</div><div class="line">			Elements time = articleInfo.select(<span class="string">"[class=time]"</span>);</div><div class="line">			System.out.println(time.html());</div><div class="line">			<span class="comment">// 获取文章内容</span></div><div class="line">			Elements contentEle = document.select(<span class="string">"[class=article-content]"</span>);</div><div class="line">			</div><div class="line">			String content = contentEle.html();</div><div class="line">			System.out.println(content);</div><div class="line">			</div><div class="line">			<span class="comment">//查找文章的img标签，并替换url</span></div><div class="line">			Elements select = contentEle.select(<span class="string">"img[src]"</span>);</div><div class="line">			Iterator&lt;Element&gt; iterator = select.iterator();</div><div class="line">			<span class="keyword">while</span>(iterator.hasNext())&#123;</div><div class="line">				Element next = iterator.next();</div><div class="line">				String attr = next.attr(<span class="string">"src"</span>);</div><div class="line">				content = content.replace(attr, attr+<span class="string">"/abc"</span>);</div><div class="line">			&#125;</div><div class="line">			</div><div class="line">			System.out.println(<span class="string">"\n替换url后\n"</span>);</div><div class="line">			System.out.println(content);</div><div class="line">			</div><div class="line">		&#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div></pre></td><td class="code"><pre><div class="line">看到周星驰这些表情，我竟然想哭了</div><div class="line">爱豆表情</div><div class="line">2016-04-25 18:07</div><div class="line">&lt;div&gt;</div><div class="line"> &lt;p&gt;我心中永远的艺术家，才华横溢的导演就是周星驰了；虽然最近的这个美人鱼不是我的喜欢，但是很是期待接下来更多周氏风格的作品！&lt;/p&gt;</div><div class="line"> &lt;p&gt;周星驰陪伴我们一路成长，下面这些动图，你能回忆起几张？&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/52d0005cda7a3dff492" img_width="400" img_height="224" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;来来来，还有一个鸡腿留给你的&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/52e0005d01bb43cde93" img_width="300" img_height="184" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷越吹越过瘾啊&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/52f0005cfc30f970ecc" img_width="400" img_height="225" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;亲个吻再拍&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/52c0005cddb2f3e19f2" img_width="400" img_height="225" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;隔山打牛，隔的人越多越厉害&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/41100099da8b6aca739" img_width="298" img_height="224" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷见到美女流口水&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/52f0005cfc4266c0ea4" img_width="397" img_height="214" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷要多帅就有多帅&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p9.pstatp.com/large/5300005d205804a37bc" img_width="375" img_height="200" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;哇靠！吓得我辫子都直了&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/52f0005cfc5e4c4ac42" img_width="317" img_height="171" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;老兄，当心把肺都吐出来了&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/5300005d20690cb8ea2" img_width="296" img_height="168" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷教你如何优雅的比试柔道&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/52f0005cfc7ceeb3408" img_width="320" img_height="179" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷赌圣帅气出场&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/5300005d207dc534168" img_width="320" img_height="179" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;国产007帅气特工&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/5300005d209fd260b71" img_width="320" img_height="179" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;茶餐厅的灵魂，蛋挞王子！&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/52c0005cdddd9d27482" img_width="261" img_height="142" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;国产007周星驰看美女&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/41100099dacc7a9ab23" img_width="330" img_height="175" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;食神，我来了！&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/52c0005cddf788d6322" img_width="300" img_height="217" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;《师兄撞鬼》周星驰经典的的邪恶片段&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/41100099daedc49bd47" img_width="444" img_height="250" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;我左青龙，右边虎，老牛在腰间，龙头在心口...&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p9.pstatp.com/large/52f0005cfc8e6b00351" img_width="320" img_height="180" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷，好一只大力金刚腿&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/41100099db024fb4fb8" img_width="320" img_height="168" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;如花茹凉&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/4120009a1722dade61d" img_width="280" img_height="151" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;周星驰弹小JJ&lt;/p&gt;</div><div class="line"> &lt;p&gt;一路陪伴我们的周星驰，曾教我们如何耍帅，如何撩妹，如果为自己所爱热血奋斗！&lt;/p&gt;</div><div class="line"> &lt;p&gt;每次看到这些图，不得不感叹，伴随我们的是一份多麽美好的记忆！&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">替换url后</div><div class="line"></div><div class="line">&lt;div&gt;</div><div class="line"> &lt;p&gt;我心中永远的艺术家，才华横溢的导演就是周星驰了；虽然最近的这个美人鱼不是我的喜欢，但是很是期待接下来更多周氏风格的作品！&lt;/p&gt;</div><div class="line"> &lt;p&gt;周星驰陪伴我们一路成长，下面这些动图，你能回忆起几张？&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/52d0005cda7a3dff492/abc" img_width="400" img_height="224" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;来来来，还有一个鸡腿留给你的&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/52e0005d01bb43cde93/abc" img_width="300" img_height="184" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷越吹越过瘾啊&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/52f0005cfc30f970ecc/abc" img_width="400" img_height="225" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;亲个吻再拍&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/52c0005cddb2f3e19f2/abc" img_width="400" img_height="225" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;隔山打牛，隔的人越多越厉害&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/41100099da8b6aca739/abc" img_width="298" img_height="224" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷见到美女流口水&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/52f0005cfc4266c0ea4/abc" img_width="397" img_height="214" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷要多帅就有多帅&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p9.pstatp.com/large/5300005d205804a37bc/abc" img_width="375" img_height="200" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;哇靠！吓得我辫子都直了&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/52f0005cfc5e4c4ac42/abc" img_width="317" img_height="171" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;老兄，当心把肺都吐出来了&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/5300005d20690cb8ea2/abc" img_width="296" img_height="168" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷教你如何优雅的比试柔道&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/52f0005cfc7ceeb3408/abc" img_width="320" img_height="179" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷赌圣帅气出场&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/5300005d207dc534168/abc" img_width="320" img_height="179" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;国产007帅气特工&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/5300005d209fd260b71/abc" img_width="320" img_height="179" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;茶餐厅的灵魂，蛋挞王子！&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/52c0005cdddd9d27482/abc" img_width="261" img_height="142" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;国产007周星驰看美女&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/41100099dacc7a9ab23/abc" img_width="330" img_height="175" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;食神，我来了！&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/52c0005cddf788d6322/abc" img_width="300" img_height="217" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;《师兄撞鬼》周星驰经典的的邪恶片段&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/41100099daedc49bd47/abc" img_width="444" img_height="250" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;我左青龙，右边虎，老牛在腰间，龙头在心口...&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p9.pstatp.com/large/52f0005cfc8e6b00351/abc" img_width="320" img_height="180" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;星爷，好一只大力金刚腿&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p1.pstatp.com/large/41100099db024fb4fb8/abc" img_width="320" img_height="168" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;如花茹凉&lt;/p&gt;</div><div class="line"> &lt;p&gt;&lt;img src="http://p3.pstatp.com/large/4120009a1722dade61d/abc" img_width="280" img_height="151" alt="看到周星驰这些表情，我竟然想哭了" inline="0"&gt;&lt;/p&gt;</div><div class="line"> &lt;p&gt;周星驰弹小JJ&lt;/p&gt;</div><div class="line"> &lt;p&gt;一路陪伴我们的周星驰，曾教我们如何耍帅，如何撩妹，如果为自己所爱热血奋斗！&lt;/p&gt;</div><div class="line"> &lt;p&gt;每次看到这些图，不得不感叹，伴随我们的是一份多麽美好的记忆！&lt;/p&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h3 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h3><p>这里是有了<code>jsoup</code> 这个工具包还有解析json的工具包，记得引入maven坐标:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.jsoup<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jsoup<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.10.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.alibaba<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>fastjson<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.27<span class="tag">&lt;/<span class="name">version</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></div></pre></td></tr></table></figure>
+<p><strong>欢迎评论交流，谢谢！！</strong></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/java爬取今日头条文章-java爬虫/">java爬取今日头条文章 java爬虫</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+2138856" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+	<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2138856"></script>
+<!-- UY END -->
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/07/09/深入Web请求过程/"  title="深入Web请求过程">
+ <strong>下一篇：</strong><br/> 
+ <span>深入Web请求过程
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#抓取内容如下"><span class="toc-number">1.</span> <span class="toc-text">抓取内容如下</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文章作者信息"><span class="toc-number">2.</span> <span class="toc-text">文章作者信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文章列表"><span class="toc-number">3.</span> <span class="toc-text">文章列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#介绍一下url请求的参数："><span class="toc-number">3.1.</span> <span class="toc-text">介绍一下url请求的参数：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#响应数据详解"><span class="toc-number">3.2.</span> <span class="toc-text">响应数据详解</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#重复抓取"><span class="toc-number">3.3.</span> <span class="toc-text">重复抓取</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文章详情"><span class="toc-number">4.</span> <span class="toc-text">文章详情</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#注意点"><span class="toc-number">5.</span> <span class="toc-text">注意点</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JMS-ActiveMQ安装/" title="JMS ActiveMQ安装">JMS ActiveMQ安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/idea-idea快捷键/" title="idea idea快捷键">idea idea快捷键<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则表达式-js正则表达式-电话号码正则表达式-邮箱正则表达式/" title="正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式">正则表达式 js正则表达式 电话号码正则表达式 邮箱正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis原理/" title="redis 缓存 redis原理">redis 缓存 redis原理<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis哨兵模式/" title="redis 缓存 redis哨兵模式">redis 缓存 redis哨兵模式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-nosql/" title="redis nosql">redis nosql<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-redis集群-redis集群移除节点/" title="redis redis集群 redis集群移除节点">redis redis集群 redis集群移除节点<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/http请求过程，DNS解析过程/" title="http请求过程，DNS解析过程">http请求过程，DNS解析过程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/java爬取今日头条文章-java爬虫/" title="java爬取今日头条文章 java爬虫">java爬取今日头条文章 java爬虫<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发编程网">并发编程网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/facekbook" target="_blank" title="CSDN博客">CSDN博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://crane-yuan.github.io/" target="_blank" title="关注博客">关注博客</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,我是在路上的coder. <br/>
+			这是我个人的博客.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="在路上的coder">在路上的coder</a>
+		
+			
+					<!-- 不蒜统计 -->
+			<br>
+			<span style="display: inline;" id="busuanzi_container_site_uv">本站总访客数 <span id="busuanzi_value_site_uv" font="微软雅黑" style="color:white"></span></span>
+			<span style="display: inline;" id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv" font="微软雅黑" style="color:white"></span></span>
+		</p>
+</div>
+
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1262026511'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1262026511' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>
