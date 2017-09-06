@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法清除阶段.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法标记阶段.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法压缩阶段.jpg">
-<meta property="og:updated_time" content="2017-07-13T14:19:02.645Z">
+<meta property="og:updated_time" content="2017-09-06T13:37:15.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试题">
 <meta name="twitter:description" content="zk分布式锁：详情参考：http://www.jiacheo.org/blog/620 1.在单机模式下，没有引入zookeeper时，我们可以通过创建一个临时文件加锁，然后在事务处理完毕后，将临时文件删除就代表解锁。这种加锁和解锁模式可以移植到zookeeper上，通过创建一个路径，来证明该锁已经存在，然后删除路径来释放该锁。而同时zookeeper又能支持对节点的监控，这样一来，我们在多机的">
@@ -103,7 +103,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zk分布式锁："><span class="toc-number">1.</span> <span class="toc-text">zk分布式锁：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈分布式"><span class="toc-number">2.</span> <span class="toc-text">谈谈分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis持久化实现原理"><span class="toc-number">3.</span> <span class="toc-text">redis持久化实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者消费者"><span class="toc-number">4.</span> <span class="toc-text">生产者消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM的内存模型"><span class="toc-number">5.</span> <span class="toc-text">JVM的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM体系结构"><span class="toc-number">6.</span> <span class="toc-text">JVM体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用GC算法"><span class="toc-number">7.</span> <span class="toc-text">常用GC算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http1-0，http1-1，http2-0区别"><span class="toc-number">8.</span> <span class="toc-text">http1.0，http1.1，http2.0区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-Post对缓存的影响"><span class="toc-number">9.</span> <span class="toc-text">Get/Post对缓存的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求头和响应头"><span class="toc-number">10.</span> <span class="toc-text">HTTP请求头和响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过三种方式编写单例模式"><span class="toc-number">11.</span> <span class="toc-text">通过三种方式编写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程技术书籍"><span class="toc-number">12.</span> <span class="toc-text">编程技术书籍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO核心组件"><span class="toc-number">13.</span> <span class="toc-text">NIO核心组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断对象可收回"><span class="toc-number">14.</span> <span class="toc-text">判断对象可收回</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中文编码问题"><span class="toc-number">15.</span> <span class="toc-text">中文编码问题</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zk分布式锁："><span class="toc-number">1.</span> <span class="toc-text">zk分布式锁：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈分布式"><span class="toc-number">2.</span> <span class="toc-text">谈谈分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis持久化实现原理"><span class="toc-number">3.</span> <span class="toc-text">redis持久化实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者消费者"><span class="toc-number">4.</span> <span class="toc-text">生产者消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM的内存模型"><span class="toc-number">5.</span> <span class="toc-text">JVM的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM体系结构"><span class="toc-number">6.</span> <span class="toc-text">JVM体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用GC算法"><span class="toc-number">7.</span> <span class="toc-text">常用GC算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么情况下出现Full-GC，什么情况下出现Young-GC"><span class="toc-number">8.</span> <span class="toc-text">什么情况下出现Full GC，什么情况下出现Young GC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http1-0，http1-1，http2-0区别"><span class="toc-number">9.</span> <span class="toc-text">http1.0，http1.1，http2.0区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-Post对缓存的影响"><span class="toc-number">10.</span> <span class="toc-text">Get/Post对缓存的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求头和响应头"><span class="toc-number">11.</span> <span class="toc-text">HTTP请求头和响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过三种方式编写单例模式"><span class="toc-number">12.</span> <span class="toc-text">通过三种方式编写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程技术书籍"><span class="toc-number">13.</span> <span class="toc-text">编程技术书籍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO核心组件"><span class="toc-number">14.</span> <span class="toc-text">NIO核心组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断对象可收回"><span class="toc-number">15.</span> <span class="toc-text">判断对象可收回</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中文编码问题"><span class="toc-number">16.</span> <span class="toc-text">中文编码问题</span></a></li></ol>
 		
 		</div>
 		
@@ -161,15 +161,20 @@
 </li>
 </ul>
 <h2 id="常用GC算法"><a href="#常用GC算法" class="headerlink" title="常用GC算法"></a>常用GC算法</h2><ul>
-<li><p>引用计数法</p>
-</li>
-<li><p>复制法<br>原理：从根集合开始，通过追踪从From中找到存活对象，拷贝到To中；From和To交换身份，下次内存分配从To开始<br>优缺点：没有标记和清除的过程，效率高；没有内存碎片，可以快速实现内存分配；但是需要双倍空间<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC的复制法.jpg" alt="GC的复制法.jpg"></p>
-</li>
-<li><p>标记清除法<br>原理：分为两个阶段，标记和清除；标记，从根集合开始扫描，对存活的对象进行标记。清除，扫描整个内存空间，回收未被标记的对象。<br>优缺点：不需要额外空间，但是，两次扫描，耗时严重；会产生碎片<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法标记阶段.jpg" alt="GC标记清除法标记阶段"><br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法清除阶段.jpg" alt="GC标记清除法清除阶段"></p>
-</li>
-<li><p>标记压缩法<br>原理：分为两个阶段，标记和压缩；标记，从根集合开始扫描，对存活对象进行标记。压缩，再次扫描，并往一端滑动存活对象。<br>优缺点：没有内存碎片，但是需要移动对象的成本<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法标记阶段.jpg" alt="GC标记压缩法标记阶段"><br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法压缩阶段.jpg" alt="GC标记压缩法压缩阶段"></p>
-</li>
-<li><p>标记清除压缩法<br>原理：将标记清除和标记压缩相结合，过程和标记清除一样，但是进行多次GC后才压缩。<br>优缺点：减少了对象的移动成本</p>
+<li>引用计数法</li>
+<li>复制法<br>原理：从根集合开始，通过追踪从From中找到存活对象，拷贝到To中；From和To交换身份，下次内存分配从To开始<br>优缺点：没有标记和清除的过程，效率高；没有内存碎片，可以快速实现内存分配；但是需要双倍空间<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC的复制法.jpg" alt="GC的复制法.jpg"></li>
+<li>标记清除法<br>原理：分为两个阶段，标记和清除；标记，从根集合开始扫描，对存活的对象进行标记。清除，扫描整个内存空间，回收未被标记的对象。<br>优缺点：不需要额外空间，但是，两次扫描，耗时严重；会产生碎片<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法标记阶段.jpg" alt="GC标记清除法标记阶段"><br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法清除阶段.jpg" alt="GC标记清除法清除阶段"></li>
+<li>标记压缩法<br>原理：分为两个阶段，标记和压缩；标记，从根集合开始扫描，对存活对象进行标记。压缩，再次扫描，并往一端滑动存活对象。<br>优缺点：没有内存碎片，但是需要移动对象的成本<br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法标记阶段.jpg" alt="GC标记压缩法标记阶段"><br><img src="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法压缩阶段.jpg" alt="GC标记压缩法压缩阶段"></li>
+<li>标记清除压缩法<br>原理：将标记清除和标记压缩相结合，过程和标记清除一样，但是进行多次GC后才压缩。<br>优缺点：减少了对象的移动成本</li>
+</ul>
+<h2 id="什么情况下出现Full-GC，什么情况下出现Young-GC"><a href="#什么情况下出现Full-GC，什么情况下出现Young-GC" class="headerlink" title="什么情况下出现Full GC，什么情况下出现Young GC"></a>什么情况下出现Full GC，什么情况下出现Young GC</h2><ul>
+<li>对象优先在新生代Eden区分配，如果Eden区没有足够的空间时，就会触发一次young gc</li>
+<li>full gc触发的条件有多个，且full gc的时候会出现stop world。<ul>
+<li>在执行yong gc之前，JVM会进行空间担保-如果老年代的连续空间小于新生代对象的总大小(或历次晋升的平均大小)，则触发一次full gc。</li>
+<li>显示的调用<code>System.gc()</code> 时</li>
+<li>大对象直接进入老年代，从年轻代晋升上来的老对象，尝试在老年代分配内存时，但是老年代内存不足时</li>
+<li>永生区空间不足时</li>
+</ul>
 </li>
 </ul>
 <h2 id="http1-0，http1-1，http2-0区别"><a href="#http1-0，http1-1，http2-0区别" class="headerlink" title="http1.0，http1.1，http2.0区别"></a>http1.0，http1.1，http2.0区别</h2><h2 id="Get-Post对缓存的影响"><a href="#Get-Post对缓存的影响" class="headerlink" title="Get/Post对缓存的影响"></a>Get/Post对缓存的影响</h2><ul>
@@ -258,9 +263,9 @@
 </li>
 <li><p>饿汉式</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Singleton</span></span>&#123;</div><div class="line">   <span class="keyword">private</span> <span class="keyword">static</span> Singleton instance = <span class="keyword">new</span> Singleton();</div><div class="line">   <span class="function"><span class="keyword">private</span> <span class="title">Singleton</span><span class="params">()</span></span>&#123;&#125;</div><div class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Singleton <span class="title">getInstance</span><span class="params">()</span></span>&#123;</div><div class="line">   	<span class="keyword">return</span> instance;</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="编程技术书籍"><a href="#编程技术书籍" class="headerlink" title="编程技术书籍"></a>编程技术书籍</h2><p><a href="https://github.com/jobbole/awesome-programming-books" target="_blank" rel="external">https://github.com/jobbole/awesome-programming-books</a></p>
 </li>
 </ul>
-<h2 id="编程技术书籍"><a href="#编程技术书籍" class="headerlink" title="编程技术书籍"></a>编程技术书籍</h2><p><a href="https://github.com/jobbole/awesome-programming-books" target="_blank" rel="external">https://github.com/jobbole/awesome-programming-books</a></p>
 <h2 id="NIO核心组件"><a href="#NIO核心组件" class="headerlink" title="NIO核心组件"></a>NIO核心组件</h2><ul>
 <li>Channel，可以理解为资源的一个流，通过这个流资源可以从Channel读取Data到一个Buffer中或者从一个Buffer中写入Data到Channel</li>
 <li>Buffer，java NIO Buffers 和Channels配合使用</li>
@@ -363,7 +368,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zk分布式锁："><span class="toc-number">1.</span> <span class="toc-text">zk分布式锁：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈分布式"><span class="toc-number">2.</span> <span class="toc-text">谈谈分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis持久化实现原理"><span class="toc-number">3.</span> <span class="toc-text">redis持久化实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者消费者"><span class="toc-number">4.</span> <span class="toc-text">生产者消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM的内存模型"><span class="toc-number">5.</span> <span class="toc-text">JVM的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM体系结构"><span class="toc-number">6.</span> <span class="toc-text">JVM体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用GC算法"><span class="toc-number">7.</span> <span class="toc-text">常用GC算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http1-0，http1-1，http2-0区别"><span class="toc-number">8.</span> <span class="toc-text">http1.0，http1.1，http2.0区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-Post对缓存的影响"><span class="toc-number">9.</span> <span class="toc-text">Get/Post对缓存的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求头和响应头"><span class="toc-number">10.</span> <span class="toc-text">HTTP请求头和响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过三种方式编写单例模式"><span class="toc-number">11.</span> <span class="toc-text">通过三种方式编写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程技术书籍"><span class="toc-number">12.</span> <span class="toc-text">编程技术书籍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO核心组件"><span class="toc-number">13.</span> <span class="toc-text">NIO核心组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断对象可收回"><span class="toc-number">14.</span> <span class="toc-text">判断对象可收回</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中文编码问题"><span class="toc-number">15.</span> <span class="toc-text">中文编码问题</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zk分布式锁："><span class="toc-number">1.</span> <span class="toc-text">zk分布式锁：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈分布式"><span class="toc-number">2.</span> <span class="toc-text">谈谈分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis持久化实现原理"><span class="toc-number">3.</span> <span class="toc-text">redis持久化实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者消费者"><span class="toc-number">4.</span> <span class="toc-text">生产者消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM的内存模型"><span class="toc-number">5.</span> <span class="toc-text">JVM的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM体系结构"><span class="toc-number">6.</span> <span class="toc-text">JVM体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用GC算法"><span class="toc-number">7.</span> <span class="toc-text">常用GC算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么情况下出现Full-GC，什么情况下出现Young-GC"><span class="toc-number">8.</span> <span class="toc-text">什么情况下出现Full GC，什么情况下出现Young GC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http1-0，http1-1，http2-0区别"><span class="toc-number">9.</span> <span class="toc-text">http1.0，http1.1，http2.0区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-Post对缓存的影响"><span class="toc-number">10.</span> <span class="toc-text">Get/Post对缓存的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求头和响应头"><span class="toc-number">11.</span> <span class="toc-text">HTTP请求头和响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过三种方式编写单例模式"><span class="toc-number">12.</span> <span class="toc-text">通过三种方式编写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程技术书籍"><span class="toc-number">13.</span> <span class="toc-text">编程技术书籍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO核心组件"><span class="toc-number">14.</span> <span class="toc-text">NIO核心组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断对象可收回"><span class="toc-number">15.</span> <span class="toc-text">判断对象可收回</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中文编码问题"><span class="toc-number">16.</span> <span class="toc-text">中文编码问题</span></a></li></ol>
  
   </div>
 
@@ -379,7 +384,7 @@
 		<ul class="clearfix">
 		
 			
-				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
 			
 		
 			
@@ -395,19 +400,11 @@
 			
 		
 			
-				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/源码-NumberUtils使用介绍/" title="源码 NumberUtils使用介绍">源码 NumberUtils使用介绍<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/idea-idea快捷键/" title="idea idea快捷键">idea idea快捷键<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/maven配置-maven配置远程仓库-maen配置编译级别/" title="maven配置 maven配置远程仓库 maen配置编译级别">maven配置 maven配置远程仓库 maen配置编译级别<sup>1</sup></a></li>
+				<li><a href="/tags/redis-nosql-缓存/" title="redis nosql 缓存">redis nosql 缓存<sup>1</sup></a></li>
 			
 		
 			
@@ -415,15 +412,23 @@
 			
 		
 			
+				<li><a href="/tags/idea-idea快捷键/" title="idea idea快捷键">idea idea快捷键<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/redis-缓存-redis主从复制/" title="redis 缓存 redis主从复制">redis 缓存 redis主从复制<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-nosql-redis安装/" title="redis nosql redis安装">redis nosql redis安装<sup>1</sup></a></li>
+				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis-redis集群添加节点-redis集群水平扩展/" title="redis redis集群添加节点 redis集群水平扩展">redis redis集群添加节点 redis集群水平扩展<sup>1</sup></a></li>
+				<li><a href="/tags/maven配置-maven配置远程仓库-maen配置编译级别/" title="maven配置 maven配置远程仓库 maen配置编译级别">maven配置 maven配置远程仓库 maen配置编译级别<sup>1</sup></a></li>
 			
 		
 			
@@ -443,11 +448,11 @@
 			
 		
 			
-				<li><a href="/tags/http请求过程，DNS解析过程/" title="http请求过程，DNS解析过程">http请求过程，DNS解析过程<sup>1</sup></a></li>
+				<li><a href="/tags/java爬取今日头条文章-java爬虫/" title="java爬取今日头条文章 java爬虫">java爬取今日头条文章 java爬虫<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/java爬取今日头条文章-java爬虫/" title="java爬取今日头条文章 java爬虫">java爬取今日头条文章 java爬虫<sup>1</sup></a></li>
+				<li><a href="/tags/http请求过程，DNS解析过程/" title="http请求过程，DNS解析过程">http请求过程，DNS解析过程<sup>1</sup></a></li>
 			
 		
 		</ul>
