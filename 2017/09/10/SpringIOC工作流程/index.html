@@ -12,7 +12,7 @@
 
     
     <meta name="description" content="IOC简介IOC(Inverse Of Control，控制反转)是Spring容器的核心，AOP、声明式事物都是基于该功能。Spring IOC装配好Bean，并建立Bean和Bean之间的关联关系。">
-<meta name="keywords" content="Spring IOC源码,Spring IOC工作流程">
+<meta name="keywords" content="Spring,Spring IOC源码,Spring IOC工作流程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringIOC工作流程">
 <meta property="og:url" content="http://yoursite.com/2017/09/10/SpringIOC工作流程/index.html">
@@ -21,7 +21,8 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/IOC流水线.png">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/BeanDefinition.png">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/InstantiationStrategy.png">
-<meta property="og:updated_time" content="2017-09-12T13:18:41.244Z">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/BeanWrapper.png">
+<meta property="og:updated_time" content="2017-09-13T14:26:33.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringIOC工作流程">
 <meta name="twitter:description" content="IOC简介IOC(Inverse Of Control，控制反转)是Spring容器的核心，AOP、声明式事物都是基于该功能。Spring IOC装配好Bean，并建立Bean和Bean之间的关联关系。">
@@ -102,7 +103,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC简介"><span class="toc-number">1.</span> <span class="toc-text">IOC简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行环境"><span class="toc-number">2.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部工作机制"><span class="toc-number">3.</span> <span class="toc-text">内部工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC流水线"><span class="toc-number">4.</span> <span class="toc-text">IOC流水线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">4.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#材料类和工具类介绍"><span class="toc-number">5.</span> <span class="toc-text">材料类和工具类介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanDefinition"><span class="toc-number">5.1.</span> <span class="toc-text">BeanDefinition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InstantiationStrategy"><span class="toc-number">5.2.</span> <span class="toc-text">InstantiationStrategy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanWrapper"><span class="toc-number">5.3.</span> <span class="toc-text">BeanWrapper</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC简介"><span class="toc-number">1.</span> <span class="toc-text">IOC简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行环境"><span class="toc-number">2.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部工作机制"><span class="toc-number">3.</span> <span class="toc-text">内部工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC流水线"><span class="toc-number">4.</span> <span class="toc-text">IOC流水线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">4.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#材料类和工具类介绍"><span class="toc-number">5.</span> <span class="toc-text">材料类和工具类介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanDefinition"><span class="toc-number">5.1.</span> <span class="toc-text">BeanDefinition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InstantiationStrategy"><span class="toc-number">5.2.</span> <span class="toc-text">InstantiationStrategy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanWrapper"><span class="toc-number">5.3.</span> <span class="toc-text">BeanWrapper</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结-1"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
 		
 		</div>
 		
@@ -152,7 +153,15 @@
 <p><code>SimpleInstantiationStrategy</code> 是最常用的实例化策略，该策略利用Bean实现类的默认构造函数、带参数构造函数或者工厂方法创建Bean的实例。</p>
 <p><code>CglibSubclassingInstantiationStrategy</code> 扩展了 <code>SimpleInstantiationStrategy</code> ，为需要进行方法注入的Bean提供了支持。它利用CGLib类库为Bean动态生成子类。</p>
 <p><code>InstantiationStrategy</code> 只负责实例化Bean的操作，相当于Java中的new的功能，它不会参与Bean属性的设置工作。所以由<code>InstantiationStrategy</code> 返回的bean实际上是一个半成品的bean</p>
-<h3 id="BeanWrapper"><a href="#BeanWrapper" class="headerlink" title="BeanWrapper"></a>BeanWrapper</h3><p><code>org.springframework.beans.BeanWrapper</code> 是Spring中重要的组件。<code>BeanWrapper</code> 相当于一个代理器，Spring委托<code>BeanWrapper</code> 完成Bean属性的填充工作。</p>
+<h3 id="BeanWrapper"><a href="#BeanWrapper" class="headerlink" title="BeanWrapper"></a>BeanWrapper</h3><p><code>org.springframework.beans.BeanWrapper</code> 是Spring中重要的组件。<code>BeanWrapper</code> 相当于一个代理器，Spring委托<code>BeanWrapper</code> 完成Bean属性的填充工作。<code>BeanWrapper</code>类的继承结构如下图：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/BeanWrapper.png" alt="BeanWrapper类的继承结构图"></p>
+<p>通过上图可以看出<code>BeanWrapper</code> 接口有两个顶级接口<code>PropertyAccessor</code> 和 <code>PropertyEditorRegistry</code> 。<code>PropertyAccessor</code> 接口定义访问Bean属性的方法，而<code>PropertyEditorRegistry</code> 是属性编辑器的注册表，可以添加一些自定义的<code>PropertyEditor</code> 。所最终实现的<code>BeanWrapperImpl</code> 类具有：</p>
+<ul>
+<li>Bean包裹器</li>
+<li>属性访问方法</li>
+<li>属性编辑器注册方法</li>
+</ul>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>对Spring的Ioc容器来说，主要有<code>BeanFactoryPostProcessor</code> 和 <code>BeanPostProcessor</code> ，它们分别在构建BeanFactory和Bean时调用。还有<code>initializingBean</code> 和 <code>DisposableBean</code> ，它们分别在Bean实例创建和销毁时调用。通过这些特定的扩展点可以实现我们个性化的需求。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -161,7 +170,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/Spring-IOC源码/">Spring IOC源码</a><a href="/tags/Spring-IOC工作流程/">Spring IOC工作流程</a>
+  <span></span> <a href="/tags/Spring/">Spring</a><a href="/tags/Spring-IOC源码/">Spring IOC源码</a><a href="/tags/Spring-IOC工作流程/">Spring IOC工作流程</a>
   </div>
 
 </div>
@@ -230,7 +239,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC简介"><span class="toc-number">1.</span> <span class="toc-text">IOC简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行环境"><span class="toc-number">2.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部工作机制"><span class="toc-number">3.</span> <span class="toc-text">内部工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC流水线"><span class="toc-number">4.</span> <span class="toc-text">IOC流水线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">4.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#材料类和工具类介绍"><span class="toc-number">5.</span> <span class="toc-text">材料类和工具类介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanDefinition"><span class="toc-number">5.1.</span> <span class="toc-text">BeanDefinition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InstantiationStrategy"><span class="toc-number">5.2.</span> <span class="toc-text">InstantiationStrategy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanWrapper"><span class="toc-number">5.3.</span> <span class="toc-text">BeanWrapper</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC简介"><span class="toc-number">1.</span> <span class="toc-text">IOC简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运行环境"><span class="toc-number">2.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#内部工作机制"><span class="toc-number">3.</span> <span class="toc-text">内部工作机制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IOC流水线"><span class="toc-number">4.</span> <span class="toc-text">IOC流水线</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#总结"><span class="toc-number">4.1.</span> <span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#材料类和工具类介绍"><span class="toc-number">5.</span> <span class="toc-text">材料类和工具类介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanDefinition"><span class="toc-number">5.1.</span> <span class="toc-text">BeanDefinition</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InstantiationStrategy"><span class="toc-number">5.2.</span> <span class="toc-text">InstantiationStrategy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeanWrapper"><span class="toc-number">5.3.</span> <span class="toc-text">BeanWrapper</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结-1"><span class="toc-number">6.</span> <span class="toc-text">总结</span></a></li></ol>
  
   </div>
 
@@ -274,14 +283,6 @@
 			
 		
 			
-				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>1</sup></a></li>
 			
 		
@@ -291,6 +292,18 @@
 		
 			
 				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
 			
 		
 			
@@ -319,10 +332,6 @@
 		
 			
 				<li><a href="/tags/电话号码正则表达式/" title="电话号码正则表达式">电话号码正则表达式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/邮箱正则表达式/" title="邮箱正则表达式">邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 		</ul>
