@@ -4,28 +4,23 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>redis配置哨兵模式 | 在路上的coder</title>
+    <title>初识Java和JVM | 在路上的coder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="在路上的coder">
     
 
     
-    <meta name="description" content="概念哨兵的含义就是监控Redis系统的运行状况，其主要功能有两点：  监控主数据库和从数据库是否正常运行 主数据库出现故障，可以自动将从数据库转换为主数据库，实现自动切换">
-<meta name="keywords" content="redis,缓存,redis哨兵模式">
+    <meta name="description" content="在路上的coder博客 Java | Redis | JVM | Python ...">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redis配置哨兵模式">
-<meta property="og:url" content="http://yoursite.com/2017/06/03/redis配置哨兵模式/index.html">
+<meta property="og:title" content="初识Java和JVM">
+<meta property="og:url" content="http://yoursite.com/2017/09/30/初识Java和JVM/index.html">
 <meta property="og:site_name" content="在路上的coder">
-<meta property="og:description" content="概念哨兵的含义就是监控Redis系统的运行状况，其主要功能有两点：  监控主数据库和从数据库是否正常运行 主数据库出现故障，可以自动将从数据库转换为主数据库，实现自动切换">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/查看哨兵相关信息.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/redis哨兵切换.jpg">
-<meta property="og:updated_time" content="2017-09-12T13:25:19.389Z">
+<meta property="og:description" content="在路上的coder博客 Java | Redis | JVM | Python ...">
+<meta property="og:updated_time" content="2017-09-30T13:54:03.379Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="redis配置哨兵模式">
-<meta name="twitter:description" content="概念哨兵的含义就是监控Redis系统的运行状况，其主要功能有两点：  监控主数据库和从数据库是否正常运行 主数据库出现故障，可以自动将从数据库转换为主数据库，实现自动切换">
-<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/redis%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F.jpg">
+<meta name="twitter:title" content="初识Java和JVM">
+<meta name="twitter:description" content="在路上的coder博客 Java | Redis | JVM | Python ...">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上的coder" type="application/atom+xml">
@@ -84,14 +79,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/03/redis配置哨兵模式/" title="redis配置哨兵模式" itemprop="url">redis配置哨兵模式</a>
+      <a href="/2017/09/30/初识Java和JVM/" title="初识Java和JVM" itemprop="url">初识Java和JVM</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-03T06:02:18.000Z" itemprop="datePublished"> 发表于 2017-06-03</time>
+    <time datetime="2017-09-30T13:54:03.000Z" itemprop="datePublished"> 发表于 2017-09-30</time>
     <span id="busuanzi_container_page_pv">
     总阅读<span id="busuanzi_value_page_pv"></span>次
 	</span>
@@ -102,31 +97,15 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现步骤"><span class="toc-number">2.</span> <span class="toc-text">实现步骤</span></a></li></ol>
+			
 		
 		</div>
 		
-		<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>哨兵的含义就是监控Redis系统的运行状况，其主要功能有两点：</p>
-<ul>
-<li>监控主数据库和从数据库是否正常运行</li>
-<li>主数据库出现故障，可以自动将从数据库转换为主数据库，实现自动切换<a id="more"></a>
-<h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3>在任意一台服务器配置sentinel.conf，我们在hadoop4中配置</li>
-<li>拷贝文件到 etc 目录下，<code>cp /home/hadoop/apps/redis-3.0.0/sentinel.conf /home/hadoop/apps/redis-3.0.0/etc/</code></li>
-<li>修改sentinel.conf文件：<br><code>dir /home/hadoop/apps/redis-3.0.0/etc/</code> 修改哨兵的工作目录<br><code>sentinel monitor mymaster 192.168.137.5 6379 1</code> #master名称(任意取后面配置需要使用到)、master节点ip、端口、投票选举次数<br><code>sentinel down-after-milliseconds mymaster 5000</code> 配置多长时间检测一次，默认30秒，这里配置5秒<br><code>sentinel failover-timeout mymaster 900000</code><br><code>sentinel parallel-syncs mymaster 2</code></li>
-<li>启动哨兵：<code>/home/hadoop/apps/redis-3.0.0/bin/redis-server /home/hadoop/apps/redis-3.0.0/etc/sentinel.conf --sentinel &amp;</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/redis%E5%90%AF%E5%8A%A8%E6%88%90%E5%8A%9F.jpg" alt="redis启动成功"></li>
-<li>查看哨兵相关信息：<code>/home/hadoop/apps/redis-3.0.0/bin/redis-cli -h 192.168.137.4 -p 26379 info Sentinel</code><br><img src="http://opzxa0ul7.bkt.clouddn.com/查看哨兵相关信息.jpg" alt="查看哨兵相关信息"></li>
-<li>验证哨兵功能，关闭主节点：<code>/home/hadoop/apps/redis-3.0.0/bin/redis-cli -h 192.168.137.5 -p 6379 shutdown</code> 当主节点停掉之后，在哨兵服务器上将会自动选举出新的主节点，这里选举出hadoop4为主节点。重新启动hadoop5，则会重新加入到集群中，作为salver点。<br><img src="http://opzxa0ul7.bkt.clouddn.com/redis哨兵切换.jpg" alt="redis哨兵切换"></li>
-</ul>
-  
+		  
 	</div>
 		<footer class="article-footer clearfix">
 <div class="article-catetags">
 
-
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/redis/">redis</a><a href="/tags/缓存/">缓存</a><a href="/tags/redis哨兵模式/">redis哨兵模式</a>
-  </div>
 
 </div>
 
@@ -173,19 +152,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/04/redis集群搭建/" title="Redis集群搭建">
-  <strong>上一篇：</strong><br/>
-  <span>
-  Redis集群搭建</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/02/redis主从复制/"  title="redis主从复制">
+<a href="/2017/09/10/SpringIOC工作流程/"  title="SpringIOC工作流程">
  <strong>下一篇：</strong><br/> 
- <span>redis主从复制
+ <span>SpringIOC工作流程
 </span>
 </a>
 </div>
@@ -202,7 +173,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概念"><span class="toc-number">1.</span> <span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现步骤"><span class="toc-number">2.</span> <span class="toc-text">实现步骤</span></a></li></ol>
+ 
  
   </div>
 
