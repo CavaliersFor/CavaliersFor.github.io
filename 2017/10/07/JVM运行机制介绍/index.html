@@ -1,0 +1,731 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>JVM运行机制介绍 | 在路上的coder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="在路上的coder">
+    
+
+    
+    <meta name="description" content="JVM运行机制该文主要介绍：JVM启动流程 、JVM基本结构 、 JVM的内存模型 、编译运行和解释运行的区别 通过这几部份来了解和学习JVM。">
+<meta name="keywords" content="JVM,JVM运行机制介绍">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM运行机制介绍">
+<meta property="og:url" content="http://yoursite.com/2017/10/07/JVM运行机制介绍/index.html">
+<meta property="og:site_name" content="在路上的coder">
+<meta property="og:description" content="JVM运行机制该文主要介绍：JVM启动流程 、JVM基本结构 、 JVM的内存模型 、编译运行和解释运行的区别 通过这几部份来了解和学习JVM。">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/jvm启动流程.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/JVM基本结构.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/栈帧示例.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/操作数栈例子.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/栈堆方法区交互.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/JVM内存模型.jpg">
+<meta property="og:updated_time" content="2017-10-08T02:59:05.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JVM运行机制介绍">
+<meta name="twitter:description" content="JVM运行机制该文主要介绍：JVM启动流程 、JVM基本结构 、 JVM的内存模型 、编译运行和解释运行的区别 通过这几部份来了解和学习JVM。">
+<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/jvm启动流程.jpg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="在路上的coder" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="在路上的coder" title="在路上的coder"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="在路上的coder">在路上的coder</a></h1>
+				<h2 class="blog-motto">Coder,Machine Learning</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://www.baidu.com" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/10/07/JVM运行机制介绍/" title="JVM运行机制介绍" itemprop="url">JVM运行机制介绍</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
+		
+  <p class="article-time">
+    <time datetime="2017-10-07T13:10:39.000Z" itemprop="datePublished"> 发表于 2017-10-07</time>
+    <span id="busuanzi_container_page_pv">
+    总阅读<span id="busuanzi_value_page_pv"></span>次
+	</span>
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM运行机制"><span class="toc-number">1.</span> <span class="toc-text">JVM运行机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行环境"><span class="toc-number">1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM启动流程"><span class="toc-number">1.2.</span> <span class="toc-text">JVM启动流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM基本结构"><span class="toc-number">1.3.</span> <span class="toc-text">JVM基本结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PC寄存器"><span class="toc-number">1.3.1.</span> <span class="toc-text">PC寄存器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法区"><span class="toc-number">1.3.2.</span> <span class="toc-text">方法区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java堆"><span class="toc-number">1.3.3.</span> <span class="toc-text">Java堆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java栈"><span class="toc-number">1.3.4.</span> <span class="toc-text">Java栈</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型"><span class="toc-number">1.4.</span> <span class="toc-text">JVM内存模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#volatile关键字介绍"><span class="toc-number">1.4.1.</span> <span class="toc-text">volatile关键字介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存模型相关的概念"><span class="toc-number">1.4.2.</span> <span class="toc-text">内存模型相关的概念</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译运行和解释运行的区别"><span class="toc-number">1.5.</span> <span class="toc-text">编译运行和解释运行的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jdk6下载地址"><span class="toc-number">1.6.</span> <span class="toc-text">jdk6下载地址</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="JVM运行机制"><a href="#JVM运行机制" class="headerlink" title="JVM运行机制"></a>JVM运行机制</h2><p>该文主要介绍：<strong>JVM启动流程</strong> 、<strong>JVM基本结构</strong> 、 <strong>JVM的内存模型</strong> 、<strong>编译运行和解释运行的区别</strong> 通过这几部份来了解和学习JVM。</p>
+<a id="more"></a>
+<h3 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">java version:1.6.0_45</div><div class="line">os:Linux centos6</div></pre></td></tr></table></figure>
+<h3 id="JVM启动流程"><a href="#JVM启动流程" class="headerlink" title="JVM启动流程"></a>JVM启动流程</h3><p>JVM的启动流程如下：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/jvm启动流程.jpg" alt="jvm启动流程"></p>
+<p>通过<code>java</code> 命令执行某个class文件，通过jvm.cfg文件装载对应的配置信息，通过配置查找JVM.dll文件初始化JVM，找到<code>mmain</code> 方法运行。</p>
+<h3 id="JVM基本结构"><a href="#JVM基本结构" class="headerlink" title="JVM基本结构"></a>JVM基本结构</h3><p>JVM的主要结构如下：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/JVM基本结构.jpg" alt="JVM基本结构"></p>
+<p>我们主要关心的是：方法区、Java堆、Java栈和PC寄存器。下面将依次介绍</p>
+<h4 id="PC寄存器"><a href="#PC寄存器" class="headerlink" title="PC寄存器"></a>PC寄存器</h4><ul>
+<li>每个线程拥有一个PC寄存器</li>
+<li>在线程创建时 创建</li>
+<li>指向下一条指令的地址</li>
+<li>执行本地方法时，PC寄存器地址的值为undefined</li>
+</ul>
+<h4 id="方法区"><a href="#方法区" class="headerlink" title="方法区"></a>方法区</h4><ul>
+<li>保存类的元信息<ul>
+<li>类型的常量池</li>
+<li>字段、方法信息</li>
+<li>方法字节码</li>
+</ul>
+</li>
+<li>通过和永久区(Perm)关联在一起</li>
+<li><font color="red">注意点 </font><ul>
+<li>JDK6中，String常量信息置于方法中；JDK7中，已经移动到堆中</li>
+</ul>
+</li>
+</ul>
+<h4 id="Java堆"><a href="#Java堆" class="headerlink" title="Java堆"></a>Java堆</h4><ul>
+<li>和程序开发密切相关</li>
+<li>应用系统对象保存在Java堆中</li>
+<li>所有线程共享Java堆</li>
+<li>对分代GC来说，堆也是分代的</li>
+<li>GC的主要工作空间</li>
+</ul>
+<h4 id="Java栈"><a href="#Java栈" class="headerlink" title="Java栈"></a>Java栈</h4><ul>
+<li>线程私有</li>
+<li>栈由一系列帧组成</li>
+<li>帧保存一个方法的局部变量、操作数栈、常量池指针</li>
+<li>每一次方法调用创建一个栈、并压栈</li>
+</ul>
+<p>局部变量表</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StackDemo</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">runStatic</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">long</span> l,<span class="keyword">float</span> f,Object o,<span class="keyword">byte</span> b)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">  </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">runInstance</span><span class="params">(<span class="keyword">char</span> c,<span class="keyword">short</span> s,<span class="keyword">boolean</span> b)</span></span>&#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>静态方法对应的局部变量表如下</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>0 int int i</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 long long l</td>
+</tr>
+<tr>
+<td></td>
+</tr>
+<tr>
+<td>3 float float f</td>
+</tr>
+<tr>
+<td>4 reference Object o</td>
+</tr>
+<tr>
+<td>5 int byte b</td>
+</tr>
+</tbody>
+</table>
+<p>这里long 类型占用两个字节，Object 类型的变量只是一个引用</p>
+<p><strong>实例方法对应的局部变量表如下</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>0 reference this</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1   int   char   c</td>
+</tr>
+<tr>
+<td>2   int   short   s</td>
+</tr>
+<tr>
+<td>3   int   boolean   b</td>
+</tr>
+</tbody>
+</table>
+<p>基本和静态方法一致，只是局部变量表的第一个参数表示的是当前对象的引用</p>
+<p><strong>函数调用组成帧栈</strong></p>
+<p>通过下段代码演示</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">runStatic</span><span class="params">(<span class="keyword">int</span> i,<span class="keyword">long</span> l,<span class="keyword">float</span> f,Object o,<span class="keyword">byte</span> b)</span></span>&#123;</div><div class="line">    <span class="keyword">return</span> runStatic(i,l,f,o,b);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面这段代码是一个递归调用，而且是没有退出条件，最后结果就是栈溢出，下面的图片显示了调用三次的栈帧示例</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/栈帧示例.jpg" alt="栈帧示例"></p>
+<p><strong>操作数栈</strong></p>
+<p>Java没有寄存器，所有参数传递使用操作数栈实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> c = <span class="number">0</span>;</div><div class="line">    c = a + b;</div><div class="line">    <span class="keyword">return</span> c;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>翻译后</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">0:  iconst_0 // int常量0压栈</div><div class="line">1:  istore_2 // 弹出int，存放在本地变量2，这里变量2表示c</div><div class="line">2:  iload_0 // 把局部变量0压栈，局部变量0表示a</div><div class="line">3:  iload_1 // 把局部变量1压栈，局部变量1表示b</div><div class="line">4:  iadd // 弹出2两个变量，就和结果压栈</div><div class="line">5:  istore_2 // 弹出结果，放入局部变量2中</div><div class="line">6:  iload_2 // 局部变量2压栈</div><div class="line">7:  ireturn // 返回</div></pre></td></tr></table></figure>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/操作数栈例子.jpg" alt="操作数栈例子"></p>
+<p><strong>栈上分配</strong></p>
+<p>下面通过一段代码来演示栈上分配</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">OnStackTest</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">alloc</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">byte</span>[] b=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">2</span>];</div><div class="line">        b[<span class="number">0</span>]=<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">        <span class="keyword">long</span> b=System.currentTimeMillis();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100000000</span>;i++)&#123;</div><div class="line">            alloc();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">long</span> e=System.currentTimeMillis();</div><div class="line">        System.out.println(e-b);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -server -Xmx10m -Xms10m -XX:+DoEscapeAnalysis -XX:+PrintGC OnStackTest</div></pre></td></tr></table></figure>
+<p>执行返回结果为 <code>42</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -server -Xmx10m -Xms10m -XX:-DoEscapeAnalysis -XX:+PrintGC OnStackTest</div></pre></td></tr></table></figure>
+<p>执行结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">[GC 2624K-&gt;192K(9856K), 0.0006780 secs]</div><div class="line">[GC 2816K-&gt;160K(9856K), 0.0006150 secs]</div><div class="line">[GC 2784K-&gt;160K(9856K), 0.0005490 secs]</div><div class="line">[GC 2784K-&gt;160K(9856K), 0.0005980 secs]</div><div class="line">[GC 2784K-&gt;160K(9856K), 0.0003480 secs]</div><div class="line">[GC 2784K-&gt;160K(10048K), 0.0003390 secs]</div><div class="line">[GC 3168K-&gt;124K(9920K), 0.0010710 secs]</div><div class="line">[GC 3132K-&gt;124K(9984K), 0.0001650 secs]</div><div class="line">[GC 3004K-&gt;124K(9984K), 0.0001340 secs]</div><div class="line">[GC 3004K-&gt;124K(9984K), 0.0001420 secs]</div><div class="line">[GC 3004K-&gt;124K(9792K), 0.0001190 secs]</div><div class="line">...</div><div class="line">1035</div></pre></td></tr></table></figure>
+<p>第一个命令表示是栈上分配，第二个命令表示在堆上分配</p>
+<ul>
+<li>小对象(一般几十比特)，在没有逃逸的情况下，可以直接分配在栈上；ps：逃逸对象指，当变量（或者对象）在方法中分配后，其指针被返回或者被全局引用（这样就会被其他过程或者线程所引用），这种现象称作指针（或者引用）的逃逸(Escape)</li>
+<li>直接分配在栈上，可以自动回收，减少GC压力</li>
+<li>大对象或者逃逸对象无法栈上分配</li>
+</ul>
+<p><strong>栈、堆、方法区交互</strong></p>
+<p>通过下图和代码块来描述栈、堆、方法区的交互</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span>   <span class="class"><span class="keyword">class</span>  <span class="title">AppMain</span>     </span></div><div class="line"> //运行时, <span class="title">jvm</span> 把<span class="title">appmain</span>的信息都放入方法区</div><div class="line">&#123; </div><div class="line">  <span class="function"><span class="keyword">public</span>   <span class="keyword">static</span>   <span class="keyword">void</span>  <span class="title">main</span><span class="params">(String[] args)</span>  </span></div><div class="line"><span class="comment">//main 方法本身放入方法区。 </span></div><div class="line">  &#123;</div><div class="line">    Sample test1 = <span class="keyword">new</span>  Sample( <span class="string">" 测试1 "</span> );  </div><div class="line"> <span class="comment">//test1是引用，所以放到栈区里， Sample是自定义对象应该放到堆里面 </span></div><div class="line">    Sample test2 = <span class="keyword">new</span>  Sample( <span class="string">" 测试2 "</span> );</div><div class="line">    test1.printName(); </div><div class="line">    test2.printName(); </div><div class="line">  &#125; </div><div class="line">&#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="keyword">public</span>   <span class="class"><span class="keyword">class</span>  <span class="title">Sample</span>       </span></div><div class="line"> //运行时, <span class="title">jvm</span> 把<span class="title">appmain</span>的信息都放入方法区 </div><div class="line">&#123; <span class="keyword">private</span>  name;     </div><div class="line"> <span class="comment">//new Sample实例后， name 引用放入栈区里，  name 对象放入堆里 </span></div><div class="line"> <span class="function"><span class="keyword">public</span>  <span class="title">Sample</span><span class="params">(String name)</span> </span></div><div class="line"> &#123; </div><div class="line">   <span class="keyword">this</span> .name = name; </div><div class="line"> &#125; <span class="comment">//print方法本身放入 方法区里。</span></div><div class="line"> <span class="function"><span class="keyword">public</span>   <span class="keyword">void</span>  <span class="title">printName</span><span class="params">()</span>    </span></div><div class="line"> &#123; </div><div class="line">   System.out.println(name); </div><div class="line"> &#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/栈堆方法区交互.jpg" alt="栈堆方法区交互"></p>
+<p>执行main方法的Sample对象的引用是放在main方法的栈中，对象本身是在堆中创建，在创建对象时需要读取方法区的类的元数据信息。</p>
+<h3 id="JVM内存模型"><a href="#JVM内存模型" class="headerlink" title="JVM内存模型"></a>JVM内存模型</h3><p>内存模型</p>
+<ul>
+<li>每一个线程有一个工作内存和主内存独立</li>
+<li>工作内存存放主内存中变量的值得拷贝</li>
+</ul>
+<p>当数据从主内存复制到工作存储时，必须出现两个动作：第一，由主内存执行的读（read）操作；第二，由工作内存执行的相应的load操作；当数据从工作内存拷贝到主内存时，也出现两个操作：第一个，由工作内存执行的存储（store）操作；第二，由主内存执行的相应的写（write）操作</p>
+<p>每一个操作都是原子的，即执行期间不会被中断。也就是read操作是原子的，但是read和load操作之间是可以暂停的</p>
+<p>对于普通变量，一个线程中更新的值，不能马上反应在其他变量中</p>
+<p>如果需要在其他线程中立即可见，需要使用 volatile 关键字</p>
+<p>具体如下图：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/JVM内存模型.jpg" alt="JVM内存模型"></p>
+<h4 id="volatile关键字介绍"><a href="#volatile关键字介绍" class="headerlink" title="volatile关键字介绍"></a>volatile关键字介绍</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">VolatileStopThread</span> <span class="keyword">extends</span> <span class="title">Thread</span></span>&#123;</div><div class="line">  <span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">boolean</span> stop = <span class="keyword">false</span>;</div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">stopMe</span><span class="params">()</span></span>&#123;</div><div class="line">  stop=<span class="keyword">true</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span>(!stop)&#123;</div><div class="line">          i++;</div><div class="line">      &#125;</div><div class="line">    System.out.println(<span class="string">"Stop thread"</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span> <span class="keyword">throws</span> InterruptedException</span>&#123;</div><div class="line">      VolatileStopThread t=<span class="keyword">new</span> VolatileStopThread();</div><div class="line">      t.start();</div><div class="line">      Thread.sleep(<span class="number">1000</span>);</div><div class="line">      t.stopMe();</div><div class="line">      Thread.sleep(<span class="number">1000</span>);</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>volatile 不能代替锁</p>
+<p>一般认为volatile 比锁性能好（不绝对）</p>
+<p>选择使用volatile的条件是：满足某个线程的依赖另外线程的对共享变量的修改</p>
+<h4 id="内存模型相关的概念"><a href="#内存模型相关的概念" class="headerlink" title="内存模型相关的概念"></a>内存模型相关的概念</h4><ul>
+<li>可见性<ul>
+<li>一个线程修改了共享变量，其他线程可以立即知道</li>
+</ul>
+</li>
+<li>保证可见性的方法<ul>
+<li>volatile 关键字</li>
+<li>synchronized 关键字</li>
+<li>final 关键字 (一旦初始化完成，其他线程可见)</li>
+</ul>
+</li>
+<li>有序性<ul>
+<li>在本线程内，操作都是有序的</li>
+<li>在线程外观察，操作都是无序的。(导致原因：指令重排或主内存同步延迟)</li>
+</ul>
+</li>
+<li>指令重排<ul>
+<li>线程内串行语义<ul>
+<li>写后读 <code>a=1;b=a;</code> 写一个变量后，再读这个变量</li>
+<li>写后写 <code>a=1;a=2;</code> 写一个变量后，再写这个变量</li>
+<li>读后写 <code>a=b;b=1;</code>读完一个变量后，在写这个变量</li>
+<li>以上语句<font color="red">不可</font>重排</li>
+<li>编译器不考虑多线程的语义</li>
+<li>可重排语句：a=1;b=2;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>指令重排 —— 破坏线程间的有序性</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrderExample</span> </span>&#123;</div><div class="line"><span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line"><span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writer</span><span class="params">()</span> </span>&#123;</div><div class="line">    a = <span class="number">1</span>;                   </div><div class="line">    flag = <span class="keyword">true</span>;           </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">reader</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (flag) &#123;                </div><div class="line">        <span class="keyword">int</span> i =  a +<span class="number">1</span>;      </div><div class="line">        ……</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行流程：</p>
+<p>线程A首先执行writer()方法</p>
+<p>线程B线程接着执行reader()方法</p>
+<p>线程B在int i=a+1 是不一定能看到a已经被赋值为1</p>
+<p>因为在writer中，两句话顺序可能打乱</p>
+<p><strong>指令重排 —— 保证有序性的方法</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">OrderExample</span> </span>&#123;</div><div class="line"><span class="keyword">int</span> a = <span class="number">0</span>;</div><div class="line"><span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">writer</span><span class="params">()</span> </span>&#123;</div><div class="line">    a = <span class="number">1</span>;                   </div><div class="line">    flag = <span class="keyword">true</span>;           </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">reader</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (flag) &#123;                </div><div class="line">        <span class="keyword">int</span> i =  a +<span class="number">1</span>;      </div><div class="line">        ……</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>同步后，即使做了writer重排，因为互斥的缘故，reader 线程看writer线程也是顺序执行的。</p>
+<p><strong>指令重排的基本原则</strong></p>
+<ul>
+<li>程序顺序原则：一个线程内保证语义的串行性</li>
+<li>volatile规则：volatile变量的写，先发生于读</li>
+<li>锁规则：解锁(unlock)必然发生在随后的加锁(lock)前</li>
+<li>传递性：A先于B，B先于C 那么A必然先于C</li>
+<li>线程的start方法先于它的每一个动作</li>
+<li>线程的所有操作先于线程的终结（Thread.join()）</li>
+<li>线程的中断（interrupt()）先于被中断线程的代码</li>
+<li>对象的构造函数执行结束先于finalize()方法</li>
+</ul>
+<h3 id="编译运行和解释运行的区别"><a href="#编译运行和解释运行的区别" class="headerlink" title="编译运行和解释运行的区别"></a>编译运行和解释运行的区别</h3><ul>
+<li>解释运行<ul>
+<li>解释执行以解释方式运行字节码</li>
+<li>解释执行的意思是：读一句执行一句</li>
+</ul>
+</li>
+<li>编译运行（JIT）<ul>
+<li>将字节码编译成机器码</li>
+<li>直接执行机器码</li>
+<li>运行时编译</li>
+<li>编译后性能有数量级的提升</li>
+</ul>
+</li>
+</ul>
+<h3 id="jdk6下载地址"><a href="#jdk6下载地址" class="headerlink" title="jdk6下载地址"></a>jdk6下载地址</h3><p><a href="https://pan.baidu.com/s/1i4YLjBR" target="_blank" rel="external">点击下载</a></p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JVM/">JVM</a><a href="/tags/JVM运行机制介绍/">JVM运行机制介绍</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+2138856" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+	<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2138856"></script>
+<!-- UY END -->
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/09/30/初识Java和JVM/"  title="初识Java和JVM">
+ <strong>下一篇：</strong><br/> 
+ <span>初识Java和JVM
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM运行机制"><span class="toc-number">1.</span> <span class="toc-text">JVM运行机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行环境"><span class="toc-number">1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM启动流程"><span class="toc-number">1.2.</span> <span class="toc-text">JVM启动流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM基本结构"><span class="toc-number">1.3.</span> <span class="toc-text">JVM基本结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PC寄存器"><span class="toc-number">1.3.1.</span> <span class="toc-text">PC寄存器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法区"><span class="toc-number">1.3.2.</span> <span class="toc-text">方法区</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java堆"><span class="toc-number">1.3.3.</span> <span class="toc-text">Java堆</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java栈"><span class="toc-number">1.3.4.</span> <span class="toc-text">Java栈</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JVM内存模型"><span class="toc-number">1.4.</span> <span class="toc-text">JVM内存模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#volatile关键字介绍"><span class="toc-number">1.4.1.</span> <span class="toc-text">volatile关键字介绍</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内存模型相关的概念"><span class="toc-number">1.4.2.</span> <span class="toc-text">内存模型相关的概念</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#编译运行和解释运行的区别"><span class="toc-number">1.5.</span> <span class="toc-text">编译运行和解释运行的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jdk6下载地址"><span class="toc-number">1.6.</span> <span class="toc-text">jdk6下载地址</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/redis/" title="redis">redis<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/缓存/" title="缓存">缓存<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nosql/" title="nosql">nosql<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM/" title="JVM">JVM<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java集合源码/" title="Java集合源码">Java集合源码<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/idea/" title="idea">idea<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/idea快捷键/" title="idea快捷键">idea快捷键<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-IOC源码/" title="Spring IOC源码">Spring IOC源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-IOC工作流程/" title="Spring IOC工作流程">Spring IOC工作流程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ActiveMQ安装/" title="ActiveMQ安装">ActiveMQ安装<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发编程网">并发编程网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/facekbook" target="_blank" title="CSDN博客">CSDN博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://crane-yuan.github.io/" target="_blank" title="关注博客">关注博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://coolshell.cn/" target="_blank" title="酷客">酷客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发网">并发网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.itmian4.com/" target="_blank" title="IT面试社区">IT面试社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/ns_code" target="_blank" title="优秀博客">优秀博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/home.html" target="_blank" title="阮一峰博客">阮一峰博客</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,我是在路上的coder. <br/>
+			这是我个人的博客.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="在路上的coder">在路上的coder</a>
+		
+			
+					<!-- 不蒜统计 -->
+			<br>
+			<span style="display: inline;" id="busuanzi_container_site_uv">本站总访客数 <span id="busuanzi_value_site_uv" font="微软雅黑" style="color:white"></span></span>
+			<span style="display: inline;" id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv" font="微软雅黑" style="color:white"></span></span>
+		</p>
+</div>
+
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1262026511'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1262026511' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>
