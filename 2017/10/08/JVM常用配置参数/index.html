@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/10/08/JVM常用配置参数/index.html">
 <meta property="og:site_name" content="在路上的coder">
 <meta property="og:description" content="JVM常用配置参数本文将介绍 Trace跟踪参数 、堆的分配参数 、栈的分配参数">
-<meta property="og:updated_time" content="2017-10-08T13:50:48.242Z">
+<meta property="og:updated_time" content="2017-10-09T14:30:42.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM常用配置参数">
 <meta name="twitter:description" content="JVM常用配置参数本文将介绍 Trace跟踪参数 、堆的分配参数 、栈的分配参数">
@@ -170,6 +170,17 @@
 <li>-XX:NewRatio 新生代(eden+2*s)和老年代的比值 例如 4 表示新生代:老年代=1:4，即年轻代占堆的1/5  </li>
 <li>-XX:SurvivorRatio 设置两个Survivor区和eden区的比；例如 8 表示两个Survivor:eden=2:8，即一个Survivor占年轻代的1/10</li>
 </ul>
+<p>创建如下代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDump2</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">       <span class="keyword">byte</span>[] b=<span class="keyword">null</span>;</div><div class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</div><div class="line">           b=<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1</span>*<span class="number">1024</span>*<span class="number">1024</span>];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行 <code>java -Xmx20m -Xms20m -Xmn1m -XX:+UseSerialGC -XX:+PrintGCDetails TestDump2</code> 命令，新生代设置为1m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Heap</div><div class="line"> def new generation   total 960K, used 235K [0x00000000f9a00000, 0x00000000f9b00000, 0x00000000f9b00000)</div><div class="line">  eden space 896K,  26% used [0x00000000f9a00000, 0x00000000f9a3ac68, 0x00000000f9ae0000)</div><div class="line">  from space 64K,   0% used [0x00000000f9ae0000, 0x00000000f9ae0000, 0x00000000f9af0000)</div><div class="line">  to   space 64K,   0% used [0x00000000f9af0000, 0x00000000f9af0000, 0x00000000f9b00000)</div><div class="line"> tenured generation   total 19456K, used 10240K [0x00000000f9b00000, 0x00000000fae00000, 0x00000000fae00000)</div><div class="line">   the space 19456K,  52% used [0x00000000f9b00000, 0x00000000fa5000a0, 0x00000000fa500200, 0x00000000fae00000)</div><div class="line"> compacting perm gen  total 21248K, used 2574K [0x00000000fae00000, 0x00000000fc2c0000, 0x0000000100000000)</div><div class="line">   the space 21248K,  12% used [0x00000000fae00000, 0x00000000fb0839e8, 0x00000000fb083a00, 0x00000000fc2c0000)</div><div class="line">No shared spaces configured.</div></pre></td></tr></table></figure>
+<p>通过查看堆的信息发现没有发生GC，并且都分配在老年代。因为新生代过小，将所有数据都放在老年代</p>
+<p>还是上面的代码，通过该命令运行 <code>java -Xmx20m -Xms20m -Xmn15m -XX:+UseSerialGC -XX:+PrintGCDetails TestDump2</code> ，设置新生代的大小为15m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Heap</div><div class="line"> def new generation   total 13824K, used 10731K [0x00000000f9800000, 0x00000000fa700000, 0x00000000fa700000)</div><div class="line">  eden space 12288K,  87% used [0x00000000f9800000, 0x00000000fa27af30, 0x00000000fa400000)</div><div class="line">  from space 1536K,   0% used [0x00000000fa400000, 0x00000000fa400000, 0x00000000fa580000)</div><div class="line">  to   space 1536K,   0% used [0x00000000fa580000, 0x00000000fa580000, 0x00000000fa700000)</div><div class="line"> tenured generation   total 5120K, used 0K [0x00000000fa700000, 0x00000000fac00000, 0x00000000fae00000)</div><div class="line">   the space 5120K,   0% used [0x00000000fa700000, 0x00000000fa700000, 0x00000000fa700200, 0x00000000fac00000)</div><div class="line"> compacting perm gen  total 21248K, used 2574K [0x00000000fae00000, 0x00000000fc2c0000, 0x0000000100000000)</div><div class="line">   the space 21248K,  12% used [0x00000000fae00000, 0x00000000fb0839e8, 0x00000000fb083a00, 0x00000000fc2c0000)</div><div class="line">No shared spaces configured.</div></pre></td></tr></table></figure>
+<p>还是没有发生GC，全部分配在eden区。因为新生代分配了15m，eden区占了12m，可以放下总共10m的数据，所以都分配在eden区</p>
+<p>还是上面的代码，通过该命令运行 <code>java -Xmx20m -Xms20m -Xmn6m -XX:+UseSerialGC -XX:+PrintGCDetails TestDump2</code> ，设置新生代的大小为6m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[GC [DefNew: 4311K-&gt;122K(5568K), 0.0024850 secs] 4311K-&gt;1146K(19904K), 0.0025200 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC [DefNew: 4371K-&gt;122K(5568K), 0.0010390 secs] 5395K-&gt;2170K(19904K), 0.0010600 secs] [Times: user=0.00 sys=0.00, real=0.01 secs] </div><div class="line">Heap</div><div class="line"> def new generation   total 5568K, used 2305K [0x00000000f9a00000, 0x00000000fa000000, 0x00000000fa000000)</div><div class="line">  eden space 4992K,  43% used [0x00000000f9a00000, 0x00000000f9c21968, 0x00000000f9ee0000)</div><div class="line">  from space 576K,  21% used [0x00000000f9ee0000, 0x00000000f9efeb18, 0x00000000f9f70000)</div><div class="line">  to   space 576K,   0% used [0x00000000f9f70000, 0x00000000f9f70000, 0x00000000fa000000)</div><div class="line"> tenured generation   total 14336K, used 2048K [0x00000000fa000000, 0x00000000fae00000, 0x00000000fae00000)</div><div class="line">   the space 14336K,  14% used [0x00000000fa000000, 0x00000000fa200020, 0x00000000fa200200, 0x00000000fae00000)</div><div class="line"> compacting perm gen  total 21248K, used 2583K [0x00000000fae00000, 0x00000000fc2c0000, 0x0000000100000000)</div><div class="line">   the space 21248K,  12% used [0x00000000fae00000, 0x00000000fb085fb8, 0x00000000fb086000, 0x00000000fc2c0000)</div><div class="line">No shared spaces configured.</div></pre></td></tr></table></figure>
+<p>进行两次新生代的GC，from to 太小需要使用老年代。第一次GC回收了差不多3m，第二次GC也差不多回收了3m；新生代总共使用了差不多2m，老年代也使用了差不多2m</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -283,39 +294,31 @@
 			
 		
 			
-				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/DNS解析过程/" title="DNS解析过程">DNS解析过程<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Spring-IOC源码/" title="Spring IOC源码">Spring IOC源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Spring-IOC工作流程/" title="Spring IOC工作流程">Spring IOC工作流程<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/maven配置/" title="maven配置">maven配置<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/maven配置远程仓库/" title="maven配置远程仓库">maven配置远程仓库<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/maven配置编译级别/" title="maven配置编译级别">maven配置编译级别<sup>1</sup></a></li>
 			
 		
 			
@@ -327,19 +330,27 @@
 			
 		
 			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis集群水平扩展/" title="redis集群水平扩展">redis集群水平扩展<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
+				<li><a href="/tags/js正则表达式/" title="js正则表达式">js正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/redis安装/" title="redis安装">redis安装<sup>1</sup></a></li>
+				<li><a href="/tags/电话号码正则表达式/" title="电话号码正则表达式">电话号码正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/邮箱正则表达式/" title="邮箱正则表达式">邮箱正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/idea/" title="idea">idea<sup>1</sup></a></li>
 			
 		
 		</ul>
