@@ -18,10 +18,12 @@
 <meta property="og:url" content="http://yoursite.com/2017/10/08/JVM常用配置参数/index.html">
 <meta property="og:site_name" content="在路上的coder">
 <meta property="og:description" content="JVM常用配置参数本文将介绍 Trace跟踪参数 、堆的分配参数 、栈的分配参数">
-<meta property="og:updated_time" content="2017-10-09T14:30:42.767Z">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/MemoryAnalyzer分析dump.jpg">
+<meta property="og:updated_time" content="2017-10-10T14:36:55.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM常用配置参数">
 <meta name="twitter:description" content="JVM常用配置参数本文将介绍 Trace跟踪参数 、堆的分配参数 、栈的分配参数">
+<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/MemoryAnalyzer分析dump.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上的coder" type="application/atom+xml">
@@ -98,7 +100,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM常用配置参数"><span class="toc-number">1.</span> <span class="toc-text">JVM常用配置参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行环境"><span class="toc-number">1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trace跟踪参数"><span class="toc-number">1.2.</span> <span class="toc-text">Trace跟踪参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的简要信息"><span class="toc-number">1.2.1.</span> <span class="toc-text">打印GC的简要信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的详细信息"><span class="toc-number">1.2.2.</span> <span class="toc-text">打印GC的详细信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定GC-log的存放位置"><span class="toc-number">1.2.3.</span> <span class="toc-text">指定GC log的存放位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每次GC后，都打印堆信息"><span class="toc-number">1.2.4.</span> <span class="toc-text">每次GC后，都打印堆信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控类的加载"><span class="toc-number">1.2.5.</span> <span class="toc-text">监控类的加载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的分配参数"><span class="toc-number">1.3.</span> <span class="toc-text">堆的分配参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设置新生代的大小"><span class="toc-number">1.3.1.</span> <span class="toc-text">设置新生代的大小</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM常用配置参数"><span class="toc-number">1.</span> <span class="toc-text">JVM常用配置参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行环境"><span class="toc-number">1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trace跟踪参数"><span class="toc-number">1.2.</span> <span class="toc-text">Trace跟踪参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的简要信息"><span class="toc-number">1.2.1.</span> <span class="toc-text">打印GC的简要信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的详细信息"><span class="toc-number">1.2.2.</span> <span class="toc-text">打印GC的详细信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定GC-log的存放位置"><span class="toc-number">1.2.3.</span> <span class="toc-text">指定GC log的存放位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每次GC后，都打印堆信息"><span class="toc-number">1.2.4.</span> <span class="toc-text">每次GC后，都打印堆信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控类的加载"><span class="toc-number">1.2.5.</span> <span class="toc-text">监控类的加载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的分配参数"><span class="toc-number">1.3.</span> <span class="toc-text">堆的分配参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设置新生代的大小"><span class="toc-number">1.3.1.</span> <span class="toc-text">设置新生代的大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OOM时导出堆到文件"><span class="toc-number">1.3.2.</span> <span class="toc-text">OOM时导出堆到文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆的分配参数总结"><span class="toc-number">1.3.3.</span> <span class="toc-text">堆的分配参数总结</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
@@ -147,7 +149,7 @@
 <li>-XX:+TraceClassLoading</li>
 </ul>
 <p>通过该参数可以追踪类的加载</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[yinqi@study ex]$ java -XX:+TraceClassLoading OnStackTest</div><div class="line">[Opened /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Object from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.io.Serializable from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Comparable from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.CharSequence from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.String from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.reflect.GenericDeclaration from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.reflect.Type from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.reflect.AnnotatedElement from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Class from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Cloneable from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.ClassLoader from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.System from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Throwable from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Error from /home/yinqi/apps/jdk7/jre/lib/rt.jar]</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">[yinqi@study ex]$ java -XX:+TraceClassLoading TestDump2</div><div class="line">[Opened /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Object from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.io.Serializable from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Comparable from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.CharSequence from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.String from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.reflect.GenericDeclaration from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.reflect.Type from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.reflect.AnnotatedElement from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Class from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Cloneable from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.ClassLoader from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.System from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Throwable from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Error from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.ThreadDeath from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.Exception from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.lang.RuntimeException from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.security.ProtectionDomain from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">[Loaded java.security.AccessControlContext from /home/yinqi/apps/jdk6/jdk1.6.0_45/jre/lib/rt.jar]</div><div class="line">...</div></pre></td></tr></table></figure>
 <h3 id="堆的分配参数"><a href="#堆的分配参数" class="headerlink" title="堆的分配参数"></a>堆的分配参数</h3><ul>
 <li>-Xmx -Xms 指定堆的最大值和最小值</li>
 </ul>
@@ -181,6 +183,35 @@
 <p>还是上面的代码，通过该命令运行 <code>java -Xmx20m -Xms20m -Xmn6m -XX:+UseSerialGC -XX:+PrintGCDetails TestDump2</code> ，设置新生代的大小为6m</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[GC [DefNew: 4311K-&gt;122K(5568K), 0.0024850 secs] 4311K-&gt;1146K(19904K), 0.0025200 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC [DefNew: 4371K-&gt;122K(5568K), 0.0010390 secs] 5395K-&gt;2170K(19904K), 0.0010600 secs] [Times: user=0.00 sys=0.00, real=0.01 secs] </div><div class="line">Heap</div><div class="line"> def new generation   total 5568K, used 2305K [0x00000000f9a00000, 0x00000000fa000000, 0x00000000fa000000)</div><div class="line">  eden space 4992K,  43% used [0x00000000f9a00000, 0x00000000f9c21968, 0x00000000f9ee0000)</div><div class="line">  from space 576K,  21% used [0x00000000f9ee0000, 0x00000000f9efeb18, 0x00000000f9f70000)</div><div class="line">  to   space 576K,   0% used [0x00000000f9f70000, 0x00000000f9f70000, 0x00000000fa000000)</div><div class="line"> tenured generation   total 14336K, used 2048K [0x00000000fa000000, 0x00000000fae00000, 0x00000000fae00000)</div><div class="line">   the space 14336K,  14% used [0x00000000fa000000, 0x00000000fa200020, 0x00000000fa200200, 0x00000000fae00000)</div><div class="line"> compacting perm gen  total 21248K, used 2583K [0x00000000fae00000, 0x00000000fc2c0000, 0x0000000100000000)</div><div class="line">   the space 21248K,  12% used [0x00000000fae00000, 0x00000000fb085fb8, 0x00000000fb086000, 0x00000000fc2c0000)</div><div class="line">No shared spaces configured.</div></pre></td></tr></table></figure>
 <p>进行两次新生代的GC，from to 太小需要使用老年代。第一次GC回收了差不多3m，第二次GC也差不多回收了3m；新生代总共使用了差不多2m，老年代也使用了差不多2m</p>
+<p>还是上面的代码，通过该命令运行 <code>java -Xmx20m -Xms20m -Xmn6m -XX:SurvivorRatio=2 -XX:+UseSerialGC -XX:+PrintGCDetails TestDump2</code> ，增大s0和s1的大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">[GC [DefNew: 2280K-&gt;1146K(4608K), 0.0018020 secs] 2280K-&gt;1146K(18944K), 0.0018350 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC [DefNew: 3289K-&gt;1024K(4608K), 0.0012040 secs] 3289K-&gt;1146K(18944K), 0.0012310 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC [DefNew: 3094K-&gt;1024K(4608K), 0.0003670 secs] 3216K-&gt;1146K(18944K), 0.0003850 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC [DefNew: 3086K-&gt;1024K(4608K), 0.0002840 secs] 3209K-&gt;1146K(18944K), 0.0003110 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">Heap</div><div class="line"> def new generation   total 4608K, used 3143K [0x00000000f9a00000, 0x00000000fa000000, 0x00000000fa000000)</div><div class="line">  eden space 3072K,  68% used [0x00000000f9a00000, 0x00000000f9c11c88, 0x00000000f9d00000)</div><div class="line">  from space 1536K,  66% used [0x00000000f9d00000, 0x00000000f9e00010, 0x00000000f9e80000)</div><div class="line">  to   space 1536K,   0% used [0x00000000f9e80000, 0x00000000f9e80000, 0x00000000fa000000)</div><div class="line"> tenured generation   total 14336K, used 122K [0x00000000fa000000, 0x00000000fae00000, 0x00000000fae00000)</div><div class="line">   the space 14336K,   0% used [0x00000000fa000000, 0x00000000fa01eb18, 0x00000000fa01ec00, 0x00000000fae00000)</div><div class="line"> compacting perm gen  total 21248K, used 2583K [0x00000000fae00000, 0x00000000fc2c0000, 0x0000000100000000)</div><div class="line">   the space 21248K,  12% used [0x00000000fae00000, 0x00000000fb085fb8, 0x00000000fb086000, 0x00000000fc2c0000)</div><div class="line">No shared spaces configured.</div></pre></td></tr></table></figure>
+<p>进行了4次GC，并且没有使用老年代的空间</p>
+<p>还是上面的代码，通过该命令运行 <code>java -Xmx20m -Xms20m -XX:NewRatio=1 -XX:SurvivorRatio=2 -XX:+UseSerialGC -XX:+PrintGCDetails TestDump2</code> ，增加新生代的大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[GC [DefNew: 4317K-&gt;1146K(7680K), 0.0020930 secs] 4317K-&gt;1146K(17920K), 0.0021240 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC [DefNew: 5399K-&gt;1146K(7680K), 0.0008120 secs] 5399K-&gt;1146K(17920K), 0.0008410 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">Heap</div><div class="line"> def new generation   total 7680K, used 3332K [0x00000000f9a00000, 0x00000000fa400000, 0x00000000fa400000)</div><div class="line">  eden space 5120K,  42% used [0x00000000f9a00000, 0x00000000f9c22760, 0x00000000f9f00000)</div><div class="line">  from space 2560K,  44% used [0x00000000f9f00000, 0x00000000fa01eb28, 0x00000000fa180000)</div><div class="line">  to   space 2560K,   0% used [0x00000000fa180000, 0x00000000fa180000, 0x00000000fa400000)</div><div class="line"> tenured generation   total 10240K, used 0K [0x00000000fa400000, 0x00000000fae00000, 0x00000000fae00000)</div><div class="line">   the space 10240K,   0% used [0x00000000fa400000, 0x00000000fa400000, 0x00000000fa400200, 0x00000000fae00000)</div><div class="line"> compacting perm gen  total 21248K, used 2583K [0x00000000fae00000, 0x00000000fc2c0000, 0x0000000100000000)</div><div class="line">   the space 21248K,  12% used [0x00000000fae00000, 0x00000000fb085fb8, 0x00000000fb086000, 0x00000000fc2c0000)</div><div class="line">No shared spaces configured.</div></pre></td></tr></table></figure>
+<p>增加新生代的大小为整个堆的1/2，s0+s1总共为5m，eden区总共为5m，老年代总共10m。发生了2次GC，没有使用老年代</p>
+<p>还是上面的代码，通过该命令运行 <code>java -Xmx20m -Xms20m -XX:NewRatio=1 -XX:SurvivorRatio=3 -XX:+UseSerialGC -XX:+PrintGCDetails TestDump2</code> ，减少了s0和s1的大小</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">[GC [DefNew: 5390K-&gt;1146K(8192K), 0.0018310 secs] 5390K-&gt;1146K(18432K), 0.0018630 secs] [Times: user=0.01 sys=0.00, real=0.00 secs] </div><div class="line">Heap</div><div class="line"> def new generation   total 8192K, used 6577K [0x00000000f9a00000, 0x00000000fa400000, 0x00000000fa400000)</div><div class="line">  eden space 6144K,  88% used [0x00000000f9a00000, 0x00000000f9f4d910, 0x00000000fa000000)</div><div class="line">  from space 2048K,  56% used [0x00000000fa200000, 0x00000000fa31eba0, 0x00000000fa400000)</div><div class="line">  to   space 2048K,   0% used [0x00000000fa000000, 0x00000000fa000000, 0x00000000fa200000)</div><div class="line"> tenured generation   total 10240K, used 0K [0x00000000fa400000, 0x00000000fae00000, 0x00000000fae00000)</div><div class="line">   the space 10240K,   0% used [0x00000000fa400000, 0x00000000fa400000, 0x00000000fa400200, 0x00000000fae00000)</div><div class="line"> compacting perm gen  total 21248K, used 2583K [0x00000000fae00000, 0x00000000fc2c0000, 0x0000000100000000)</div><div class="line">   the space 21248K,  12% used [0x00000000fae00000, 0x00000000fb085fb8, 0x00000000fb086000, 0x00000000fc2c0000)</div><div class="line">No shared spaces configured.</div></pre></td></tr></table></figure>
+<p>通过减少s0和s1的大小达了减少GC次数的效果</p>
+<h4 id="OOM时导出堆到文件"><a href="#OOM时导出堆到文件" class="headerlink" title="OOM时导出堆到文件"></a>OOM时导出堆到文件</h4><ul>
+<li>-XX:+HeapDumpOnOutOfMemoryError  内存溢出时导出当前堆到文件</li>
+<li>-XX:HeapDumpPath 导出OOM的路径</li>
+</ul>
+<p>通过下面这段代码进行测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.*;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestOOM</span></span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line"></div><div class="line">     Vector v=<span class="keyword">new</span> Vector();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">25</span>;i++)</div><div class="line">            v.add(<span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1</span>*<span class="number">1024</span>*<span class="number">1024</span>]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[yinqi@study ex]$ java -Xmx20m -Xms5m -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/home/yinqi/apps/ex/a.dump TestOOM</div><div class="line">java.lang.OutOfMemoryError: Java heap space</div><div class="line">Dumping heap to /home/yinqi/apps/ex/a.dump ...</div><div class="line">Heap dump file created [19514274 bytes in 0.140 secs]</div><div class="line">Exception in thread &quot;main&quot; java.lang.OutOfMemoryError: Java heap space</div><div class="line">	at TestOOM.main(TestOOM.java:8)</div></pre></td></tr></table></figure>
+<p>导出的文件大小和堆的最大值的大小一样大，通过 <strong>MemoryAnalyzer</strong> 工具分析该dump文件，如下图</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/MemoryAnalyzer分析dump.jpg" alt="MemoryAnalyzer分析dump"></p>
+<ul>
+<li>-XX:OnOutOfMemoryError 在OOM时，执行一个脚本，该脚本可以执行很多事情比如重启应用，发送脚本</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -Xmx20m -Xms5m -XX:OnOutOfMemoryError=/home/yinqi/apps/ex/printstack.sh  TestOOM</div></pre></td></tr></table></figure>
+<h4 id="堆的分配参数总结"><a href="#堆的分配参数总结" class="headerlink" title="堆的分配参数总结"></a>堆的分配参数总结</h4><ul>
+<li>根据实际情况调整新生代和幸存代的大小</li>
+<li>官方推荐新生代占堆的3/8</li>
+<li>幸存代占新生代的1/10</li>
+<li>在OOM时，记得Dump出堆，确保可以排查现场问题</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -258,7 +289,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM常用配置参数"><span class="toc-number">1.</span> <span class="toc-text">JVM常用配置参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行环境"><span class="toc-number">1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trace跟踪参数"><span class="toc-number">1.2.</span> <span class="toc-text">Trace跟踪参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的简要信息"><span class="toc-number">1.2.1.</span> <span class="toc-text">打印GC的简要信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的详细信息"><span class="toc-number">1.2.2.</span> <span class="toc-text">打印GC的详细信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定GC-log的存放位置"><span class="toc-number">1.2.3.</span> <span class="toc-text">指定GC log的存放位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每次GC后，都打印堆信息"><span class="toc-number">1.2.4.</span> <span class="toc-text">每次GC后，都打印堆信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控类的加载"><span class="toc-number">1.2.5.</span> <span class="toc-text">监控类的加载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的分配参数"><span class="toc-number">1.3.</span> <span class="toc-text">堆的分配参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设置新生代的大小"><span class="toc-number">1.3.1.</span> <span class="toc-text">设置新生代的大小</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM常用配置参数"><span class="toc-number">1.</span> <span class="toc-text">JVM常用配置参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行环境"><span class="toc-number">1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trace跟踪参数"><span class="toc-number">1.2.</span> <span class="toc-text">Trace跟踪参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的简要信息"><span class="toc-number">1.2.1.</span> <span class="toc-text">打印GC的简要信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的详细信息"><span class="toc-number">1.2.2.</span> <span class="toc-text">打印GC的详细信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定GC-log的存放位置"><span class="toc-number">1.2.3.</span> <span class="toc-text">指定GC log的存放位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每次GC后，都打印堆信息"><span class="toc-number">1.2.4.</span> <span class="toc-text">每次GC后，都打印堆信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控类的加载"><span class="toc-number">1.2.5.</span> <span class="toc-text">监控类的加载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的分配参数"><span class="toc-number">1.3.</span> <span class="toc-text">堆的分配参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设置新生代的大小"><span class="toc-number">1.3.1.</span> <span class="toc-text">设置新生代的大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OOM时导出堆到文件"><span class="toc-number">1.3.2.</span> <span class="toc-text">OOM时导出堆到文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆的分配参数总结"><span class="toc-number">1.3.3.</span> <span class="toc-text">堆的分配参数总结</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
@@ -294,19 +325,23 @@
 			
 		
 			
+				<li><a href="/tags/邮箱正则表达式/" title="邮箱正则表达式">邮箱正则表达式<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/DNS解析过程/" title="DNS解析过程">DNS解析过程<sup>1</sup></a></li>
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
 			
 		
 			
@@ -318,19 +353,23 @@
 			
 		
 			
-				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
+				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ActiveMQ安装/" title="ActiveMQ安装">ActiveMQ安装<sup>1</sup></a></li>
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/idea/" title="idea">idea<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/idea快捷键/" title="idea快捷键">idea快捷键<sup>1</sup></a></li>
 			
 		
 			
@@ -343,14 +382,6 @@
 		
 			
 				<li><a href="/tags/电话号码正则表达式/" title="电话号码正则表达式">电话号码正则表达式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/邮箱正则表达式/" title="邮箱正则表达式">邮箱正则表达式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/idea/" title="idea">idea<sup>1</sup></a></li>
 			
 		
 		</ul>
