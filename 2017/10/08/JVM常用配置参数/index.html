@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="在路上的coder">
 <meta property="og:description" content="JVM常用配置参数本文将介绍 Trace跟踪参数 、堆的分配参数 、栈的分配参数">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/MemoryAnalyzer分析dump.jpg">
-<meta property="og:updated_time" content="2017-10-11T13:49:37.344Z">
+<meta property="og:updated_time" content="2017-10-11T14:15:26.575Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM常用配置参数">
 <meta name="twitter:description" content="JVM常用配置参数本文将介绍 Trace跟踪参数 、堆的分配参数 、栈的分配参数">
@@ -100,7 +100,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM常用配置参数"><span class="toc-number">1.</span> <span class="toc-text">JVM常用配置参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行环境"><span class="toc-number">1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trace跟踪参数"><span class="toc-number">1.2.</span> <span class="toc-text">Trace跟踪参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的简要信息"><span class="toc-number">1.2.1.</span> <span class="toc-text">打印GC的简要信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的详细信息"><span class="toc-number">1.2.2.</span> <span class="toc-text">打印GC的详细信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定GC-log的存放位置"><span class="toc-number">1.2.3.</span> <span class="toc-text">指定GC log的存放位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每次GC后，都打印堆信息"><span class="toc-number">1.2.4.</span> <span class="toc-text">每次GC后，都打印堆信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控类的加载"><span class="toc-number">1.2.5.</span> <span class="toc-text">监控类的加载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的分配参数"><span class="toc-number">1.3.</span> <span class="toc-text">堆的分配参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设置新生代的大小"><span class="toc-number">1.3.1.</span> <span class="toc-text">设置新生代的大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OOM时导出堆到文件"><span class="toc-number">1.3.2.</span> <span class="toc-text">OOM时导出堆到文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆的分配参数总结"><span class="toc-number">1.3.3.</span> <span class="toc-text">堆的分配参数总结</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM常用配置参数"><span class="toc-number">1.</span> <span class="toc-text">JVM常用配置参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行环境"><span class="toc-number">1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trace跟踪参数"><span class="toc-number">1.2.</span> <span class="toc-text">Trace跟踪参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的简要信息"><span class="toc-number">1.2.1.</span> <span class="toc-text">打印GC的简要信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的详细信息"><span class="toc-number">1.2.2.</span> <span class="toc-text">打印GC的详细信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定GC-log的存放位置"><span class="toc-number">1.2.3.</span> <span class="toc-text">指定GC log的存放位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每次GC后，都打印堆信息"><span class="toc-number">1.2.4.</span> <span class="toc-text">每次GC后，都打印堆信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控类的加载"><span class="toc-number">1.2.5.</span> <span class="toc-text">监控类的加载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的分配参数"><span class="toc-number">1.3.</span> <span class="toc-text">堆的分配参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设置新生代的大小"><span class="toc-number">1.3.1.</span> <span class="toc-text">设置新生代的大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OOM时导出堆到文件"><span class="toc-number">1.3.2.</span> <span class="toc-text">OOM时导出堆到文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆的分配参数总结"><span class="toc-number">1.3.3.</span> <span class="toc-text">堆的分配参数总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#永久区分配参数"><span class="toc-number">1.4.</span> <span class="toc-text">永久区分配参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#栈大小分配"><span class="toc-number">1.5.</span> <span class="toc-text">栈大小分配</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -212,6 +212,30 @@
 <li>幸存代占新生代的1/10</li>
 <li>在OOM时，记得Dump出堆，确保可以排查现场问题</li>
 </ul>
+<h3 id="永久区分配参数"><a href="#永久区分配参数" class="headerlink" title="永久区分配参数"></a>永久区分配参数</h3><ul>
+<li>-XX:PermSize 设置永久区的初始空间</li>
+<li>-XX:MaxPermSize 设置永久区的最大空间</li>
+<li>他们表示，一个系统可以容纳多少个类型</li>
+</ul>
+<h3 id="栈大小分配"><a href="#栈大小分配" class="headerlink" title="栈大小分配"></a>栈大小分配</h3><ul>
+<li><p>-Xss</p>
+<ul>
+<li>通常只有几百K</li>
+<li>决定函数调用的深度</li>
+<li>每个线程都有独立的栈空间</li>
+<li>局部变量、参数都分配在栈上</li>
+</ul>
+<p><strong>通过如下代码测试栈的分配</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestStackDeep</span> </span>&#123;</div><div class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> count=<span class="number">0</span>;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">recursion</span><span class="params">(<span class="keyword">long</span> a,<span class="keyword">long</span> b,<span class="keyword">long</span> c)</span></span>&#123;</div><div class="line">		<span class="keyword">long</span> e=<span class="number">1</span>,f=<span class="number">2</span>,g=<span class="number">3</span>,h=<span class="number">4</span>,i=<span class="number">5</span>,k=<span class="number">6</span>,q=<span class="number">7</span>,x=<span class="number">8</span>,y=<span class="number">9</span>,z=<span class="number">10</span>;</div><div class="line">		count++;</div><div class="line">		recursion(a,b,c);</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</div><div class="line">		<span class="keyword">try</span>&#123;</div><div class="line">			recursion(<span class="number">0L</span>,<span class="number">0L</span>,<span class="number">0L</span>);</div><div class="line">		&#125;<span class="keyword">catch</span>(Throwable e)&#123;</div><div class="line">			System.out.println(<span class="string">"deep of calling = "</span>+count);</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过如下命令运行：<code>java -Xss160k TestStackDeep</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">deep of calling = 221</div><div class="line">java.lang.StackOverflowError</div></pre></td></tr></table></figure>
+<p>通过如下命令运行：<code>java -Xss256k TestStackDeep</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">deep of calling = 577</div><div class="line">java.lang.StackOverflowError</div></pre></td></tr></table></figure>
+<p>通过上面的代码可以发现，增加栈空间的大小可以增加递归函数的调用次数</p>
+<p>​</p>
+<p>​</p>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -289,7 +313,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM常用配置参数"><span class="toc-number">1.</span> <span class="toc-text">JVM常用配置参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行环境"><span class="toc-number">1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trace跟踪参数"><span class="toc-number">1.2.</span> <span class="toc-text">Trace跟踪参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的简要信息"><span class="toc-number">1.2.1.</span> <span class="toc-text">打印GC的简要信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的详细信息"><span class="toc-number">1.2.2.</span> <span class="toc-text">打印GC的详细信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定GC-log的存放位置"><span class="toc-number">1.2.3.</span> <span class="toc-text">指定GC log的存放位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每次GC后，都打印堆信息"><span class="toc-number">1.2.4.</span> <span class="toc-text">每次GC后，都打印堆信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控类的加载"><span class="toc-number">1.2.5.</span> <span class="toc-text">监控类的加载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的分配参数"><span class="toc-number">1.3.</span> <span class="toc-text">堆的分配参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设置新生代的大小"><span class="toc-number">1.3.1.</span> <span class="toc-text">设置新生代的大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OOM时导出堆到文件"><span class="toc-number">1.3.2.</span> <span class="toc-text">OOM时导出堆到文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆的分配参数总结"><span class="toc-number">1.3.3.</span> <span class="toc-text">堆的分配参数总结</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM常用配置参数"><span class="toc-number">1.</span> <span class="toc-text">JVM常用配置参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#运行环境"><span class="toc-number">1.1.</span> <span class="toc-text">运行环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Trace跟踪参数"><span class="toc-number">1.2.</span> <span class="toc-text">Trace跟踪参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的简要信息"><span class="toc-number">1.2.1.</span> <span class="toc-text">打印GC的简要信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#打印GC的详细信息"><span class="toc-number">1.2.2.</span> <span class="toc-text">打印GC的详细信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定GC-log的存放位置"><span class="toc-number">1.2.3.</span> <span class="toc-text">指定GC log的存放位置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#每次GC后，都打印堆信息"><span class="toc-number">1.2.4.</span> <span class="toc-text">每次GC后，都打印堆信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#监控类的加载"><span class="toc-number">1.2.5.</span> <span class="toc-text">监控类的加载</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堆的分配参数"><span class="toc-number">1.3.</span> <span class="toc-text">堆的分配参数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设置新生代的大小"><span class="toc-number">1.3.1.</span> <span class="toc-text">设置新生代的大小</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#OOM时导出堆到文件"><span class="toc-number">1.3.2.</span> <span class="toc-text">OOM时导出堆到文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#堆的分配参数总结"><span class="toc-number">1.3.3.</span> <span class="toc-text">堆的分配参数总结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#永久区分配参数"><span class="toc-number">1.4.</span> <span class="toc-text">永久区分配参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#栈大小分配"><span class="toc-number">1.5.</span> <span class="toc-text">栈大小分配</span></a></li></ol></li></ol>
  
   </div>
 
@@ -329,19 +353,27 @@
 			
 		
 			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
 			
 		
 			
+				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
 			
 		
 			
@@ -353,15 +385,7 @@
 			
 		
 			
-				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
 			
 		
 			
