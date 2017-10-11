@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/操作数栈例子.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/栈堆方法区交互.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/JVM内存模型.jpg">
-<meta property="og:updated_time" content="2017-10-08T02:59:05.351Z">
+<meta property="og:updated_time" content="2017-10-11T13:50:16.379Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM运行机制介绍">
 <meta name="twitter:description" content="JVM运行机制该文主要介绍：JVM启动流程 、JVM基本结构 、 JVM的内存模型 、编译运行和解释运行的区别 通过这几部份来了解和学习JVM。">
@@ -207,7 +207,7 @@
 <p>Java没有寄存器，所有参数传递使用操作数栈实现</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> c = <span class="number">0</span>;</div><div class="line">    c = a + b;</div><div class="line">    <span class="keyword">return</span> c;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>翻译后</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">0:  iconst_0 // int常量0压栈</div><div class="line">1:  istore_2 // 弹出int，存放在本地变量2，这里变量2表示c</div><div class="line">2:  iload_0 // 把局部变量0压栈，局部变量0表示a</div><div class="line">3:  iload_1 // 把局部变量1压栈，局部变量1表示b</div><div class="line">4:  iadd // 弹出2两个变量，就和结果压栈</div><div class="line">5:  istore_2 // 弹出结果，放入局部变量2中</div><div class="line">6:  iload_2 // 局部变量2压栈</div><div class="line">7:  ireturn // 返回</div></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">0:  iconst_0 // int常量0压栈</div><div class="line">1:  istore_2 // 弹出int，存放在本地变量2，这里变量2表示c</div><div class="line">2:  iload_0 // 把局部变量0压栈，局部变量0表示a</div><div class="line">3:  iload_1 // 把局部变量1压栈，局部变量1表示b</div><div class="line">4:  iadd // 弹出2两个变量，就是结果压栈</div><div class="line">5:  istore_2 // 弹出结果，放入局部变量2中</div><div class="line">6:  iload_2 // 局部变量2压栈</div><div class="line">7:  ireturn // 返回</div></pre></td></tr></table></figure>
 <p><img src="http://opzxa0ul7.bkt.clouddn.com/操作数栈例子.jpg" alt="操作数栈例子"></p>
 <p><strong>栈上分配</strong></p>
 <p>下面通过一段代码来演示栈上分配</p>
@@ -429,7 +429,7 @@
 			
 		
 			
-				<li><a href="/tags/邮箱正则表达式/" title="邮箱正则表达式">邮箱正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
 			
 		
 			
@@ -449,11 +449,7 @@
 			
 		
 			
-				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
 			
 		
 			
@@ -461,11 +457,15 @@
 			
 		
 			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>1</sup></a></li>
+				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
 			
 		
 			
@@ -477,15 +477,15 @@
 			
 		
 			
-				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/js正则表达式/" title="js正则表达式">js正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/Spring-IOC源码/" title="Spring IOC源码">Spring IOC源码<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/电话号码正则表达式/" title="电话号码正则表达式">电话号码正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/Spring-IOC工作流程/" title="Spring IOC工作流程">Spring IOC工作流程<sup>1</sup></a></li>
 			
 		
 		</ul>
@@ -541,6 +541,18 @@
           <li>
             
             	<a href="http://www.ruanyifeng.com/home.html" target="_blank" title="阮一峰博客">阮一峰博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.jiuzhang.com/" target="_blank" title="九章算法">九章算法</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.lintcode.com/zh-cn/" target="_blank" title="LintCode">LintCode</a>
             
           </li>
         
