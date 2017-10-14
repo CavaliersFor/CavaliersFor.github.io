@@ -4,40 +4,28 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>Java架构师之实战篇 | 在路上的coder</title>
+    <title>GC参数介绍 | 在路上的coder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="在路上的coder">
     
 
     
-    <meta name="description" content="Java架构师之实战篇视频学习完该视频后，可以达到3年左右的Java开发工程师的技能点。该视频不仅提供了视频还提供了视频中讲解的文档和代码，更加适合复习和回顾，整套视频分为下面几个部分，也可以连接本人解惑，联系方式见文末">
-<meta name="keywords" content="学习视频,Java架构师之路">
+    <meta name="description" content="GC参数介绍在本文中将介绍 串行收集器 、并行收集器  、CMS收集器  还会有一个tomcat的实例演示">
+<meta name="keywords" content="JVM,GC参数介绍">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java架构师之实战篇">
-<meta property="og:url" content="http://yoursite.com/2017/06/13/Java架构师之实战篇/index.html">
+<meta property="og:title" content="GC参数介绍">
+<meta property="og:url" content="http://yoursite.com/2017/10/14/GC参数介绍/index.html">
 <meta property="og:site_name" content="在路上的coder">
-<meta property="og:description" content="Java架构师之实战篇视频学习完该视频后，可以达到3年左右的Java开发工程师的技能点。该视频不仅提供了视频还提供了视频中讲解的文档和代码，更加适合复习和回顾，整套视频分为下面几个部分，也可以连接本人解惑，联系方式见文末">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇1.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇2.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-进阶篇1.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-进阶篇2.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java%E6%9E%B6%E6%9E%84%E5%B8%88%E4%B9%8B%E5%AE%9E%E6%88%98%E7%AF%87-%E8%BF%9B%E9%98%B6%E7%AF%873.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇1.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇2.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇3.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇1.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇2.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇3.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇4.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/微信支付.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/支付宝支付.jpg">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Java相关技术交流群群二维码.png">
-<meta property="og:updated_time" content="2017-09-12T13:46:50.803Z">
+<meta property="og:description" content="GC参数介绍在本文中将介绍 串行收集器 、并行收集器  、CMS收集器  还会有一个tomcat的实例演示">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/串行GC运行流程.png">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/并行收集-ParNew流程.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Parallel收集器示例图.jpg">
+<meta property="og:updated_time" content="2017-10-14T14:02:36.906Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java架构师之实战篇">
-<meta name="twitter:description" content="Java架构师之实战篇视频学习完该视频后，可以达到3年左右的Java开发工程师的技能点。该视频不仅提供了视频还提供了视频中讲解的文档和代码，更加适合复习和回顾，整套视频分为下面几个部分，也可以连接本人解惑，联系方式见文末">
-<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇1.jpg">
+<meta name="twitter:title" content="GC参数介绍">
+<meta name="twitter:description" content="GC参数介绍在本文中将介绍 串行收集器 、并行收集器  、CMS收集器  还会有一个tomcat的实例演示">
+<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/串行GC运行流程.png">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上的coder" type="application/atom+xml">
@@ -96,14 +84,14 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/06/13/Java架构师之实战篇/" title="Java架构师之实战篇" itemprop="url">Java架构师之实战篇</a>
+      <a href="/2017/10/14/GC参数介绍/" title="GC参数介绍" itemprop="url">GC参数介绍</a>
   </h1>
   <p class="article-author">By
        
 		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
 		
   <p class="article-time">
-    <time datetime="2017-06-13T13:54:34.000Z" itemprop="datePublished"> 发表于 2017-06-13</time>
+    <time datetime="2017-10-14T09:39:33.000Z" itemprop="datePublished"> 发表于 2017-10-14</time>
     <span id="busuanzi_container_page_pv">
     总阅读<span id="busuanzi_value_page_pv"></span>次
 	</span>
@@ -114,20 +102,70 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java架构师之实战篇视频"><span class="toc-number">1.</span> <span class="toc-text">Java架构师之实战篇视频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初级篇详解"><span class="toc-number">1.1.</span> <span class="toc-text">初级篇详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进阶篇"><span class="toc-number">1.2.</span> <span class="toc-text">进阶篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级篇"><span class="toc-number">1.3.</span> <span class="toc-text">高级篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#架构篇"><span class="toc-number">1.4.</span> <span class="toc-text">架构篇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取方式"><span class="toc-number">2.</span> <span class="toc-text">获取方式</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GC参数介绍"><span class="toc-number">1.</span> <span class="toc-text">GC参数介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#串行收集器"><span class="toc-number">1.1.</span> <span class="toc-text">串行收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并行收集器"><span class="toc-number">1.2.</span> <span class="toc-text">并行收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ParNew"><span class="toc-number">1.2.1.</span> <span class="toc-text">ParNew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Parallel收集器"><span class="toc-number">1.2.2.</span> <span class="toc-text">Parallel收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行收集器运行参数控制"><span class="toc-number">1.2.3.</span> <span class="toc-text">并行收集器运行参数控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS收集器"><span class="toc-number">1.3.</span> <span class="toc-text">CMS收集器</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="Java架构师之实战篇视频"><a href="#Java架构师之实战篇视频" class="headerlink" title="Java架构师之实战篇视频"></a>Java架构师之实战篇视频</h2><p>学习完该视频后，可以达到3年左右的Java开发工程师的技能点。该视频不仅提供了视频还提供了视频中讲解的文档和代码，更加适合复习和回顾，整套视频分为下面几个部分，也可以连接本人解惑，联系方式见文末<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇1.jpg" alt="Java架构师之实战篇-初级篇1"><br><a id="more"></a></p>
-<h3 id="初级篇详解"><a href="#初级篇详解" class="headerlink" title="初级篇详解"></a>初级篇详解</h3><p>初级篇包含Java基础到高级知识点学习，并提供了基本的一些应用。这些只是都为后面的框架部分打好了结实的基础。<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-初级篇2.jpg" alt="Java架构师之实战篇-初级篇2"></p>
-<h3 id="进阶篇"><a href="#进阶篇" class="headerlink" title="进阶篇"></a>进阶篇</h3><p>进阶篇包含更多企业级应用的东西，里面很多技术可能需要在不同的企业才能接触到。建议先学习Java web相关技术后，再学习其他框架SpringMVc、Spring、Mybatis，Git和SVN工具可以学习一个，其他的没有时间可以只需了解一下。最后需要对其中的一个项目非常的了解!<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-进阶篇1.jpg" alt="Java架构师之实战篇-进阶篇1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-进阶篇2.jpg" alt="Java架构师之实战篇-进阶篇2"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java%E6%9E%B6%E6%9E%84%E5%B8%88%E4%B9%8B%E5%AE%9E%E6%88%98%E7%AF%87-%E8%BF%9B%E9%98%B6%E7%AF%873.jpg" alt="Java架构师之实战篇-进阶篇3"></p>
-<h3 id="高级篇"><a href="#高级篇" class="headerlink" title="高级篇"></a>高级篇</h3><p>在这里主要介绍的是一样原来性的东西，这个才是真正考验对一个技术的理解程度的关键。还涉及一些比较前沿的技术，这个学习的话，主要看个人情况。<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇1.jpg" alt="Java架构师之实战篇-高级篇1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇2.jpg" alt="Java架构师之实战篇-高级篇2"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-高级篇3.jpg" alt="Java架构师之实战篇-高级篇3"></p>
-<h3 id="架构篇"><a href="#架构篇" class="headerlink" title="架构篇"></a>架构篇</h3><p>该篇的话，主要涉及以个应用的一个架构设计，什么时候用什么技术，碰到问题使用什么解决方案；还有各种示例网站的架构讲解，该视频需要慢慢消化<br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇1.jpg" alt="Java架构师之实战篇-架构篇1"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇2.jpg" alt="Java架构师之实战篇-架构篇2"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇3.jpg" alt="Java架构师之实战篇-架构篇3"><br><img src="http://opzxa0ul7.bkt.clouddn.com/Java架构师之实战篇-架构篇4.jpg" alt="Java架构师之实战篇-架构篇4"></p>
-<h2 id="获取方式"><a href="#获取方式" class="headerlink" title="获取方式"></a>获取方式</h2><p>如果想获取该视频，可以扫描下面二维码付款，只需<code>￥3</code>即可，如果不明白可以加入该群<code>524105269</code> 咨询群主即可，加入群可以免费获取学习视频；如果学习碰到问题可以在群里交流或者和群主沟通，谢谢！！！！</p>
+		<h2 id="GC参数介绍"><a href="#GC参数介绍" class="headerlink" title="GC参数介绍"></a>GC参数介绍</h2><p>在本文中将介绍 <strong>串行收集器 </strong>、<strong>并行收集器 </strong> 、<strong>CMS收集器</strong>  还会有一个tomcat的实例演示</p>
+<a id="more"></a>
+<h3 id="串行收集器"><a href="#串行收集器" class="headerlink" title="串行收集器"></a>串行收集器</h3><p>串行收集器的特点：</p>
 <ul>
-<li>微信支付<img src="http://opzxa0ul7.bkt.clouddn.com/微信支付.jpg" alt="微信支付"></li>
-<li>支付宝支付 <img src="http://opzxa0ul7.bkt.clouddn.com/支付宝支付.jpg" alt="支付宝支付"></li>
-<li>群二维码，<img src="http://opzxa0ul7.bkt.clouddn.com/Java相关技术交流群群二维码.png" alt="Java相关技术交流群群二维码"></li>
+<li>最古老、最稳定</li>
+<li>效率高</li>
+<li>可能会产生较长的停顿</li>
+<li>-XX:+UseSerialGC<ul>
+<li>新生代、老年代使用串行回收</li>
+<li>新生代复制算法</li>
+<li>老年代标记-压缩算法</li>
+</ul>
+</li>
+</ul>
+<p>串行GC运行流程和GC日志：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/串行GC运行流程.png" alt="串行GC运行流程"></p>
+<p>新生代GC日志：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0.844: [GC 0.844: [DefNew: 17472K-&gt;2176K(19648K), 0.0188339 secs] 17472K-&gt;2375K(63360K), 0.0189186 secs] [Times: user=0.01 sys=0.00, real=0.02 secs]</div></pre></td></tr></table></figure>
+<p>老年代GC日志：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">8.259: [Full GC 8.259: [Tenured: 43711K-&gt;40302K(43712K), 0.2960477 secs] 63350K-&gt;40302K(63360K), [Perm : 17836K-&gt;17836K(32768K)], 0.2961554 secs] [Times: user=0.28 sys=0.02, real=0.30 secs]</div></pre></td></tr></table></figure>
+<h3 id="并行收集器"><a href="#并行收集器" class="headerlink" title="并行收集器"></a>并行收集器</h3><h4 id="ParNew"><a href="#ParNew" class="headerlink" title="ParNew"></a>ParNew</h4><p>新生代并行收集，老年代还是串行，通过 <code>-XX:+UseParNewGC</code> 指定使用。在新生代还是使用复制算法，需要多核支持。通过 <code>-XX:ParallelGCThreads</code> 限制线程数量</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/并行收集-ParNew流程.jpg" alt="并行收集-ParNew流程"></p>
+<p>新生代GC日志</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[GC [ParNew: 2276K-&gt;124K(3072K), 0.0019210 secs] 2276K-&gt;1148K(9920K), 0.0019460 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC [ParNew: 2202K-&gt;150K(3072K), 0.0013780 secs] 3226K-&gt;2198K(9920K), 0.0013970 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC [ParNew: 2273K-&gt;154K(3072K), 0.0015180 secs] 4321K-&gt;3226K(9920K), 0.0015420 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC [ParNew: 2215K-&gt;155K(3072K), 0.0011620 secs] 5287K-&gt;4251K(9920K), 0.0011810 secs] [Times: user=0.00 sys=0.00, real=0.00 secs]</div></pre></td></tr></table></figure>
+<p>老年代和Serial收集器一样</p>
+<h4 id="Parallel收集器"><a href="#Parallel收集器" class="headerlink" title="Parallel收集器"></a>Parallel收集器</h4><ul>
+<li>类似于ParNew</li>
+<li>新生代 复制算法</li>
+<li>老年代 标记-压缩法</li>
+<li>更加关注吞吐量</li>
+<li>-XX:+UseParallelGC<ul>
+<li>使用Parallel收集器+老年代串行</li>
+</ul>
+</li>
+<li>-XX:+UseParallelOldGC<ul>
+<li>使用Parallel收集器+老年代并行</li>
+</ul>
+</li>
+</ul>
+<p>Parallel收集器示例图：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/Parallel收集器示例图.jpg" alt="Parallel收集器示例图"></p>
+<p>GC日志示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">java -Xmx7m -Xms7m -XX:+UseParallelGC -XX:+PrintGCDetails TestDump2</div><div class="line">[GC [PSYoungGen: 1253K-&gt;192K(2368K)] 6373K-&gt;5312K(7872K), 0.0009380 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC-- [PSYoungGen: 1216K-&gt;1216K(2368K)] 6336K-&gt;6336K(7872K), 0.0005970 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[Full GC [PSYoungGen: 1216K-&gt;0K(2368K)] [PSOldGen: 5120K-&gt;1146K(4800K)] 6336K-&gt;1146K(7168K) [PSPermGen: 2571K-&gt;2571K(21248K)], 0.0031580 secs] [Times: user=0.00 sys=0.01, real=0.00 secs] </div><div class="line">Heap</div><div class="line"> PSYoungGen      total 2368K, used 1106K [0x00000000ffd60000, 0x0000000100000000, 0x0000000100000000)</div><div class="line">  eden space 2048K, 54% used [0x00000000ffd60000,0x00000000ffe74888,0x00000000fff60000)</div><div class="line">  from space 320K, 0% used [0x00000000fff60000,0x00000000fff60000,0x00000000fffb0000)</div><div class="line">  to   space 320K, 0% used [0x00000000fffb0000,0x00000000fffb0000,0x0000000100000000)</div><div class="line"> PSOldGen        total 4800K, used 3194K [0x00000000ff800000, 0x00000000ffcb0000, 0x00000000ffd60000)</div><div class="line">  object space 4800K, 66% used [0x00000000ff800000,0x00000000ffb1ebc0,0x00000000ffcb0000)</div><div class="line"> PSPermGen       total 21248K, used 2583K [0x00000000fa600000, 0x00000000fbac0000, 0x00000000ff800000)</div><div class="line">  object space 21248K, 12% used [0x00000000fa600000,0x00000000fa885fb8,0x00000000fbac0000)</div></pre></td></tr></table></figure>
+<h4 id="并行收集器运行参数控制"><a href="#并行收集器运行参数控制" class="headerlink" title="并行收集器运行参数控制"></a>并行收集器运行参数控制</h4><ul>
+<li>XX:MaxGCPauseMills<ul>
+<li>最大停顿时间，单位毫秒</li>
+<li>GC尽力保证回收时间不超过设定值</li>
+</ul>
+</li>
+<li>XX:GCTimeRatio<ul>
+<li>0-100的取值范围</li>
+<li>垃圾收集时间占总时间的比</li>
+<li>默认99，即最大允许1%时间做GC</li>
+</ul>
+</li>
+<li>这两个参数是矛盾的。因为停顿时间和吞吐量不可能同时调优</li>
+</ul>
+<h3 id="CMS收集器"><a href="#CMS收集器" class="headerlink" title="CMS收集器"></a>CMS收集器</h3><p>CMS(Concurrent Mark Sweep)收集器，并发(与用户线程一起执行)标记清除</p>
+<ul>
+<li>使用标记-清除算法</li>
 </ul>
   
 	</div>
@@ -137,7 +175,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/学习视频/">学习视频</a><a href="/tags/Java架构师之路/">Java架构师之路</a>
+  <span></span> <a href="/tags/JVM/">JVM</a><a href="/tags/GC参数介绍/">GC参数介绍</a>
   </div>
 
 </div>
@@ -185,19 +223,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/06/20/idea快捷键/" title="idea快捷键">
-  <strong>上一篇：</strong><br/>
-  <span>
-  idea快捷键</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/06/11/ActiveMQ进阶/"  title="ActiveMQ进阶">
+<a href="/2017/10/14/GC算法与种类/"  title="GC算法与种类">
  <strong>下一篇：</strong><br/> 
- <span>ActiveMQ进阶
+ <span>GC算法与种类
 </span>
 </a>
 </div>
@@ -214,7 +244,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java架构师之实战篇视频"><span class="toc-number">1.</span> <span class="toc-text">Java架构师之实战篇视频</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#初级篇详解"><span class="toc-number">1.1.</span> <span class="toc-text">初级篇详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进阶篇"><span class="toc-number">1.2.</span> <span class="toc-text">进阶篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级篇"><span class="toc-number">1.3.</span> <span class="toc-text">高级篇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#架构篇"><span class="toc-number">1.4.</span> <span class="toc-text">架构篇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取方式"><span class="toc-number">2.</span> <span class="toc-text">获取方式</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GC参数介绍"><span class="toc-number">1.</span> <span class="toc-text">GC参数介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#串行收集器"><span class="toc-number">1.1.</span> <span class="toc-text">串行收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并行收集器"><span class="toc-number">1.2.</span> <span class="toc-text">并行收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ParNew"><span class="toc-number">1.2.1.</span> <span class="toc-text">ParNew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Parallel收集器"><span class="toc-number">1.2.2.</span> <span class="toc-text">Parallel收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行收集器运行参数控制"><span class="toc-number">1.2.3.</span> <span class="toc-text">并行收集器运行参数控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS收集器"><span class="toc-number">1.3.</span> <span class="toc-text">CMS收集器</span></a></li></ol></li></ol>
  
   </div>
 
