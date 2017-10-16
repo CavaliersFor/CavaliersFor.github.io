@@ -11,17 +11,17 @@
     
 
     
-    <meta name="description" content="类加载器本文将介绍 class装载验证过程、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式、热替换">
+    <meta name="description" content="类加载器本文将介绍 class装载验证过程、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式以及热替换">
 <meta name="keywords" content="JVM,类加载器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="类装载器">
 <meta property="og:url" content="http://yoursite.com/2017/10/16/类装载器/index.html">
 <meta property="og:site_name" content="在路上的coder">
-<meta property="og:description" content="类加载器本文将介绍 class装载验证过程、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式、热替换">
-<meta property="og:updated_time" content="2017-10-16T13:09:19.169Z">
+<meta property="og:description" content="类加载器本文将介绍 class装载验证过程、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式以及热替换">
+<meta property="og:updated_time" content="2017-10-16T14:12:10.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类装载器">
-<meta name="twitter:description" content="类加载器本文将介绍 class装载验证过程、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式、热替换">
+<meta name="twitter:description" content="类加载器本文将介绍 class装载验证过程、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式以及热替换">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上的coder" type="application/atom+xml">
@@ -98,11 +98,25 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-number">1.</span> <span class="toc-text">类加载器</span></a></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-number">1.</span> <span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class装载验证流程"><span class="toc-number">1.2.</span> <span class="toc-text">Class装载验证流程</span></a></li></ol></li></ol>
 		
 		</div>
 		
-		<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>本文将介绍 <strong>class装载验证过程</strong>、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式、热替换</p>
+		<h2 id="类加载器"><a href="#类加载器" class="headerlink" title="类加载器"></a>类加载器</h2><p>本文将介绍 <strong>class装载验证过程</strong>、<strong>什么是类装载器ClassLoader</strong>、<strong>JDK中ClassLoader默认设计模式</strong>以及<strong>热替换</strong></p>
+<a id="more"></a>
+<h3 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h3><h3 id="Class装载验证流程"><a href="#Class装载验证流程" class="headerlink" title="Class装载验证流程"></a>Class装载验证流程</h3><ul>
+<li>加载<ul>
+<li>装载类的的第一个阶段，取得类的二进制流，转为方法区数据结构，在Java堆中生成对应的java.lang.Class对象</li>
+</ul>
+</li>
+<li>链接<ul>
+<li>验证</li>
+<li>准备</li>
+<li>解析</li>
+</ul>
+</li>
+<li>初始化</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -180,7 +194,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-number">1.</span> <span class="toc-text">类加载器</span></a></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载器"><span class="toc-number">1.</span> <span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class装载验证流程"><span class="toc-number">1.2.</span> <span class="toc-text">Class装载验证流程</span></a></li></ol></li></ol>
  
   </div>
 
@@ -216,19 +230,7 @@
 			
 		
 			
-				<li><a href="/tags/idea/" title="idea">idea<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
 			
 		
 			
@@ -237,6 +239,18 @@
 		
 			
 				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/类加载器/" title="类加载器">类加载器<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
 			
 		
 			
@@ -252,7 +266,11 @@
 			
 		
 			
-				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ActiveMQ安装/" title="ActiveMQ安装">ActiveMQ安装<sup>1</sup></a></li>
 			
 		
 			
@@ -260,19 +278,15 @@
 			
 		
 			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+				<li><a href="/tags/idea/" title="idea">idea<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/idea快捷键/" title="idea快捷键">idea快捷键<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/js正则表达式/" title="js正则表达式">js正则表达式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/电话号码正则表达式/" title="电话号码正则表达式">电话号码正则表达式<sup>1</sup></a></li>
 			
 		
 		</ul>
