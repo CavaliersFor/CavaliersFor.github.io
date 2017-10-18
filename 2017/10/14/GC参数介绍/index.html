@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/并行收集-ParNew流程.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Parallel收集器示例图.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/CMS收集器图例.jpg">
-<meta property="og:updated_time" content="2017-10-16T13:00:09.522Z">
+<meta property="og:updated_time" content="2017-10-18T14:01:14.372Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GC参数介绍">
 <meta name="twitter:description" content="GC参数介绍在本文中将介绍 串行收集器 、并行收集器  、CMS收集器  还会有一个tomcat的实例演示">
@@ -151,12 +151,12 @@
 <p>GC日志示例：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">java -Xmx7m -Xms7m -XX:+UseParallelGC -XX:+PrintGCDetails TestDump2</div><div class="line">[GC [PSYoungGen: 1253K-&gt;192K(2368K)] 6373K-&gt;5312K(7872K), 0.0009380 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[GC-- [PSYoungGen: 1216K-&gt;1216K(2368K)] 6336K-&gt;6336K(7872K), 0.0005970 secs] [Times: user=0.00 sys=0.00, real=0.00 secs] </div><div class="line">[Full GC [PSYoungGen: 1216K-&gt;0K(2368K)] [PSOldGen: 5120K-&gt;1146K(4800K)] 6336K-&gt;1146K(7168K) [PSPermGen: 2571K-&gt;2571K(21248K)], 0.0031580 secs] [Times: user=0.00 sys=0.01, real=0.00 secs] </div><div class="line">Heap</div><div class="line"> PSYoungGen      total 2368K, used 1106K [0x00000000ffd60000, 0x0000000100000000, 0x0000000100000000)</div><div class="line">  eden space 2048K, 54% used [0x00000000ffd60000,0x00000000ffe74888,0x00000000fff60000)</div><div class="line">  from space 320K, 0% used [0x00000000fff60000,0x00000000fff60000,0x00000000fffb0000)</div><div class="line">  to   space 320K, 0% used [0x00000000fffb0000,0x00000000fffb0000,0x0000000100000000)</div><div class="line"> PSOldGen        total 4800K, used 3194K [0x00000000ff800000, 0x00000000ffcb0000, 0x00000000ffd60000)</div><div class="line">  object space 4800K, 66% used [0x00000000ff800000,0x00000000ffb1ebc0,0x00000000ffcb0000)</div><div class="line"> PSPermGen       total 21248K, used 2583K [0x00000000fa600000, 0x00000000fbac0000, 0x00000000ff800000)</div><div class="line">  object space 21248K, 12% used [0x00000000fa600000,0x00000000fa885fb8,0x00000000fbac0000)</div></pre></td></tr></table></figure>
 <h4 id="并行收集器运行参数控制"><a href="#并行收集器运行参数控制" class="headerlink" title="并行收集器运行参数控制"></a>并行收集器运行参数控制</h4><ul>
-<li>XX:MaxGCPauseMills<ul>
+<li>-XX:MaxGCPauseMills<ul>
 <li>最大停顿时间，单位毫秒</li>
 <li>GC尽力保证回收时间不超过设定值</li>
 </ul>
 </li>
-<li>XX:GCTimeRatio<ul>
+<li>-XX:GCTimeRatio<ul>
 <li>0-100的取值范围</li>
 <li>垃圾收集时间占总时间的比</li>
 <li>默认99，即最大允许1%时间做GC</li>
@@ -357,15 +357,15 @@
 			
 		
 			
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
 			
 		
 			
@@ -389,15 +389,19 @@
 			
 		
 			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ActiveMQ安装/" title="ActiveMQ安装">ActiveMQ安装<sup>1</sup></a></li>
+				<li><a href="/tags/js正则表达式/" title="js正则表达式">js正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
+				<li><a href="/tags/电话号码正则表达式/" title="电话号码正则表达式">电话号码正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/邮箱正则表达式/" title="邮箱正则表达式">邮箱正则表达式<sup>1</sup></a></li>
 			
 		
 			
@@ -406,10 +410,6 @@
 		
 			
 				<li><a href="/tags/idea快捷键/" title="idea快捷键">idea快捷键<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
 			
 		
 		</ul>
