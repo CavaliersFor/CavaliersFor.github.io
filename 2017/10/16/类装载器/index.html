@@ -20,7 +20,7 @@
 <meta property="og:description" content="类加载机制本文将介绍 class装载验证过程、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式以及热替换">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/类的生命周期.png">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/类加载器的双亲委派模型.png">
-<meta property="og:updated_time" content="2017-10-23T14:15:39.055Z">
+<meta property="og:updated_time" content="2017-10-25T13:18:44.589Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类装载器">
 <meta name="twitter:description" content="类加载机制本文将介绍 class装载验证过程、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式以及热替换">
@@ -101,7 +101,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载机制"><span class="toc-number">1.</span> <span class="toc-text">类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class加载流程"><span class="toc-number">1.2.</span> <span class="toc-text">Class加载流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#加载"><span class="toc-number">1.2.1.</span> <span class="toc-text">加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证"><span class="toc-number">1.2.2.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.2.3.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解析"><span class="toc-number">1.2.4.</span> <span class="toc-text">解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-number">1.2.5.</span> <span class="toc-text">初始化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载器"><span class="toc-number">1.3.</span> <span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ClassLoader的重要方法"><span class="toc-number">1.3.1.</span> <span class="toc-text">ClassLoader的重要方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java中的类加载器"><span class="toc-number">1.3.2.</span> <span class="toc-text">Java中的类加载器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双亲委派模式"><span class="toc-number">1.3.3.</span> <span class="toc-text">双亲委派模式</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载机制"><span class="toc-number">1.</span> <span class="toc-text">类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class加载流程"><span class="toc-number">1.2.</span> <span class="toc-text">Class加载流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#加载"><span class="toc-number">1.2.1.</span> <span class="toc-text">加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证"><span class="toc-number">1.2.2.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.2.3.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解析"><span class="toc-number">1.2.4.</span> <span class="toc-text">解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-number">1.2.5.</span> <span class="toc-text">初始化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载器"><span class="toc-number">1.3.</span> <span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ClassLoader的重要方法"><span class="toc-number">1.3.1.</span> <span class="toc-text">ClassLoader的重要方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java中的类加载器"><span class="toc-number">1.3.2.</span> <span class="toc-text">Java中的类加载器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双亲委派模式"><span class="toc-number">1.3.3.</span> <span class="toc-text">双亲委派模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#破坏双亲委派模式"><span class="toc-number">1.4.</span> <span class="toc-text">破坏双亲委派模式</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -191,6 +191,8 @@
 <h4 id="双亲委派模式"><a href="#双亲委派模式" class="headerlink" title="双亲委派模式"></a>双亲委派模式</h4><p>双亲委派模式指：如果一个类加载器收到类加载的请求，它首先不会自己去尝试加载这个类，而是把这个请求委派给父类加载器去完成，每一层的加载器都是如此，因此所有的加载请求最终都应该传送到顶层的启动类加载器中，只有当父类加载器反馈自己无法完成这个加载请求(父加载器搜索范围中没有找到所需加载的类)时，子加载器才会尝试自己加载。</p>
 <p>如下图所示:</p>
 <p><img src="http://opzxa0ul7.bkt.clouddn.com/类加载器的双亲委派模型.png" alt="类加载器的双亲委派模型"></p>
+<h3 id="破坏双亲委派模式"><a href="#破坏双亲委派模式" class="headerlink" title="破坏双亲委派模式"></a>破坏双亲委派模式</h3><p>通过使用<code>Thread. setContextClassLoader()</code>上下文加载器，用以解决顶层ClassLoader无法访问底层ClassLoader的类的问题。</p>
+<p>基本思想是：–基本思想是，在顶层ClassLoader中，传入底层ClassLoader的实例。</p>
 <p>那什么时候开始类加载过程的第一阶段<strong>加载</strong> ，Java虚拟机规范中没有给出明确定义。但是给出了初始化阶段的5中情况</p>
 <ul>
 <li>遇到<code>new</code> 、<code>getstatic</code> 、<code>putstatic</code> 、<code>invokestatic</code> 这4条字节码指令时，如果类没有进行初始化，则需要先触发初始化过程</li>
@@ -268,6 +270,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2017/10/30/mianshiti/" title="Java面试题">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Java面试题</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2017/10/14/GC参数介绍/"  title="GC参数介绍">
@@ -289,7 +299,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载机制"><span class="toc-number">1.</span> <span class="toc-text">类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class加载流程"><span class="toc-number">1.2.</span> <span class="toc-text">Class加载流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#加载"><span class="toc-number">1.2.1.</span> <span class="toc-text">加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证"><span class="toc-number">1.2.2.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.2.3.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解析"><span class="toc-number">1.2.4.</span> <span class="toc-text">解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-number">1.2.5.</span> <span class="toc-text">初始化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载器"><span class="toc-number">1.3.</span> <span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ClassLoader的重要方法"><span class="toc-number">1.3.1.</span> <span class="toc-text">ClassLoader的重要方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java中的类加载器"><span class="toc-number">1.3.2.</span> <span class="toc-text">Java中的类加载器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双亲委派模式"><span class="toc-number">1.3.3.</span> <span class="toc-text">双亲委派模式</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#类加载机制"><span class="toc-number">1.</span> <span class="toc-text">类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开发环境"><span class="toc-number">1.1.</span> <span class="toc-text">开发环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Class加载流程"><span class="toc-number">1.2.</span> <span class="toc-text">Class加载流程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#加载"><span class="toc-number">1.2.1.</span> <span class="toc-text">加载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证"><span class="toc-number">1.2.2.</span> <span class="toc-text">验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#准备"><span class="toc-number">1.2.3.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解析"><span class="toc-number">1.2.4.</span> <span class="toc-text">解析</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始化"><span class="toc-number">1.2.5.</span> <span class="toc-text">初始化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#类加载器"><span class="toc-number">1.3.</span> <span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ClassLoader的重要方法"><span class="toc-number">1.3.1.</span> <span class="toc-text">ClassLoader的重要方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Java中的类加载器"><span class="toc-number">1.3.2.</span> <span class="toc-text">Java中的类加载器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双亲委派模式"><span class="toc-number">1.3.3.</span> <span class="toc-text">双亲委派模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#破坏双亲委派模式"><span class="toc-number">1.4.</span> <span class="toc-text">破坏双亲委派模式</span></a></li></ol></li></ol>
  
   </div>
 
@@ -309,11 +319,11 @@
 			
 		
 			
-				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>6</sup></a></li>
+				<li><a href="/tags/JVM/" title="JVM">JVM<sup>6</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JVM/" title="JVM">JVM<sup>6</sup></a></li>
+				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>6</sup></a></li>
 			
 		
 			
@@ -329,7 +339,7 @@
 			
 		
 			
-				<li><a href="/tags/js正则表达式/" title="js正则表达式">js正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/idea快捷键/" title="idea快捷键">idea快捷键<sup>1</sup></a></li>
 			
 		
 			
@@ -337,19 +347,19 @@
 			
 		
 			
-				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
+				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
 			
 		
 			
@@ -373,7 +383,7 @@
 			
 		
 			
-				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
 			
 		
 			
@@ -381,7 +391,7 @@
 			
 		
 			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
 			
 		
 		</ul>
