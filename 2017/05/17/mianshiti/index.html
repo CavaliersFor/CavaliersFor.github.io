@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法清除阶段.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法标记阶段.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法压缩阶段.jpg">
-<meta property="og:updated_time" content="2017-11-01T13:20:51.257Z">
+<meta property="og:updated_time" content="2017-11-05T01:50:10.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试题">
 <meta name="twitter:description" content="zk分布式锁：详情参考：http://www.jiacheo.org/blog/620 1.在单机模式下，没有引入zookeeper时，我们可以通过创建一个临时文件加锁，然后在事务处理完毕后，将临时文件删除就代表解锁。这种加锁和解锁模式可以移植到zookeeper上，通过创建一个路径，来证明该锁已经存在，然后删除路径来释放该锁。而同时zookeeper又能支持对节点的监控，这样一来，我们在多机的">
@@ -103,7 +103,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zk分布式锁："><span class="toc-number">1.</span> <span class="toc-text">zk分布式锁：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈分布式"><span class="toc-number">2.</span> <span class="toc-text">谈谈分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis持久化实现原理"><span class="toc-number">3.</span> <span class="toc-text">redis持久化实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者消费者"><span class="toc-number">4.</span> <span class="toc-text">生产者消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM的内存模型"><span class="toc-number">5.</span> <span class="toc-text">JVM的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM体系结构"><span class="toc-number">6.</span> <span class="toc-text">JVM体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用GC算法"><span class="toc-number">7.</span> <span class="toc-text">常用GC算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么情况下出现Full-GC，什么情况下出现Young-GC"><span class="toc-number">8.</span> <span class="toc-text">什么情况下出现Full GC，什么情况下出现Young GC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http1-0，http1-1，http2-0区别"><span class="toc-number">9.</span> <span class="toc-text">http1.0，http1.1，http2.0区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-Post对缓存的影响"><span class="toc-number">10.</span> <span class="toc-text">Get/Post对缓存的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求头和响应头"><span class="toc-number">11.</span> <span class="toc-text">HTTP请求头和响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过三种方式编写单例模式"><span class="toc-number">12.</span> <span class="toc-text">通过三种方式编写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程技术书籍"><span class="toc-number">13.</span> <span class="toc-text">编程技术书籍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO核心组件"><span class="toc-number">14.</span> <span class="toc-text">NIO核心组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断对象可收回"><span class="toc-number">15.</span> <span class="toc-text">判断对象可收回</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中文编码问题"><span class="toc-number">16.</span> <span class="toc-text">中文编码问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring的缺点"><span class="toc-number">17.</span> <span class="toc-text">Spring的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式的缺点"><span class="toc-number">18.</span> <span class="toc-text">单例模式的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#唯一索引的作用"><span class="toc-number">19.</span> <span class="toc-text">唯一索引的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库隔离级别"><span class="toc-number">20.</span> <span class="toc-text">数据库隔离级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库隔离级别出现的问题"><span class="toc-number">21.</span> <span class="toc-text">数据库隔离级别出现的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式、集群、负载均衡的理解"><span class="toc-number">22.</span> <span class="toc-text">分布式、集群、负载均衡的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡算法"><span class="toc-number">22.1.</span> <span class="toc-text">负载均衡算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#悲观锁和乐观锁"><span class="toc-number">23.</span> <span class="toc-text">悲观锁和乐观锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景："><span class="toc-number">23.1.</span> <span class="toc-text">适用场景：</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zk分布式锁："><span class="toc-number">1.</span> <span class="toc-text">zk分布式锁：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈分布式"><span class="toc-number">2.</span> <span class="toc-text">谈谈分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis持久化实现原理"><span class="toc-number">3.</span> <span class="toc-text">redis持久化实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者消费者"><span class="toc-number">4.</span> <span class="toc-text">生产者消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM的内存模型"><span class="toc-number">5.</span> <span class="toc-text">JVM的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM体系结构"><span class="toc-number">6.</span> <span class="toc-text">JVM体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用GC算法"><span class="toc-number">7.</span> <span class="toc-text">常用GC算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么情况下出现Full-GC，什么情况下出现Young-GC"><span class="toc-number">8.</span> <span class="toc-text">什么情况下出现Full GC，什么情况下出现Young GC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http1-0，http1-1，http2-0区别"><span class="toc-number">9.</span> <span class="toc-text">http1.0，http1.1，http2.0区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-Post对缓存的影响"><span class="toc-number">10.</span> <span class="toc-text">Get/Post对缓存的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求头和响应头"><span class="toc-number">11.</span> <span class="toc-text">HTTP请求头和响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过三种方式编写单例模式"><span class="toc-number">12.</span> <span class="toc-text">通过三种方式编写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程技术书籍"><span class="toc-number">13.</span> <span class="toc-text">编程技术书籍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO核心组件"><span class="toc-number">14.</span> <span class="toc-text">NIO核心组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断对象可收回"><span class="toc-number">15.</span> <span class="toc-text">判断对象可收回</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中文编码问题"><span class="toc-number">16.</span> <span class="toc-text">中文编码问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring的缺点"><span class="toc-number">17.</span> <span class="toc-text">Spring的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式的缺点"><span class="toc-number">18.</span> <span class="toc-text">单例模式的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#唯一索引的作用"><span class="toc-number">19.</span> <span class="toc-text">唯一索引的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#共享锁和排他锁"><span class="toc-number">20.</span> <span class="toc-text">共享锁和排他锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#共享锁"><span class="toc-number">20.1.</span> <span class="toc-text">共享锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排他锁"><span class="toc-number">20.2.</span> <span class="toc-text">排他锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库隔离级别"><span class="toc-number">21.</span> <span class="toc-text">数据库隔离级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库隔离级别出现的问题"><span class="toc-number">22.</span> <span class="toc-text">数据库隔离级别出现的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式、集群、负载均衡的理解"><span class="toc-number">23.</span> <span class="toc-text">分布式、集群、负载均衡的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡算法"><span class="toc-number">23.1.</span> <span class="toc-text">负载均衡算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#悲观锁和乐观锁"><span class="toc-number">24.</span> <span class="toc-text">悲观锁和乐观锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景："><span class="toc-number">24.1.</span> <span class="toc-text">适用场景：</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -320,16 +320,21 @@
 <li>单例类的职责过重，在一定程度上违背了“单一职责原则”。 </li>
 <li>滥用单例将带来一些负面问题，如为了节省资源将数据库连接池对象设计为的单例类，可能会导致共享连接池对象的程序过多而出现连接池溢出；如果实例化的对象长时间不被利用，系统会认为是垃圾而被回收，这将导致对象状态的丢失。 </li>
 </ul>
-<h2 id="唯一索引的作用"><a href="#唯一索引的作用" class="headerlink" title="唯一索引的作用"></a>唯一索引的作用</h2><h2 id="数据库隔离级别"><a href="#数据库隔离级别" class="headerlink" title="数据库隔离级别"></a>数据库隔离级别</h2><ul>
+<h2 id="唯一索引的作用"><a href="#唯一索引的作用" class="headerlink" title="唯一索引的作用"></a>唯一索引的作用</h2><h2 id="共享锁和排他锁"><a href="#共享锁和排他锁" class="headerlink" title="共享锁和排他锁"></a>共享锁和排他锁</h2><h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p>共享锁又称读锁，是读取操作创建的锁。其他用户可以并发读取数据，但任何事务不能对数据进行修改(获取数据上的排他锁)。如果事务T对数据A加上共享锁后，则其他事务只能对A再加共享锁，不能加排他锁。获取共享锁的事务只能读数据，不能修改数据。</p>
+<h3 id="排他锁"><a href="#排他锁" class="headerlink" title="排他锁"></a>排他锁</h3><p>排他锁又称写锁，如果事务T对数据A加上排他锁后，其他事务不能再对A加任何类型的锁。获取排他锁的事务既能读数据，又能修改数据。</p>
+<h2 id="数据库隔离级别"><a href="#数据库隔离级别" class="headerlink" title="数据库隔离级别"></a>数据库隔离级别</h2><ul>
 <li>读未提交的，另一个事务修改了数据，但尚未提交，而本事务中的select会读到这些未被提交的数据(也就是脏读)。脏读就是指另一个事务修改了数据，但尚未提交，而本事务中的select会读到这些未被提交的数据</li>
 <li>读已提交的，本事务读取到的是最新的数据(其他事务提交后的)。问题是，在同一个事务里，前后执行相同的 select会读到不同的结果(不可重复读)。不可重复读，指同一个事务执行过程中，另外一个事务提交了新数据，因此本事务先后两次读到的数据结果不一致</li>
 <li>可重复读，在同一事务中，SELECT的结果是事务开始时间点的状态，同样的SELECT操作读到的结果会是一致的。但是，会有幻读现象。可重复读保证了同一个事务里，查询的结果都是事务开始时的状态（一致性）。但是，如果另一个事务同时提交了新数据，本事务再更新时，就会发现了这些新数据，貌似之前读到的数据是幻觉，这就是幻读。</li>
 <li>串行化，所有事务只能一个个执行，不能并发</li>
 </ul>
-<h2 id="数据库隔离级别出现的问题"><a href="#数据库隔离级别出现的问题" class="headerlink" title="数据库隔离级别出现的问题"></a>数据库隔离级别出现的问题</h2><ul>
+<ul>
+<li><h2 id="数据库隔离级别出现的问题"><a href="#数据库隔离级别出现的问题" class="headerlink" title="数据库隔离级别出现的问题"></a>数据库隔离级别出现的问题</h2><ul>
 <li>脏读：对于两个事务T1，T2，T1读取了已经被T2更新但还没有提交的字段，之后，若T2回滚，T1读取到的内容就是临时无效的内容。+</li>
-<li>不可重复读：对于事务T1，T2，T1需要读取一个字段两次，在第一次和第二次读取之间，T2更新了该字段，导致T1第二次读取到的内容值不同。</li>
-<li>幻读： 事务A读取与搜索条件相匹配的若干行。事务B以插入或删除行等方式来修改事务A的结果集，然后再提交。 <font color="red">幻读与不可重复读之间的区别是幻读强调的是新增或删除,而不可重复读强调的是修改。</font>比如Mary两次查工资，中间有人改过工资，则两次结果不一样，这就是不可重复读。Mary要查工资一千的人数，第一次查到了10个，中间有人增加了一条工资为一千的人，下次查的时候就变成了11个，好像第一次查询的是幻觉一样。</li>
+<li>不可重复读：对于事务T1，T2，T1需要读取一个字段两次，在第一次和第二次读取之间，T2更新了该字段，导致T1第二次读取到的内容值不同。出现这样的原因是，T1事务读取完数据后释放了排他锁，导致T2可以获取排他锁对数据进行修改，所以第二次看到数据不一致。</li>
+<li>幻读： 事务A读取与搜索条件相匹配的若干行。事务B以插入或删除行等方式来修改事务A的结果集，然后再提交。 幻读与不可重复读之间的区别是幻读强调的是新增或删除,而不可重复读强调的是修改。这是在可重复读的事务级别下出现的现象，在该事务级别下，T1读完数据后，不到事务提交是不会释放共享锁的，也就是其他事务不能获取到排他锁都已读到的数据进行修改，实现了可重复读；但是其他事务可以执行insert语句，这样就导致出现幻读。</li>
+</ul>
+</li>
 </ul>
 <h2 id="分布式、集群、负载均衡的理解"><a href="#分布式、集群、负载均衡的理解" class="headerlink" title="分布式、集群、负载均衡的理解"></a>分布式、集群、负载均衡的理解</h2><p>集群：同一个业务，部署在多个服务器上。<br>分布式：一个业务分拆成多个子业务，或者本身就是不同的业务，部署在不同的服务器上。<br>负载均衡：通过负载均衡算法，将用户的请求转发给后台内网服务器。达到访问的负载均衡</p>
 <h3 id="负载均衡算法"><a href="#负载均衡算法" class="headerlink" title="负载均衡算法"></a>负载均衡算法</h3><ul>
@@ -406,10 +411,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2017/05/17/GC参数介绍/" title="GC参数介绍">
+ <a href="/2017/05/20/redis介绍和安装/" title="redis入门与安装">
   <strong>上一篇：</strong><br/>
   <span>
-  GC参数介绍</span>
+  redis入门与安装</span>
 </a>
 </div>
 
@@ -434,7 +439,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zk分布式锁："><span class="toc-number">1.</span> <span class="toc-text">zk分布式锁：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈分布式"><span class="toc-number">2.</span> <span class="toc-text">谈谈分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis持久化实现原理"><span class="toc-number">3.</span> <span class="toc-text">redis持久化实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者消费者"><span class="toc-number">4.</span> <span class="toc-text">生产者消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM的内存模型"><span class="toc-number">5.</span> <span class="toc-text">JVM的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM体系结构"><span class="toc-number">6.</span> <span class="toc-text">JVM体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用GC算法"><span class="toc-number">7.</span> <span class="toc-text">常用GC算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么情况下出现Full-GC，什么情况下出现Young-GC"><span class="toc-number">8.</span> <span class="toc-text">什么情况下出现Full GC，什么情况下出现Young GC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http1-0，http1-1，http2-0区别"><span class="toc-number">9.</span> <span class="toc-text">http1.0，http1.1，http2.0区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-Post对缓存的影响"><span class="toc-number">10.</span> <span class="toc-text">Get/Post对缓存的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求头和响应头"><span class="toc-number">11.</span> <span class="toc-text">HTTP请求头和响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过三种方式编写单例模式"><span class="toc-number">12.</span> <span class="toc-text">通过三种方式编写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程技术书籍"><span class="toc-number">13.</span> <span class="toc-text">编程技术书籍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO核心组件"><span class="toc-number">14.</span> <span class="toc-text">NIO核心组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断对象可收回"><span class="toc-number">15.</span> <span class="toc-text">判断对象可收回</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中文编码问题"><span class="toc-number">16.</span> <span class="toc-text">中文编码问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring的缺点"><span class="toc-number">17.</span> <span class="toc-text">Spring的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式的缺点"><span class="toc-number">18.</span> <span class="toc-text">单例模式的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#唯一索引的作用"><span class="toc-number">19.</span> <span class="toc-text">唯一索引的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库隔离级别"><span class="toc-number">20.</span> <span class="toc-text">数据库隔离级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库隔离级别出现的问题"><span class="toc-number">21.</span> <span class="toc-text">数据库隔离级别出现的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式、集群、负载均衡的理解"><span class="toc-number">22.</span> <span class="toc-text">分布式、集群、负载均衡的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡算法"><span class="toc-number">22.1.</span> <span class="toc-text">负载均衡算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#悲观锁和乐观锁"><span class="toc-number">23.</span> <span class="toc-text">悲观锁和乐观锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景："><span class="toc-number">23.1.</span> <span class="toc-text">适用场景：</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#zk分布式锁："><span class="toc-number">1.</span> <span class="toc-text">zk分布式锁：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#谈谈分布式"><span class="toc-number">2.</span> <span class="toc-text">谈谈分布式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis持久化实现原理"><span class="toc-number">3.</span> <span class="toc-text">redis持久化实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生产者消费者"><span class="toc-number">4.</span> <span class="toc-text">生产者消费者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM的内存模型"><span class="toc-number">5.</span> <span class="toc-text">JVM的内存模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM体系结构"><span class="toc-number">6.</span> <span class="toc-text">JVM体系结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用GC算法"><span class="toc-number">7.</span> <span class="toc-text">常用GC算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么情况下出现Full-GC，什么情况下出现Young-GC"><span class="toc-number">8.</span> <span class="toc-text">什么情况下出现Full GC，什么情况下出现Young GC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http1-0，http1-1，http2-0区别"><span class="toc-number">9.</span> <span class="toc-text">http1.0，http1.1，http2.0区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Get-Post对缓存的影响"><span class="toc-number">10.</span> <span class="toc-text">Get/Post对缓存的影响</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP请求头和响应头"><span class="toc-number">11.</span> <span class="toc-text">HTTP请求头和响应头</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过三种方式编写单例模式"><span class="toc-number">12.</span> <span class="toc-text">通过三种方式编写单例模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程技术书籍"><span class="toc-number">13.</span> <span class="toc-text">编程技术书籍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NIO核心组件"><span class="toc-number">14.</span> <span class="toc-text">NIO核心组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#判断对象可收回"><span class="toc-number">15.</span> <span class="toc-text">判断对象可收回</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中文编码问题"><span class="toc-number">16.</span> <span class="toc-text">中文编码问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring的缺点"><span class="toc-number">17.</span> <span class="toc-text">Spring的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单例模式的缺点"><span class="toc-number">18.</span> <span class="toc-text">单例模式的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#唯一索引的作用"><span class="toc-number">19.</span> <span class="toc-text">唯一索引的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#共享锁和排他锁"><span class="toc-number">20.</span> <span class="toc-text">共享锁和排他锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#共享锁"><span class="toc-number">20.1.</span> <span class="toc-text">共享锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排他锁"><span class="toc-number">20.2.</span> <span class="toc-text">排他锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库隔离级别"><span class="toc-number">21.</span> <span class="toc-text">数据库隔离级别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库隔离级别出现的问题"><span class="toc-number">22.</span> <span class="toc-text">数据库隔离级别出现的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式、集群、负载均衡的理解"><span class="toc-number">23.</span> <span class="toc-text">分布式、集群、负载均衡的理解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#负载均衡算法"><span class="toc-number">23.1.</span> <span class="toc-text">负载均衡算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#悲观锁和乐观锁"><span class="toc-number">24.</span> <span class="toc-text">悲观锁和乐观锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#适用场景："><span class="toc-number">24.1.</span> <span class="toc-text">适用场景：</span></a></li></ol></li></ol>
  
   </div>
 
@@ -474,11 +479,11 @@
 			
 		
 			
-				<li><a href="/tags/Spring-IOC工作流程/" title="Spring IOC工作流程">Spring IOC工作流程<sup>1</sup></a></li>
+				<li><a href="/tags/js正则表达式/" title="js正则表达式">js正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
 			
 		
 			
@@ -498,18 +503,6 @@
 			
 		
 			
-				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
 			
 		
@@ -518,15 +511,27 @@
 			
 		
 			
-				<li><a href="/tags/idea/" title="idea">idea<sup>1</sup></a></li>
+				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/idea快捷键/" title="idea快捷键">idea快捷键<sup>1</sup></a></li>
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-IOC源码/" title="Spring IOC源码">Spring IOC源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-IOC工作流程/" title="Spring IOC工作流程">Spring IOC工作流程<sup>1</sup></a></li>
 			
 		
 		</ul>

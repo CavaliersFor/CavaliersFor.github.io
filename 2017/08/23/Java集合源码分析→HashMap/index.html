@@ -18,7 +18,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/08/23/Java集合源码分析→HashMap/index.html">
 <meta property="og:site_name" content="在路上的coder">
 <meta property="og:description" content="HashMap简介HashMap是基于哈希表和链表实现的，里面的每一个元素都是键值对的形式，通过单链表的形式解决键冲突问题，超过阀值自动扩容。HashMap的size最好是2的倍数，默认大小是16，默认加载因子是0.75">
-<meta property="og:updated_time" content="2017-09-12T13:22:20.501Z">
+<meta property="og:updated_time" content="2017-11-05T01:51:42.148Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java集合源码分析→HashMap">
 <meta name="twitter:description" content="HashMap简介HashMap是基于哈希表和链表实现的，里面的每一个元素都是键值对的形式，通过单链表的形式解决键冲突问题，超过阀值自动扩容。HashMap的size最好是2的倍数，默认大小是16，默认加载因子是0.75">
@@ -118,7 +118,7 @@
 <ul>
 <li><p>HashMap有四个构造方法，有两个参数非常重要，<code>initialCapacity</code> 初始化容量和<code>loadFactor</code> 加载因子。<font color="red">其中容量表示哈希表中槽的数量，从源码中可以看出如果不给定默认是16.加载因子表示在其容量自动增加之前可以达到多满的一种尺度，当哈希表中的数据大于等于当前槽的数量乘以加载因子，则需要将HashMap进行resize()操作(即扩容)</font></p>
 <ul>
-<li>介绍一下加载因子，如果加载因子越大则对空间利用更加充分，但是查询效率降低(链表长度会越来越长)；如果加载因子设置的过小，则哈希表中的数据过于稀疏(很多空间没有使用到，就开始扩容)，对空间造成严重的浪费。如果我们构造参数不指定，默认是0.75，这个一个比较理想的值，我们无需修改。</li>
+<li>介绍一下加载因子，如果加载因子越大则对空间利用更加充分，但是查询效率降低(链表长度会越来越长)；如果加载因子设置的过小，则哈希表中的数据过于稀疏(很多空间没有使用到，就开始扩容)，对空间造成严重的浪费。如果我们构造参数不指定，默认是0.75，这是一个比较理想的值，我们无需修改。</li>
 <li>另外不管我们指定了多少容量，构造方法都将实际容量设置为不小于给定容量的2的次方的一个数。容量最大值是2的30次方</li>
 </ul>
 </li>
@@ -268,11 +268,11 @@
 			
 		
 			
-				<li><a href="/tags/Spring-IOC工作流程/" title="Spring IOC工作流程">Spring IOC工作流程<sup>1</sup></a></li>
+				<li><a href="/tags/js正则表达式/" title="js正则表达式">js正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
 			
 		
 			
@@ -292,18 +292,6 @@
 			
 		
 			
-				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
 			
 		
@@ -312,15 +300,27 @@
 			
 		
 			
-				<li><a href="/tags/idea/" title="idea">idea<sup>1</sup></a></li>
+				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/idea快捷键/" title="idea快捷键">idea快捷键<sup>1</sup></a></li>
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-IOC源码/" title="Spring IOC源码">Spring IOC源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-IOC工作流程/" title="Spring IOC工作流程">Spring IOC工作流程<sup>1</sup></a></li>
 			
 		
 		</ul>
