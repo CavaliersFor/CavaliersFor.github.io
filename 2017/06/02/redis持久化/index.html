@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="在路上的coder">
 <meta property="og:description" content="Redis持久化RDB持久化方案在Redis运行时，RDB程序将当前内存中的数据库快照保存到磁盘中，当Redis需要重启时，RDB程序会通过重载RDB文件来还原数据库。 RDB主要包括两个功能：">
 <meta property="og:image" content="http://img.blog.csdn.net/20130518180443561">
-<meta property="og:updated_time" content="2017-11-01T13:18:18.630Z">
+<meta property="og:updated_time" content="2017-11-06T13:00:25.185Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="redis持久化">
 <meta name="twitter:description" content="Redis持久化RDB持久化方案在Redis运行时，RDB程序将当前内存中的数据库快照保存到磁盘中，当Redis需要重启时，RDB程序会通过重载RDB文件来还原数据库。 RDB主要包括两个功能：">
@@ -135,7 +135,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPOP list</div></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPOP list</div></pre></td></tr></table></figure>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH list <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>最初保持到AOF文件的将会是四条指令。但是经过AOF重写后，会变成一条指令：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH <span class="number">1</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
+<p>最初保存到AOF文件的将会是四条指令。但是经过AOF重写后，会变成一条指令：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">LPUSH <span class="number">1</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></div></pre></td></tr></table></figure></p>
 <h5 id="AOF重写流程，主线程，子线程的工作："><a href="#AOF重写流程，主线程，子线程的工作：" class="headerlink" title="AOF重写流程，主线程，子线程的工作："></a>AOF重写流程，主线程，子线程的工作：</h5><ul>
 <li>主线程创建子线程，执行AOF文件重写</li>
 <li>将子线程在执行写操作过程中的执行命令追加到AOF缓冲区和AOF重写缓冲区</li>
@@ -325,7 +325,7 @@
 			
 		
 			
-				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
 			
 		
 			
@@ -337,7 +337,7 @@
 			
 		
 			
-				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
 			
 		
 			
@@ -357,15 +357,15 @@
 			
 		
 			
-				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
+				<li><a href="/tags/ActiveMQ安装/" title="ActiveMQ安装">ActiveMQ安装<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+				<li><a href="/tags/JVM监控处理工具/" title="JVM监控处理工具">JVM监控处理工具<sup>1</sup></a></li>
 			
 		
 			
