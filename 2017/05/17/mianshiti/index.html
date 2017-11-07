@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法清除阶段.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法标记阶段.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法压缩阶段.jpg">
-<meta property="og:updated_time" content="2017-11-06T13:01:22.129Z">
+<meta property="og:updated_time" content="2017-11-07T13:43:02.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试题">
 <meta name="twitter:description" content="zk分布式锁：详情参考：http://www.jiacheo.org/blog/620 1.在单机模式下，没有引入zookeeper时，我们可以通过创建一个临时文件加锁，然后在事务处理完毕后，将临时文件删除就代表解锁。这种加锁和解锁模式可以移植到zookeeper上，通过创建一个路径，来证明该锁已经存在，然后删除路径来释放该锁。而同时zookeeper又能支持对节点的监控，这样一来，我们在多机的">
@@ -330,8 +330,8 @@
 </ul>
 <ul>
 <li><h2 id="数据库隔离级别出现的问题"><a href="#数据库隔离级别出现的问题" class="headerlink" title="数据库隔离级别出现的问题"></a>数据库隔离级别出现的问题</h2><ul>
-<li>脏读：对于两个事务T1，T2，T1读取了已经被T2更新但还没有提交的字段，之后，若T2回滚，T1读取到的内容就是临时无效的内容。+</li>
-<li>不可重复读：对于事务T1，T2，T1需要读取一个字段两次，在第一次和第二次读取之间，T2更新了该字段，导致T1第二次读取到的内容值不同。出现这样的原因是，T1事务读取完数据后释放了排他锁，导致T2可以获取排他锁对数据进行修改，所以第二次看到数据不一致。</li>
+<li>脏读：对于两个事务T1，T2，T1读取了已经被T2更新但还没有提交的字段，之后，若T2回滚，T1读取到的内容就是临时无效的内容。</li>
+<li>不可重复读：对于事务T1，T2，T1需要读取一个字段两次，在第一次和第二次读取之间，T2更新了该字段，导致T1第二次读取到的内容值不同。出现这样的原因是，T1事务读取完数据后释放了共享锁，导致T2可以获取排他锁对数据进行修改，所以第二次看到数据不一致。</li>
 <li>幻读： 事务A读取与搜索条件相匹配的若干行。事务B以插入或删除行等方式来修改事务A的结果集，然后再提交。 幻读与不可重复读之间的区别是幻读强调的是新增或删除,而不可重复读强调的是修改。这是在可重复读的事务级别下出现的现象，在该事务级别下，T1读完数据后，不到事务提交是不会释放共享锁的，也就是其他事务不能获取到排他锁对已读到的数据进行修改，实现了可重复读；但是其他事务可以执行insert语句，这样就导致出现幻读。</li>
 </ul>
 </li>
@@ -523,15 +523,15 @@
 			
 		
 			
+				<li><a href="/tags/idea/" title="idea">idea<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/idea快捷键/" title="idea快捷键">idea快捷键<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Spring-IOC源码/" title="Spring IOC源码">Spring IOC源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Spring-IOC工作流程/" title="Spring IOC工作流程">Spring IOC工作流程<sup>1</sup></a></li>
 			
 		
 		</ul>
