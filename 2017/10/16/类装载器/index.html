@@ -20,7 +20,7 @@
 <meta property="og:description" content="类加载机制本文将介绍 class装载验证过程、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式以及热替换">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/类的生命周期.png">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/类加载器的双亲委派模型.png">
-<meta property="og:updated_time" content="2017-10-25T13:18:44.589Z">
+<meta property="og:updated_time" content="2017-11-08T13:53:33.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="类装载器">
 <meta name="twitter:description" content="类加载机制本文将介绍 class装载验证过程、什么是类装载器ClassLoader、JDK中ClassLoader默认设计模式以及热替换">
@@ -192,7 +192,7 @@
 <p>如下图所示:</p>
 <p><img src="http://opzxa0ul7.bkt.clouddn.com/类加载器的双亲委派模型.png" alt="类加载器的双亲委派模型"></p>
 <h3 id="破坏双亲委派模式"><a href="#破坏双亲委派模式" class="headerlink" title="破坏双亲委派模式"></a>破坏双亲委派模式</h3><p>通过使用<code>Thread. setContextClassLoader()</code>上下文加载器，用以解决顶层ClassLoader无法访问底层ClassLoader的类的问题。</p>
-<p>基本思想是：–基本思想是，在顶层ClassLoader中，传入底层ClassLoader的实例。</p>
+<p>基本思想是：在顶层ClassLoader中，传入底层ClassLoader的实例。</p>
 <p>那什么时候开始类加载过程的第一阶段<strong>加载</strong> ，Java虚拟机规范中没有给出明确定义。但是给出了初始化阶段的5中情况</p>
 <ul>
 <li>遇到<code>new</code> 、<code>getstatic</code> 、<code>putstatic</code> 、<code>invokestatic</code> 这4条字节码指令时，如果类没有进行初始化，则需要先触发初始化过程</li>
@@ -343,11 +343,11 @@
 			
 		
 			
-				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
 			
 		
 			
@@ -383,15 +383,15 @@
 			
 		
 			
-				<li><a href="/tags/idea/" title="idea">idea<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/idea快捷键/" title="idea快捷键">idea快捷键<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-IOC源码/" title="Spring IOC源码">Spring IOC源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-IOC工作流程/" title="Spring IOC工作流程">Spring IOC工作流程<sup>1</sup></a></li>
 			
 		
 		</ul>
