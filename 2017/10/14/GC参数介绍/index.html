@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/并行收集-ParNew流程.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/Parallel收集器示例图.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/CMS收集器图例.jpg">
-<meta property="og:updated_time" content="2017-11-08T13:54:21.307Z">
+<meta property="og:updated_time" content="2017-11-14T14:25:31.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GC参数介绍">
 <meta name="twitter:description" content="GC参数介绍在本文中将介绍 串行收集器 、并行收集器  、CMS收集器  还会有一个tomcat的实例演示">
@@ -103,7 +103,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GC参数介绍"><span class="toc-number">1.</span> <span class="toc-text">GC参数介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#串行收集器"><span class="toc-number">1.1.</span> <span class="toc-text">串行收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并行收集器"><span class="toc-number">1.2.</span> <span class="toc-text">并行收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ParNew"><span class="toc-number">1.2.1.</span> <span class="toc-text">ParNew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Parallel收集器"><span class="toc-number">1.2.2.</span> <span class="toc-text">Parallel收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行收集器运行参数控制"><span class="toc-number">1.2.3.</span> <span class="toc-text">并行收集器运行参数控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS收集器"><span class="toc-number">1.3.</span> <span class="toc-text">CMS收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CMS收集器特点"><span class="toc-number">1.3.1.</span> <span class="toc-text">CMS收集器特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CMS收集器内存碎片问题"><span class="toc-number">1.3.2.</span> <span class="toc-text">CMS收集器内存碎片问题</span></a></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GC参数介绍"><span class="toc-number">1.</span> <span class="toc-text">GC参数介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#串行收集器"><span class="toc-number">1.1.</span> <span class="toc-text">串行收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并行收集器"><span class="toc-number">1.2.</span> <span class="toc-text">并行收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ParNew"><span class="toc-number">1.2.1.</span> <span class="toc-text">ParNew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Parallel收集器"><span class="toc-number">1.2.2.</span> <span class="toc-text">Parallel收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行收集器运行参数控制"><span class="toc-number">1.2.3.</span> <span class="toc-text">并行收集器运行参数控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS收集器"><span class="toc-number">1.3.</span> <span class="toc-text">CMS收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CMS收集器缺点"><span class="toc-number">1.3.1.</span> <span class="toc-text">CMS收集器缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CMS收集器内存碎片问题"><span class="toc-number">1.3.2.</span> <span class="toc-text">CMS收集器内存碎片问题</span></a></li></ol></li></ol></li></ol>
 		
 		</div>
 		
@@ -174,16 +174,17 @@
 <p>CMS运行过程比较复杂，着重实现了标记的过程，具体分为：</p>
 <ul>
 <li>初始标记(独占CPU)<ul>
-<li>根可以直接关联到对象</li>
+<li>该阶段仅仅只是标记一下GC Roots能直接关联到的对象。</li>
 <li>速度快</li>
 </ul>
 </li>
 <li>并发标记(和用户线程一起)<ul>
-<li>主要标记过程，标记全部对象</li>
+<li>并发标记阶段就是进行GC Roots Tracing 的过程</li>
 </ul>
 </li>
 <li>重新标记(独占CPU)<ul>
-<li>由于并发标记阶段，用户线程依然在运行，因此正式清理前，再做修正</li>
+<li>重新标记阶段是为了修正并发标记期间因用户程序继续运行导致标记产生变动的那一部分对象的标记记录</li>
+<li>该阶段停止时间一般比初识标记长些，但远比并发标记时间短</li>
 </ul>
 </li>
 <li>并发清除(和用户线程一起)<ul>
@@ -204,18 +205,10 @@
 <li>CMS-concurrent-sweep 并发清理</li>
 </ul>
 <p>和上面介绍的CMS流程一致</p>
-<h4 id="CMS收集器特点"><a href="#CMS收集器特点" class="headerlink" title="CMS收集器特点"></a>CMS收集器特点</h4><ul>
-<li>尽可能降低停顿</li>
-<li>会影响系统整体吞吐量和性能<ul>
-<li>比如，在用户线程运行过程中，分一半CPU去做GC，系统性能在GC阶段，反应速度下降一半</li>
-</ul>
-</li>
-<li>清理不彻底</li>
-<li>因为和用户线程一起执行，不能在空间快满时再清理<ul>
-<li>-XX:CMSInitiatingOccupancyFraction 设置触发GC的阀值</li>
-<li>如果不幸内存预留空间不够，就会引起concurrent mode failure</li>
-</ul>
-</li>
+<h4 id="CMS收集器缺点"><a href="#CMS收集器缺点" class="headerlink" title="CMS收集器缺点"></a>CMS收集器缺点</h4><ul>
+<li>CMS收集器对CPU资源非常敏感。</li>
+<li>CMS收集器无法处理浮动垃圾。由于CMS并发清理阶段用户线程还在运行着，伴随程序运行必然会有新的垃圾对象产生，这一部分垃圾因为在标记过程之后，CMS无法在当次收集中处理掉它们，只好留到下次GC时清理，这一部分垃圾就是浮动垃圾</li>
+<li>CMS收集因为是基于“标记-清除”算法，会产生大量碎片</li>
 </ul>
 <h4 id="CMS收集器内存碎片问题"><a href="#CMS收集器内存碎片问题" class="headerlink" title="CMS收集器内存碎片问题"></a>CMS收集器内存碎片问题</h4><p>因为CMS收集器使用标记-清除算法，必然会导致出现内存碎片问题。如果不进行内存碎片整理，则无法放置较大对象。为了解决该问题，CMS收集器提供了如下参数进行调控：</p>
 <ul>
@@ -317,7 +310,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GC参数介绍"><span class="toc-number">1.</span> <span class="toc-text">GC参数介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#串行收集器"><span class="toc-number">1.1.</span> <span class="toc-text">串行收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并行收集器"><span class="toc-number">1.2.</span> <span class="toc-text">并行收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ParNew"><span class="toc-number">1.2.1.</span> <span class="toc-text">ParNew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Parallel收集器"><span class="toc-number">1.2.2.</span> <span class="toc-text">Parallel收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行收集器运行参数控制"><span class="toc-number">1.2.3.</span> <span class="toc-text">并行收集器运行参数控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS收集器"><span class="toc-number">1.3.</span> <span class="toc-text">CMS收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CMS收集器特点"><span class="toc-number">1.3.1.</span> <span class="toc-text">CMS收集器特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CMS收集器内存碎片问题"><span class="toc-number">1.3.2.</span> <span class="toc-text">CMS收集器内存碎片问题</span></a></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GC参数介绍"><span class="toc-number">1.</span> <span class="toc-text">GC参数介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#串行收集器"><span class="toc-number">1.1.</span> <span class="toc-text">串行收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#并行收集器"><span class="toc-number">1.2.</span> <span class="toc-text">并行收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ParNew"><span class="toc-number">1.2.1.</span> <span class="toc-text">ParNew</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Parallel收集器"><span class="toc-number">1.2.2.</span> <span class="toc-text">Parallel收集器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#并行收集器运行参数控制"><span class="toc-number">1.2.3.</span> <span class="toc-text">并行收集器运行参数控制</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CMS收集器"><span class="toc-number">1.3.</span> <span class="toc-text">CMS收集器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#CMS收集器缺点"><span class="toc-number">1.3.1.</span> <span class="toc-text">CMS收集器缺点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CMS收集器内存碎片问题"><span class="toc-number">1.3.2.</span> <span class="toc-text">CMS收集器内存碎片问题</span></a></li></ol></li></ol></li></ol>
  
   </div>
 
@@ -357,11 +350,11 @@
 			
 		
 			
-				<li><a href="/tags/redis主从复制/" title="redis主从复制">redis主从复制<sup>1</sup></a></li>
+				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
 			
 		
 			
@@ -389,15 +382,15 @@
 			
 		
 			
-				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
+				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
 			
 		
 			
