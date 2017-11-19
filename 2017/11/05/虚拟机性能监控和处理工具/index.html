@@ -50,9 +50,15 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/虚拟机性能监控和处理工具-jconsole-死锁1.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/虚拟机性能监控和处理工具-jconsole-死锁2.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/虚拟机性能监控和处理工具-jconsole-死锁3.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/VisualVM-插件安装.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/VisualVM-BTrace插件使用1.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/VisualVM-BTrace插件使用2.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/VisualVM-BTrace插件使用-编译结果.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/VisualVM-BTrace插件使用-测试代码运行.jpg">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/VisualVM-BTrace插件使用-监视结果.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/虚拟机性能监控和处理工具-jstatd监听端口.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/虚拟机性能监控和处理工具-测试RMI.jpg">
-<meta property="og:updated_time" content="2017-11-13T14:13:46.806Z">
+<meta property="og:updated_time" content="2017-11-19T03:52:55.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="虚拟机性能监控和处理工具">
 <meta name="twitter:description" content="虚拟机监控和处理工具虚拟机的处理工具主要包括JDK命令行工具和JDK可视化工具，">
@@ -412,6 +418,37 @@
 <p><img src="http://opzxa0ul7.bkt.clouddn.com/虚拟机性能监控和处理工具-jconsole-死锁3.jpg" alt="虚拟机性能监控和处理工具-jconsole-死锁3"></p>
 <p>通过上图可以看出出现了死锁，而且不同线程在等待其他线程的资源，导致线程卡住，不存在等待锁被释放的希望</p>
 <h4 id="VisualVM：多合一故障处理工具"><a href="#VisualVM：多合一故障处理工具" class="headerlink" title="VisualVM：多合一故障处理工具"></a>VisualVM：多合一故障处理工具</h4><p>VisualVM是目前为止随JDK发布的功能最强大的运行监控处理程序。官方文档介绍VisualVM的软件说明中写上了“All in One”，</p>
+<ul>
+<li><p>插件安装</p>
+<p>点击菜单，工具-&gt;插件，有可用插件和已安装插件，具体如下：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/VisualVM-插件安装.jpg" alt="VisualVM-插件安装"></p>
+<p>插件中心网址是:<code>https://visualvm.github.io/</code></p>
+</li>
+<li><p>生成、浏览堆转存快照</p>
+<p>在VisualVM中生成dump文件有两种方式：</p>
+<ul>
+<li>在”Applications”窗口中右键点击应用程序节点，然后选择“堆dump”</li>
+<li>在”Applications”窗口中双击应用程序节点以打开应用程序标签，然后在“监视”标签中点击“堆dump”</li>
+</ul>
+</li>
+<li><p>分析程序性能</p>
+<p>在Profiler页签中，VisualVM提供了程序运行期间方法级的CPU执行时间分析以及内存分析</p>
+</li>
+<li><p>BTrace动态日志跟踪</p>
+<p>BTrace是一个VisualVM插件，本身也是可以独立运行的程序，这是官网<a href="https://github.com/btraceio/btrace。它的作用是在不停止目标程序运行的前提下，通过HotSopt虚拟机的HotSwap技术动态加入原本并不存在的调试代码。具体演示如下：" target="_blank" rel="external">https://github.com/btraceio/btrace。它的作用是在不停止目标程序运行的前提下，通过HotSopt虚拟机的HotSwap技术动态加入原本并不存在的调试代码。具体演示如下：</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BTraceTest</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</div><div class="line">        <span class="keyword">return</span> a + b;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</div><div class="line">        BTraceTest bTraceTest = <span class="keyword">new</span> BTraceTest();</div><div class="line">        BufferedReader bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)&#123;</div><div class="line">            bufferedReader.readLine();</div><div class="line">            <span class="keyword">int</span> a = (<span class="keyword">int</span>) Math.round(Math.random()*<span class="number">1000</span>);</div><div class="line">            <span class="keyword">int</span> b = (<span class="keyword">int</span>) Math.round(Math.random()*<span class="number">1000</span>);</div><div class="line">            System.out.println(bTraceTest.add(a,b));</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>程序运行后，在VisualVM中打开该程序的监视，在BTree页签填充如下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* BTrace Script Template */</span></div><div class="line"><span class="keyword">import</span> com.sun.btrace.annotations.*;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> com.sun.btrace.BTraceUtils.*;</div><div class="line"></div><div class="line"><span class="meta">@BTrace</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TracingScript</span> </span>&#123;</div><div class="line">	<span class="comment">/* put your code here */</span></div><div class="line"><span class="meta">@OnMethod</span>(</div><div class="line">  clazz=<span class="string">"com.knight.jvm.BTraceTest"</span>,</div><div class="line">  method=<span class="string">"add"</span>,</div><div class="line">  location=<span class="meta">@Location</span>(Kind.RETURN)</div><div class="line">  )</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(@Self com.knight.jvm.BTraceTest instance,<span class="keyword">int</span> a,<span class="keyword">int</span> b,@Return <span class="keyword">int</span> result)</span></span>&#123;</div><div class="line">     println(<span class="string">"调用堆栈："</span>);</div><div class="line">     jstack();</div><div class="line">     println(strcat(<span class="string">"方法参数A:"</span>,str(a)));</div><div class="line">     println(strcat(<span class="string">"方法参数b:"</span>,str(b)));</div><div class="line">     println(strcat(<span class="string">"方法结果:"</span>,str(result)));</div><div class="line">&#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/VisualVM-BTrace插件使用1.jpg" alt="VisualVM-BTrace插件使用1"></p>
+<p>​</p>
+</li>
+</ul>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/VisualVM-BTrace插件使用2.jpg" alt="VisualVM-BTrace插件使用2"></p>
+<p>点击“Start”按钮进行编译，出现<code>BTrace up&amp;running</code> 的字样，具体如下图：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/VisualVM-BTrace插件使用-编译结果.jpg" alt="VisualVM-BTrace插件使用-编译结果"></p>
+<p>运行效果图，触发程序执行和BTrace的监控代码：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/VisualVM-BTrace插件使用-测试代码运行.jpg" alt="VisualVM-BTrace插件使用-测试代码运行"></p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/VisualVM-BTrace插件使用-监视结果.jpg" alt="VisualVM-BTrace插件使用-监视结果"></p>
 <h3 id="配置RMI方式远程监控JVM"><a href="#配置RMI方式远程监控JVM" class="headerlink" title="配置RMI方式远程监控JVM"></a>配置RMI方式远程监控JVM</h3><p>RMI(远程方法调用)，基于该协议可以实现远程监控JVM。<code>jstatd</code>命令是一个RMI的Server应用，用于监控JVM的创建和结束，并且提供接口让监控工具连接到本机的JVM。<code>jstatd</code>命令位于<code>JAVA_HOME/bin</code> 目录下，具体使用方法如下：</p>
 <p>在文件<code>vi JAVA_HOME/jre/lib/security/java.policy</code> 末尾的<code>};</code>前添加<code>permission java.security.AllPermission;</code></p>
 <p>启动jstatd，进入<code>JAVA_HOME/bin</code> 目录下 <code>./jstatd -J-Djava.security.policy=jstatd.all.policy -J-Djava.rmi.server.hostname=本机ip &amp;</code></p>
@@ -553,11 +590,11 @@
 			
 		
 			
-				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
+				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
+				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
 			
 		
 			
