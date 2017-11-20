@@ -4,22 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>在路上的coder</title>
+    <title>UML之时序图 | 在路上的coder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="在路上的coder">
     
 
     
-    <meta name="description" content="在路上的coder博客 Java | Redis | JVM | Python ...">
-<meta property="og:type" content="website">
-<meta property="og:title" content="在路上的coder">
-<meta property="og:url" content="http://yoursite.com/page/4/index.html">
+    <meta name="description" content="时序图捕捉一段时间范围内多个对象之间交互信息，强调消息交互的时间顺序。">
+<meta name="keywords" content="UML,UML时序图">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UML之时序图">
+<meta property="og:url" content="http://yoursite.com/2017/11/19/UML之时序图/index.html">
 <meta property="og:site_name" content="在路上的coder">
-<meta property="og:description" content="在路上的coder博客 Java | Redis | JVM | Python ...">
+<meta property="og:description" content="时序图捕捉一段时间范围内多个对象之间交互信息，强调消息交互的时间顺序。">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/SimpleSequence.jpg">
+<meta property="og:updated_time" content="2017-11-19T14:08:04.969Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="在路上的coder">
-<meta name="twitter:description" content="在路上的coder博客 Java | Redis | JVM | Python ...">
+<meta name="twitter:title" content="UML之时序图">
+<meta name="twitter:description" content="时序图捕捉一段时间范围内多个对象之间交互信息，强调消息交互的时间顺序。">
+<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/SimpleSequence.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上的coder" type="application/atom+xml">
@@ -72,163 +76,120 @@
 </div>
     </header>
     <div id="container">
-      <div id="main">
-
+      <div id="main" class="post" itemscope itemprop="blogPost">
   
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/06/02/js正则表达式/" title="15个常用的javascript正则表达式" itemprop="url">
-  
-    <h1 itemprop="name">15个常用的javascript正则表达式</h1>
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-     
-       <p itemprop="description" >15个常用的javascript正则表达式</p>
-      
-    
-    <time datetime="2017-06-02T00:14:25.000Z" itemprop="datePublished">2017-06-02</time>
-  </a>
-</section>
-
-
-
-
-
-
+      <a href="/2017/11/19/UML之时序图/" title="UML之时序图" itemprop="url">UML之时序图</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
+		
+  <p class="article-time">
+    <time datetime="2017-11-19T12:50:07.000Z" itemprop="datePublished"> 发表于 2017-11-19</time>
+    <span id="busuanzi_container_page_pv">
+    总阅读<span id="busuanzi_value_page_pv"></span>次
+	</span>
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#时序图"><span class="toc-number">1.</span> <span class="toc-text">时序图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建时序图"><span class="toc-number">1.1.</span> <span class="toc-text">创建时序图</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="时序图"><a href="#时序图" class="headerlink" title="时序图"></a>时序图</h2><p>捕捉一段时间范围内多个对象之间交互信息，强调消息交互的时间顺序。</p>
+<a id="more"></a>
+<h3 id="创建时序图"><a href="#创建时序图" class="headerlink" title="创建时序图"></a>创建时序图</h3><p>这里通过StartUML工具创建时序图，官网是：<a href="http://staruml.io/" target="_blank" rel="external">http://staruml.io/</a></p>
+<p>时序图主要由Object、TimeLine(时间线)、Stimulus(调用关系)或SelfStimulus(T自调用)组成，下面是一个简单的例子：</p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/SimpleSequence.jpg" alt="SimpleSequence"></p>
+<p>该时序图表示：ObjectA调用ObjectB的method1()方法，在ObjectB的method1()方法中再次调用了ObjectC的method2()方法，并在调用完method2()方法后ObjectB还调用自身的method3()方法，然后返回。</p>
   
-<section class="post" itemscope itemprop="blogitem">
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
   
-    <a href="/2017/06/02/redis持久化/" title="redis持久化" itemprop="url">
-  
-    <h1 itemprop="name">redis持久化</h1>
-    
-     
-       <p itemprop="description" >Redis持久化RDB持久化方案在Redis运行时，RDB程序将当前内存中的数据库快照保存到磁盘中，当Redis需要重启时，RDB程序会通过重载RDB文件来还原数据库。 RDB主要包括两个功能：</p>
-      
-    
-    <time datetime="2017-06-02T00:03:07.000Z" itemprop="datePublished">2017-06-02</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/05/26/Redis高级命令/" title="Redis高级命令" itemprop="url">
-  
-    <h1 itemprop="name">Redis高级命令</h1>
-    
-     
-       <p itemprop="description" >Redis高级命令keys 命令
-该命令返回满足的所有的键
-只能使用通配符*</p>
-      
-    
-    <time datetime="2017-05-25T22:46:56.000Z" itemprop="datePublished">2017-05-26</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/05/20/redis基础数据类型详解/" title="redis基础数据类型详解" itemprop="url">
-  
-    <h1 itemprop="name">redis基础数据类型详解</h1>
-    
-     
-       <p itemprop="description" >redis类型
-redis一共分为五种基本数据类型：String、Hash、List、Set、ZSet。
-查看redis命令帮助 help 命令名String类型String类型是包含很多种类型的特殊类型，并且是二进制安全的。比如序列化的对象进行存储，比如一张图片进行二进制存储，</p>
-      
-    
-    <time datetime="2017-05-20T12:27:27.000Z" itemprop="datePublished">2017-05-20</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/05/20/redis介绍和安装/" title="redis入门与安装" itemprop="url">
-  
-    <h1 itemprop="name">redis入门与安装</h1>
-    
-     
-       <p itemprop="description" >NOSQL简介NOSQL，泛指非关系型的数据库，NOSQL数据库分四大类：
-
-键值对存储数据库：这一类数据库主要会使用到一个哈希表，这个表中有个特定的键和一个指针指向特定的数据。如Redis、Voldemort、Oracle BDB
-列存储数据库：这部分数据库通常是用来应对分布式</p>
-      
-    
-    <time datetime="2017-05-20T03:24:56.000Z" itemprop="datePublished">2017-05-20</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/05/17/mianshiti/" title="Java面试题" itemprop="url">
-  
-    <h1 itemprop="name">Java面试题</h1>
-    
-     
-           <p itemprop="description" >zk分布式锁：详情参考：http://www.jiacheo.org/blog/620
-1.在单机模式下，没有引入zookeeper时，我们可以通过创建一个临时文件加锁，然后在事务处理完毕后，将临时文件删除就代表解锁。这种加锁和解锁模式可以移植到zookeeper上，通过创建一个</p>
-        
-    
-    <time datetime="2017-05-17T14:39:33.000Z" itemprop="datePublished">2017-05-17</time>
-  </a>
-</section>
-
-
-
-
-
-
-  
-<section class="post" itemscope itemprop="blogitem">
-  
-    <a href="/2017/05/17/hello-world/" title="Hexo使用方法" itemprop="url">
-  
-    <h1 itemprop="name">Hexo使用方法</h1>
-    
-     
-       <p itemprop="description" >Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the </p>
-      
-    
-    <time datetime="2017-05-17T00:02:05.742Z" itemprop="datePublished">2017-05-17</time>
-  </a>
-</section>
-
-
-
-
-
-
-
-  <nav id="page-nav" class="clearfix unexpand">
-    <a class="extend prev" rel="prev" href="/page/3/"><span></span>Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span>
-  </nav>
+  <span></span> <a href="/tags/UML/">UML</a><a href="/tags/UML时序图/">UML时序图</a>
+  </div>
 
 </div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+2138856" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+	<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2138856"></script>
+<!-- UY END -->
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/11/05/虚拟机性能监控和处理工具/"  title="虚拟机性能监控和处理工具">
+ <strong>下一篇：</strong><br/> 
+ <span>虚拟机性能监控和处理工具
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#时序图"><span class="toc-number">1.</span> <span class="toc-text">时序图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建时序图"><span class="toc-number">1.1.</span> <span class="toc-text">创建时序图</span></a></li></ol></li></ol>
+ 
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -490,8 +451,36 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
   });
 });
 </script>
@@ -559,4 +548,4 @@ $(document).ready(function(){
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   </body>
- </html>
+</html>
