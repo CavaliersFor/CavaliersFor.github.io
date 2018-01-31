@@ -20,7 +20,7 @@
 <meta property="og:description" content="python3基础和进阶本文主要介绍python3的数据类型、运算符、分支语句、包、模块、函数和面向对象 基本数据结构先通过一张图片大致了解一下python3的数据类型：   列表 定义：[1,2,3,4,5] 访问：[&amp;#39;hello&amp;#39;,&amp;#39;python&amp;#39;,&amp;#39;hello&amp;#39;,&amp;#39;java&amp;#39;][1] 获取某一个元素，[&amp;#39;hello&amp;#3">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/python3基本数据类型.png">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/运算符.png">
-<meta property="og:updated_time" content="2018-01-24T14:04:54.824Z">
+<meta property="og:updated_time" content="2018-01-31T13:57:05.789Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python3基础和进阶">
 <meta name="twitter:description" content="python3基础和进阶本文主要介绍python3的数据类型、运算符、分支语句、包、模块、函数和面向对象 基本数据结构先通过一张图片大致了解一下python3的数据类型：   列表 定义：[1,2,3,4,5] 访问：[&amp;#39;hello&amp;#39;,&amp;#39;python&amp;#39;,&amp;#39;hello&amp;#39;,&amp;#39;java&amp;#39;][1] 获取某一个元素，[&amp;#39;hello&amp;#3">
@@ -101,7 +101,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python3基础和进阶"><span class="toc-number">1.</span> <span class="toc-text">python3基础和进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本数据结构"><span class="toc-number">1.1.</span> <span class="toc-text">基本数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运算符"><span class="toc-number">1.2.</span> <span class="toc-text">运算符</span></a></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python3基础和进阶"><span class="toc-number">1.</span> <span class="toc-text">python3基础和进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本数据结构"><span class="toc-number">1.1.</span> <span class="toc-text">基本数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运算符"><span class="toc-number">1.2.</span> <span class="toc-text">运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python函数"><span class="toc-number">2.</span> <span class="toc-text">Python函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看函数介绍"><span class="toc-number">2.1.</span> <span class="toc-text">查看函数介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的定义"><span class="toc-number">2.2.</span> <span class="toc-text">函数的定义</span></a></li></ol></li></ol>
 		
 		</div>
 		
@@ -118,11 +118,39 @@
 <p>最大值的获取：<code>max([1,2,3,-1])</code></p>
 <p>最小值的获取：<code>min(&#39;hello world&#39;)</code></p>
 <p>特点：可变</p>
+</li>
+<li><p>元组(tuple)</p>
+<p>定义：(1,2,3,4,5),(1,)一个元素的元组,()空元组</p>
+<p>访问：<code>(1,2,3,4,5)[0](获取一个元素)，(1,2,3,4,5)[0:4](获取多个元素，返回元组)</code></p>
+<p>修改：(1,2,3,4,5)+(1,2)</p>
+<p>特点：不可变</p>
+</li>
+<li><p>集合(set)</p>
+<p>定义：{1,2} 空集合定义：set()</p>
+<p>特点：不重复、无序</p>
+<p>获取长度：len({1,2,3})</p>
+<p>判断：in，not in  1 in {1,2,3}  1 not in {1,2,3}</p>
+<p> 获取交集：{1,2,3,4,5} &amp; {1,2} </p>
+<p>获取差集：{1,2,3,4,5} - {1,2} </p>
+<p>获取并集：{1,2,3,4,5} | {1,2,3}</p>
+</li>
+<li><p>字典(dict)</p>
+<p>定义：{‘A’:’apple’,’B’:’book’}，空字典的定义：{}</p>
+<p>特点：key value组成，无序，key不能重复，key不能使用可变类型</p>
+<p>访问：通过key访问value，{‘A’:’apple’,’B’:’book’}[‘A’]</p>
 <p>​</p>
 </li>
 </ul>
 <h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>通过一张图片了解Python3的运算符有那些</p>
 <p><img src="http://opzxa0ul7.bkt.clouddn.com/运算符.png" alt="运算符"></p>
+<h2 id="Python函数"><a href="#Python函数" class="headerlink" title="Python函数"></a>Python函数</h2><h3 id="查看函数介绍"><a href="#查看函数介绍" class="headerlink" title="查看函数介绍"></a>查看函数介绍</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">help(函数名)</div></pre></td></tr></table></figure>
+<h3 id="函数的定义"><a href="#函数的定义" class="headerlink" title="函数的定义"></a>函数的定义</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">funcname</span><span class="params">(self, parameter_list)</span>:</span></div><div class="line">         <span class="keyword">pass</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>返回多个值，这是使用到序列解包，使用的是tuple</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(a,b)</span>:</span></div><div class="line">            r1 = a * <span class="number">10</span></div><div class="line">            r2 = b *<span class="number">2</span> +<span class="number">10</span></div><div class="line">            <span class="keyword">return</span> r1, r2</div><div class="line"><span class="comment"># 接收函数返回值</span></div><div class="line">result1,result2 =add(<span class="number">1</span>,<span class="number">2</span>)</div></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -200,7 +228,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python3基础和进阶"><span class="toc-number">1.</span> <span class="toc-text">python3基础和进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本数据结构"><span class="toc-number">1.1.</span> <span class="toc-text">基本数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运算符"><span class="toc-number">1.2.</span> <span class="toc-text">运算符</span></a></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#python3基础和进阶"><span class="toc-number">1.</span> <span class="toc-text">python3基础和进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本数据结构"><span class="toc-number">1.1.</span> <span class="toc-text">基本数据结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运算符"><span class="toc-number">1.2.</span> <span class="toc-text">运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Python函数"><span class="toc-number">2.</span> <span class="toc-text">Python函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看函数介绍"><span class="toc-number">2.1.</span> <span class="toc-text">查看函数介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数的定义"><span class="toc-number">2.2.</span> <span class="toc-text">函数的定义</span></a></li></ol></li></ol>
  
   </div>
 
@@ -240,11 +268,7 @@
 			
 		
 			
-				<li><a href="/tags/python3/" title="python3">python3<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+				<li><a href="/tags/电话号码正则表达式/" title="电话号码正则表达式">电话号码正则表达式<sup>1</sup></a></li>
 			
 		
 			
@@ -252,7 +276,7 @@
 			
 		
 			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+				<li><a href="/tags/Spring-Boot自动配置详解/" title="Spring Boot自动配置详解">Spring Boot自动配置详解<sup>1</sup></a></li>
 			
 		
 			
@@ -260,23 +284,15 @@
 			
 		
 			
-				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-Boot/" title="Spring Boot">Spring Boot<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
 			
 		
 			
@@ -288,11 +304,23 @@
 			
 		
 			
+				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Spring-Boot自动配置详解/" title="Spring Boot自动配置详解">Spring Boot自动配置详解<sup>1</sup></a></li>
+				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
 			
 		
 		</ul>
