@@ -4,26 +4,26 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>python高级语法与用法 | 在路上的coder</title>
+    <title>python3高级语法与用法 | 在路上的coder</title>
     <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
     
     <meta name="author" content="在路上的coder">
     
 
     
-    <meta name="description" content="Python高级语法介绍介绍Python枚举的使用  运行环境123os:WindowsPython_version=v3.6.4idea=vscode 枚举的使用枚举的定义枚举类型是在Python3中添加的 12345678910&quot;&quot;&quot;枚举类介绍和定义&quot;&quot;&quot;from enum import Enumclass VIP(Enum):    YELLOW = 1    GREEN = 2    BL">
+    <meta name="description" content="Python高级语法介绍介绍Python3枚举的使用和其他高级语法">
 <meta name="keywords" content="Python高级语法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="python高级语法与用法">
+<meta property="og:title" content="python3高级语法与用法">
 <meta property="og:url" content="http://yoursite.com/2018/02/04/python高级语法与用法/index.html">
 <meta property="og:site_name" content="在路上的coder">
-<meta property="og:description" content="Python高级语法介绍介绍Python枚举的使用  运行环境123os:WindowsPython_version=v3.6.4idea=vscode 枚举的使用枚举的定义枚举类型是在Python3中添加的 12345678910&quot;&quot;&quot;枚举类介绍和定义&quot;&quot;&quot;from enum import Enumclass VIP(Enum):    YELLOW = 1    GREEN = 2    BL">
+<meta property="og:description" content="Python高级语法介绍介绍Python3枚举的使用和其他高级语法">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/枚举类修改属性值错误.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/枚举类不能定义相同属性名.jpg">
-<meta property="og:updated_time" content="2018-02-04T10:23:35.971Z">
+<meta property="og:updated_time" content="2018-07-05T14:20:22.101Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="python高级语法与用法">
-<meta name="twitter:description" content="Python高级语法介绍介绍Python枚举的使用  运行环境123os:WindowsPython_version=v3.6.4idea=vscode 枚举的使用枚举的定义枚举类型是在Python3中添加的 12345678910&quot;&quot;&quot;枚举类介绍和定义&quot;&quot;&quot;from enum import Enumclass VIP(Enum):    YELLOW = 1    GREEN = 2    BL">
+<meta name="twitter:title" content="python3高级语法与用法">
+<meta name="twitter:description" content="Python高级语法介绍介绍Python3枚举的使用和其他高级语法">
 <meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/枚举类修改属性值错误.jpg">
 
     
@@ -83,7 +83,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2018/02/04/python高级语法与用法/" title="python高级语法与用法" itemprop="url">python高级语法与用法</a>
+      <a href="/2018/02/04/python高级语法与用法/" title="python3高级语法与用法" itemprop="url">python3高级语法与用法</a>
   </h1>
   <p class="article-author">By
        
@@ -105,8 +105,8 @@
 		
 		</div>
 		
-		<h2 id="Python高级语法介绍"><a href="#Python高级语法介绍" class="headerlink" title="Python高级语法介绍"></a>Python高级语法介绍</h2><p>介绍Python枚举的使用</p>
-<!---->
+		<h2 id="Python高级语法介绍"><a href="#Python高级语法介绍" class="headerlink" title="Python高级语法介绍"></a>Python高级语法介绍</h2><p>介绍Python3枚举的使用和其他高级语法</p>
+<a id="more"></a>
 <h3 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">os:Windows</div><div class="line">Python_version=v3.6.4</div><div class="line">idea=vscode</div></pre></td></tr></table></figure>
 <h3 id="枚举的使用"><a href="#枚举的使用" class="headerlink" title="枚举的使用"></a>枚举的使用</h3><h4 id="枚举的定义"><a href="#枚举的定义" class="headerlink" title="枚举的定义"></a>枚举的定义</h4><p>枚举类型是在Python3中添加的</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="string">"""</span></div><div class="line">枚举类介绍和定义</div><div class="line">"""</div><div class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">VIP</span><span class="params">(Enum)</span>:</span></div><div class="line">    YELLOW = <span class="number">1</span></div><div class="line">    GREEN = <span class="number">2</span></div><div class="line">    BLACK = <span class="number">3</span></div><div class="line">    RED = <span class="number">4</span></div></pre></td></tr></table></figure>
@@ -131,10 +131,9 @@
 <p>​</p>
 </li>
 <li><p>枚举名称的获取</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">VIP</span><span class="params">(Enum)</span>:</span></div><div class="line">    YELLOW = <span class="number">1</span></div><div class="line">    GREEN = <span class="number">2</span></div><div class="line">    BLACK = <span class="number">3</span></div><div class="line">    RED = <span class="number">4</span></div><div class="line"> <span class="comment">#   YELLOW = 5</span></div><div class="line"></div><div class="line"></div><div class="line">print(VIP.BLACK.value)</div><div class="line">print(VIP.YELLOW.name)</div></pre></td></tr></table></figure>
-</li>
-<li><p>枚举的遍历</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">VIP</span><span class="params">(Enum)</span>:</span></div><div class="line">    YELLOW = <span class="number">1</span></div><div class="line">    GREEN = <span class="number">2</span></div><div class="line">    BLACK = <span class="number">3</span></div><div class="line">    RED = <span class="number">4</span></div><div class="line"> <span class="comment">#   YELLOW = 5</span></div><div class="line"></div><div class="line"></div><div class="line">print(VIP.BLACK.value)</div><div class="line">print(VIP.YELLOW.name)</div><div class="line"><span class="keyword">for</span> v <span class="keyword">in</span> VIP:</div><div class="line">    print(v)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">VIP</span><span class="params">(Enum)</span>:</span></div><div class="line">    YELLOW = <span class="number">1</span></div><div class="line">    GREEN = <span class="number">2</span></div><div class="line">    BLACK = <span class="number">3</span></div><div class="line">    RED = <span class="number">4</span></div><div class="line"> <span class="comment">#   YELLOW = 5</span></div></pre></td></tr></table></figure>
+<p>print(VIP.BLACK.value)<br>print(VIP.YELLOW.name)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">- 枚举的遍历</div><div class="line"></div><div class="line">  ```python</div><div class="line">  from enum import Enum</div><div class="line"></div><div class="line">  class VIP(Enum):</div><div class="line">      YELLOW = 1</div><div class="line">      GREEN = 2</div><div class="line">      BLACK = 3</div><div class="line">      RED = 4</div><div class="line">   #   YELLOW = 5</div><div class="line"></div><div class="line"></div><div class="line">  print(VIP.BLACK.value)</div><div class="line">  print(VIP.YELLOW.name)</div><div class="line">  for v in VIP:</div><div class="line">      print(v)</div></pre></td></tr></table></figure>
 <p>它们的输出结果是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">3</div><div class="line">YELLOW</div><div class="line">VIP.YELLOW</div><div class="line">VIP.GREEN</div><div class="line">VIP.BLACK</div><div class="line">VIP.RED</div></pre></td></tr></table></figure>
 <p>​</p>
@@ -286,6 +285,10 @@
 			
 		
 			
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
@@ -294,11 +297,7 @@
 			
 		
 			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Spring-Boot自动配置详解/" title="Spring Boot自动配置详解">Spring Boot自动配置详解<sup>1</sup></a></li>
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
 			
 		
 			
@@ -310,14 +309,6 @@
 			
 		
 			
-				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/UML/" title="UML">UML<sup>1</sup></a></li>
 			
 		
@@ -326,7 +317,15 @@
 			
 		
 			
-				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
+				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ActiveMQ安装/" title="ActiveMQ安装">ActiveMQ安装<sup>1</sup></a></li>
 			
 		
 		</ul>
