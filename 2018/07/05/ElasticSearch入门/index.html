@@ -45,7 +45,7 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/通过API删除索引.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/查询的基础数据.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/简单查询.jpg">
-<meta property="og:updated_time" content="2018-07-05T14:18:56.945Z">
+<meta property="og:updated_time" content="2018-07-08T13:55:22.738Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ElasticSearch入门">
 <meta name="twitter:description" content="ElasticSearch入门对ElasticSearch有一个基本的认识和使用">
@@ -126,7 +126,7 @@
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目录</strong>
 		
-			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch入门"><span class="toc-number">1.</span> <span class="toc-text">ElasticSearch入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础概念"><span class="toc-number">1.1.</span> <span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch基本用法"><span class="toc-number">1.2.</span> <span class="toc-text">ElasticSearch基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#索引创建"><span class="toc-number">1.2.1.</span> <span class="toc-text">索引创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入"><span class="toc-number">1.2.2.</span> <span class="toc-text">插入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#指定文档id插入"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">指定文档id插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自动产生id插入"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">自动产生id插入</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改"><span class="toc-number">1.2.3.</span> <span class="toc-text">修改</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#直接修改文档"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">直接修改文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#通过脚本修改文档"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">通过脚本修改文档</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除"><span class="toc-number">1.2.4.</span> <span class="toc-text">删除</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#删除文档"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">删除文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#删除索引"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">删除索引</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">1.2.5.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#简单查询"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">简单查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#条件查询"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#聚合查询"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">聚合查询</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高级查询"><span class="toc-number">1.2.6.</span> <span class="toc-text">高级查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#子查询"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#复合条件查询"><span class="toc-number">1.2.6.2.</span> <span class="toc-text">复合条件查询</span></a></li></ol></li></ol></li></ol></li></ol>
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch入门"><span class="toc-number">1.</span> <span class="toc-text">ElasticSearch入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础概念"><span class="toc-number">1.1.</span> <span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch基本用法"><span class="toc-number">1.2.</span> <span class="toc-text">ElasticSearch基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#索引创建"><span class="toc-number">1.2.1.</span> <span class="toc-text">索引创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入"><span class="toc-number">1.2.2.</span> <span class="toc-text">插入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#指定文档id插入"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">指定文档id插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自动产生id插入"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">自动产生id插入</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改"><span class="toc-number">1.2.3.</span> <span class="toc-text">修改</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#直接修改文档"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">直接修改文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#通过脚本修改文档"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">通过脚本修改文档</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除"><span class="toc-number">1.2.4.</span> <span class="toc-text">删除</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#删除文档"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">删除文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#删除索引"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">删除索引</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">1.2.5.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#简单查询"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">简单查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#条件查询"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#聚合查询"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">聚合查询</span></a></li></ol></li></ol></li></ol></li></ol>
 		
 		</div>
 		
@@ -258,54 +258,6 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"aggs"</span> : &#123;</div><div class="line">		<span class="attr">"group_by_word_count"</span> : &#123;</div><div class="line">			<span class="attr">"terms"</span> : &#123;</div><div class="line">				<span class="attr">"field"</span> : <span class="string">"word_count"</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>通过字段<code>word_count</code>进行分组，具体结果如下，下面是部分结果</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">"aggregations": &#123;</div><div class="line">    "group_by_word_count": &#123;</div><div class="line">        "doc_count_error_upper_bound": 0,</div><div class="line">        "sum_other_doc_count": 0,</div><div class="line">        "buckets": [</div><div class="line">            &#123;</div><div class="line">                "key": 1000,</div><div class="line">                "doc_count": 5</div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                "key": 2000,</div><div class="line">                "doc_count": 2</div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                "key": 3000,</div><div class="line">                "doc_count": 2</div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                "key": 5000,</div><div class="line">                "doc_count": 1</div><div class="line">            &#125;,</div><div class="line">            &#123;</div><div class="line">                "key": 10000,</div><div class="line">                "doc_count": 1</div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="高级查询"><a href="#高级查询" class="headerlink" title="高级查询"></a>高级查询</h4><p>高级查询分为子查询和复合查询</p>
-<h5 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h5><p>特定字段查询所指定的值；子条件查询分为</p>
-<ul>
-<li><p>Query Context</p>
-<p>在查询过程中，除了判断文档是否满足查询条件外，ES还会计算一个<code>_score</code>来标识匹配的程度，旨在判断目标文档和查询条件匹配的程度。</p>
-<p>Query Context又分为：</p>
-<ul>
-<li><p>全文本查询</p>
-<p><strong>模糊匹配查询，语句如下</strong></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"query"</span> : &#123;</div><div class="line">		<span class="attr">"match"</span> : &#123;</div><div class="line">			<span class="attr">"author"</span> : <span class="string">"瓦力"</span> </div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>match是模糊匹配的关键词</p>
-<p><strong>习语匹配，语句格式如下</strong></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"query"</span> : &#123;</div><div class="line">		<span class="attr">"match_phrase"</span> : &#123;</div><div class="line">			<span class="attr">"title"</span> : <span class="string">"ElasticSearch入门"</span> </div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>match_phrase是习语匹配关键字；习语也就是短语不能分开的一个词</p>
-<p><strong>多个字段模糊匹配</strong></p>
-<p>语句格式如下：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"query"</span> : &#123;</div><div class="line">		<span class="attr">"multi_match"</span> : &#123;</div><div class="line">			<span class="attr">"query"</span> : <span class="string">"瓦力"</span>,</div><div class="line">			<span class="attr">"fields"</span> : [<span class="string">"author"</span> , <span class="string">"title"</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>查询<code>author</code>和<code>title</code>中包含<code>瓦力</code>的数据</p>
-<p><strong>字符串查询</strong></p>
-<p>通过一定的字符串规则组装成查询语句；格式如下：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"query"</span> : &#123;</div><div class="line">		<span class="attr">"query_string"</span> : &#123;</div><div class="line">			<span class="attr">"query"</span> : <span class="string">"ElasticSearch AND 大法"</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>查询所有字段包含<code>ElasticSearch</code>和<code>大法</code>的记录，结果如下：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"took"</span>: <span class="number">15</span>,</div><div class="line">    <span class="attr">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"_shards"</span>: &#123;</div><div class="line">        <span class="attr">"total"</span>: <span class="number">5</span>,</div><div class="line">        <span class="attr">"successful"</span>: <span class="number">5</span>,</div><div class="line">        <span class="attr">"failed"</span>: <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"hits"</span>: &#123;</div><div class="line">        <span class="attr">"total"</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">"max_score"</span>: <span class="number">2.7854877</span>,</div><div class="line">        <span class="attr">"hits"</span>: [</div><div class="line">            &#123;</div><div class="line">                <span class="attr">"_index"</span>: <span class="string">"book"</span>,</div><div class="line">                <span class="attr">"_type"</span>: <span class="string">"novel"</span>,</div><div class="line">                <span class="attr">"_id"</span>: <span class="string">"4"</span>,</div><div class="line">                <span class="attr">"_score"</span>: <span class="number">2.7854877</span>,</div><div class="line">                <span class="attr">"_source"</span>: &#123;</div><div class="line">                    <span class="attr">"word_count"</span>: <span class="number">1000</span>,</div><div class="line">                    <span class="attr">"author"</span>: <span class="string">"李四"</span>,</div><div class="line">                    <span class="attr">"title"</span>: <span class="string">"ElasticSearch大法好"</span>,</div><div class="line">                    <span class="attr">"publish_date"</span>: <span class="string">"2017-08-01"</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>指定那些字段匹配指定条件，下面条件指定<code>author</code>和<code>title</code>字段中包含<code>ElasticSearch OR 瓦力</code>的记录</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"query"</span> : &#123;</div><div class="line">		<span class="attr">"query_string"</span> : &#123;</div><div class="line">			<span class="attr">"query"</span> : <span class="string">"ElasticSearch OR 瓦力"</span>,</div><div class="line">			<span class="attr">"fields"</span> : [<span class="string">"author"</span> , <span class="string">"title"</span>]</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>字段级别的查询</p>
-<p>查询格式如下：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"query"</span>:&#123;</div><div class="line">		<span class="attr">"term"</span>:&#123;</div><div class="line">			<span class="attr">"author"</span>:<span class="string">"knight"</span></div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><strong>范围级别的查询</strong></p>
-<p>查询语句如下，查询<code>word_count</code>大于等于1000，小于等于2000的记录，同样也可以查询日期字段</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"query"</span>:&#123;</div><div class="line">		<span class="attr">"range"</span>: &#123;</div><div class="line">			<span class="attr">"word_count"</span>: &#123;</div><div class="line">				<span class="attr">"gte"</span>: <span class="number">1000</span>,</div><div class="line">				<span class="attr">"lte"</span>: <span class="number">2000</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>查询日期范围的：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"query"</span>:&#123;</div><div class="line">		<span class="attr">"range"</span>: &#123;</div><div class="line">			<span class="attr">"publish_date"</span>: &#123;</div><div class="line">				<span class="attr">"gt"</span>: <span class="string">"2018-01-01"</span>,</div><div class="line">				<span class="attr">"lte"</span>: <span class="string">"now"</span></div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>​</p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>Filter context</p>
-<p>在查询过程中，只判断文档是否满足条件，只有Yes或者No。而Query Context还会返回匹配的程度</p>
-<p>使用方法如下，需要结合bool进行使用，会进行缓存</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	<span class="attr">"query"</span>:&#123;</div><div class="line">		<span class="attr">"bool"</span>: &#123;</div><div class="line">			<span class="attr">"filter"</span>: &#123;</div><div class="line">				<span class="attr">"term"</span>: &#123;</div><div class="line">					<span class="attr">"word_count"</span>: <span class="number">1500</span></div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>查询字数等于1500的记录</p>
-<h5 id="复合条件查询"><a href="#复合条件查询" class="headerlink" title="复合条件查询"></a>复合条件查询</h5><p>以一定的逻辑组合子条件查询</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -362,6 +314,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2018/07/08/ElasticSearch高级查询/" title="ElasticSearch高级查询">
+  <strong>上一篇：</strong><br/>
+  <span>
+  ElasticSearch高级查询</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2018/02/04/python高级语法与用法/"  title="python3高级语法与用法">
@@ -383,7 +343,7 @@
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目录</strong>
  
- <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch入门"><span class="toc-number">1.</span> <span class="toc-text">ElasticSearch入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础概念"><span class="toc-number">1.1.</span> <span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch基本用法"><span class="toc-number">1.2.</span> <span class="toc-text">ElasticSearch基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#索引创建"><span class="toc-number">1.2.1.</span> <span class="toc-text">索引创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入"><span class="toc-number">1.2.2.</span> <span class="toc-text">插入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#指定文档id插入"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">指定文档id插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自动产生id插入"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">自动产生id插入</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改"><span class="toc-number">1.2.3.</span> <span class="toc-text">修改</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#直接修改文档"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">直接修改文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#通过脚本修改文档"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">通过脚本修改文档</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除"><span class="toc-number">1.2.4.</span> <span class="toc-text">删除</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#删除文档"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">删除文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#删除索引"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">删除索引</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">1.2.5.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#简单查询"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">简单查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#条件查询"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#聚合查询"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">聚合查询</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#高级查询"><span class="toc-number">1.2.6.</span> <span class="toc-text">高级查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#子查询"><span class="toc-number">1.2.6.1.</span> <span class="toc-text">子查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#复合条件查询"><span class="toc-number">1.2.6.2.</span> <span class="toc-text">复合条件查询</span></a></li></ol></li></ol></li></ol></li></ol>
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ElasticSearch入门"><span class="toc-number">1.</span> <span class="toc-text">ElasticSearch入门</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础概念"><span class="toc-number">1.1.</span> <span class="toc-text">基础概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ElasticSearch基本用法"><span class="toc-number">1.2.</span> <span class="toc-text">ElasticSearch基本用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#索引创建"><span class="toc-number">1.2.1.</span> <span class="toc-text">索引创建</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入"><span class="toc-number">1.2.2.</span> <span class="toc-text">插入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#指定文档id插入"><span class="toc-number">1.2.2.1.</span> <span class="toc-text">指定文档id插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#自动产生id插入"><span class="toc-number">1.2.2.2.</span> <span class="toc-text">自动产生id插入</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改"><span class="toc-number">1.2.3.</span> <span class="toc-text">修改</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#直接修改文档"><span class="toc-number">1.2.3.1.</span> <span class="toc-text">直接修改文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#通过脚本修改文档"><span class="toc-number">1.2.3.2.</span> <span class="toc-text">通过脚本修改文档</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除"><span class="toc-number">1.2.4.</span> <span class="toc-text">删除</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#删除文档"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">删除文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#删除索引"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">删除索引</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#查询"><span class="toc-number">1.2.5.</span> <span class="toc-text">查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#简单查询"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">简单查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#条件查询"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">条件查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#聚合查询"><span class="toc-number">1.2.5.3.</span> <span class="toc-text">聚合查询</span></a></li></ol></li></ol></li></ol></li></ol>
  
   </div>
 
@@ -419,23 +379,19 @@
 			
 		
 			
+				<li><a href="/tags/ElasticSearch/" title="ElasticSearch">ElasticSearch<sup>2</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/Java集合源码/" title="Java集合源码">Java集合源码<sup>2</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/ActiveMQ安装/" title="ActiveMQ安装">ActiveMQ安装<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+				<li><a href="/tags/Spring-Boot/" title="Spring Boot">Spring Boot<sup>1</sup></a></li>
 			
 		
 			
@@ -447,7 +403,7 @@
 			
 		
 			
-				<li><a href="/tags/ActiveMQ安装/" title="ActiveMQ安装">ActiveMQ安装<sup>1</sup></a></li>
+				<li><a href="/tags/类加载器/" title="类加载器">类加载器<sup>1</sup></a></li>
 			
 		
 			
@@ -455,15 +411,11 @@
 			
 		
 			
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
 			
 		
 			
@@ -475,7 +427,15 @@
 			
 		
 			
-				<li><a href="/tags/Spring/" title="Spring">Spring<sup>1</sup></a></li>
+				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
 			
 		
 		</ul>
