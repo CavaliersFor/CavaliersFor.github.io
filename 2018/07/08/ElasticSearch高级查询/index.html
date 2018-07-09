@@ -18,12 +18,12 @@
 <meta property="og:url" content="http://yoursite.com/2018/07/08/ElasticSearch高级查询/index.html">
 <meta property="og:site_name" content="在路上的coder">
 <meta property="og:description" content="ElasticSearch高级查询高级查询包含：子条件查询、复合条件查询">
-<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/测试数据.jpg">
-<meta property="og:updated_time" content="2018-07-08T13:58:37.702Z">
+<meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/elasticsearch-高级查询-基础数据.jpg">
+<meta property="og:updated_time" content="2018-07-08T14:03:01.614Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ElasticSearch高级查询">
 <meta name="twitter:description" content="ElasticSearch高级查询高级查询包含：子条件查询、复合条件查询">
-<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/测试数据.jpg">
+<meta name="twitter:image" content="http://opzxa0ul7.bkt.clouddn.com/elasticsearch-高级查询-基础数据.jpg">
 
     
     <link rel="alternative" href="/atom.xml" title="在路上的coder" type="application/atom+xml">
@@ -108,7 +108,7 @@
 <a id="more"></a>
 <h2 id="运行环境"><a href="#运行环境" class="headerlink" title="运行环境"></a>运行环境</h2><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "OS":"centos6"</div><div class="line">    "ES_version":5.5.2"</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="准备测试数据"><a href="#准备测试数据" class="headerlink" title="准备测试数据"></a>准备测试数据</h2><p>向ES添加如下数据</p>
-<p><img src="http://opzxa0ul7.bkt.clouddn.com/测试数据.jpg" alt="测试数据"></p>
+<p><img src="http://opzxa0ul7.bkt.clouddn.com/elasticsearch-高级查询-基础数据.jpg" alt="测试数据"></p>
 <h2 id="子条件查询"><a href="#子条件查询" class="headerlink" title="子条件查询"></a>子条件查询</h2><p>特定字段查询所指特定值，子查询又分为：Query Context、Filter Context</p>
 <h3 id="Query-Context"><a href="#Query-Context" class="headerlink" title="Query Context"></a>Query Context</h3><p>概念：在查询过程中，除了判断文档是否满足查询条件外，ES还会计算一个<code>_score</code>来标识匹配的程度，旨在判断目标文档和查询条件匹配的程度。</p>
 <p>Query Context有如下的常用查询：</p>
@@ -265,6 +265,14 @@
 	
 <nav class="article-nav clearfix">
  
+ <div class="prev" >
+ <a href="/2018/07/09/SpringBoot集成ES/" title="SpringBoot集成ES">
+  <strong>上一篇：</strong><br/>
+  <span>
+  SpringBoot集成ES</span>
+</a>
+</div>
+
 
 <div class="next">
 <a href="/2018/07/05/ElasticSearch入门/"  title="ElasticSearch入门">
@@ -318,11 +326,11 @@
 			
 		
 			
-				<li><a href="/tags/nosql/" title="nosql">nosql<sup>3</sup></a></li>
+				<li><a href="/tags/ElasticSearch/" title="ElasticSearch">ElasticSearch<sup>3</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/ElasticSearch/" title="ElasticSearch">ElasticSearch<sup>2</sup></a></li>
+				<li><a href="/tags/nosql/" title="nosql">nosql<sup>3</sup></a></li>
 			
 		
 			
@@ -330,15 +338,11 @@
 			
 		
 			
-				<li><a href="/tags/ActiveMQ安装/" title="ActiveMQ安装">ActiveMQ安装<sup>1</sup></a></li>
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Spring-Boot/" title="Spring Boot">Spring Boot<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
 			
 		
 			
@@ -346,27 +350,11 @@
 			
 		
 			
-				<li><a href="/tags/类加载器/" title="类加载器">类加载器<sup>1</sup></a></li>
+				<li><a href="/tags/Spring-Boot自动配置详解/" title="Spring Boot自动配置详解">Spring Boot自动配置详解<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/UML/" title="UML">UML<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/UML时序图/" title="UML时序图">UML时序图<sup>1</sup></a></li>
 			
 		
 			
@@ -378,7 +366,27 @@
 			
 		
 			
+				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UML/" title="UML">UML<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UML时序图/" title="UML时序图">UML时序图<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-Boot/" title="Spring Boot">Spring Boot<sup>1</sup></a></li>
 			
 		
 		</ul>
