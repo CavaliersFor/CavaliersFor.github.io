@@ -19,7 +19,7 @@
 <meta property="og:site_name" content="在路上的coder">
 <meta property="og:description" content="ElasticSearch高级查询高级查询包含：子条件查询、复合条件查询">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/elasticsearch-高级查询-基础数据.jpg">
-<meta property="og:updated_time" content="2018-07-10T14:05:26.181Z">
+<meta property="og:updated_time" content="2018-07-11T13:02:19.489Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ElasticSearch高级查询">
 <meta name="twitter:description" content="ElasticSearch高级查询高级查询包含：子条件查询、复合条件查询">
@@ -126,7 +126,7 @@
 <li><p>习语匹配查询</p>
 <p>请求地址和请求方式不变，请求参数修改如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	"query":&#123;</div><div class="line">		"match_phrase":&#123; //习语匹配关键字</div><div class="line">			"title":"ElasticSearch入门" //查询条件</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>响应结果如下，只有<code>title</code>字段等于ElasticSearch入门`：</p>
+<p>响应结果如下，只有<code>title</code>字段包含ElasticSearch入门：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"took"</span>: <span class="number">36</span>,</div><div class="line">    <span class="attr">"timed_out"</span>: <span class="literal">false</span>,</div><div class="line">    <span class="attr">"_shards"</span>: &#123;</div><div class="line">        <span class="attr">"total"</span>: <span class="number">3</span>,</div><div class="line">        <span class="attr">"successful"</span>: <span class="number">3</span>,</div><div class="line">        <span class="attr">"failed"</span>: <span class="number">0</span></div><div class="line">    &#125;,</div><div class="line">    <span class="attr">"hits"</span>: &#123;</div><div class="line">        <span class="attr">"total"</span>: <span class="number">1</span>,</div><div class="line">        <span class="attr">"max_score"</span>: <span class="number">0.7594808</span>,</div><div class="line">        <span class="attr">"hits"</span>: [</div><div class="line">            &#123;</div><div class="line">                <span class="attr">"_index"</span>: <span class="string">"book"</span>,</div><div class="line">                <span class="attr">"_type"</span>: <span class="string">"novel"</span>,</div><div class="line">                <span class="attr">"_id"</span>: <span class="string">"8"</span>,</div><div class="line">                <span class="attr">"_score"</span>: <span class="number">0.7594808</span>,</div><div class="line">                <span class="attr">"_source"</span>: &#123;</div><div class="line">                    <span class="attr">"author"</span>: <span class="string">"瓦力"</span>,</div><div class="line">                    <span class="attr">"title"</span>: <span class="string">"ElasticSearch入门"</span>,</div><div class="line">                    <span class="attr">"wordcount"</span>: <span class="number">3000</span>,</div><div class="line">                    <span class="attr">"publish_date"</span>: <span class="string">"2017-08-20"</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>通过下面的例子可以更好的理解习语匹配：</p>
 <p>请求地址和请求方式不变，请求数据如下：</p>
@@ -338,11 +338,11 @@
 			
 		
 			
-				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
+				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/Spring-Boot/" title="Spring Boot">Spring Boot<sup>1</sup></a></li>
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
 			
 		
 			
@@ -350,15 +350,15 @@
 			
 		
 			
-				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
 			
 		
 			
-				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ActiveMQ安装/" title="ActiveMQ安装">ActiveMQ安装<sup>1</sup></a></li>
 			
 		
 			
@@ -370,6 +370,14 @@
 			
 		
 			
+				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
+			
+		
+			
 				<li><a href="/tags/UML/" title="UML">UML<sup>1</sup></a></li>
 			
 		
@@ -378,15 +386,7 @@
 			
 		
 			
-				<li><a href="/tags/Spring-Boot自动配置详解/" title="Spring Boot自动配置详解">Spring Boot自动配置详解<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
+				<li><a href="/tags/JVM监控处理工具/" title="JVM监控处理工具">JVM监控处理工具<sup>1</sup></a></li>
 			
 		
 		</ul>
