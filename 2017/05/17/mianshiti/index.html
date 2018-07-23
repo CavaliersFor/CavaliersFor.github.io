@@ -22,7 +22,7 @@
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记清除法清除阶段.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法标记阶段.jpg">
 <meta property="og:image" content="http://opzxa0ul7.bkt.clouddn.com/GC标记压缩法压缩阶段.jpg">
-<meta property="og:updated_time" content="2018-07-16T14:16:58.950Z">
+<meta property="og:updated_time" content="2018-07-23T13:23:48.813Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java面试题">
 <meta name="twitter:description" content="zk分布式锁：详情参考：http://www.jiacheo.org/blog/620 1.在单机模式下，没有引入zookeeper时，我们可以通过创建一个临时文件加锁，然后在事务处理完毕后，将临时文件删除就代表解锁。这种加锁和解锁模式可以移植到zookeeper上，通过创建一个路径，来证明该锁已经存在，然后删除路径来释放该锁。而同时zookeeper又能支持对节点的监控，这样一来，我们在多机的">
@@ -174,6 +174,7 @@
 <li>显示的调用<code>System.gc()</code> 时</li>
 <li>大对象直接进入老年代，从年轻代晋升上来的老对象，尝试在老年代分配内存时，但是老年代内存不足时</li>
 <li>永生区空间不足时</li>
+<li>jmap和jcmd dump文件时候会触发FGC</li>
 </ul>
 </li>
 </ul>
@@ -483,15 +484,15 @@
 			
 		
 			
-				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
-			
-		
-			
-				<li><a href="/tags/GC参数介绍/" title="GC参数介绍">GC参数介绍<sup>1</sup></a></li>
+				<li><a href="/tags/电话号码正则表达式/" title="电话号码正则表达式">电话号码正则表达式<sup>1</sup></a></li>
 			
 		
 			
 				<li><a href="/tags/Spring-Boot/" title="Spring Boot">Spring Boot<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
 			
 		
 			
@@ -531,7 +532,7 @@
 			
 		
 			
-				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
+				<li><a href="/tags/Spring-Boot自动配置详解/" title="Spring Boot自动配置详解">Spring Boot自动配置详解<sup>1</sup></a></li>
 			
 		
 		</ul>
