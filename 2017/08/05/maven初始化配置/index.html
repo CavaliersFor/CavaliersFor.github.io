@@ -1,5 +1,555 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="在路上的coder博客 Java | Redis | JVM | Python ..."><title>maven初始化配置 | 在路上的coder</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">maven初始化配置</h1><a id="logo" href="/.">在路上的coder</a><p class="description">Coder,Machine Learning</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">maven初始化配置</h1><div class="post-meta">Aug 5, 2017</div><div class="post-content"><p>本文介绍初始化的maven基本配置，后期如果还有其他的会继续添加</p>
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>maven初始化配置 | 在路上的coder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="在路上的coder">
+    
+
+    
+    <meta name="description" content="本文介绍初始化的maven基本配置，后期如果还有其他的会继续添加">
+<meta name="keywords" content="maven配置,maven配置远程仓库,maven配置编译级别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="maven初始化配置">
+<meta property="og:url" content="http://yoursite.com/2017/08/05/maven初始化配置/index.html">
+<meta property="og:site_name" content="在路上的coder">
+<meta property="og:description" content="本文介绍初始化的maven基本配置，后期如果还有其他的会继续添加">
+<meta property="og:updated_time" content="2017-09-12T13:32:35.879Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="maven初始化配置">
+<meta name="twitter:description" content="本文介绍初始化的maven基本配置，后期如果还有其他的会继续添加">
+
+    
+    <link rel="alternative" href="/atom.xml" title="在路上的coder" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="在路上的coder" title="在路上的coder"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="在路上的coder">在路上的coder</a></h1>
+				<h2 class="blog-motto">Coder,Machine Learning</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">主页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+						<li><a href="/about">关于</a></li>
+					
+					<li>
+ 					
+						<form class="search" action="http://www.baidu.com" target="_blank">
+							<label>Search</label>
+						<input name="s" type="hidden" value= null ><input type="text" name="q" size="30" placeholder="搜索"><br>
+						</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/08/05/maven初始化配置/" title="maven初始化配置" itemprop="url">maven初始化配置</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="在路上的coder" target="_blank" itemprop="author">在路上的coder</a>
+		
+  <p class="article-time">
+    <time datetime="2017-08-05T03:54:20.000Z" itemprop="datePublished"> 发表于 2017-08-05</time>
+    <span id="busuanzi_container_page_pv">
+    总阅读<span id="busuanzi_value_page_pv"></span>次
+	</span>
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改maven配置"><span class="toc-number">1.</span> <span class="toc-text">修改maven配置</span></a></li></ol>
+		
+		</div>
+		
+		<p>本文介绍初始化的maven基本配置，后期如果还有其他的会继续添加</p>
 <a id="more"></a>
 <h2 id="修改maven配置"><a href="#修改maven配置" class="headerlink" title="修改maven配置"></a>修改maven配置</h2><p>解压完maven的压缩包后，需要修改maven的配置，比如将远程的maven repository修改为国内的或公司内部的，修改maven的编译级别，默认是1.5，修改maven本地repository的路径。具体如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line"></div><div class="line"><span class="comment">&lt;!--</span></div><div class="line">Licensed to the Apache Software Foundation (ASF) under one</div><div class="line">or more contributor license agreements.  See the NOTICE file</div><div class="line">distributed with this work for additional information</div><div class="line">regarding copyright ownership.  The ASF licenses this file</div><div class="line">to you under the Apache License, Version 2.0 (the</div><div class="line">"License"); you may not use this file except in compliance</div><div class="line">with the License.  You may obtain a copy of the License at</div><div class="line"></div><div class="line">    http://www.apache.org/licenses/LICENSE-2.0</div><div class="line"></div><div class="line">Unless required by applicable law or agreed to in writing,</div><div class="line">software distributed under the License is distributed on an</div><div class="line">"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY</div><div class="line">KIND, either express or implied.  See the License for the</div><div class="line">specific language governing permissions and limitations</div><div class="line">under the License.</div><div class="line">--&gt;</div><div class="line"></div><div class="line"><span class="comment">&lt;!--</span></div><div class="line"> | This is the configuration file for Maven. It can be specified at two levels:</div><div class="line"> |</div><div class="line"> |  1. User Level. This settings.xml file provides configuration for a single user,</div><div class="line"> |                 and is normally provided in $&#123;user.home&#125;/.m2/settings.xml.</div><div class="line"> |</div><div class="line"> |                 <span class="doctag">NOTE:</span> This location can be overridden with the CLI option:</div><div class="line"> |</div><div class="line"> |                 -s /path/to/user/settings.xml</div><div class="line"> |</div><div class="line"> |  2. Global Level. This settings.xml file provides configuration for all Maven</div><div class="line"> |                 users on a machine (assuming they're all using the same Maven</div><div class="line"> |                 installation). It's normally provided in</div><div class="line"> |                 $&#123;maven.home&#125;/conf/settings.xml.</div><div class="line"> |</div><div class="line"> |                 <span class="doctag">NOTE:</span> This location can be overridden with the CLI option:</div><div class="line"> |</div><div class="line"> |                 -gs /path/to/global/settings.xml</div><div class="line"> |</div><div class="line"> | The sections in this sample file are intended to give you a running start at</div><div class="line"> | getting the most out of your Maven installation. Where appropriate, the default</div><div class="line"> | values (values used when the setting is not specified) are provided.</div><div class="line"> |</div><div class="line"> |--&gt;</div><div class="line"><span class="tag">&lt;<span class="name">settings</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/SETTINGS/1.0.0"</span></span></div><div class="line">          <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></div><div class="line">          <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd"</span>&gt;</div><div class="line">  <span class="comment">&lt;!-- localRepository</span></div><div class="line">   | The path to the local repository maven will use to store artifacts.</div><div class="line">   |</div><div class="line">   | Default: $&#123;user.home&#125;/.m2/repository--&gt;</div><div class="line">   <span class="comment">&lt;!--修改本地仓库地址--&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>E:\\application\\apache-maven-3.3.1\\maven-dependcies<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></div><div class="line">  </div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- interactiveMode</span></div><div class="line">   | This will determine whether maven prompts you when it needs input. If set to false,</div><div class="line">   | maven will use a sensible default value, perhaps based on some other setting, for</div><div class="line">   | the parameter in question.</div><div class="line">   |</div><div class="line">   | Default: true</div><div class="line">  &lt;interactiveMode&gt;true&lt;/interactiveMode&gt;</div><div class="line">  --&gt;</div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- offline</span></div><div class="line">   | Determines whether maven should attempt to connect to the network when executing a build.</div><div class="line">   | This will have an effect on artifact downloads, artifact deployment, and others.</div><div class="line">   |</div><div class="line">   | Default: false</div><div class="line">  &lt;offline&gt;false&lt;/offline&gt;</div><div class="line">  --&gt;</div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- pluginGroups</span></div><div class="line">   | This is a list of additional group identifiers that will be searched when resolving plugins by their prefix, i.e.</div><div class="line">   | when invoking a command line like "mvn prefix:goal". Maven will automatically add the group identifiers</div><div class="line">   | "org.apache.maven.plugins" and "org.codehaus.mojo" if these are not already contained in the list.</div><div class="line">   |--&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">pluginGroups</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- pluginGroup</span></div><div class="line">     | Specifies a further group identifier to use for plugin lookup.</div><div class="line">    &lt;pluginGroup&gt;com.your.plugins&lt;/pluginGroup&gt;</div><div class="line">    --&gt;</div><div class="line">  <span class="tag">&lt;/<span class="name">pluginGroups</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- proxies</span></div><div class="line">   | This is a list of proxies which can be used on this machine to connect to the network.</div><div class="line">   | Unless otherwise specified (by system property or command-line switch), the first proxy</div><div class="line">   | specification in this list marked as active will be used.</div><div class="line">   |--&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">proxies</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- proxy</span></div><div class="line">     | Specification for one proxy, to be used in connecting to the network.</div><div class="line">     |</div><div class="line">    &lt;proxy&gt;</div><div class="line">      &lt;id&gt;optional&lt;/id&gt;</div><div class="line">      &lt;active&gt;true&lt;/active&gt;</div><div class="line">      &lt;protocol&gt;http&lt;/protocol&gt;</div><div class="line">      &lt;username&gt;proxyuser&lt;/username&gt;</div><div class="line">      &lt;password&gt;proxypass&lt;/password&gt;</div><div class="line">      &lt;host&gt;proxy.host.net&lt;/host&gt;</div><div class="line">      &lt;port&gt;80&lt;/port&gt;</div><div class="line">      &lt;nonProxyHosts&gt;local.net|some.host.com&lt;/nonProxyHosts&gt;</div><div class="line">    &lt;/proxy&gt;</div><div class="line">    --&gt;</div><div class="line">  <span class="tag">&lt;/<span class="name">proxies</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- servers</span></div><div class="line">   | This is a list of authentication profiles, keyed by the server-id used within the system.</div><div class="line">   | Authentication profiles can be used whenever maven must make a connection to a remote server.</div><div class="line">   |--&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">servers</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- server</span></div><div class="line">     | Specifies the authentication information to use when connecting to a particular server, identified by</div><div class="line">     | a unique name within the system (referred to by the 'id' attribute below).</div><div class="line">     |</div><div class="line">     | <span class="doctag">NOTE:</span> You should either specify username/password OR privateKey/passphrase, since these pairings are</div><div class="line">     |       used together.</div><div class="line">     |</div><div class="line">    &lt;server&gt;</div><div class="line">      &lt;id&gt;deploymentRepo&lt;/id&gt;</div><div class="line">      &lt;username&gt;repouser&lt;/username&gt;</div><div class="line">      &lt;password&gt;repopwd&lt;/password&gt;</div><div class="line">    &lt;/server&gt;</div><div class="line">    --&gt;</div><div class="line"></div><div class="line">    <span class="comment">&lt;!-- Another sample, using keys to authenticate.</span></div><div class="line">    &lt;server&gt;</div><div class="line">      &lt;id&gt;siteServer&lt;/id&gt;</div><div class="line">      &lt;privateKey&gt;/path/to/private/key&lt;/privateKey&gt;</div><div class="line">      &lt;passphrase&gt;optional; leave empty if not used.&lt;/passphrase&gt;</div><div class="line">    &lt;/server&gt;</div><div class="line">    --&gt;</div><div class="line">  <span class="tag">&lt;/<span class="name">servers</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- mirrors</span></div><div class="line">   | This is a list of mirrors to be used in downloading artifacts from remote repositories.</div><div class="line">   |</div><div class="line">   | It works like this: a POM may declare a repository to use in resolving certain artifacts.</div><div class="line">   | However, this repository may have problems with heavy traffic at times, so people have mirrored</div><div class="line">   | it to several places.</div><div class="line">   |</div><div class="line">   | That repository definition will have a unique id, so we can create a mirror reference for that</div><div class="line">   | repository, to be used as an alternate download site. The mirror site will be the preferred</div><div class="line">   | server for that repository.</div><div class="line">   |--&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- mirror</span></div><div class="line">     | Specifies a repository mirror site to use instead of a given repository. The repository that</div><div class="line">     | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used</div><div class="line">     | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.</div><div class="line">     |</div><div class="line">    &lt;mirror&gt;</div><div class="line">      &lt;id&gt;mirrorId&lt;/id&gt;</div><div class="line">      &lt;mirrorOf&gt;repositoryId&lt;/mirrorOf&gt;</div><div class="line">      &lt;name&gt;Human Readable Name for this Mirror.&lt;/name&gt;</div><div class="line">      &lt;url&gt;http://my.repository.com/repo/path&lt;/url&gt;</div><div class="line">    &lt;/mirror&gt;</div><div class="line">     --&gt;</div><div class="line"><span class="comment">&lt;!--修改maven远程库镜像为阿里的--&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>  </div><div class="line">     <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></div><div class="line">     <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></div><div class="line">   <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- profiles</span></div><div class="line">   | This is a list of profiles which can be activated in a variety of ways, and which can modify</div><div class="line">   | the build process. Profiles provided in the settings.xml are intended to provide local machine-</div><div class="line">   | specific paths and repository locations which allow the build to work in the local environment.</div><div class="line">   |</div><div class="line">   | For example, if you have an integration testing plugin - like cactus - that needs to know where</div><div class="line">   | your Tomcat instance is installed, you can provide a variable here such that the variable is</div><div class="line">   | dereferenced during the build process to configure the cactus plugin.</div><div class="line">   |</div><div class="line">   | As noted above, profiles can be activated in a variety of ways. One way - the activeProfiles</div><div class="line">   | section of this document (settings.xml) - will be discussed later. Another way essentially</div><div class="line">   | relies on the detection of a system property, either matching a particular value for the property,</div><div class="line">   | or merely testing its existence. Profiles can also be activated by JDK version prefix, where a</div><div class="line">   | value of '1.4' might activate a profile when the build is executed on a JDK version of '1.4.2_07'.</div><div class="line">   | Finally, the list of active profiles can be specified directly from the command line.</div><div class="line">   |</div><div class="line">   | <span class="doctag">NOTE:</span> For profiles defined in the settings.xml, you are restricted to specifying only artifact</div><div class="line">   |       repositories, plugin repositories, and free-form properties to be used as configuration</div><div class="line">   |       variables for plugins in the POM.</div><div class="line">   |</div><div class="line">   |--&gt;</div><div class="line">  <span class="tag">&lt;<span class="name">profiles</span>&gt;</span></div><div class="line">    <span class="comment">&lt;!-- profile</span></div><div class="line">     | Specifies a set of introductions to the build process, to be activated using one or more of the</div><div class="line">     | mechanisms described above. For inheritance purposes, and to activate profiles via &lt;activatedProfiles/&gt;</div><div class="line">     | or the command line, profiles have to have an ID that is unique.</div><div class="line">     |</div><div class="line">     | An encouraged best practice for profile identification is to use a consistent naming convention</div><div class="line">     | for profiles, such as 'env-dev', 'env-test', 'env-production', 'user-jdcasey', 'user-brett', etc.</div><div class="line">     | This will make it more intuitive to understand what the set of introduced profiles is attempting</div><div class="line">     | to accomplish, particularly when you only have a list of profile id's for debug.</div><div class="line">     |</div><div class="line">     | This profile example uses the JDK version to trigger activation, and provides a JDK-specific repo.</div><div class="line">    &lt;profile&gt;</div><div class="line">      &lt;id&gt;jdk-1.4&lt;/id&gt;</div><div class="line"></div><div class="line">      &lt;activation&gt;</div><div class="line">        &lt;jdk&gt;1.4&lt;/jdk&gt;</div><div class="line">      &lt;/activation&gt;</div><div class="line"></div><div class="line">      &lt;repositories&gt;</div><div class="line">        &lt;repository&gt;</div><div class="line">          &lt;id&gt;jdk14&lt;/id&gt;</div><div class="line">          &lt;name&gt;Repository for JDK 1.4 builds&lt;/name&gt;</div><div class="line">          &lt;url&gt;http://www.myhost.com/maven/jdk14&lt;/url&gt;</div><div class="line">          &lt;layout&gt;default&lt;/layout&gt;</div><div class="line">          &lt;snapshotPolicy&gt;always&lt;/snapshotPolicy&gt;</div><div class="line">        &lt;/repository&gt;</div><div class="line">      &lt;/repositories&gt;</div><div class="line">    &lt;/profile&gt;</div><div class="line">    --&gt;</div><div class="line">	<span class="comment">&lt;!--设置默认jdk编译级别--&gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">profile</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>jdk-1.8<span class="tag">&lt;/<span class="name">id</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">activation</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">activeByDefault</span>&gt;</span>true<span class="tag">&lt;/<span class="name">activeByDefault</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">jdk</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">jdk</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">activation</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">maven.compiler.source</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.source</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">maven.compiler.target</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.target</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="name">maven.compiler.compilerVersion</span>&gt;</span>1.8<span class="tag">&lt;/<span class="name">maven.compiler.compilerVersion</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></div><div class="line">	<span class="tag">&lt;/<span class="name">profile</span>&gt;</span></div><div class="line">		</div><div class="line">    <span class="comment">&lt;!--</span></div><div class="line">     | Here is another profile, activated by the system property 'target-env' with a value of 'dev',</div><div class="line">     | which provides a specific path to the Tomcat instance. To use this, your plugin configuration</div><div class="line">     | might hypothetically look like:</div><div class="line">     |</div><div class="line">     | ...</div><div class="line">     | &lt;plugin&gt;</div><div class="line">     |   &lt;groupId&gt;org.myco.myplugins&lt;/groupId&gt;</div><div class="line">     |   &lt;artifactId&gt;myplugin&lt;/artifactId&gt;</div><div class="line">     |</div><div class="line">     |   &lt;configuration&gt;</div><div class="line">     |     &lt;tomcatLocation&gt;$&#123;tomcatPath&#125;&lt;/tomcatLocation&gt;</div><div class="line">     |   &lt;/configuration&gt;</div><div class="line">     | &lt;/plugin&gt;</div><div class="line">     | ...</div><div class="line">     |</div><div class="line">     | <span class="doctag">NOTE:</span> If you just wanted to inject this configuration whenever someone set 'target-env' to</div><div class="line">     |       anything, you could just leave off the &lt;value/&gt; inside the activation-property.</div><div class="line">     |</div><div class="line">    &lt;profile&gt;</div><div class="line">      &lt;id&gt;env-dev&lt;/id&gt;</div><div class="line"></div><div class="line">      &lt;activation&gt;</div><div class="line">        &lt;property&gt;</div><div class="line">          &lt;name&gt;target-env&lt;/name&gt;</div><div class="line">          &lt;value&gt;dev&lt;/value&gt;</div><div class="line">        &lt;/property&gt;</div><div class="line">      &lt;/activation&gt;</div><div class="line"></div><div class="line">      &lt;properties&gt;</div><div class="line">        &lt;tomcatPath&gt;/path/to/tomcat/instance&lt;/tomcatPath&gt;</div><div class="line">      &lt;/properties&gt;</div><div class="line">    &lt;/profile&gt;</div><div class="line">    --&gt;</div><div class="line">  <span class="tag">&lt;/<span class="name">profiles</span>&gt;</span></div><div class="line"></div><div class="line">  <span class="comment">&lt;!-- activeProfiles</span></div><div class="line">   | List of profiles that are active for all builds.</div><div class="line">   |</div><div class="line">  &lt;activeProfiles&gt;</div><div class="line">    &lt;activeProfile&gt;alwaysActiveProfile&lt;/activeProfile&gt;</div><div class="line">    &lt;activeProfile&gt;anotherAlwaysActiveProfile&lt;/activeProfile&gt;</div><div class="line">  &lt;/activeProfiles&gt;</div><div class="line">  --&gt;</div><div class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></div></pre></td></tr></table></figure>
-</div><div class="tags"><a href="/tags/maven配置/">maven配置</a><a href="/tags/maven配置远程仓库/">maven配置远程仓库</a><a href="/tags/maven配置编译级别/">maven配置编译级别</a></div><div class="post-nav"><a class="pre" href="/2017/08/16/Java集合源码分析→ArrayList/">Java集合源码分析→ArrayList</a><a class="next" href="/2017/08/02/抓取今日头条文章/">抓取今日头条文章</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/正则表达式/" style="font-size: 15px;">正则表达式</a> <a href="/tags/JMS/" style="font-size: 15px;">JMS</a> <a href="/tags/Spring-Boot自动配置详解/" style="font-size: 15px;">Spring Boot自动配置详解</a> <a href="/tags/Spring-Boot/" style="font-size: 15px;">Spring Boot</a> <a href="/tags/ElasticSearch/" style="font-size: 15px;">ElasticSearch</a> <a href="/tags/JVM/" style="font-size: 15px;">JVM</a> <a href="/tags/GC参数介绍/" style="font-size: 15px;">GC参数介绍</a> <a href="/tags/学习视频/" style="font-size: 15px;">学习视频</a> <a href="/tags/JVM算法与种类/" style="font-size: 15px;">JVM算法与种类</a> <a href="/tags/JVM参数配置/" style="font-size: 15px;">JVM参数配置</a> <a href="/tags/Java架构师之路/" style="font-size: 15px;">Java架构师之路</a> <a href="/tags/JVM运行机制介绍/" style="font-size: 15px;">JVM运行机制介绍</a> <a href="/tags/Java集合源码/" style="font-size: 15px;">Java集合源码</a> <a href="/tags/ArrayList源码/" style="font-size: 15px;">ArrayList源码</a> <a href="/tags/UML/" style="font-size: 15px;">UML</a> <a href="/tags/UML时序图/" style="font-size: 15px;">UML时序图</a> <a href="/tags/HashMap源码/" style="font-size: 15px;">HashMap源码</a> <a href="/tags/Java工具类源码/" style="font-size: 15px;">Java工具类源码</a> <a href="/tags/NumberUtils使用介绍/" style="font-size: 15px;">NumberUtils使用介绍</a> <a href="/tags/Spring/" style="font-size: 15px;">Spring</a> <a href="/tags/Spring-IOC源码/" style="font-size: 15px;">Spring IOC源码</a> <a href="/tags/Spring-IOC工作流程/" style="font-size: 15px;">Spring IOC工作流程</a> <a href="/tags/redis/" style="font-size: 15px;">redis</a> <a href="/tags/nosql/" style="font-size: 15px;">nosql</a> <a href="/tags/缓存/" style="font-size: 15px;">缓存</a> <a href="/tags/idea/" style="font-size: 15px;">idea</a> <a href="/tags/idea快捷键/" style="font-size: 15px;">idea快捷键</a> <a href="/tags/ActiveMQ安装/" style="font-size: 15px;">ActiveMQ安装</a> <a href="/tags/js正则表达式/" style="font-size: 15px;">js正则表达式</a> <a href="/tags/电话号码正则表达式/" style="font-size: 15px;">电话号码正则表达式</a> <a href="/tags/邮箱正则表达式/" style="font-size: 15px;">邮箱正则表达式</a> <a href="/tags/maven配置/" style="font-size: 15px;">maven配置</a> <a href="/tags/maven配置远程仓库/" style="font-size: 15px;">maven配置远程仓库</a> <a href="/tags/maven配置编译级别/" style="font-size: 15px;">maven配置编译级别</a> <a href="/tags/Python高级语法/" style="font-size: 15px;">Python高级语法</a> <a href="/tags/python3/" style="font-size: 15px;">python3</a> <a href="/tags/python入门/" style="font-size: 15px;">python入门</a> <a href="/tags/redis主从复制/" style="font-size: 15px;">redis主从复制</a> <a href="/tags/redis安装/" style="font-size: 15px;">redis安装</a> <a href="/tags/redis集群添加节点/" style="font-size: 15px;">redis集群添加节点</a> <a href="/tags/redis集群水平扩展/" style="font-size: 15px;">redis集群水平扩展</a> <a href="/tags/redis持久化/" style="font-size: 15px;">redis持久化</a> <a href="/tags/redis哨兵模式/" style="font-size: 15px;">redis哨兵模式</a> <a href="/tags/redis集群/" style="font-size: 15px;">redis集群</a> <a href="/tags/redis集群移除节点/" style="font-size: 15px;">redis集群移除节点</a> <a href="/tags/Spring-AOP使用/" style="font-size: 15px;">Spring AOP使用</a> <a href="/tags/Spring4/" style="font-size: 15px;">Spring4</a> <a href="/tags/JVM和JDK介绍/" style="font-size: 15px;">JVM和JDK介绍</a> <a href="/tags/java爬取今日头条文章/" style="font-size: 15px;">java爬取今日头条文章</a> <a href="/tags/java爬虫/" style="font-size: 15px;">java爬虫</a> <a href="/tags/http请求过程，/" style="font-size: 15px;">http请求过程，</a> <a href="/tags/DNS解析过程/" style="font-size: 15px;">DNS解析过程</a> <a href="/tags/类加载器/" style="font-size: 15px;">类加载器</a> <a href="/tags/JVM监控处理工具/" style="font-size: 15px;">JVM监控处理工具</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/07/09/SpringBoot集成ES/">SpringBoot集成ES</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/08/ElasticSearch高级查询/">ElasticSearch高级查询</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/05/ElasticSearch入门/">ElasticSearch入门</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/02/04/python高级语法与用法/">python3高级语法与用法</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/01/13/python3基础和进阶/">python3基础和进阶</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/17/Boot自动配置实战/">Spring Boot自动配置实战</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/12/11/spring中AOP的使用/">Spring中AOP的使用</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/19/OO与UML/">OO与UML</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/11/05/虚拟机性能监控和处理工具/">虚拟机性能监控和处理工具</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/10/16/类装载器/">类装载器</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://ifeve.com/" title="并发编程网" target="_blank">并发编程网</a><ul></ul><a href="http://blog.csdn.net/facekbook" title="CSDN博客" target="_blank">CSDN博客</a><ul></ul><a href="http://coolshell.cn/" title="酷客" target="_blank">酷客</a><ul></ul><a href="http://www.ruanyifeng.com/home.html" title="阮一峰博客" target="_blank">阮一峰博客</a><ul></ul><a href="http://www.jiuzhang.com/" title="九章算法" target="_blank">九章算法</a><ul></ul><a href="http://www.lintcode.com/zh-cn/" title="LintCode" target="_blank">LintCode</a><ul></ul><a href="https://www.ibm.com/developerworks/cn/" title="developerWorks" target="_blank">developerWorks</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2018 <a href="/." rel="nofollow">在路上的coder.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.3.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/maven配置/">maven配置</a><a href="/tags/maven配置远程仓库/">maven配置远程仓库</a><a href="/tags/maven配置编译级别/">maven配置编译级别</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	<div class="share-jiathis">
+	  
+<div class="jiathis_style_24x24">
+	<a class="jiathis_button_tsina"></a>
+	<a class="jiathis_button_weixin"></a>
+	<a class="jiathis_button_renren"></a>
+	<a class="jiathis_button_qzone"></a>
+	<a class="jiathis_button_googleplus"></a>
+	<a class="jiathis_button_douban"></a>
+	<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	<a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+    var jiathis_config={
+    data_track_clickback:true,
+    sm:"copy,renren,cqq",
+    pic:"",
+    summary:"",
+    
+  </script> 
+<script type="text/javascript" src="//v3.jiathis.com/code/jia.js?uid=
+2138856" charset="utf-8"></script>      
+
+	 </div>
+	
+	</div>
+	<!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2138856"></script>
+<!-- UY END -->
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2017/08/16/Java集合源码分析→ArrayList/" title="Java集合源码分析→ArrayList">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Java集合源码分析→ArrayList</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2017/08/02/抓取今日头条文章/"  title="抓取今日头条文章">
+ <strong>下一篇：</strong><br/> 
+ <span>抓取今日头条文章
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#修改maven配置"><span class="toc-number">1.</span> <span class="toc-text">修改maven配置</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/redis/" title="redis">redis<sup>8</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM/" title="JVM">JVM<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/学习视频/" title="学习视频">学习视频<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/缓存/" title="缓存">缓存<sup>4</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ElasticSearch/" title="ElasticSearch">ElasticSearch<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/nosql/" title="nosql">nosql<sup>3</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java集合源码/" title="Java集合源码">Java集合源码<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/正则表达式/" title="正则表达式">正则表达式<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM算法与种类/" title="JVM算法与种类">JVM算法与种类<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM参数配置/" title="JVM参数配置">JVM参数配置<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JVM运行机制介绍/" title="JVM运行机制介绍">JVM运行机制介绍<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java架构师之路/" title="Java架构师之路">Java架构师之路<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/JMS/" title="JMS">JMS<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ArrayList源码/" title="ArrayList源码">ArrayList源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/HashMap源码/" title="HashMap源码">HashMap源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Java工具类源码/" title="Java工具类源码">Java工具类源码<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/NumberUtils使用介绍/" title="NumberUtils使用介绍">NumberUtils使用介绍<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UML/" title="UML">UML<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/UML时序图/" title="UML时序图">UML时序图<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Spring-Boot自动配置详解/" title="Spring Boot自动配置详解">Spring Boot自动配置详解<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情链接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发编程网">并发编程网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/facekbook" target="_blank" title="CSDN博客">CSDN博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://crane-yuan.github.io/" target="_blank" title="关注博客">关注博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://coolshell.cn/" target="_blank" title="酷客">酷客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://ifeve.com/" target="_blank" title="并发网">并发网</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.itmian4.com/" target="_blank" title="IT面试社区">IT面试社区</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.csdn.net/ns_code" target="_blank" title="优秀博客">优秀博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.ruanyifeng.com/home.html" target="_blank" title="阮一峰博客">阮一峰博客</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.jiuzhang.com/" target="_blank" title="九章算法">九章算法</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://www.lintcode.com/zh-cn/" target="_blank" title="LintCode">LintCode</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="https://www.ibm.com/developerworks/cn/" target="_blank" title="developerWorks">developerWorks</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,我是在路上的coder. <br/>
+			这是我个人的博客.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2018 
+		
+		<a href="/about" target="_blank" title="在路上的coder">在路上的coder</a>
+		
+			
+					<!-- 不蒜统计 -->
+			<br>
+			<span style="display: inline;" id="busuanzi_container_site_uv">本站总访客数 <span id="busuanzi_value_site_uv" font="微软雅黑" style="color:white"></span></span>
+			<span style="display: inline;" id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv" font="微软雅黑" style="color:white"></span></span>
+		</p>
+</div>
+
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+
+
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1262026511'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1262026511' type='text/javascript'%3E%3C/script%3E"));</script>
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回顶部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  </body>
+</html>
